@@ -15,6 +15,7 @@ import SubjectFlashcards from "./pages/SubjectFlashcards";
 import Quizzes from "./pages/Quizzes";
 import SubjectQuizzes from "./pages/SubjectQuizzes";
 import SubjectNotes from "./pages/SubjectNotes";
+import TopicContent from "./pages/TopicContent";
 import StudyPlanner from "./pages/StudyPlanner";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import NotFound from "./pages/NotFound";
