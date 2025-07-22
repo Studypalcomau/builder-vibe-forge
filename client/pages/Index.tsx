@@ -143,10 +143,12 @@ export default function Index() {
                 <Play className="w-5 h-5 mr-2" />
                 Start Studying Free
               </Button>
-              <Button size="lg" variant="outline" className="border-sky-blue-300 text-sky-blue-700 hover:bg-sky-blue-50">
-                Browse Subjects
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
+              <Link to="/subjects">
+                <Button size="lg" variant="outline" className="border-sky-blue-300 text-sky-blue-700 hover:bg-sky-blue-50">
+                  Browse Subjects
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
