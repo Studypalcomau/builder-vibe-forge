@@ -139,10 +139,12 @@ export default function Index() {
               practice quizzes, and personalized study plans to help you excel in your exams.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-study-primary hover:bg-study-primary/90 text-white px-8">
-                <Play className="w-5 h-5 mr-2" />
-                Start Studying Free
-              </Button>
+              <Link to="/subjects">
+                <Button size="lg" className="bg-study-primary hover:bg-study-primary/90 text-white px-8">
+                  <Play className="w-5 h-5 mr-2" />
+                  Start Studying Free
+                </Button>
+              </Link>
               <Link to="/subjects">
                 <Button size="lg" variant="outline" className="border-sky-blue-300 text-sky-blue-700 hover:bg-sky-blue-50">
                   Browse Subjects
