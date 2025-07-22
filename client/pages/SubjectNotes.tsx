@@ -387,7 +387,7 @@ export default function SubjectNotes() {
   const getTypeIcon = (type: string) => {
     switch (type) {
       case "concept": return <Lightbulb className="w-4 h-4" />;
-      case "formula": return <Formula className="w-4 h-4" />;
+      case "formula": return <Calculator className="w-4 h-4" />;
       case "example": return <Eye className="w-4 h-4" />;
       case "summary": return <FileText className="w-4 h-4" />;
       default: return <BookOpen className="w-4 h-4" />;
