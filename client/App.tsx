@@ -33,22 +33,8 @@ const App = () => (
             <Route path="/subjects" element={<Subjects />} />
             <Route path="/subjects/:slug" element={<Subject />} />
             <Route path="/subjects/:slug/flashcards" element={<SubjectFlashcards />} />
-            <Route path="/subjects/:slug/quizzes" element={
-              <PlaceholderPage
-                title="Subject Quizzes"
-                description="Practice quizzes and tests specifically designed for this subject."
-                backLink="/subjects"
-                backText="Back to Subjects"
-              />
-            } />
-            <Route path="/subjects/:slug/notes" element={
-              <PlaceholderPage
-                title="Study Notes"
-                description="Comprehensive study notes and reference materials for this subject."
-                backLink="/subjects"
-                backText="Back to Subjects"
-              />
-            } />
+            <Route path="/subjects/:slug/quizzes" element={<SubjectQuizzes />} />
+            <Route path="/subjects/:slug/notes" element={<SubjectNotes />} />
             <Route path="/flashcards" element={<Flashcards />} />
             <Route path="/quizzes" element={<Quizzes />} />
             <Route path="/planner" element={<StudyPlanner />} />
