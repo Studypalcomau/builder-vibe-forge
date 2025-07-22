@@ -567,10 +567,12 @@ export default function Subject() {
                     </div>
                   </div>
                   
-                  <Button variant="ghost" size="sm" className="text-sky-blue-600 hover:text-sky-blue-700">
-                    {topic.completed ? 'Review' : 'Start'}
-                    <ChevronRight className="w-4 h-4 ml-1" />
-                  </Button>
+                  <Link to={`/subjects/${slug}/topics/${topic.id === 1 ? 'functions-and-relations' : topic.id === 2 ? 'differential-calculus' : 'topic-' + topic.id}`}>
+                    <Button variant="ghost" size="sm" className="text-sky-blue-600 hover:text-sky-blue-700">
+                      {topic.completed ? 'Review' : 'Start'}
+                      <ChevronRight className="w-4 h-4 ml-1" />
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
