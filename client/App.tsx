@@ -11,6 +11,7 @@ import Index from "./pages/Index";
 import Subject from "./pages/Subject";
 import Subjects from "./pages/Subjects";
 import Flashcards from "./pages/Flashcards";
+import SubjectFlashcards from "./pages/SubjectFlashcards";
 import Quizzes from "./pages/Quizzes";
 import StudyPlanner from "./pages/StudyPlanner";
 import PlaceholderPage from "./pages/PlaceholderPage";
