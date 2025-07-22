@@ -18,26 +18,45 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 199 89% 48%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 199 89% 95%;
+    --secondary-foreground: 199 89% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 199 20% 96%;
+    --muted-foreground: 199 10% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 199 89% 92%;
+    --accent-foreground: 199 89% 25%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 199 30% 88%;
+    --input: 199 30% 88%;
+    --ring: 199 89% 48%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Sky Blue Theme Variables */
+    --sky-blue-50: 199 100% 97%;
+    --sky-blue-100: 199 100% 93%;
+    --sky-blue-200: 199 100% 86%;
+    --sky-blue-300: 199 100% 75%;
+    --sky-blue-400: 199 100% 63%;
+    --sky-blue-500: 199 89% 48%;
+    --sky-blue-600: 199 89% 38%;
+    --sky-blue-700: 199 89% 28%;
+    --sky-blue-800: 199 89% 20%;
+    --sky-blue-900: 199 89% 15%;
+
+    /* Study App Theme */
+    --study-primary: 199 89% 48%;
+    --study-secondary: 199 100% 93%;
+    --study-accent: 34 100% 65%;
+    --study-background: 199 50% 98%;
+    --study-surface: 0 0% 100%;
 
     --sidebar-background: 0 0% 98%;
 
