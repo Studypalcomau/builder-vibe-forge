@@ -98,53 +98,263 @@ export default function Subject() {
 
   const progressPercentage = Math.round((subject.completedTopics / subject.totalTopics) * 100);
 
-  const topics = [
-    { 
-      id: 1, 
-      title: "Introduction to Calculus", 
-      difficulty: "Beginner",
-      duration: "45 min",
-      completed: true,
-      flashcards: 24,
-      quizzes: 3
-    },
-    { 
-      id: 2, 
-      title: "Differential Equations", 
-      difficulty: "Intermediate",
-      duration: "1.2 hours", 
-      completed: true,
-      flashcards: 32,
-      quizzes: 4
-    },
-    { 
-      id: 3, 
-      title: "Integration Techniques", 
-      difficulty: "Intermediate",
-      duration: "1 hour",
-      completed: false,
-      flashcards: 28,
-      quizzes: 3
-    },
-    { 
-      id: 4, 
-      title: "Applications of Calculus", 
-      difficulty: "Advanced",
-      duration: "1.5 hours",
-      completed: false,
-      flashcards: 35,
-      quizzes: 5
-    },
-    { 
-      id: 5, 
-      title: "Statistical Analysis", 
-      difficulty: "Intermediate",
-      duration: "1.1 hours",
-      completed: false,
-      flashcards: 26,
-      quizzes: 4
-    }
-  ];
+  // Subject-specific topics based on Queensland curriculum
+  const subjectTopics: Record<string, any[]> = {
+    mathematics: [
+      {
+        id: 1,
+        title: "Functions and Relations",
+        difficulty: "Beginner",
+        duration: "1.5 hours",
+        completed: true,
+        flashcards: 28,
+        quizzes: 4,
+        description: "Domain, range, inverse functions, and graphical analysis"
+      },
+      {
+        id: 2,
+        title: "Differential Calculus",
+        difficulty: "Intermediate",
+        duration: "2.5 hours",
+        completed: true,
+        flashcards: 35,
+        quizzes: 6,
+        description: "Derivatives, limits, chain rule, and applications"
+      },
+      {
+        id: 3,
+        title: "Integration and Applications",
+        difficulty: "Intermediate",
+        duration: "3 hours",
+        completed: false,
+        flashcards: 42,
+        quizzes: 7,
+        description: "Antiderivatives, definite integrals, area under curves"
+      },
+      {
+        id: 4,
+        title: "Exponential and Logarithmic Functions",
+        difficulty: "Intermediate",
+        duration: "2 hours",
+        completed: false,
+        flashcards: 31,
+        quizzes: 5,
+        description: "Natural logarithms, exponential growth and decay"
+      },
+      {
+        id: 5,
+        title: "Trigonometric Functions",
+        difficulty: "Intermediate",
+        duration: "2.5 hours",
+        completed: false,
+        flashcards: 38,
+        quizzes: 6,
+        description: "Sine, cosine, tangent, trigonometric identities"
+      },
+      {
+        id: 6,
+        title: "Statistics and Probability",
+        difficulty: "Advanced",
+        duration: "3.5 hours",
+        completed: false,
+        flashcards: 45,
+        quizzes: 8,
+        description: "Descriptive statistics, probability distributions, inference"
+      }
+    ],
+    biology: [
+      {
+        id: 1,
+        title: "Cells and Cellular Processes",
+        difficulty: "Beginner",
+        duration: "2 hours",
+        completed: true,
+        flashcards: 32,
+        quizzes: 5,
+        description: "Cell structure, organelles, membrane transport"
+      },
+      {
+        id: 2,
+        title: "DNA, RNA and Protein Synthesis",
+        difficulty: "Intermediate",
+        duration: "3 hours",
+        completed: true,
+        flashcards: 41,
+        quizzes: 7,
+        description: "Molecular biology, transcription, translation"
+      },
+      {
+        id: 3,
+        title: "Photosynthesis and Cellular Respiration",
+        difficulty: "Intermediate",
+        duration: "3.5 hours",
+        completed: false,
+        flashcards: 38,
+        quizzes: 6,
+        description: "Energy conversion, Calvin cycle, electron transport"
+      },
+      {
+        id: 4,
+        title: "Genetics and Inheritance",
+        difficulty: "Intermediate",
+        duration: "2.5 hours",
+        completed: false,
+        flashcards: 35,
+        quizzes: 6,
+        description: "Mendelian genetics, chromosomes, genetic disorders"
+      },
+      {
+        id: 5,
+        title: "Evolution and Natural Selection",
+        difficulty: "Advanced",
+        duration: "3 hours",
+        completed: false,
+        flashcards: 42,
+        quizzes: 7,
+        description: "Darwin's theory, speciation, phylogenetics"
+      },
+      {
+        id: 6,
+        title: "Ecosystems and Biodiversity",
+        difficulty: "Intermediate",
+        duration: "2.5 hours",
+        completed: false,
+        flashcards: 29,
+        quizzes: 5,
+        description: "Food webs, energy flow, conservation biology"
+      }
+    ],
+    chemistry: [
+      {
+        id: 1,
+        title: "Atomic Structure and Periodicity",
+        difficulty: "Beginner",
+        duration: "2 hours",
+        completed: false,
+        flashcards: 35,
+        quizzes: 5,
+        description: "Electron configuration, periodic trends, atomic theory"
+      },
+      {
+        id: 2,
+        title: "Chemical Bonding and Structure",
+        difficulty: "Intermediate",
+        duration: "3 hours",
+        completed: false,
+        flashcards: 42,
+        quizzes: 7,
+        description: "Ionic, covalent, metallic bonding, molecular geometry"
+      },
+      {
+        id: 3,
+        title: "Thermochemistry and Kinetics",
+        difficulty: "Advanced",
+        duration: "3.5 hours",
+        completed: false,
+        flashcards: 38,
+        quizzes: 6,
+        description: "Enthalpy, reaction rates, activation energy"
+      }
+    ],
+    physics: [
+      {
+        id: 1,
+        title: "Mechanics and Motion",
+        difficulty: "Beginner",
+        duration: "2.5 hours",
+        completed: false,
+        flashcards: 31,
+        quizzes: 5,
+        description: "Kinematics, dynamics, Newton's laws, projectile motion"
+      },
+      {
+        id: 2,
+        title: "Waves and Sound",
+        difficulty: "Intermediate",
+        duration: "3 hours",
+        completed: false,
+        flashcards: 36,
+        quizzes: 6,
+        description: "Wave properties, sound waves, interference, resonance"
+      },
+      {
+        id: 3,
+        title: "Electricity and Magnetism",
+        difficulty: "Advanced",
+        duration: "4 hours",
+        completed: false,
+        flashcards: 45,
+        quizzes: 8,
+        description: "Electric fields, circuits, magnetic fields, electromagnetic induction"
+      }
+    ],
+    english: [
+      {
+        id: 1,
+        title: "Literary Analysis and Criticism",
+        difficulty: "Intermediate",
+        duration: "2 hours",
+        completed: false,
+        flashcards: 25,
+        quizzes: 4,
+        description: "Close reading, themes, literary devices, critical approaches"
+      },
+      {
+        id: 2,
+        title: "Creative and Persuasive Writing",
+        difficulty: "Intermediate",
+        duration: "3 hours",
+        completed: false,
+        flashcards: 28,
+        quizzes: 5,
+        description: "Narrative techniques, argument structure, rhetorical devices"
+      },
+      {
+        id: 3,
+        title: "Australian Literature and Identity",
+        difficulty: "Advanced",
+        duration: "2.5 hours",
+        completed: false,
+        flashcards: 32,
+        quizzes: 6,
+        description: "National identity, cultural context, Indigenous perspectives"
+      }
+    ],
+    "modern-history": [
+      {
+        id: 1,
+        title: "World War I and its Aftermath",
+        difficulty: "Intermediate",
+        duration: "3 hours",
+        completed: false,
+        flashcards: 38,
+        quizzes: 6,
+        description: "Causes, major battles, Treaty of Versailles, social impact"
+      },
+      {
+        id: 2,
+        title: "Rise of Totalitarian Regimes",
+        difficulty: "Advanced",
+        duration: "3.5 hours",
+        completed: false,
+        flashcards: 42,
+        quizzes: 7,
+        description: "Nazi Germany, Soviet Union, fascist Italy, propaganda"
+      },
+      {
+        id: 3,
+        title: "Cold War Politics and Society",
+        difficulty: "Advanced",
+        duration: "4 hours",
+        completed: false,
+        flashcards: 45,
+        quizzes: 8,
+        description: "Ideological conflict, nuclear age, decolonization"
+      }
+    ]
+  };
+
+  const topics = subjectTopics[slug as string] || [];
 
   return (
     <div className="min-h-screen bg-study-background">
