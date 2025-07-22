@@ -13,6 +13,8 @@ import Subjects from "./pages/Subjects";
 import Flashcards from "./pages/Flashcards";
 import SubjectFlashcards from "./pages/SubjectFlashcards";
 import Quizzes from "./pages/Quizzes";
+import SubjectQuizzes from "./pages/SubjectQuizzes";
+import SubjectNotes from "./pages/SubjectNotes";
 import StudyPlanner from "./pages/StudyPlanner";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import NotFound from "./pages/NotFound";
