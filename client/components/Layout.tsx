@@ -18,6 +18,7 @@ export function Layout({ children }: LayoutProps) {
     { name: "Flashcards", href: "/flashcards" },
     { name: "Quizzes", href: "/quizzes" },
     { name: "Study Planner", href: "/planner" },
+    { name: "Pricing", href: "/pricing" },
   ];
 
   const isActive = (path: string) => location.pathname === path;
