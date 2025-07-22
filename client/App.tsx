@@ -32,6 +32,7 @@ const App = () => (
         <Layout>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/subjects" element={<Subjects />} />
             <Route path="/subjects/:slug" element={<Subject />} />
             <Route path="/subjects/:slug/flashcards" element={<SubjectFlashcards />} />
