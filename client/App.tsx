@@ -30,14 +30,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/subjects" element={<Subjects />} />
             <Route path="/subjects/:slug" element={<Subject />} />
-            <Route path="/subjects/:slug/flashcards" element={
-              <PlaceholderPage
-                title="Subject Flashcards"
-                description="Interactive flashcards for this specific subject with spaced repetition learning."
-                backLink="/subjects"
-                backText="Back to Subjects"
-              />
-            } />
+            <Route path="/subjects/:slug/flashcards" element={<SubjectFlashcards />} />
             <Route path="/subjects/:slug/quizzes" element={
               <PlaceholderPage
                 title="Subject Quizzes"
