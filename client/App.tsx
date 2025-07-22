@@ -43,6 +43,7 @@ const App = () => (
             <Route path="/flashcards" element={<Flashcards />} />
             <Route path="/quizzes" element={<Quizzes />} />
             <Route path="/planner" element={<StudyPlanner />} />
+            <Route path="/pricing" element={<Pricing />} />
             <Route path="/progress" element={
               <PlaceholderPage
                 title="Progress Tracking"
