@@ -1,0 +1,376 @@
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Button } from "./ui/button";
+import { Badge } from "./ui/badge";
+import { Progress } from "./ui/progress";
+import { 
+  CheckCircle, 
+  XCircle, 
+  Clock, 
+  Trophy,
+  Brain,
+  Target,
+  ChevronRight,
+  RotateCcw
+} from "lucide-react";
+
+export interface QuizQuestion {
+  id: string;
+  type: "multiple-choice" | "true-false" | "numerical" | "text";
+  question: string;
+  options?: string[];
+  correctAnswer: string | number;
+  explanation: string;
+  difficulty: "Easy" | "Medium" | "Hard";
+  category: string;
+  points: number;
+  timeLimit?: number; // in seconds
+}
+
+export interface QuizData {
+  id: string;
+  title: string;
+  description: string;
+  subject: string;
+  questions: QuizQuestion[];
+  totalTime: number; // in minutes
+  passingScore: number; // percentage
+}
+
+interface QuizComponentProps {
+  quiz: QuizData;
+  onComplete: (score: number, answers: Record<string, any>) => void;
+  className?: string;
+}
+
+export function Quiz({ quiz, onComplete, className = "" }: QuizComponentProps) {
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [answers, setAnswers] = useState<Record<string, any>>({});
+  const [timeLeft, setTimeLeft] = useState(quiz.totalTime * 60);
+  const [showResult, setShowResult] = useState(false);
+  const [quizStarted, setQuizStarted] = useState(false);
+
+  const currentQuestion = quiz.questions[currentQuestionIndex];
+  const progress = ((currentQuestionIndex + 1) / quiz.questions.length) * 100;
+  const isLastQuestion = currentQuestionIndex === quiz.questions.length - 1;
+  const hasAnsweredCurrent = answers[currentQuestion?.id] !== undefined;
+
+  const calculateScore = () => {
+    let correct = 0;
+    let totalPoints = 0;
+    
+    quiz.questions.forEach(question => {
+      totalPoints += question.points;
+      const userAnswer = answers[question.id];
+      
+      if (question.type === "numerical") {
+        if (Math.abs(Number(userAnswer) - Number(question.correctAnswer)) < 0.001) {
+          correct += question.points;
+        }
+      } else if (String(userAnswer).toLowerCase() === String(question.correctAnswer).toLowerCase()) {
+        correct += question.points;
+      }
+    });
+    
+    return Math.round((correct / totalPoints) * 100);
+  };
+
+  const handleAnswer = (answer: any) => {
+    setAnswers(prev => ({
+      ...prev,
+      [currentQuestion.id]: answer
+    }));
+  };
+
+  const handleNext = () => {
+    if (isLastQuestion) {
+      const finalScore = calculateScore();
+      setShowResult(true);
+      onComplete(finalScore, answers);
+    } else {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(currentQuestionIndex - 1);
+    }
+  };
+
+  const resetQuiz = () => {
+    setCurrentQuestionIndex(0);
+    setAnswers({});
+    setTimeLeft(quiz.totalTime * 60);
+    setShowResult(false);
+    setQuizStarted(false);
+  };
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  const getDifficultyColor = (difficulty: string) => {
+    switch (difficulty) {
+      case "Easy": return "bg-green-100 text-green-700";
+      case "Medium": return "bg-yellow-100 text-yellow-700";
+      case "Hard": return "bg-red-100 text-red-700";
+      default: return "bg-gray-100 text-gray-700";
+    }
+  };
+
+  // Quiz start screen
+  if (!quizStarted) {
+    return (
+      <div className={`max-w-2xl mx-auto ${className}`}>
+        <Card className="border-sky-blue-200">
+          <CardHeader className="text-center">
+            <div className="w-16 h-16 bg-sky-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Trophy className="w-8 h-8 text-sky-blue-600" />
+            </div>
+            <CardTitle className="text-2xl">{quiz.title}</CardTitle>
+            <p className="text-gray-600">{quiz.description}</p>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="text-center p-4 bg-sky-blue-50 rounded-lg">
+                <div className="font-bold text-2xl text-gray-900">{quiz.questions.length}</div>
+                <div className="text-sm text-gray-600">Questions</div>
+              </div>
+              <div className="text-center p-4 bg-sky-blue-50 rounded-lg">
+                <div className="font-bold text-2xl text-gray-900">{quiz.totalTime} min</div>
+                <div className="text-sm text-gray-600">Time Limit</div>
+              </div>
+            </div>
+            
+            <div className="space-y-3">
+              <h4 className="font-semibold">Quiz Instructions:</h4>
+              <ul className="text-sm text-gray-600 space-y-1">
+                <li>• Answer all questions to the best of your ability</li>
+                <li>• You can go back to previous questions</li>
+                <li>• Passing score: {quiz.passingScore}%</li>
+                <li>• Take your time and read carefully</li>
+              </ul>
+            </div>
+
+            <Button 
+              onClick={() => setQuizStarted(true)}
+              className="w-full bg-sky-blue-500 hover:bg-sky-blue-600 text-white"
+              size="lg"
+            >
+              Start Quiz
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  // Quiz results screen
+  if (showResult) {
+    const score = calculateScore();
+    const passed = score >= quiz.passingScore;
+    
+    return (
+      <div className={`max-w-2xl mx-auto ${className}`}>
+        <Card className="border-sky-blue-200">
+          <CardHeader className="text-center">
+            <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${
+              passed ? 'bg-green-100' : 'bg-red-100'
+            }`}>
+              {passed ? (
+                <CheckCircle className="w-8 h-8 text-green-600" />
+              ) : (
+                <XCircle className="w-8 h-8 text-red-600" />
+              )}
+            </div>
+            <CardTitle className="text-2xl">
+              {passed ? 'Congratulations!' : 'Keep Studying!'}
+            </CardTitle>
+            <p className="text-gray-600">
+              {passed ? 'You passed the quiz!' : 'You can retake this quiz anytime.'}
+            </p>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="text-center">
+              <div className="text-4xl font-bold text-gray-900 mb-2">{score}%</div>
+              <Badge className={passed ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}>
+                {passed ? 'PASSED' : 'NEEDS IMPROVEMENT'}
+              </Badge>
+            </div>
+
+            <div className="grid grid-cols-3 gap-4 text-center">
+              <div className="p-3 bg-sky-blue-50 rounded-lg">
+                <div className="font-bold text-lg">{Object.keys(answers).length}</div>
+                <div className="text-sm text-gray-600">Answered</div>
+              </div>
+              <div className="p-3 bg-sky-blue-50 rounded-lg">
+                <div className="font-bold text-lg">{quiz.questions.length}</div>
+                <div className="text-sm text-gray-600">Total Questions</div>
+              </div>
+              <div className="p-3 bg-sky-blue-50 rounded-lg">
+                <div className="font-bold text-lg">{quiz.passingScore}%</div>
+                <div className="text-sm text-gray-600">Passing Score</div>
+              </div>
+            </div>
+
+            <div className="flex gap-3">
+              <Button 
+                onClick={resetQuiz}
+                variant="outline"
+                className="flex-1"
+              >
+                <RotateCcw className="w-4 h-4 mr-2" />
+                Retake Quiz
+              </Button>
+              <Button 
+                className="flex-1 bg-sky-blue-500 hover:bg-sky-blue-600 text-white"
+                onClick={() => window.history.back()}
+              >
+                Continue Studying
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  // Quiz question screen
+  return (
+    <div className={`max-w-2xl mx-auto ${className}`}>
+      {/* Header with progress */}
+      <div className="mb-6">
+        <div className="flex justify-between items-center mb-2">
+          <span className="text-sm text-gray-600">
+            Question {currentQuestionIndex + 1} of {quiz.questions.length}
+          </span>
+          <div className="flex items-center text-sm text-gray-600">
+            <Clock className="w-4 h-4 mr-1" />
+            {formatTime(timeLeft)}
+          </div>
+        </div>
+        <Progress value={progress} className="h-2" />
+      </div>
+
+      {/* Question Card */}
+      <Card className="border-sky-blue-200 mb-6">
+        <CardHeader>
+          <div className="flex justify-between items-start mb-4">
+            <Badge className={getDifficultyColor(currentQuestion.difficulty)}>
+              {currentQuestion.difficulty}
+            </Badge>
+            <Badge variant="outline">
+              {currentQuestion.points} {currentQuestion.points === 1 ? 'point' : 'points'}
+            </Badge>
+          </div>
+          <CardTitle className="text-lg leading-relaxed">
+            {currentQuestion.question}
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          {/* Multiple Choice */}
+          {currentQuestion.type === "multiple-choice" && currentQuestion.options && (
+            <div className="space-y-3">
+              {currentQuestion.options.map((option, index) => (
+                <label
+                  key={index}
+                  className={`flex items-center p-3 border rounded-lg cursor-pointer transition-colors ${
+                    answers[currentQuestion.id] === option
+                      ? 'border-sky-blue-500 bg-sky-blue-50'
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name={currentQuestion.id}
+                    value={option}
+                    checked={answers[currentQuestion.id] === option}
+                    onChange={(e) => handleAnswer(e.target.value)}
+                    className="mr-3"
+                  />
+                  <span>{option}</span>
+                </label>
+              ))}
+            </div>
+          )}
+
+          {/* True/False */}
+          {currentQuestion.type === "true-false" && (
+            <div className="space-y-3">
+              {["True", "False"].map((option) => (
+                <label
+                  key={option}
+                  className={`flex items-center p-3 border rounded-lg cursor-pointer transition-colors ${
+                    answers[currentQuestion.id] === option
+                      ? 'border-sky-blue-500 bg-sky-blue-50'
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name={currentQuestion.id}
+                    value={option}
+                    checked={answers[currentQuestion.id] === option}
+                    onChange={(e) => handleAnswer(e.target.value)}
+                    className="mr-3"
+                  />
+                  <span>{option}</span>
+                </label>
+              ))}
+            </div>
+          )}
+
+          {/* Numerical */}
+          {currentQuestion.type === "numerical" && (
+            <div>
+              <input
+                type="number"
+                step="any"
+                value={answers[currentQuestion.id] || ""}
+                onChange={(e) => handleAnswer(e.target.value)}
+                className="w-full p-3 border border-gray-200 rounded-lg focus:border-sky-blue-500 focus:outline-none"
+                placeholder="Enter your numerical answer"
+              />
+            </div>
+          )}
+
+          {/* Text */}
+          {currentQuestion.type === "text" && (
+            <div>
+              <textarea
+                value={answers[currentQuestion.id] || ""}
+                onChange={(e) => handleAnswer(e.target.value)}
+                className="w-full p-3 border border-gray-200 rounded-lg focus:border-sky-blue-500 focus:outline-none resize-none"
+                rows={4}
+                placeholder="Enter your answer"
+              />
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Navigation */}
+      <div className="flex justify-between">
+        <Button
+          onClick={handlePrevious}
+          disabled={currentQuestionIndex === 0}
+          variant="outline"
+        >
+          Previous
+        </Button>
+        
+        <Button
+          onClick={handleNext}
+          disabled={!hasAnsweredCurrent}
+          className="bg-sky-blue-500 hover:bg-sky-blue-600 text-white"
+        >
+          {isLastQuestion ? 'Finish Quiz' : 'Next'}
+          <ChevronRight className="w-4 h-4 ml-2" />
+        </Button>
+      </div>
+    </div>
+  );
+}
