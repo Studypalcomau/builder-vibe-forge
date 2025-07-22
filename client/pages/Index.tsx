@@ -273,9 +273,11 @@ export default function Index() {
                 <span className="text-gray-700">Detailed performance analytics</span>
               </div>
             </div>
-            <Button className="mt-8 bg-study-primary hover:bg-study-primary/90 text-white">
-              View Your Dashboard
-            </Button>
+            <Link to="/dashboard">
+              <Button className="mt-8 bg-study-primary hover:bg-study-primary/90 text-white">
+                View Your Dashboard
+              </Button>
+            </Link>
           </div>
 
           <div className="space-y-4">
