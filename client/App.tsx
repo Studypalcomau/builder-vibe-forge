@@ -10,6 +10,7 @@ import { Layout } from "./components/Layout";
 import Index from "./pages/Index";
 import Subject from "./pages/Subject";
 import Subjects from "./pages/Subjects";
+import Dashboard from "./pages/Dashboard";
 import Flashcards from "./pages/Flashcards";
 import SubjectFlashcards from "./pages/SubjectFlashcards";
 import Quizzes from "./pages/Quizzes";
