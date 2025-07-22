@@ -541,9 +541,10 @@ export default function Subject() {
                     
                     <div>
                       <h3 className="font-semibold text-gray-900">{topic.title}</h3>
-                      <div className="flex items-center space-x-4 mt-1">
-                        <Badge 
-                          variant="secondary" 
+                      <p className="text-sm text-gray-600 mt-1 mb-2">{topic.description}</p>
+                      <div className="flex items-center space-x-4">
+                        <Badge
+                          variant="secondary"
                           className={`text-xs ${
                             topic.difficulty === 'Beginner' ? 'bg-green-100 text-green-700' :
                             topic.difficulty === 'Intermediate' ? 'bg-yellow-100 text-yellow-700' :
