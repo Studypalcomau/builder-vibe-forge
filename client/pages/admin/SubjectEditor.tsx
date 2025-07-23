@@ -1056,6 +1056,124 @@ export default function SubjectEditor() {
             </Card>
           </div>
         )}
+
+        {activeTab === "materials" && (
+          <div className="space-y-6">
+            <Card className="border-sky-blue-200">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle>Subject Materials</CardTitle>
+                    <CardDescription>Upload additional learning materials, textbooks, worksheets, and reference documents</CardDescription>
+                  </div>
+                  <div>
+                    <input
+                      type="file"
+                      accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png,.mp4,.mov"
+                      onChange={handleMaterialUpload}
+                      className="hidden"
+                      id="material-upload"
+                    />
+                    <Button asChild className="bg-study-primary hover:bg-study-primary/90">
+                      <label htmlFor="material-upload" className="cursor-pointer">
+                        <Upload className="w-4 h-4 mr-2" />
+                        Upload Material
+                      </label>
+                    </Button>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                {isUploadingMaterial && (
+                  <div className="mb-4 p-4 border border-blue-200 bg-blue-50 rounded-lg">
+                    <div className="flex items-center space-x-3">
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+                      <span className="text-blue-700">Processing uploaded material...</span>
+                    </div>
+                  </div>
+                )}
+
+                <div className="space-y-4">
+                  {subject.subjectMaterials.map((material) => (
+                    <div key={material.id} className="border border-gray-200 rounded-lg p-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-3">
+                          <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                            material.type === 'textbook' ? 'bg-blue-100' :
+                            material.type === 'worksheet' ? 'bg-green-100' :
+                            material.type === 'video' ? 'bg-red-100' :
+                            material.type === 'reference' ? 'bg-purple-100' :
+                            'bg-gray-100'
+                          }`}>
+                            {material.type === 'textbook' && <BookOpen className="w-5 h-5 text-blue-600" />}
+                            {material.type === 'worksheet' && <FileText className="w-5 h-5 text-green-600" />}
+                            {material.type === 'video' && <Eye className="w-5 h-5 text-red-600" />}
+                            {material.type === 'reference' && <Target className="w-5 h-5 text-purple-600" />}
+                            {material.type === 'other' && <Paperclip className="w-5 h-5 text-gray-600" />}
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">{material.title}</h4>
+                            <div className="flex items-center space-x-4 text-sm text-gray-600">
+                              <span className="capitalize">{material.type}</span>
+                              <span>{material.fileSize}</span>
+                              <span>Uploaded: {material.uploadDate}</span>
+                            </div>
+                            {material.description && (
+                              <p className="text-sm text-gray-600 mt-1">{material.description}</p>
+                            )}
+                          </div>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          {material.processed ? (
+                            <CheckCircle className="w-5 h-5 text-green-500" />
+                          ) : (
+                            <Clock className="w-5 h-5 text-yellow-500" />
+                          )}
+                          <Button size="sm" variant="ghost">
+                            <Edit className="w-3 h-3" />
+                          </Button>
+                          <Button size="sm" variant="ghost">
+                            <Eye className="w-3 h-3" />
+                          </Button>
+                          <Button size="sm" variant="ghost">
+                            <Download className="w-3 h-3" />
+                          </Button>
+                          <Button size="sm" variant="ghost">
+                            <Trash2 className="w-3 h-3" />
+                          </Button>
+                        </div>
+                      </div>
+
+                      {material.relevantTopics && material.relevantTopics.length > 0 && (
+                        <div className="mt-3 pt-3 border-t border-gray-200">
+                          <Label className="text-sm text-gray-600">Relevant Topics:</Label>
+                          <div className="flex flex-wrap gap-2 mt-1">
+                            {material.relevantTopics.map((topic, index) => (
+                              <Badge key={index} variant="outline" className="text-xs">
+                                {topic}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+
+                  {subject.subjectMaterials.length === 0 && !isUploadingMaterial && (
+                    <div className="text-center py-8 border-2 border-dashed border-gray-300 rounded-lg">
+                      <Paperclip className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                      <h3 className="text-lg font-medium text-gray-900 mb-2">No materials uploaded</h3>
+                      <p className="text-gray-600 mb-4">Upload textbooks, worksheets, videos, and other learning materials to enhance your subject content.</p>
+                      <div className="text-sm text-gray-500">
+                        <p>Supported formats: PDF, DOC, DOCX, PPT, PPTX, JPG, PNG, MP4, MOV</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
       </div>
     </div>
   );
