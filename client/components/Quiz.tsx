@@ -348,17 +348,17 @@ export function Quiz({ quiz, onComplete, className = "", returnPath }: QuizCompo
           <CardContent className="p-4">
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
-                <div className="text-2xl font-bold text-green-600">{detailedResults.correctAnswers}</div>
+                <div className="text-2xl font-bold text-green-600">{reviewResults.correctAnswers}</div>
                 <div className="text-sm text-gray-600">Correct</div>
               </div>
               <div>
                 <div className="text-2xl font-bold text-red-600">
-                  {detailedResults.totalQuestions - detailedResults.correctAnswers}
+                  {reviewResults.totalQuestions - reviewResults.correctAnswers}
                 </div>
                 <div className="text-sm text-gray-600">Incorrect</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-blue-600">{detailedResults.score}%</div>
+                <div className="text-2xl font-bold text-blue-600">{reviewResults.score}%</div>
                 <div className="text-sm text-gray-600">Final Score</div>
               </div>
             </div>
