@@ -307,7 +307,7 @@ export default function Account() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {enrolledSubjects.map((subject) => (
-          <Card key={subject.id} className="border-sky-blue-200">
+          <Card key={`enrolled-${subject.id}`} className="border-sky-blue-200">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle className="text-lg">{subject.name}</CardTitle>
