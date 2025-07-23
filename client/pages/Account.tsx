@@ -122,12 +122,7 @@ export default function Account() {
     setEnrolledSubjects(prev => prev.filter(s => s.id !== subjectId));
   };
 
-  const handleNotificationChange = (setting: string, value: boolean) => {
-    setNotifications(prev => ({
-      ...prev,
-      [setting]: value
-    }));
-  };
+
 
   const handlePrivacyChange = (setting: string, value: boolean | string) => {
     setPrivacySettings(prev => ({
