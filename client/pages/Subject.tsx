@@ -375,6 +375,18 @@ export default function Subject() {
                               </span>
                             </div>
 
+                            {/* Topic Progress Bar */}
+                            <div className="mb-3">
+                              <div className="flex justify-between text-xs text-gray-600 mb-1">
+                                <span>Subtopic Progress</span>
+                                <span>{topic.subtopics.filter(s => s.completed).length}/{topic.subtopics.length}</span>
+                              </div>
+                              <Progress
+                                value={topic.subtopics.length > 0 ? (topic.subtopics.filter(s => s.completed).length / topic.subtopics.length) * 100 : 0}
+                                className="h-1.5"
+                              />
+                            </div>
+
                             {/* Subtopics with Study Material Links */}
                             <div className="space-y-3">
                               {topic.subtopics.map((subtopic, subtopicIndex) => (
