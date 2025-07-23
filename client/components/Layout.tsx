@@ -18,6 +18,7 @@ export function Layout({ children }: LayoutProps) {
     { name: "Flashcards", href: "/flashcards" },
     { name: "Quizzes", href: "/quizzes" },
     { name: "Pricing", href: "/pricing" },
+    { name: "Admin", href: "/admin" },
   ];
 
   // For demo purposes, assuming user is logged in. In real app, this would come from auth context
