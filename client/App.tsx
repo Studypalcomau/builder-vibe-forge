@@ -63,6 +63,10 @@ const App = () => (
             <Route path="/account" element={<Account />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/subjects" element={<SubjectManagement />} />
+            <Route path="/admin/subjects/new" element={<SubjectEditor />} />
+            <Route path="/admin/subjects/:id" element={<SubjectEditor />} />
+            <Route path="/admin/subjects/:id/edit" element={<SubjectEditor />} />
+            <Route path="/admin/curriculum" element={<CurriculumManager />} />
             <Route path="/admin/generate" element={<ContentGeneration />} />
             <Route path="/admin/curriculum" element={
               <PlaceholderPage
