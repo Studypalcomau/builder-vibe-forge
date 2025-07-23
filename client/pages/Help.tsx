@@ -64,10 +64,7 @@ export default function Help() {
           question: "How are the quizzes structured?",
           answer: "Quizzes include multiple choice, short answer, and problem-solving questions. They're aligned with Queensland assessment standards and provide instant feedback with detailed explanations."
         },
-        {
-          question: "Can I create custom study schedules?",
-          answer: "Absolutely! The study planner helps you create personalized schedules based on your exam dates, available study time, and learning goals."
-        }
+
       ]
     },
     {
