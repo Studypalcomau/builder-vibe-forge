@@ -426,16 +426,6 @@ export default function Subject() {
 
           <Card className="border-sky-blue-200">
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-gray-600">Next Exam</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-lg font-bold text-gray-900 mb-1">{subject.nextExam}</div>
-              <p className="text-sm text-gray-600">Mark your calendar</p>
-            </CardContent>
-          </Card>
-
-          <Card className="border-sky-blue-200">
-            <CardHeader className="pb-3">
               <CardTitle className="text-sm font-medium text-gray-600">Performance</CardTitle>
             </CardHeader>
             <CardContent>
