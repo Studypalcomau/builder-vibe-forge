@@ -19,9 +19,9 @@ export default function Subject() {
   
   // Mock data - in a real app this would come from an API
   const subjectData = {
-    mathematics: {
-      name: "Mathematics",
-      description: "Master algebraic concepts, calculus, and statistical analysis for Year 11-12",
+    "mathematical-methods": {
+      name: "Mathematical Methods",
+      description: "Master calculus, functions, and statistical analysis for Year 11-12",
       icon: "📊",
       color: "bg-blue-500",
       totalTopics: 45,
@@ -29,25 +29,15 @@ export default function Subject() {
       studyTime: "24 hours",
       nextExam: "November 15, 2024"
     },
-    english: {
-      name: "English", 
-      description: "Develop critical analysis, writing skills, and literary understanding",
-      icon: "📚",
-      color: "bg-green-500",
-      totalTopics: 38,
+    "specialist-mathematics": {
+      name: "Specialist Mathematics",
+      description: "Advanced mathematics including complex numbers, vectors, and further calculus",
+      icon: "🔢",
+      color: "bg-indigo-500",
+      totalTopics: 42,
       completedTopics: 8,
       studyTime: "18 hours",
       nextExam: "November 20, 2024"
-    },
-    chemistry: {
-      name: "Chemistry",
-      description: "Explore organic, inorganic, and physical chemistry concepts",
-      icon: "⚗️", 
-      color: "bg-purple-500",
-      totalTopics: 42,
-      completedTopics: 15,
-      studyTime: "30 hours",
-      nextExam: "November 25, 2024"
     },
     physics: {
       name: "Physics",
@@ -56,25 +46,35 @@ export default function Subject() {
       color: "bg-red-500",
       totalTopics: 39,
       completedTopics: 10,
-      studyTime: "22 hours", 
+      studyTime: "22 hours",
       nextExam: "December 2, 2024"
     },
-    biology: {
-      name: "Biology",
-      description: "Study ecology, genetics, evolution, and biological systems",
-      icon: "🧬",
-      color: "bg-emerald-500",
-      totalTopics: 41,
+    engineering: {
+      name: "Engineering",
+      description: "Design thinking, problem-solving, and engineering systems",
+      icon: "⚙️",
+      color: "bg-orange-500",
+      totalTopics: 38,
+      completedTopics: 15,
+      studyTime: "30 hours",
+      nextExam: "November 25, 2024"
+    },
+    economics: {
+      name: "Economics",
+      description: "Microeconomics, macroeconomics, and market analysis",
+      icon: "💰",
+      color: "bg-green-500",
+      totalTopics: 35,
       completedTopics: 6,
       studyTime: "16 hours",
       nextExam: "December 5, 2024"
     },
-    "modern-history": {
-      name: "Modern History",
-      description: "Analyze world wars, cold war politics, and modern global events",
-      icon: "🏛️",
-      color: "bg-amber-500", 
-      totalTopics: 36,
+    english: {
+      name: "English",
+      description: "Literature analysis, language skills, and written communication",
+      icon: "📚",
+      color: "bg-purple-500",
+      totalTopics: 40,
       completedTopics: 9,
       studyTime: "20 hours",
       nextExam: "December 8, 2024"
