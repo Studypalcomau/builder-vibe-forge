@@ -406,8 +406,8 @@ export default function Subject() {
                             {/* Topic Progress Bar */}
                             <div className="mb-3">
                               <div className="flex justify-between text-xs text-gray-600 mb-1">
-                                <span>Subtopic Progress</span>
-                                <span>{topic.subtopics.filter(s => s.completed).length}/{topic.subtopics.length}</span>
+                                <span>Progress</span>
+                                <span>{Math.round(topic.subtopics.length > 0 ? (topic.subtopics.filter(s => s.completed).length / topic.subtopics.length) * 100 : 0)}%</span>
                               </div>
                               <Progress
                                 value={topic.subtopics.length > 0 ? (topic.subtopics.filter(s => s.completed).length / topic.subtopics.length) * 100 : 0}
