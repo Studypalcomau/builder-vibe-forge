@@ -95,9 +95,11 @@ interface Subject {
     learningOutcomes: string[];
     prerequisites: string[];
     assessmentMethods: string[];
+    curriculumDocument?: CurriculumDocument;
   };
   topics: Topic[];
   examPapers: ExamPaper[];
+  subjectMaterials: SubjectMaterial[];
   contentGeneration: {
     flashcardsGenerated: number;
     quizzesGenerated: number;
