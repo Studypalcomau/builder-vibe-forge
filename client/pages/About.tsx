@@ -126,7 +126,7 @@ export default function About() {
     "Queensland curriculum aligned content",
     "Interactive flashcards with spaced repetition",
     "Comprehensive practice quizzes",
-    "Personalized study planning",
+    "Comprehensive study notes",
     "Detailed progress analytics",
     "Mobile-responsive design"
   ];
