@@ -227,6 +227,8 @@ export default function SubjectEditor() {
   const [activeTab, setActiveTab] = useState("basic");
   const [expandedTopic, setExpandedTopic] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
+  const [isUploadingCurriculum, setIsUploadingCurriculum] = useState(false);
+  const [isUploadingMaterial, setIsUploadingMaterial] = useState(false);
 
   const handleSave = () => {
     // Save subject to database
