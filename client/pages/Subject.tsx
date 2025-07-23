@@ -218,6 +218,18 @@ export default function Subject() {
 
   const progressPercentage = totalTopics > 0 ? Math.round((completedTopics / totalTopics) * 100) : 0;
 
+  const toggleUnit = (unitId: number) => {
+    setExpandedUnits(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(unitId)) {
+        newSet.delete(unitId);
+      } else {
+        newSet.add(unitId);
+      }
+      return newSet;
+    });
+  };
+
   return (
     <div className="min-h-screen bg-study-background">
       {/* Subject Header */}
