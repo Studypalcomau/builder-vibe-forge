@@ -309,7 +309,55 @@ export default function SubjectQuizzes() {
   const [selectedQuiz, setSelectedQuiz] = useState<QuizData | null>(null);
   const [quizResults, setQuizResults] = useState<Record<string, number>>({});
 
-  const quizzes = subjectQuizzes[slug as string] || [];
+  // Handle subtopic-specific quizzes
+  const subtopicQuizzes: Record<string, QuizData[]> = {
+    "1-0": [ // Domain and Range
+      {
+        id: "dom-quiz-1",
+        title: "Domain and Range Fundamentals",
+        description: "Test your understanding of function domains and ranges",
+        difficulty: "Medium",
+        estimatedTime: 10,
+        questions: [
+          {
+            id: "q1",
+            question: "What is the domain of f(x) = 1/(x-2)?",
+            type: "multiple-choice",
+            options: ["All real numbers", "All real numbers except 2", "All positive numbers", "All numbers greater than 2"],
+            correctAnswer: 1,
+            explanation: "The function is undefined when x-2=0, so x cannot equal 2."
+          }
+        ],
+        category: "Functions",
+        topics: ["Domain", "Range"]
+      }
+    ],
+    "1-1": [ // Function Types
+      {
+        id: "func-quiz-1",
+        title: "Function Types Quiz",
+        description: "Identify and work with different types of functions",
+        difficulty: "Easy",
+        estimatedTime: 8,
+        questions: [
+          {
+            id: "q1",
+            question: "What type of function has the form f(x) = mx + b?",
+            type: "multiple-choice",
+            options: ["Quadratic", "Linear", "Exponential", "Logarithmic"],
+            correctAnswer: 1,
+            explanation: "f(x) = mx + b is the standard form of a linear function."
+          }
+        ],
+        category: "Functions",
+        topics: ["Linear Functions"]
+      }
+    ]
+  };
+
+  const quizzes = subtopicId
+    ? (subtopicQuizzes[subtopicId] || [])
+    : (subjectQuizzes[slug as string] || []);
   const hasQuizzes = quizzes.length > 0;
 
   const subjectNames: Record<string, string> = {
@@ -325,6 +373,15 @@ export default function SubjectQuizzes() {
   };
 
   const subjectName = subjectNames[slug as string] || "Subject";
+
+  // Get subtopic name from ID
+  const subtopicNames: Record<string, string> = {
+    "1-0": "Domain and Range",
+    "1-1": "Function Types",
+    "1-2": "Transformations"
+  };
+
+  const subtopicName = subtopicId ? subtopicNames[subtopicId] : null;
 
   const handleQuizComplete = (score: number, answers: Record<string, any>) => {
     if (selectedQuiz) {
