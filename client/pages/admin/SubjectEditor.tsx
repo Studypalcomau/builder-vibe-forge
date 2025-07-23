@@ -26,8 +26,7 @@ import {
   Paperclip,
   X,
   Edit,
-  ChevronRight,
-  ChevronDown
+
 } from "lucide-react";
 
 interface Topic {
