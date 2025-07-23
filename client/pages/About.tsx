@@ -115,7 +115,7 @@ export default function About() {
       school: "Brisbane State High School"
     },
     {
-      quote: "The study planner feature helped me organize my revision schedule for all subjects. I improved my Physics grade from C to A in just one term!",
+      quote: "The comprehensive study materials and practice quizzes helped me organize my revision for all subjects. I improved my Physics grade from C to A in just one term!",
       author: "Alex K.",
       grade: "Year 11 Student",
       subject: "Physics & Engineering"
