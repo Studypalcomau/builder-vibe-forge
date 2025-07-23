@@ -86,7 +86,6 @@ export default function Account() {
     { id: "profile", label: "Profile", icon: User },
     { id: "subjects", label: "My Subjects", icon: BookOpen },
     { id: "billing", label: "Billing", icon: CreditCard },
-    { id: "notifications", label: "Notifications", icon: Bell },
     { id: "privacy", label: "Privacy & Security", icon: Shield }
   ];
 
