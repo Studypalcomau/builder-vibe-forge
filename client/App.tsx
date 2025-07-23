@@ -29,6 +29,8 @@ import Privacy from "./pages/Privacy";
 import Account from "./pages/Account";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import SubjectManagement from "./pages/admin/SubjectManagement";
+import SubjectEditor from "./pages/admin/SubjectEditor";
+import CurriculumManager from "./pages/admin/CurriculumManager";
 import ContentGeneration from "./pages/admin/ContentGeneration";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import NotFound from "./pages/NotFound";
