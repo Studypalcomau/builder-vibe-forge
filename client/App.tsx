@@ -59,6 +59,27 @@ const App = () => (
             <Route path="/signup" element={<Signup />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/account" element={<Account />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/subjects" element={<SubjectManagement />} />
+            <Route path="/admin/generate" element={<ContentGeneration />} />
+            <Route path="/admin/curriculum" element={
+              <PlaceholderPage
+                title="Curriculum Management"
+                description="Manage curriculum structure and learning objectives for all subjects."
+              />
+            } />
+            <Route path="/admin/analytics" element={
+              <PlaceholderPage
+                title="Admin Analytics"
+                description="View comprehensive analytics and reports for the platform."
+              />
+            } />
+            <Route path="/admin/settings" element={
+              <PlaceholderPage
+                title="System Settings"
+                description="Configure system-wide settings and preferences."
+              />
+            } />
             <Route path="/progress" element={
               <PlaceholderPage
                 title="Progress Tracking"
