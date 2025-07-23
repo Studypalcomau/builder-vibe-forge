@@ -491,39 +491,43 @@ export default function SubjectQuizzes() {
         id: "trans-quiz-1",
         title: "Function Transformations Basics",
         description: "Understanding how to transform functions",
-        difficulty: "Easy",
-        estimatedTime: 8,
+        subject: "Mathematical Methods",
+        totalTime: 8,
+        passingScore: 70,
         questions: [
           {
             id: "q1",
             question: "How does f(x) + 3 transform the graph of f(x)?",
             type: "multiple-choice",
             options: ["Shifts up 3 units", "Shifts down 3 units", "Shifts left 3 units", "Shifts right 3 units"],
-            correctAnswer: 0,
-            explanation: "Adding a constant to the function shifts the graph vertically upward."
+            correctAnswer: "Shifts up 3 units",
+            explanation: "Adding a constant to the function shifts the graph vertically upward.",
+            difficulty: "Easy",
+            category: "Functions",
+            points: 5
           }
-        ],
-        category: "Functions",
-        topics: ["Transformations"]
+        ]
       },
       {
         id: "trans-quiz-2",
         title: "Advanced Transformations",
         description: "Complex function transformations and combinations",
-        difficulty: "Medium",
-        estimatedTime: 12,
+        subject: "Mathematical Methods",
+        totalTime: 12,
+        passingScore: 70,
         questions: [
           {
             id: "q1",
             question: "How does f(x-2) transform the graph of f(x)?",
             type: "multiple-choice",
             options: ["Shifts up 2 units", "Shifts down 2 units", "Shifts left 2 units", "Shifts right 2 units"],
-            correctAnswer: 3,
-            explanation: "f(x-h) shifts the graph h units to the right."
+            correctAnswer: "Shifts right 2 units",
+            explanation: "f(x-h) shifts the graph h units to the right.",
+            difficulty: "Medium",
+            category: "Functions",
+            points: 7
           }
-        ],
-        category: "Functions",
-        topics: ["Transformations"]
+        ]
       }
     ]
   };
