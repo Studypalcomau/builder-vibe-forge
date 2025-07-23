@@ -63,7 +63,10 @@ interface CurriculumDocument {
   processed: boolean;
   extractedUnits?: {
     unitName: string;
-    topics: string[];
+    topics: {
+      topicName: string;
+      subtopics: string[];
+    }[];
   }[];
   aiAnalysis?: {
     unitsIdentified: number;
