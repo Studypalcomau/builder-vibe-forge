@@ -450,59 +450,7 @@ export default function Account() {
     </div>
   );
 
-  const renderNotificationsTab = () => (
-    <div className="space-y-6">
-      <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">Notification Preferences</h3>
-        <p className="text-gray-600">Choose how you want to receive updates and reminders</p>
-      </div>
 
-      <Card className="border-sky-blue-200">
-        <CardHeader>
-          <CardTitle>Email Notifications</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {Object.entries({
-              emailUpdates: "Product updates and announcements",
-              studyReminders: "Study session reminders",
-              quizNotifications: "New quiz and flashcard notifications", 
-              progressReports: "Weekly progress reports",
-              marketingEmails: "Marketing and promotional emails"
-            }).map(([key, label]) => (
-              <div key={key} className="flex items-center justify-between">
-                <div>
-                  <p className="font-medium">{label}</p>
-                </div>
-                <Switch
-                  checked={notifications[key as keyof typeof notifications]}
-                  onCheckedChange={(checked) => handleNotificationChange(key, checked)}
-                />
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-
-      <Card className="border-sky-blue-200">
-        <CardHeader>
-          <CardTitle>SMS Notifications</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="font-medium">SMS study reminders</p>
-              <p className="text-sm text-gray-600">Receive text message reminders for study sessions</p>
-            </div>
-            <Switch
-              checked={notifications.smsNotifications}
-              onCheckedChange={(checked) => handleNotificationChange("smsNotifications", checked)}
-            />
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-  );
 
   const renderPrivacyTab = () => (
     <div className="space-y-6">
