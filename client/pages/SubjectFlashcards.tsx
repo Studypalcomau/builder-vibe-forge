@@ -289,11 +289,14 @@ export default function SubjectFlashcards() {
 
   const subjectNames: Record<string, string> = {
     biology: "Biology",
-    mathematics: "Mathematics", 
-    chemistry: "Chemistry",
+    mathematics: "Mathematics",
+    "mathematical-methods": "Mathematical Methods",
+    "specialist-mathematics": "Specialist Mathematics",
     physics: "Physics",
     english: "English",
-    "modern-history": "Modern History"
+    chemistry: "Chemistry",
+    engineering: "Engineering",
+    economics: "Economics"
   };
 
   const subjectName = subjectNames[slug as string] || "Subject";
