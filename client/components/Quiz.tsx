@@ -323,7 +323,8 @@ export function Quiz({ quiz, onComplete, className = "", returnPath }: QuizCompo
   }
 
   // Detailed answer review screen
-  if (showDetailedReview && detailedResults) {
+  if (showDetailedReview) {
+    const reviewResults = detailedResults || calculateDetailedResults();
     return (
       <div className={`max-w-4xl mx-auto ${className}`}>
         <div className="mb-6">
