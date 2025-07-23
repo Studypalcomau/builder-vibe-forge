@@ -277,7 +277,7 @@ const subjectFlashcards: Record<string, FlashcardData[]> = {
 };
 
 export default function SubjectFlashcards() {
-  const { slug } = useParams();
+  const { slug, subtopicId } = useParams();
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [studyMode, setStudyMode] = useState<"sequential" | "random">("sequential");
   const [showStats, setShowStats] = useState(false);
