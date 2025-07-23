@@ -81,12 +81,7 @@ export default function Index() {
       description: "Comprehensive quizzes aligned with Queensland curriculum standards",
       link: "/quizzes"
     },
-    {
-      icon: Calendar,
-      title: "Study Planner",
-      description: "Personalized study schedules that fit your exam timeline",
-      link: "/planner"
-    },
+
     {
       icon: Target,
       title: "Progress Tracking",
