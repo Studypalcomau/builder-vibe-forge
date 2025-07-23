@@ -148,13 +148,160 @@ const biologyQuizzes: QuizData[] = [
   }
 ];
 
+// English quizzes for Queensland curriculum
+const englishQuizzes: QuizData[] = [
+  {
+    id: "eng-literary-devices",
+    title: "Literary Devices and Techniques",
+    description: "Test your knowledge of metaphors, similes, irony, and other literary devices",
+    subject: "English",
+    totalTime: 20,
+    passingScore: 70,
+    questions: [
+      {
+        id: "lit-1",
+        type: "multiple-choice",
+        question: "Which literary device is used in the phrase 'The classroom was a zoo'?",
+        options: ["Simile", "Metaphor", "Personification", "Alliteration"],
+        correctAnswer: "Metaphor",
+        explanation: "This is a metaphor because it directly compares the classroom to a zoo without using 'like' or 'as'. It suggests the classroom was chaotic and noisy.",
+        difficulty: "Easy",
+        category: "Literary Devices",
+        points: 5
+      },
+      {
+        id: "lit-2",
+        type: "multiple-choice",
+        question: "What type of irony is present when the audience knows something the character doesn't?",
+        options: ["Verbal irony", "Situational irony", "Dramatic irony", "Cosmic irony"],
+        correctAnswer: "Dramatic irony",
+        explanation: "Dramatic irony occurs when the audience has knowledge that the characters lack, creating tension or humor.",
+        difficulty: "Medium",
+        category: "Literary Devices",
+        points: 7
+      },
+      {
+        id: "lit-3",
+        type: "true-false",
+        question: "Alliteration is the repetition of vowel sounds in consecutive words.",
+        correctAnswer: "False",
+        explanation: "Alliteration is the repetition of initial consonant sounds. The repetition of vowel sounds is called assonance.",
+        difficulty: "Medium",
+        category: "Literary Devices",
+        points: 6
+      },
+      {
+        id: "lit-4",
+        type: "multiple-choice",
+        question: "In the sentence 'The wind whispered through the trees,' what literary device is used?",
+        options: ["Metaphor", "Simile", "Personification", "Symbolism"],
+        correctAnswer: "Personification",
+        explanation: "Personification gives human qualities (whispering) to non-human things (wind). Wind cannot literally whisper.",
+        difficulty: "Easy",
+        category: "Literary Devices",
+        points: 5
+      }
+    ]
+  },
+  {
+    id: "eng-essay-writing",
+    title: "Essay Structure and Persuasive Writing",
+    description: "Practice essay planning, thesis statements, and persuasive techniques",
+    subject: "English",
+    totalTime: 25,
+    passingScore: 75,
+    questions: [
+      {
+        id: "essay-1",
+        type: "multiple-choice",
+        question: "What is the primary purpose of a thesis statement?",
+        options: [
+          "To introduce the topic",
+          "To state the main argument or claim",
+          "To provide evidence",
+          "To conclude the essay"
+        ],
+        correctAnswer: "To state the main argument or claim",
+        explanation: "A thesis statement presents the main argument or central claim that the essay will support and develop.",
+        difficulty: "Easy",
+        category: "Essay Writing",
+        points: 5
+      },
+      {
+        id: "essay-2",
+        type: "multiple-choice",
+        question: "Which of these is the most effective way to start a persuasive essay?",
+        options: [
+          "With a dictionary definition",
+          "With a compelling hook that relates to your argument",
+          "With your thesis statement",
+          "With background information only"
+        ],
+        correctAnswer: "With a compelling hook that relates to your argument",
+        explanation: "A compelling hook grabs the reader's attention and draws them into your argument, making them want to continue reading.",
+        difficulty: "Medium",
+        category: "Essay Writing",
+        points: 7
+      },
+      {
+        id: "essay-3",
+        type: "true-false",
+        question: "Each body paragraph should focus on one main idea that supports your thesis.",
+        correctAnswer: "True",
+        explanation: "Effective paragraphs have unity - each should focus on a single main idea that supports and develops your overall thesis.",
+        difficulty: "Easy",
+        category: "Essay Writing",
+        points: 5
+      }
+    ]
+  }
+];
+
+// Physics quizzes
+const physicsQuizzes: QuizData[] = [
+  {
+    id: "phys-mechanics-1",
+    title: "Forces and Motion",
+    description: "Test your understanding of Newton's laws and basic mechanics",
+    subject: "Physics",
+    totalTime: 30,
+    passingScore: 70,
+    questions: [
+      {
+        id: "mech-1",
+        type: "multiple-choice",
+        question: "What is the SI unit for force?",
+        options: ["Joule", "Newton", "Watt", "Pascal"],
+        correctAnswer: "Newton",
+        explanation: "The Newton (N) is the SI unit for force, named after Sir Isaac Newton. 1 N = 1 kg⋅m/s².",
+        difficulty: "Easy",
+        category: "Mechanics",
+        points: 5
+      },
+      {
+        id: "mech-2",
+        type: "numerical",
+        question: "A 10 kg object accelerates at 5 m/s². What is the net force acting on it? (Answer in Newtons)",
+        correctAnswer: 50,
+        explanation: "Using F = ma: F = 10 kg × 5 m/s² = 50 N",
+        difficulty: "Medium",
+        category: "Mechanics",
+        points: 8
+      }
+    ]
+  }
+];
+
 const subjectQuizzes: Record<string, QuizData[]> = {
   mathematics: mathematicsQuizzes,
+  "mathematical-methods": mathematicsQuizzes,
+  "specialist-mathematics": mathematicsQuizzes,
   biology: biologyQuizzes,
+  physics: physicsQuizzes,
+  english: englishQuizzes,
   chemistry: [],
-  physics: [],
-  english: [],
-  "modern-history": []
+  engineering: [],
+  economics: []
 };
 
 export default function SubjectQuizzes() {
