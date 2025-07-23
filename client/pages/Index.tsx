@@ -129,8 +129,8 @@ export default function Index() {
               Curriculum
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              The complete study platform for Queensland Year 11-12 students. Interactive flashcards, 
-              practice quizzes, and personalized study plans to help you excel in your exams.
+              The complete study platform for Queensland Year 11-12 students. Interactive flashcards,
+              practice quizzes, and comprehensive study notes to help you excel in your exams.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/signup">
