@@ -316,7 +316,7 @@ export default function SubjectQuizzes() {
         id: "dom-quiz-1",
         title: "Domain and Range Fundamentals",
         description: "Test your understanding of function domains and ranges",
-        difficulty: "Medium",
+        difficulty: "Easy",
         estimatedTime: 10,
         questions: [
           {
@@ -326,6 +326,60 @@ export default function SubjectQuizzes() {
             options: ["All real numbers", "All real numbers except 2", "All positive numbers", "All numbers greater than 2"],
             correctAnswer: 1,
             explanation: "The function is undefined when x-2=0, so x cannot equal 2."
+          },
+          {
+            id: "q2",
+            question: "What is the range of f(x) = x²?",
+            type: "multiple-choice",
+            options: ["All real numbers", "All positive numbers", "All non-negative numbers", "All negative numbers"],
+            correctAnswer: 2,
+            explanation: "Since x² is always non-negative, the range is [0, ∞)."
+          }
+        ],
+        category: "Functions",
+        topics: ["Domain", "Range"]
+      },
+      {
+        id: "dom-quiz-2",
+        title: "Advanced Domain and Range",
+        description: "Challenge yourself with complex domain and range problems",
+        difficulty: "Medium",
+        estimatedTime: 12,
+        questions: [
+          {
+            id: "q1",
+            question: "What is the domain of f(x) = √(x-3)?",
+            type: "multiple-choice",
+            options: ["x ≥ 3", "x > 3", "x ≤ 3", "All real numbers"],
+            correctAnswer: 0,
+            explanation: "For square root to be defined, x-3 ≥ 0, so x ≥ 3."
+          },
+          {
+            id: "q2",
+            question: "What is the range of f(x) = -2x² + 8?",
+            type: "multiple-choice",
+            options: ["All real numbers", "y ≤ 8", "y ≥ 8", "y > 0"],
+            correctAnswer: 1,
+            explanation: "This is a downward parabola with vertex at (0,8), so y ≤ 8."
+          }
+        ],
+        category: "Functions",
+        topics: ["Domain", "Range"]
+      },
+      {
+        id: "dom-quiz-3",
+        title: "Domain and Range Mastery",
+        description: "Master domain and range with challenging questions",
+        difficulty: "Hard",
+        estimatedTime: 15,
+        questions: [
+          {
+            id: "q1",
+            question: "What is the domain of f(x) = 1/√(4-x²)?",
+            type: "multiple-choice",
+            options: ["-2 < x < 2", "-2 ≤ x ≤ 2", "x < -2 or x > 2", "All real numbers"],
+            correctAnswer: 0,
+            explanation: "We need 4-x² > 0, which gives -2 < x < 2."
           }
         ],
         category: "Functions",
@@ -335,8 +389,8 @@ export default function SubjectQuizzes() {
     "1-1": [ // Function Types
       {
         id: "func-quiz-1",
-        title: "Function Types Quiz",
-        description: "Identify and work with different types of functions",
+        title: "Linear Functions Basics",
+        description: "Introduction to linear functions and their properties",
         difficulty: "Easy",
         estimatedTime: 8,
         questions: [
@@ -347,10 +401,104 @@ export default function SubjectQuizzes() {
             options: ["Quadratic", "Linear", "Exponential", "Logarithmic"],
             correctAnswer: 1,
             explanation: "f(x) = mx + b is the standard form of a linear function."
+          },
+          {
+            id: "q2",
+            question: "In f(x) = 3x + 5, what is the slope?",
+            type: "multiple-choice",
+            options: ["3", "5", "8", "x"],
+            correctAnswer: 0,
+            explanation: "In f(x) = mx + b, m is the slope, so the slope is 3."
           }
         ],
         category: "Functions",
         topics: ["Linear Functions"]
+      },
+      {
+        id: "func-quiz-2",
+        title: "Quadratic Functions",
+        description: "Understanding quadratic functions and parabolas",
+        difficulty: "Medium",
+        estimatedTime: 12,
+        questions: [
+          {
+            id: "q1",
+            question: "What is the vertex form of a quadratic function?",
+            type: "multiple-choice",
+            options: ["f(x) = ax² + bx + c", "f(x) = a(x-h)² + k", "f(x) = mx + b", "f(x) = a^x"],
+            correctAnswer: 1,
+            explanation: "The vertex form is f(x) = a(x-h)² + k where (h,k) is the vertex."
+          },
+          {
+            id: "q2",
+            question: "Which direction does f(x) = -2x² + 3 open?",
+            type: "multiple-choice",
+            options: ["Upward", "Downward", "Left", "Right"],
+            correctAnswer: 1,
+            explanation: "Since a = -2 < 0, the parabola opens downward."
+          }
+        ],
+        category: "Functions",
+        topics: ["Quadratic Functions"]
+      },
+      {
+        id: "func-quiz-3",
+        title: "Exponential Functions",
+        description: "Explore exponential growth and decay functions",
+        difficulty: "Medium",
+        estimatedTime: 10,
+        questions: [
+          {
+            id: "q1",
+            question: "What is the general form of an exponential function?",
+            type: "multiple-choice",
+            options: ["f(x) = ax² + bx + c", "f(x) = mx + b", "f(x) = ab^x", "f(x) = log_a(x)"],
+            correctAnswer: 2,
+            explanation: "An exponential function has the form f(x) = ab^x where a ≠ 0 and b > 0, b ≠ 1."
+          }
+        ],
+        category: "Functions",
+        topics: ["Exponential Functions"]
+      }
+    ],
+    "1-2": [ // Transformations
+      {
+        id: "trans-quiz-1",
+        title: "Function Transformations Basics",
+        description: "Understanding how to transform functions",
+        difficulty: "Easy",
+        estimatedTime: 8,
+        questions: [
+          {
+            id: "q1",
+            question: "How does f(x) + 3 transform the graph of f(x)?",
+            type: "multiple-choice",
+            options: ["Shifts up 3 units", "Shifts down 3 units", "Shifts left 3 units", "Shifts right 3 units"],
+            correctAnswer: 0,
+            explanation: "Adding a constant to the function shifts the graph vertically upward."
+          }
+        ],
+        category: "Functions",
+        topics: ["Transformations"]
+      },
+      {
+        id: "trans-quiz-2",
+        title: "Advanced Transformations",
+        description: "Complex function transformations and combinations",
+        difficulty: "Medium",
+        estimatedTime: 12,
+        questions: [
+          {
+            id: "q1",
+            question: "How does f(x-2) transform the graph of f(x)?",
+            type: "multiple-choice",
+            options: ["Shifts up 2 units", "Shifts down 2 units", "Shifts left 2 units", "Shifts right 2 units"],
+            correctAnswer: 3,
+            explanation: "f(x-h) shifts the graph h units to the right."
+          }
+        ],
+        category: "Functions",
+        topics: ["Transformations"]
       }
     ]
   };
