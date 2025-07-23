@@ -210,6 +210,8 @@ export default function Subject() {
     acc + unit.topics.reduce((topicAcc, topic) => topicAcc + (topic.studyNotes || 0), 0), 0
   );
 
+  const progressPercentage = totalTopics > 0 ? Math.round((completedTopics / totalTopics) * 100) : 0;
+
   return (
     <div className="min-h-screen bg-study-background">
       {/* Subject Header */}
