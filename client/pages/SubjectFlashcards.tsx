@@ -139,13 +139,141 @@ const mathFlashcards: FlashcardData[] = [
   }
 ];
 
+// English flashcards for Queensland curriculum
+const englishFlashcards: FlashcardData[] = [
+  {
+    id: "eng-1",
+    front: "What is a metaphor?",
+    back: "A metaphor is a figure of speech that directly compares two unrelated things without using 'like' or 'as'. Example: 'Time is money' or 'Her voice is music to my ears.'",
+    category: "Literary Devices",
+    difficulty: "Easy",
+    subject: "English",
+    tags: ["metaphor", "figurative language", "comparison", "poetry"]
+  },
+  {
+    id: "eng-2",
+    front: "Explain the difference between theme and plot.",
+    back: "Plot is the sequence of events in a story (what happens), while theme is the central message or meaning of the work (what it's about). Plot is concrete; theme is abstract.",
+    category: "Literary Analysis",
+    difficulty: "Medium",
+    subject: "English",
+    tags: ["theme", "plot", "literary analysis", "story structure"]
+  },
+  {
+    id: "eng-3",
+    front: "What is dramatic irony?",
+    back: "Dramatic irony occurs when the audience knows something that the characters don't. This creates tension and can be used for humor or suspense. Example: In Romeo and Juliet, we know Juliet isn't really dead.",
+    category: "Literary Devices",
+    difficulty: "Medium",
+    subject: "English",
+    tags: ["irony", "dramatic irony", "audience", "tension"]
+  },
+  {
+    id: "eng-4",
+    front: "Define characterization and its two main types.",
+    back: "Characterization is how an author reveals character traits. Direct characterization tells us explicitly what a character is like. Indirect characterization shows us through actions, dialogue, thoughts, and other characters' reactions.",
+    category: "Character Analysis",
+    difficulty: "Medium",
+    subject: "English",
+    tags: ["characterization", "direct", "indirect", "character development"]
+  },
+  {
+    id: "eng-5",
+    front: "What is personification?",
+    back: "Personification gives human characteristics to non-human things. Example: 'The wind whispered through the trees' or 'Time marched on relentlessly.'",
+    category: "Literary Devices",
+    difficulty: "Easy",
+    subject: "English",
+    tags: ["personification", "figurative language", "human qualities"]
+  },
+  {
+    id: "eng-6",
+    front: "Explain the difference between connotation and denotation.",
+    back: "Denotation is the literal, dictionary definition of a word. Connotation is the emotional or cultural associations a word carries. Example: 'snake' denotes a reptile but connotes danger or deceit.",
+    category: "Language Analysis",
+    difficulty: "Hard",
+    subject: "English",
+    tags: ["connotation", "denotation", "word meaning", "language analysis"]
+  },
+  {
+    id: "eng-7",
+    front: "What is alliteration and give an example.",
+    back: "Alliteration is the repetition of initial consonant sounds in consecutive words. Example: 'Peter Piper picked a peck of pickled peppers' or 'wild and windy'.",
+    category: "Literary Devices",
+    difficulty: "Easy",
+    subject: "English",
+    tags: ["alliteration", "sound devices", "consonant", "repetition"]
+  },
+  {
+    id: "eng-8",
+    front: "What are the elements of a persuasive argument?",
+    back: "Key elements include: a clear thesis/claim, credible evidence (facts, statistics, expert opinions), logical reasoning, acknowledgment of counterarguments, and a strong conclusion that reinforces the main point.",
+    category: "Persuasive Writing",
+    difficulty: "Hard",
+    subject: "English",
+    tags: ["persuasion", "argument", "thesis", "evidence", "writing"]
+  },
+  {
+    id: "eng-9",
+    front: "Define tone and mood. How are they different?",
+    back: "Tone is the author's attitude toward the subject (formal, sarcastic, serious). Mood is the emotional atmosphere felt by the reader (suspenseful, melancholy, joyful). Tone creates mood.",
+    category: "Literary Analysis",
+    difficulty: "Medium",
+    subject: "English",
+    tags: ["tone", "mood", "atmosphere", "author attitude"]
+  },
+  {
+    id: "eng-10",
+    front: "What is symbolism in literature?",
+    back: "Symbolism uses objects, colors, characters, or actions to represent larger ideas or concepts. Example: A dove symbolizes peace, a red rose symbolizes love, darkness may symbolize evil or the unknown.",
+    category: "Literary Devices",
+    difficulty: "Hard",
+    subject: "English",
+    tags: ["symbolism", "symbols", "representation", "deeper meaning"]
+  }
+];
+
+// Physics flashcards
+const physicsFlashcards: FlashcardData[] = [
+  {
+    id: "phys-1",
+    front: "State Newton's First Law of Motion.",
+    back: "An object at rest stays at rest, and an object in motion stays in motion at constant velocity, unless acted upon by an unbalanced external force. Also known as the Law of Inertia.",
+    category: "Mechanics",
+    difficulty: "Easy",
+    subject: "Physics",
+    tags: ["Newton's laws", "inertia", "motion", "force"]
+  },
+  {
+    id: "phys-2",
+    front: "What is the formula for kinetic energy?",
+    back: "KE = ½mv², where m is mass (kg) and v is velocity (m/s). Kinetic energy is measured in joules (J).",
+    category: "Energy",
+    difficulty: "Easy",
+    subject: "Physics",
+    tags: ["kinetic energy", "formula", "mass", "velocity"]
+  },
+  {
+    id: "phys-3",
+    front: "Explain the difference between AC and DC current.",
+    back: "DC (Direct Current) flows in one direction only, like from a battery. AC (Alternating Current) changes direction periodically, like household electricity. AC is easier to transform to different voltages.",
+    category: "Electricity",
+    difficulty: "Medium",
+    subject: "Physics",
+    tags: ["current", "AC", "DC", "electricity"]
+  }
+];
+
 const subjectFlashcards: Record<string, FlashcardData[]> = {
   biology: biologyFlashcards,
   mathematics: mathFlashcards,
+  "mathematical-methods": mathFlashcards,
+  "specialist-mathematics": mathFlashcards,
+  physics: physicsFlashcards,
+  english: englishFlashcards,
   chemistry: [],
-  physics: [],
-  english: [],
-  "modern-history": []
+  engineering: [],
+  economics: []
 };
 
 export default function SubjectFlashcards() {
