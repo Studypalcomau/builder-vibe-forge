@@ -4,26 +4,21 @@ import { Button } from "../components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { Progress } from "../components/ui/progress";
-import { 
-  BookOpen, 
+import {
+  BookOpen,
   Brain,
   Trophy,
   Target,
   Clock,
-  Calendar,
   TrendingUp,
-  Star,
   CheckCircle,
   Play,
-  ArrowRight,
   Flame,
-  Award,
   BarChart3,
   Activity,
   Users,
   Zap,
-  ChevronRight,
-  AlertCircle
+  ChevronRight
 } from "lucide-react";
 
 // Mock data - in a real app this would come from an API
