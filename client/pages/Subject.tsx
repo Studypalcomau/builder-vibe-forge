@@ -100,7 +100,7 @@ export default function Subject() {
 
   // Subject-specific topics based on Queensland curriculum
   const subjectTopics: Record<string, any[]> = {
-    mathematics: [
+    "mathematical-methods": [
       {
         id: 1,
         title: "Functions and Relations",
