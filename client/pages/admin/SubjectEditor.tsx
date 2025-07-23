@@ -282,15 +282,29 @@ export default function SubjectEditor() {
           extractedUnits: [
             {
               unitName: "Unit 1: Algebra and Functions",
-              topics: ["Functions and Relations", "Polynomial Functions", "Exponential Functions"]
+              topics: [
+                {
+                  topicName: "Functions and Relations",
+                  subtopics: ["Domain and Range", "Function Types", "Transformations"]
+                },
+                {
+                  topicName: "Polynomial Functions",
+                  subtopics: ["Linear Functions", "Quadratic Functions", "Cubic Functions"]
+                }
+              ]
             },
             {
               unitName: "Unit 2: Calculus",
-              topics: ["Differential Calculus", "Integral Calculus", "Applications of Calculus"]
-            },
-            {
-              unitName: "Unit 3: Probability and Statistics",
-              topics: ["Probability Distributions", "Statistical Analysis", "Data Interpretation"]
+              topics: [
+                {
+                  topicName: "Differential Calculus",
+                  subtopics: ["Limits", "Derivatives", "Chain Rule"]
+                },
+                {
+                  topicName: "Integral Calculus",
+                  subtopics: ["Antiderivatives", "Definite Integrals", "Applications"]
+                }
+              ]
             }
           ],
           aiAnalysis: {
