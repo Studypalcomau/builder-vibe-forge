@@ -390,7 +390,7 @@ export default function Subject() {
                           <div className="flex-1">
                             <h4 className="font-semibold text-gray-900 mb-2">{topic.topicName}</h4>
 
-                            <div className="flex items-center space-x-4 mb-3">
+                            <div className="mb-3">
                               <Badge
                                 variant="secondary"
                                 className={`text-xs ${
@@ -401,15 +401,6 @@ export default function Subject() {
                               >
                                 {topic.difficulty}
                               </Badge>
-                              <span className="text-sm text-gray-600">
-                                {topic.flashcards} flashcards
-                              </span>
-                              <span className="text-sm text-gray-600">
-                                {topic.quizzes} quizzes
-                              </span>
-                              <span className="text-sm text-gray-600">
-                                {topic.studyNotes} study notes
-                              </span>
                             </div>
 
                             {/* Topic Progress Bar */}
