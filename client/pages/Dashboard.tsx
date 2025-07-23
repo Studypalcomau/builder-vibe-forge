@@ -321,38 +321,7 @@ export default function Dashboard() {
 
 
 
-            {/* Quick Actions */}
-            <Card className="border-sky-blue-200">
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <Zap className="w-5 h-5 mr-2" />
-                  Quick Actions
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  <Link to="/flashcards">
-                    <Button variant="outline" className="w-full justify-start">
-                      <Brain className="w-4 h-4 mr-2" />
-                      Review Flashcards
-                    </Button>
-                  </Link>
-                  <Link to="/quizzes">
-                    <Button variant="outline" className="w-full justify-start">
-                      <Trophy className="w-4 h-4 mr-2" />
-                      Take a Quiz
-                    </Button>
-                  </Link>
-                  <Link to="/subjects">
-                    <Button variant="outline" className="w-full justify-start">
-                      <BookOpen className="w-4 h-4 mr-2" />
-                      Browse Subjects
-                    </Button>
-                  </Link>
 
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
 
