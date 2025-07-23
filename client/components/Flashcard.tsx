@@ -123,7 +123,7 @@ export function Flashcard({ flashcard, showAnswer = false, onFlip, className = "
         </Card>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .flashcard-container {
           perspective: 1000px;
           width: 100%;
