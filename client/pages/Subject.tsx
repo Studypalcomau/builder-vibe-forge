@@ -231,6 +231,19 @@ export default function Subject() {
     });
   };
 
+  const toggleTopic = (unitId: number, topicId: number) => {
+    const topicKey = `${unitId}-${topicId}`;
+    setExpandedTopics(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(topicKey)) {
+        newSet.delete(topicKey);
+      } else {
+        newSet.add(topicKey);
+      }
+      return newSet;
+    });
+  };
+
   return (
     <div className="min-h-screen bg-study-background">
       {/* Subject Header */}
