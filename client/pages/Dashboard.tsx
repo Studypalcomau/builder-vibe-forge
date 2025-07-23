@@ -323,31 +323,7 @@ export default function Dashboard() {
 
           {/* Right Column */}
           <div className="space-y-8">
-            {/* Upcoming Deadlines */}
-            <Card className="border-sky-blue-200">
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <AlertCircle className="w-5 h-5 mr-2" />
-                  Upcoming Deadlines
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  {dashboardData.upcomingDeadlines.map((deadline, index) => (
-                    <div key={index} className={`p-3 border rounded-lg ${getPriorityColor(deadline.priority)}`}>
-                      <div className="flex justify-between items-start mb-1">
-                        <h4 className="font-medium text-sm">{deadline.task}</h4>
-                        <Badge variant="outline" className="text-xs">
-                          {deadline.daysLeft} days
-                        </Badge>
-                      </div>
-                      <p className="text-xs">{deadline.subject}</p>
-                      <p className="text-xs opacity-75">{deadline.date}</p>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+
 
             {/* Achievements */}
             <Card className="border-sky-blue-200">
