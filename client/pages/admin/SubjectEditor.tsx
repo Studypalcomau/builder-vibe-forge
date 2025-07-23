@@ -912,15 +912,11 @@ export default function SubjectEditor() {
                         </div>
                       </div>
 
-                      {paper.extractedTopics && (
+                      {paper.processed && (
                         <div className="mt-3 pt-3 border-t border-gray-200">
-                          <Label className="text-sm text-gray-600">Extracted Topics:</Label>
-                          <div className="flex flex-wrap gap-2 mt-1">
-                            {paper.extractedTopics.map((topic, index) => (
-                              <Badge key={index} variant="outline" className="text-xs">
-                                {topic}
-                              </Badge>
-                            ))}
+                          <div className="flex items-center space-x-2">
+                            <CheckCircle className="w-4 h-4 text-green-500" />
+                            <span className="text-sm text-green-700">Content analyzed and ready for AI generation</span>
                           </div>
                         </div>
                       )}
