@@ -265,7 +265,7 @@ export default function Subject() {
               <div className="text-2xl font-bold text-gray-900 mb-2">{progressPercentage}%</div>
               <Progress value={progressPercentage} className="h-2" />
               <p className="text-sm text-gray-600 mt-2">
-                {subject.completedTopics} of {subject.totalTopics} topics
+                {completedTopics} of {totalTopics} topics
               </p>
             </CardContent>
           </Card>
