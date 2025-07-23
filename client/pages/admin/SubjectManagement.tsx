@@ -456,22 +456,12 @@ export default function SubjectManagement() {
               <h1 className="text-3xl font-bold text-gray-900">Subject Management</h1>
               <p className="text-gray-600 mt-2">Manage curriculum, content, and AI generation for all subjects</p>
             </div>
-            <div className="flex space-x-3">
-              <Button variant="outline">
-                <Upload className="w-4 h-4 mr-2" />
-                Import
+            <Link to="/admin/subjects/new">
+              <Button className="bg-study-primary hover:bg-study-primary/90">
+                <Plus className="w-4 h-4 mr-2" />
+                New Subject
               </Button>
-              <Button variant="outline">
-                <Download className="w-4 h-4 mr-2" />
-                Export
-              </Button>
-              <Link to="/admin/subjects/new">
-                <Button className="bg-study-primary hover:bg-study-primary/90">
-                  <Plus className="w-4 h-4 mr-2" />
-                  New Subject
-                </Button>
-              </Link>
-            </div>
+            </Link>
           </div>
         </div>
 
