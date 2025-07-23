@@ -96,8 +96,6 @@ export default function Subject() {
     );
   }
 
-  const progressPercentage = totalTopics > 0 ? Math.round((completedTopics / totalTopics) * 100) : 0;
-
   // Subject curriculum structure mirroring admin curriculum (Units → Topics → Subtopics)
   const subjectCurriculum: Record<string, any[]> = {
     "mathematical-methods": [
