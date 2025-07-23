@@ -12,9 +12,12 @@ import {
   ArrowRight,
   Play,
   ChevronRight,
+  ChevronDown,
+  ChevronUp,
   FileText,
   ExternalLink
 } from "lucide-react";
+import { useState } from "react";
 
 export default function Subject() {
   const { slug } = useParams();
