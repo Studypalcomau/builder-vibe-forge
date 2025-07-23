@@ -29,7 +29,7 @@ export default function Subject() {
     "mathematical-methods": {
       name: "Mathematical Methods",
       description: "Master calculus, functions, and statistical analysis for Year 11-12",
-      icon: "📊",
+      icon: "���",
       color: "bg-blue-500",
       totalTopics: 45,
       completedTopics: 12,
@@ -134,9 +134,9 @@ export default function Subject() {
             quizzes: 1,
             studyNotes: 1,
             subtopics: [
-              { name: "Linear Functions", completed: false, flashcards: 4, quizzes: 0 },
-              { name: "Quadratic Functions", completed: false, flashcards: 4, quizzes: 1 },
-              { name: "Cubic Functions", completed: false, flashcards: 4, quizzes: 0 }
+              { name: "Linear Functions", completed: false, flashcards: 4, quizzes: 2 },
+              { name: "Quadratic Functions", completed: false, flashcards: 4, quizzes: 3 },
+              { name: "Cubic Functions", completed: false, flashcards: 4, quizzes: 2 }
             ]
           }
         ]
