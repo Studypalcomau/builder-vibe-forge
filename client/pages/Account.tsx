@@ -342,12 +342,12 @@ export default function Account() {
         ))}
       </div>
 
-      {availableSubjects.length > 0 && (
+      {filteredAvailableSubjects.length > 0 && (
         <div className="border-t pt-6">
           <h4 className="font-medium text-gray-900 mb-4">Available Subjects</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {availableSubjects.map((subject) => (
-              <Card key={subject.id} className="border-gray-200">
+            {filteredAvailableSubjects.map((subject) => (
+              <Card key={`available-${subject.id}`} className="border-gray-200">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div>
