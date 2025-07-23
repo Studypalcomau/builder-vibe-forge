@@ -19,52 +19,52 @@ import {
 export default function Index() {
   const subjects = [
     {
-      name: "Mathematics",
-      slug: "mathematics",
-      description: "Algebra, Calculus, Statistics",
+      name: "Mathematical Methods",
+      slug: "mathematical-methods",
+      description: "Calculus, Functions, Statistics",
       topics: 45,
       color: "bg-blue-500",
       icon: "📊"
     },
     {
-      name: "English",
-      slug: "english", 
-      description: "Literature, Language, Writing",
-      topics: 38,
-      color: "bg-green-500",
-      icon: "📚"
-    },
-    {
-      name: "Chemistry",
-      slug: "chemistry",
-      description: "Organic, Inorganic, Physical",
+      name: "Specialist Mathematics",
+      slug: "specialist-mathematics",
+      description: "Advanced Calculus, Complex Numbers, Vectors",
       topics: 42,
-      color: "bg-purple-500",
-      icon: "⚗️"
+      color: "bg-indigo-500",
+      icon: "🔢"
     },
     {
       name: "Physics",
       slug: "physics",
-      description: "Mechanics, Waves, Electricity",
+      description: "Mechanics, Waves, Electricity, Modern Physics",
       topics: 39,
-      color: "bg-red-500", 
+      color: "bg-red-500",
       icon: "⚡"
     },
     {
-      name: "Biology",
-      slug: "biology",
-      description: "Ecology, Genetics, Evolution",
-      topics: 41,
-      color: "bg-emerald-500",
-      icon: "🧬"
+      name: "Engineering",
+      slug: "engineering",
+      description: "Design Thinking, Systems, Problem Solving",
+      topics: 38,
+      color: "bg-orange-500",
+      icon: "⚙️"
     },
     {
-      name: "Modern History",
-      slug: "modern-history",
-      description: "World Wars, Cold War, Modern Politics",
-      topics: 36,
-      color: "bg-amber-500",
-      icon: "🏛️"
+      name: "Economics",
+      slug: "economics",
+      description: "Microeconomics, Macroeconomics, Markets",
+      topics: 35,
+      color: "bg-green-500",
+      icon: "💰"
+    },
+    {
+      name: "English",
+      slug: "english",
+      description: "Literature, Language, Writing, Communication",
+      topics: 40,
+      color: "bg-purple-500",
+      icon: "📚"
     }
   ];
 
