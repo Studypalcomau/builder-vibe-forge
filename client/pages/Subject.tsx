@@ -98,68 +98,99 @@ export default function Subject() {
 
   const progressPercentage = Math.round((subject.completedTopics / subject.totalTopics) * 100);
 
-  // Subject-specific topics based on Queensland curriculum
-  const subjectTopics: Record<string, any[]> = {
+  // Subject curriculum structure mirroring admin curriculum (Units → Topics → Subtopics)
+  const subjectCurriculum: Record<string, any[]> = {
     "mathematical-methods": [
       {
-        id: 1,
-        title: "Functions and Relations",
-        difficulty: "Beginner",
-        duration: "1.5 hours",
+        unitId: 1,
+        unitName: "Unit 1: Algebra and Functions",
         completed: true,
-        flashcards: 28,
-        quizzes: 4,
-        description: "Domain, range, inverse functions, and graphical analysis"
+        topics: [
+          {
+            topicId: 1,
+            topicName: "Functions and Relations",
+            difficulty: "Intermediate",
+            completed: true,
+            flashcards: 15,
+            quizzes: 2,
+            studyNotes: 1,
+            subtopics: [
+              { name: "Domain and Range", completed: true, flashcards: 5, quizzes: 1 },
+              { name: "Function Types", completed: true, flashcards: 5, quizzes: 1 },
+              { name: "Transformations", completed: true, flashcards: 5, quizzes: 0 }
+            ]
+          },
+          {
+            topicId: 2,
+            topicName: "Polynomial Functions",
+            difficulty: "Intermediate",
+            completed: false,
+            flashcards: 12,
+            quizzes: 1,
+            studyNotes: 1,
+            subtopics: [
+              { name: "Linear Functions", completed: false, flashcards: 4, quizzes: 0 },
+              { name: "Quadratic Functions", completed: false, flashcards: 4, quizzes: 1 },
+              { name: "Cubic Functions", completed: false, flashcards: 4, quizzes: 0 }
+            ]
+          }
+        ]
       },
       {
-        id: 2,
-        title: "Differential Calculus",
-        difficulty: "Intermediate",
-        duration: "2.5 hours",
-        completed: true,
-        flashcards: 35,
-        quizzes: 6,
-        description: "Derivatives, limits, chain rule, and applications"
-      },
-      {
-        id: 3,
-        title: "Integration and Applications",
-        difficulty: "Intermediate",
-        duration: "3 hours",
+        unitId: 2,
+        unitName: "Unit 2: Calculus",
         completed: false,
-        flashcards: 42,
-        quizzes: 7,
-        description: "Antiderivatives, definite integrals, area under curves"
+        topics: [
+          {
+            topicId: 3,
+            topicName: "Differential Calculus",
+            difficulty: "Advanced",
+            completed: false,
+            flashcards: 18,
+            quizzes: 2,
+            studyNotes: 1,
+            subtopics: [
+              { name: "Limits", completed: false, flashcards: 6, quizzes: 1 },
+              { name: "Derivatives", completed: false, flashcards: 6, quizzes: 1 },
+              { name: "Chain Rule", completed: false, flashcards: 6, quizzes: 0 }
+            ]
+          },
+          {
+            topicId: 4,
+            topicName: "Integral Calculus",
+            difficulty: "Advanced",
+            completed: false,
+            flashcards: 15,
+            quizzes: 2,
+            studyNotes: 1,
+            subtopics: [
+              { name: "Antiderivatives", completed: false, flashcards: 5, quizzes: 1 },
+              { name: "Definite Integrals", completed: false, flashcards: 5, quizzes: 1 },
+              { name: "Applications", completed: false, flashcards: 5, quizzes: 0 }
+            ]
+          }
+        ]
       },
       {
-        id: 4,
-        title: "Exponential and Logarithmic Functions",
-        difficulty: "Intermediate",
-        duration: "2 hours",
+        unitId: 3,
+        unitName: "Unit 3: Probability and Statistics",
         completed: false,
-        flashcards: 31,
-        quizzes: 5,
-        description: "Natural logarithms, exponential growth and decay"
-      },
-      {
-        id: 5,
-        title: "Trigonometric Functions",
-        difficulty: "Intermediate",
-        duration: "2.5 hours",
-        completed: false,
-        flashcards: 38,
-        quizzes: 6,
-        description: "Sine, cosine, tangent, trigonometric identities"
-      },
-      {
-        id: 6,
-        title: "Statistics and Probability",
-        difficulty: "Advanced",
-        duration: "3.5 hours",
-        completed: false,
-        flashcards: 45,
-        quizzes: 8,
-        description: "Descriptive statistics, probability distributions, inference"
+        topics: [
+          {
+            topicId: 5,
+            topicName: "Probability Distributions",
+            difficulty: "Intermediate",
+            completed: false,
+            flashcards: 12,
+            quizzes: 1,
+            studyNotes: 1,
+            subtopics: [
+              { name: "Normal Distribution", completed: false, flashcards: 4, quizzes: 0 },
+              { name: "Binomial Distribution", completed: false, flashcards: 4, quizzes: 1 },
+              { name: "Continuous Distributions", completed: false, flashcards: 4, quizzes: 0 }
+            ]
+          }
+        ]
       }
     ],
     "specialist-mathematics": [
