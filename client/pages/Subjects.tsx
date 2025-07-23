@@ -14,9 +14,9 @@ import {
 export default function Subjects() {
   const subjects = [
     {
-      name: "Mathematics",
-      slug: "mathematics",
-      description: "Master algebraic concepts, calculus, and statistical analysis for Year 11-12",
+      name: "Mathematical Methods",
+      slug: "mathematical-methods",
+      description: "Master calculus, functions, and statistical analysis for Year 11-12",
       icon: "📊",
       color: "bg-blue-500",
       totalTopics: 45,
@@ -26,28 +26,16 @@ export default function Subjects() {
       students: "2.1K"
     },
     {
-      name: "English",
-      slug: "english",
-      description: "Develop critical analysis, writing skills, and literary understanding",
-      icon: "📚",
-      color: "bg-green-500",
-      totalTopics: 38,
-      studyTime: "52 hours",
-      difficulty: "Intermediate",
-      completion: 45,
-      students: "1.8K"
-    },
-    {
-      name: "Chemistry",
-      slug: "chemistry",
-      description: "Explore organic, inorganic, and physical chemistry concepts",
-      icon: "⚗️",
-      color: "bg-purple-500",
+      name: "Specialist Mathematics",
+      slug: "specialist-mathematics",
+      description: "Advanced mathematics including complex numbers, vectors, and further calculus",
+      icon: "🔢",
+      color: "bg-indigo-500",
       totalTopics: 42,
-      studyTime: "74 hours",
+      studyTime: "75 hours",
       difficulty: "Advanced",
-      completion: 32,
-      students: "1.5K"
+      completion: 45,
+      students: "1.2K"
     },
     {
       name: "Physics",
@@ -59,31 +47,43 @@ export default function Subjects() {
       studyTime: "71 hours",
       difficulty: "Advanced",
       completion: 28,
-      students: "1.3K"
+      students: "1.8K"
     },
     {
-      name: "Biology",
-      slug: "biology",
-      description: "Study ecology, genetics, evolution, and biological systems",
-      icon: "🧬",
-      color: "bg-emerald-500",
-      totalTopics: 41,
-      studyTime: "58 hours",
+      name: "Engineering",
+      slug: "engineering",
+      description: "Design thinking, problem-solving, and engineering systems",
+      icon: "⚙️",
+      color: "bg-orange-500",
+      totalTopics: 38,
+      studyTime: "62 hours",
+      difficulty: "Advanced",
+      completion: 32,
+      students: "1.5K"
+    },
+    {
+      name: "Economics",
+      slug: "economics",
+      description: "Microeconomics, macroeconomics, and market analysis",
+      icon: "💰",
+      color: "bg-green-500",
+      totalTopics: 35,
+      studyTime: "55 hours",
       difficulty: "Intermediate",
       completion: 55,
       students: "1.9K"
     },
     {
-      name: "Modern History",
-      slug: "modern-history",
-      description: "Analyze world wars, cold war politics, and modern global events",
-      icon: "🏛️",
-      color: "bg-amber-500",
-      totalTopics: 36,
-      studyTime: "49 hours",
+      name: "English",
+      slug: "english",
+      description: "Literature analysis, language skills, and written communication",
+      icon: "📚",
+      color: "bg-purple-500",
+      totalTopics: 40,
+      studyTime: "52 hours",
       difficulty: "Intermediate",
       completion: 38,
-      students: "1.2K"
+      students: "2.3K"
     }
   ];
 
