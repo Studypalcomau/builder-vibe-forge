@@ -21,6 +21,9 @@ export function Layout({ children }: LayoutProps) {
     { name: "Pricing", href: "/pricing" },
   ];
 
+  // For demo purposes, assuming user is logged in. In real app, this would come from auth context
+  const isLoggedIn = true;
+
   const isActive = (path: string) => location.pathname === path;
 
   return (
