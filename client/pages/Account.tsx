@@ -72,15 +72,7 @@ export default function Account() {
     cardHolder: "Jessica Chen"
   });
 
-  // Notification settings
-  const [notifications, setNotifications] = useState({
-    emailUpdates: true,
-    studyReminders: true,
-    quizNotifications: true,
-    progressReports: true,
-    marketingEmails: false,
-    smsNotifications: false
-  });
+
 
   // Privacy settings
   const [privacySettings, setPrivacySettings] = useState({
