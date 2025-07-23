@@ -577,7 +577,6 @@ export default function Account() {
               {activeTab === "profile" && renderProfileTab()}
               {activeTab === "subjects" && renderSubjectsTab()}
               {activeTab === "billing" && renderBillingTab()}
-              {activeTab === "notifications" && renderNotificationsTab()}
               {activeTab === "privacy" && renderPrivacyTab()}
             </CardContent>
           </Card>
