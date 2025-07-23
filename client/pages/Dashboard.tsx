@@ -465,12 +465,7 @@ export default function Dashboard() {
                       Browse Subjects
                     </Button>
                   </Link>
-                  <Link to="/planner">
-                    <Button variant="outline" className="w-full justify-start">
-                      <Calendar className="w-4 h-4 mr-2" />
-                      Study Planner
-                    </Button>
-                  </Link>
+
                 </div>
               </CardContent>
             </Card>
