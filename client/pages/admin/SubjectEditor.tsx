@@ -350,39 +350,7 @@ export default function SubjectEditor() {
     }
   };
 
-  const addTopic = () => {
-    const newTopic: Topic = {
-      id: `topic-${Date.now()}`,
-      title: "New Topic",
-      description: "",
-      learningObjectives: [""],
-      difficulty: "Intermediate",
-      estimatedHours: 4,
-      prerequisites: [],
-      keyTerms: [],
-      assessmentCriteria: []
-    };
-    setSubject(prev => ({
-      ...prev,
-      topics: [...prev.topics, newTopic]
-    }));
-  };
 
-  const updateTopic = (topicId: string, updates: Partial<Topic>) => {
-    setSubject(prev => ({
-      ...prev,
-      topics: prev.topics.map(topic => 
-        topic.id === topicId ? { ...topic, ...updates } : topic
-      )
-    }));
-  };
-
-  const deleteTopic = (topicId: string) => {
-    setSubject(prev => ({
-      ...prev,
-      topics: prev.topics.filter(topic => topic.id !== topicId)
-    }));
-  };
 
   const generateContent = () => {
     // Trigger AI content generation based on curriculum and exam papers
