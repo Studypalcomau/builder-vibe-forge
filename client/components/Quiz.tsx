@@ -368,7 +368,7 @@ export function Quiz({ quiz, onComplete, className = "", returnPath }: QuizCompo
         {/* Question by Question Review */}
         <div className="space-y-6">
           {quiz.questions.map((question, index) => {
-            const result = detailedResults.results.find(r => r.questionId === question.id);
+            const result = reviewResults.results.find(r => r.questionId === question.id);
             if (!result) return null;
 
             return (
