@@ -120,9 +120,9 @@ export default function Subject() {
             quizzes: 2,
             studyNotes: 1,
             subtopics: [
-              { name: "Domain and Range", completed: true, flashcards: 5, quizzes: 1 },
-              { name: "Function Types", completed: true, flashcards: 5, quizzes: 1 },
-              { name: "Transformations", completed: true, flashcards: 5, quizzes: 0 }
+              { name: "Domain and Range", completed: true, flashcards: 5, quizzes: 3 },
+              { name: "Function Types", completed: true, flashcards: 5, quizzes: 3 },
+              { name: "Transformations", completed: true, flashcards: 5, quizzes: 2 }
             ]
           },
           {
