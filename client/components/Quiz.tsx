@@ -61,9 +61,10 @@ interface QuizComponentProps {
   quiz: QuizData;
   onComplete: (score: number, answers: Record<string, any>, detailedResults?: DetailedQuizResult) => void;
   className?: string;
+  returnPath?: string;
 }
 
-export function Quiz({ quiz, onComplete, className = "" }: QuizComponentProps) {
+export function Quiz({ quiz, onComplete, className = "", returnPath }: QuizComponentProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, any>>({});
   const [timeLeft, setTimeLeft] = useState(quiz.totalTime * 60);
@@ -303,7 +304,13 @@ export function Quiz({ quiz, onComplete, className = "" }: QuizComponentProps) {
                 </Button>
                 <Button
                   className="flex-1 bg-sky-blue-500 hover:bg-sky-blue-600 text-white"
-                  onClick={() => window.history.back()}
+                  onClick={() => {
+                    if (returnPath) {
+                      window.location.href = returnPath;
+                    } else {
+                      window.history.back();
+                    }
+                  }}
                 >
                   Continue Studying
                 </Button>
@@ -477,7 +484,13 @@ export function Quiz({ quiz, onComplete, className = "" }: QuizComponentProps) {
           </Button>
           <Button
             className="flex-1 bg-sky-blue-500 hover:bg-sky-blue-600 text-white"
-            onClick={() => window.history.back()}
+            onClick={() => {
+              if (returnPath) {
+                window.location.href = returnPath;
+              } else {
+                window.history.back();
+              }
+            }}
           >
             Continue Studying
           </Button>
