@@ -414,7 +414,7 @@ export default function Subject() {
                               )}
                             </div>
 
-                            <div className="mb-3">
+                            <div className="flex items-center space-x-3 mb-3">
                               <Badge
                                 variant="secondary"
                                 className={`text-xs ${
@@ -425,6 +425,9 @@ export default function Subject() {
                               >
                                 {topic.difficulty}
                               </Badge>
+                              <span className="text-xs text-gray-600">
+                                {topic.subtopics.length} subtopics
+                              </span>
                             </div>
 
                             {/* Topic Progress Bar */}
