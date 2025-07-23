@@ -314,7 +314,7 @@ export default function Subject() {
               </CardHeader>
               <CardContent>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">145 cards available</span>
+                  <span className="text-sm text-gray-600">{totalFlashcards} cards available</span>
                   <ArrowRight className="w-4 h-4 text-sky-blue-600" />
                 </div>
               </CardContent>
