@@ -155,9 +155,9 @@ export default function Subject() {
             quizzes: 2,
             studyNotes: 1,
             subtopics: [
-              { name: "Limits", completed: false, flashcards: 6, quizzes: 1 },
-              { name: "Derivatives", completed: false, flashcards: 6, quizzes: 1 },
-              { name: "Chain Rule", completed: false, flashcards: 6, quizzes: 0 }
+              { name: "Limits", completed: false, flashcards: 6, quizzes: 3 },
+              { name: "Derivatives", completed: false, flashcards: 6, quizzes: 4 },
+              { name: "Chain Rule", completed: false, flashcards: 6, quizzes: 2 }
             ]
           },
           {
@@ -169,9 +169,9 @@ export default function Subject() {
             quizzes: 2,
             studyNotes: 1,
             subtopics: [
-              { name: "Antiderivatives", completed: false, flashcards: 5, quizzes: 1 },
-              { name: "Definite Integrals", completed: false, flashcards: 5, quizzes: 1 },
-              { name: "Applications", completed: false, flashcards: 5, quizzes: 0 }
+              { name: "Antiderivatives", completed: false, flashcards: 5, quizzes: 3 },
+              { name: "Definite Integrals", completed: false, flashcards: 5, quizzes: 4 },
+              { name: "Applications", completed: false, flashcards: 5, quizzes: 3 }
             ]
           }
         ]
