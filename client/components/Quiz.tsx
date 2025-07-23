@@ -3,15 +3,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { Progress } from "./ui/progress";
-import { 
-  CheckCircle, 
-  XCircle, 
-  Clock, 
+import {
+  CheckCircle,
+  XCircle,
+  Clock,
   Trophy,
   Brain,
   Target,
   ChevronRight,
-  RotateCcw
+  RotateCcw,
+  BookOpen,
+  Eye
 } from "lucide-react";
 
 export interface QuizQuestion {
@@ -27,6 +29,23 @@ export interface QuizQuestion {
   timeLimit?: number; // in seconds
 }
 
+export interface QuizResult {
+  questionId: string;
+  userAnswer: any;
+  correctAnswer: any;
+  isCorrect: boolean;
+  points: number;
+  maxPoints: number;
+}
+
+export interface DetailedQuizResult {
+  score: number;
+  totalQuestions: number;
+  correctAnswers: number;
+  results: QuizResult[];
+  timeTaken?: number;
+}
+
 export interface QuizData {
   id: string;
   title: string;
@@ -39,7 +58,7 @@ export interface QuizData {
 
 interface QuizComponentProps {
   quiz: QuizData;
-  onComplete: (score: number, answers: Record<string, any>) => void;
+  onComplete: (score: number, answers: Record<string, any>, detailedResults?: DetailedQuizResult) => void;
   className?: string;
 }
 
@@ -49,6 +68,8 @@ export function Quiz({ quiz, onComplete, className = "" }: QuizComponentProps) {
   const [timeLeft, setTimeLeft] = useState(quiz.totalTime * 60);
   const [showResult, setShowResult] = useState(false);
   const [quizStarted, setQuizStarted] = useState(false);
+  const [showDetailedReview, setShowDetailedReview] = useState(false);
+  const [detailedResults, setDetailedResults] = useState<DetailedQuizResult | null>(null);
 
   const currentQuestion = quiz.questions[currentQuestionIndex];
   const progress = ((currentQuestionIndex + 1) / quiz.questions.length) * 100;
@@ -58,11 +79,11 @@ export function Quiz({ quiz, onComplete, className = "" }: QuizComponentProps) {
   const calculateScore = () => {
     let correct = 0;
     let totalPoints = 0;
-    
+
     quiz.questions.forEach(question => {
       totalPoints += question.points;
       const userAnswer = answers[question.id];
-      
+
       if (question.type === "numerical") {
         if (Math.abs(Number(userAnswer) - Number(question.correctAnswer)) < 0.001) {
           correct += question.points;
@@ -71,8 +92,50 @@ export function Quiz({ quiz, onComplete, className = "" }: QuizComponentProps) {
         correct += question.points;
       }
     });
-    
+
     return Math.round((correct / totalPoints) * 100);
+  };
+
+  const calculateDetailedResults = (): DetailedQuizResult => {
+    const results: QuizResult[] = [];
+    let correctCount = 0;
+    let totalPointsEarned = 0;
+    let totalPointsPossible = 0;
+
+    quiz.questions.forEach(question => {
+      const userAnswer = answers[question.id];
+      let isCorrect = false;
+
+      if (question.type === "numerical") {
+        isCorrect = Math.abs(Number(userAnswer) - Number(question.correctAnswer)) < 0.001;
+      } else {
+        isCorrect = String(userAnswer).toLowerCase() === String(question.correctAnswer).toLowerCase();
+      }
+
+      if (isCorrect) {
+        correctCount++;
+        totalPointsEarned += question.points;
+      }
+      totalPointsPossible += question.points;
+
+      results.push({
+        questionId: question.id,
+        userAnswer,
+        correctAnswer: question.correctAnswer,
+        isCorrect,
+        points: isCorrect ? question.points : 0,
+        maxPoints: question.points
+      });
+    });
+
+    const score = Math.round((totalPointsEarned / totalPointsPossible) * 100);
+
+    return {
+      score,
+      totalQuestions: quiz.questions.length,
+      correctAnswers: correctCount,
+      results
+    };
   };
 
   const handleAnswer = (answer: any) => {
@@ -85,8 +148,10 @@ export function Quiz({ quiz, onComplete, className = "" }: QuizComponentProps) {
   const handleNext = () => {
     if (isLastQuestion) {
       const finalScore = calculateScore();
+      const detailed = calculateDetailedResults();
+      setDetailedResults(detailed);
       setShowResult(true);
-      onComplete(finalScore, answers);
+      onComplete(finalScore, answers, detailed);
     } else {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     }
@@ -104,6 +169,8 @@ export function Quiz({ quiz, onComplete, className = "" }: QuizComponentProps) {
     setTimeLeft(quiz.totalTime * 60);
     setShowResult(false);
     setQuizStarted(false);
+    setShowDetailedReview(false);
+    setDetailedResults(null);
   };
 
   const formatTime = (seconds: number) => {
@@ -216,21 +283,30 @@ export function Quiz({ quiz, onComplete, className = "" }: QuizComponentProps) {
               </div>
             </div>
 
-            <div className="flex gap-3">
-              <Button 
-                onClick={resetQuiz}
-                variant="outline"
-                className="flex-1"
+            <div className="flex flex-col gap-3">
+              <Button
+                onClick={() => setShowDetailedReview(true)}
+                className="w-full bg-blue-500 hover:bg-blue-600 text-white"
               >
-                <RotateCcw className="w-4 h-4 mr-2" />
-                Retake Quiz
+                <Eye className="w-4 h-4 mr-2" />
+                Review Answers
               </Button>
-              <Button 
-                className="flex-1 bg-sky-blue-500 hover:bg-sky-blue-600 text-white"
-                onClick={() => window.history.back()}
-              >
-                Continue Studying
-              </Button>
+              <div className="flex gap-3">
+                <Button
+                  onClick={resetQuiz}
+                  variant="outline"
+                  className="flex-1"
+                >
+                  <RotateCcw className="w-4 h-4 mr-2" />
+                  Retake Quiz
+                </Button>
+                <Button
+                  className="flex-1 bg-sky-blue-500 hover:bg-sky-blue-600 text-white"
+                  onClick={() => window.history.back()}
+                >
+                  Continue Studying
+                </Button>
+              </div>
             </div>
           </CardContent>
         </Card>
