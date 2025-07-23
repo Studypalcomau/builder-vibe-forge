@@ -304,7 +304,7 @@ An **inverse function** f⁻¹(x) "undoes" what the original function f(x) does.
 ### Key Properties:
 - f(f⁻¹(x)) = x
 - f⁻¹(f(x)) = x
-- The graphs of f and f⁻¹ are reflections across the line y = x
+- The graphs of f and f���¹ are reflections across the line y = x
 
 ### Finding Inverse Functions:
 1. Replace f(x) with y
@@ -523,7 +523,7 @@ If f(x) = g(h(x)), then f'(x) = g'(h(x)) · h'(x)
 **Example 1:** f(x) = (3x + 1)⁵
 - Outer function: g(u) = u⁵, so g'(u) = 5u⁴
 - Inner function: h(x) = 3x + 1, so h'(x) = 3
-- f'(x) = 5(3x + 1)⁴ · 3 = 15(3x + 1)⁴
+- f'(x) = 5(3x + 1)⁴ · 3 = 15(3x + 1)��
 
 **Example 2:** f(x) = √(x² + 4) = (x² + 4)^(1/2)
 - Outer function: g(u) = u^(1/2), so g'(u) = (1/2)u^(-1/2)
@@ -825,13 +825,15 @@ export default function TopicContent() {
                 </Badge>
               </div>
             </div>
-            <Button
-              onClick={() => setShowPractice(true)}
-              className="bg-sky-blue-500 hover:bg-sky-blue-600 text-white"
-            >
-              <PenTool className="w-4 h-4 mr-2" />
-              Practice Problems
-            </Button>
+            {topic.practiceProblems && topic.practiceProblems.length > 0 && (
+              <Button
+                onClick={() => setShowPractice(true)}
+                className="bg-sky-blue-500 hover:bg-sky-blue-600 text-white"
+              >
+                <PenTool className="w-4 h-4 mr-2" />
+                Practice Problems
+              </Button>
+            )}
           </div>
         </div>
 
