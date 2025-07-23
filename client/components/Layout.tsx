@@ -17,7 +17,6 @@ export function Layout({ children }: LayoutProps) {
     { name: "Subjects", href: "/subjects" },
     { name: "Flashcards", href: "/flashcards" },
     { name: "Quizzes", href: "/quizzes" },
-    { name: "Study Planner", href: "/planner" },
     { name: "Pricing", href: "/pricing" },
   ];
 
