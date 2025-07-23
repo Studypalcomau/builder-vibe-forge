@@ -541,12 +541,19 @@ export default function SubjectQuizzes() {
 
   const subtopicName = subtopicId ? subtopicNames[subtopicId] : null;
 
-  const handleQuizComplete = (score: number, answers: Record<string, any>) => {
+  const handleQuizComplete = (score: number, answers: Record<string, any>, detailedResults?: DetailedQuizResult) => {
     if (selectedQuiz) {
       setQuizResults(prev => ({
         ...prev,
         [selectedQuiz.id]: score
       }));
+
+      if (detailedResults) {
+        setDetailedQuizResults(prev => ({
+          ...prev,
+          [selectedQuiz.id]: detailedResults
+        }));
+      }
     }
   };
 
