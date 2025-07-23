@@ -439,8 +439,12 @@ export default function SubjectFlashcards() {
               </Button>
             </Link>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">{subjectName} Flashcards</h1>
-              <p className="text-gray-600">Interactive study cards with spaced repetition</p>
+              <h1 className="text-3xl font-bold text-gray-900">
+                {subtopicName ? `${subtopicName} Flashcards` : `${subjectName} Flashcards`}
+              </h1>
+              <p className="text-gray-600">
+                {subtopicName ? `${subjectName} • ${subtopicName}` : 'Interactive study cards with spaced repetition'}
+              </p>
             </div>
           </div>
 
