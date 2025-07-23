@@ -61,11 +61,14 @@ interface CurriculumDocument {
   fileSize: string;
   uploadDate: string;
   processed: boolean;
-  extractedTopics?: string[];
+  extractedUnits?: {
+    unitName: string;
+    topics: string[];
+  }[];
   aiAnalysis?: {
-    topicsIdentified: number;
-    learningObjectivesExtracted: number;
-    assessmentCriteriaFound: number;
+    unitsIdentified: number;
+    topicsExtracted: number;
+    subtopicsFound: number;
   };
 }
 
