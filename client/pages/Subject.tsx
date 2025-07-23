@@ -409,6 +409,18 @@ export default function Subject() {
                                     </div>
                                   </div>
 
+                                  {/* Subtopic Study Material Progress */}
+                                  <div className="mb-3">
+                                    <div className="flex justify-between text-xs text-gray-500 mb-1">
+                                      <span>Study Material Progress</span>
+                                      <span>{subtopic.completed ? '3/3' : '1/3'}</span>
+                                    </div>
+                                    <Progress
+                                      value={subtopic.completed ? 100 : 33}
+                                      className="h-1"
+                                    />
+                                  </div>
+
                                   <div className="grid grid-cols-3 gap-2">
                                     {/* Flashcards Link */}
                                     <Link to={`/subjects/${slug}/subtopics/${topic.topicId}-${subtopicIndex}/flashcards`}>
