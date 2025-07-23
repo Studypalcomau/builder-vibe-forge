@@ -234,6 +234,22 @@ export default function SubjectEditor() {
   const [isUploading, setIsUploading] = useState(false);
   const [isUploadingCurriculum, setIsUploadingCurriculum] = useState(false);
   const [isUploadingMaterial, setIsUploadingMaterial] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [generationProgress, setGenerationProgress] = useState<{
+    currentUnit: string;
+    currentTopic: string;
+    currentSubtopic: string;
+    totalItems: number;
+    completedItems: number;
+    generatedContent: {
+      unitId: string;
+      topicId: string;
+      subtopicId?: string;
+      contentType: 'flashcards' | 'quiz' | 'notes';
+      status: 'pending' | 'generating' | 'completed' | 'error';
+      itemsGenerated?: number;
+    }[];
+  } | null>(null);
 
   const handleSave = () => {
     // Save subject to database
