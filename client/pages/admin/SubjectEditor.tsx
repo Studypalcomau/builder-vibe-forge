@@ -1179,31 +1179,100 @@ export default function SubjectEditor() {
             <Card className="border-sky-blue-200">
               <CardHeader>
                 <CardTitle>AI Content Generation</CardTitle>
-                <CardDescription>Generate learning materials based on curriculum and exam papers</CardDescription>
+                <CardDescription>Generate learning materials for all curriculum units, topics, and subtopics</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="bg-sky-blue-50 border border-sky-blue-200 rounded-lg p-6">
-                  <h4 className="font-medium text-sky-blue-900 mb-3">Ready for Content Generation</h4>
-                  <p className="text-sky-blue-700 mb-4">
-                    Your subject has {subject.topics.length} topics and {subject.examPapers.length} exam papers uploaded. 
-                    AI can now generate comprehensive learning materials.
-                  </p>
-                  <div className="flex space-x-3">
-                    <Button onClick={generateContent} className="bg-study-primary hover:bg-study-primary/90">
-                      <Bot className="w-4 h-4 mr-2" />
-                      Generate All Content
-                    </Button>
-                    <Link to="/admin/generate">
-                      <Button variant="outline">
-                        Advanced Generation
+                {!isGenerating ? (
+                  <div className="bg-sky-blue-50 border border-sky-blue-200 rounded-lg p-6">
+                    <h4 className="font-medium text-sky-blue-900 mb-3">Ready for Content Generation</h4>
+                    <p className="text-sky-blue-700 mb-4">
+                      AI will generate flashcards, quizzes, and study notes for each unit, topic, and subtopic in your curriculum.
+                      {subject.curriculum.curriculumDocument?.extractedUnits && (
+                        <span className="block mt-2 font-medium">
+                          {subject.curriculum.curriculumDocument.extractedUnits.length} units • {' '}
+                          {subject.curriculum.curriculumDocument.extractedUnits.reduce((acc, unit) => acc + unit.topics.length, 0)} topics • {' '}
+                          {subject.curriculum.curriculumDocument.extractedUnits.reduce((acc, unit) =>
+                            acc + unit.topics.reduce((topicAcc, topic) => topicAcc + topic.subtopics.length, 0), 0
+                          )} subtopics
+                        </span>
+                      )}
+                    </p>
+                    <div className="flex space-x-3">
+                      <Button
+                        onClick={generateContent}
+                        className="bg-study-primary hover:bg-study-primary/90"
+                        disabled={!subject.curriculum.curriculumDocument?.extractedUnits}
+                      >
+                        <Bot className="w-4 h-4 mr-2" />
+                        Generate All Content
                       </Button>
-                    </Link>
+                      <Link to="/admin/generate">
+                        <Button variant="outline">
+                          Advanced Generation
+                        </Button>
+                      </Link>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="space-y-4">
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                      <div className="flex items-center space-x-3 mb-4">
+                        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                        <h4 className="font-medium text-blue-900">Generating AI Content</h4>
+                      </div>
 
-                {subject.contentGeneration.lastGenerated && (
-                  <div className="mt-4 text-sm text-gray-600">
-                    Last generation: {subject.contentGeneration.lastGenerated}
+                      {generationProgress && (
+                        <>
+                          <div className="mb-4">
+                            <div className="flex justify-between text-sm text-blue-700 mb-2">
+                              <span>Progress: {generationProgress.completedItems} / {generationProgress.totalItems}</span>
+                              <span>{Math.round((generationProgress.completedItems / generationProgress.totalItems) * 100)}%</span>
+                            </div>
+                            <Progress value={(generationProgress.completedItems / generationProgress.totalItems) * 100} className="mb-3" />
+
+                            <div className="text-sm text-blue-600">
+                              <div>Current Unit: <span className="font-medium">{generationProgress.currentUnit}</span></div>
+                              {generationProgress.currentTopic && (
+                                <div>Current Topic: <span className="font-medium">{generationProgress.currentTopic}</span></div>
+                              )}
+                              {generationProgress.currentSubtopic && (
+                                <div>Current Subtopic: <span className="font-medium">{generationProgress.currentSubtopic}</span></div>
+                              )}
+                            </div>
+                          </div>
+
+                          <div className="max-h-40 overflow-y-auto space-y-1">
+                            {generationProgress.generatedContent.map((item, index) => (
+                              <div key={index} className="flex items-center justify-between text-xs bg-white rounded px-3 py-2">
+                                <span>
+                                  Unit {item.unitId} - {item.topicId !== 'unit' ? `Topic ${item.topicId}` : 'Unit Level'}
+                                  {item.subtopicId ? ` - Subtopic ${item.subtopicId}` : ''} ({item.contentType})
+                                </span>
+                                <div className="flex items-center space-x-1">
+                                  {item.status === 'generating' && <Clock className="w-3 h-3 text-yellow-500" />}
+                                  {item.status === 'completed' && <CheckCircle className="w-3 h-3 text-green-500" />}
+                                  {item.itemsGenerated && <span className="text-gray-500">({item.itemsGenerated} items)</span>}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {subject.contentGeneration.lastGenerated && !isGenerating && (
+                  <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                    <h5 className="font-medium text-green-900 mb-2">Content Generation Strategy</h5>
+                    <div className="text-sm text-green-700 space-y-1">
+                      <div>• <strong>Incremental Updates:</strong> When you add new units/topics, only new content will be generated</div>
+                      <div>• <strong>Smart Refresh:</strong> Modified curriculum sections will automatically regenerate affected content</div>
+                      <div>• <strong>Database Storage:</strong> All content is stored with metadata linking to specific curriculum elements</div>
+                      <div className="mt-2 pt-2 border-t border-green-300">
+                        Last generation: {subject.contentGeneration.lastGenerated}
+                      </div>
+                    </div>
                   </div>
                 )}
               </CardContent>
