@@ -123,6 +123,11 @@ export default function Account() {
     }
   };
 
+  // Filter available subjects to exclude already enrolled ones
+  const filteredAvailableSubjects = availableSubjects.filter(
+    subject => !enrolledSubjects.some(enrolled => enrolled.id === subject.id)
+  );
+
   const removeSubject = (subjectId: string) => {
     setEnrolledSubjects(prev => prev.filter(s => s.id !== subjectId));
   };
