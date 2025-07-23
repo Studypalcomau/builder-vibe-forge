@@ -388,7 +388,10 @@ export default function Subject() {
                   {unit.topics.map((topic, topicIndex) => (
                     <div key={topic.topicId} className={`p-6 ${topicIndex < unit.topics.length - 1 ? 'border-b border-gray-100' : ''}`}>
                       <div className="flex items-start justify-between">
-                        <div className="flex items-start space-x-4 flex-1">
+                        <div
+                          className="flex items-start space-x-4 flex-1 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition-colors"
+                          onClick={() => toggleTopic(unit.unitId, topic.topicId)}
+                        >
                           <div className={`w-8 h-8 rounded-full flex items-center justify-center mt-1 ${
                             topic.completed ? 'bg-green-100' : 'bg-gray-100'
                           }`}>
@@ -402,7 +405,14 @@ export default function Subject() {
                           </div>
 
                           <div className="flex-1">
-                            <h4 className="font-semibold text-gray-900 mb-2">{topic.topicName}</h4>
+                            <div className="flex items-center space-x-2 mb-2">
+                              <h4 className="font-semibold text-gray-900">{topic.topicName}</h4>
+                              {expandedTopics.has(`${unit.unitId}-${topic.topicId}`) ? (
+                                <ChevronUp className="w-4 h-4 text-gray-600" />
+                              ) : (
+                                <ChevronDown className="w-4 h-4 text-gray-600" />
+                              )}
+                            </div>
 
                             <div className="mb-3">
                               <Badge
