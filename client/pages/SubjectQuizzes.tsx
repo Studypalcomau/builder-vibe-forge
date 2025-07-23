@@ -317,74 +317,86 @@ export default function SubjectQuizzes() {
         id: "dom-quiz-1",
         title: "Domain and Range Fundamentals",
         description: "Test your understanding of function domains and ranges",
-        difficulty: "Easy",
-        estimatedTime: 10,
+        subject: "Mathematical Methods",
+        totalTime: 10,
+        passingScore: 70,
         questions: [
           {
             id: "q1",
             question: "What is the domain of f(x) = 1/(x-2)?",
             type: "multiple-choice",
             options: ["All real numbers", "All real numbers except 2", "All positive numbers", "All numbers greater than 2"],
-            correctAnswer: 1,
-            explanation: "The function is undefined when x-2=0, so x cannot equal 2."
+            correctAnswer: "All real numbers except 2",
+            explanation: "The function is undefined when x-2=0, so x cannot equal 2.",
+            difficulty: "Easy",
+            category: "Functions",
+            points: 5
           },
           {
             id: "q2",
             question: "What is the range of f(x) = x²?",
             type: "multiple-choice",
             options: ["All real numbers", "All positive numbers", "All non-negative numbers", "All negative numbers"],
-            correctAnswer: 2,
-            explanation: "Since x² is always non-negative, the range is [0, ∞)."
+            correctAnswer: "All non-negative numbers",
+            explanation: "Since x² is always non-negative, the range is [0, ∞).",
+            difficulty: "Easy",
+            category: "Functions",
+            points: 5
           }
-        ],
-        category: "Functions",
-        topics: ["Domain", "Range"]
+        ]
       },
       {
         id: "dom-quiz-2",
         title: "Advanced Domain and Range",
         description: "Challenge yourself with complex domain and range problems",
-        difficulty: "Medium",
-        estimatedTime: 12,
+        subject: "Mathematical Methods",
+        totalTime: 12,
+        passingScore: 70,
         questions: [
           {
             id: "q1",
             question: "What is the domain of f(x) = √(x-3)?",
             type: "multiple-choice",
             options: ["x ≥ 3", "x > 3", "x ≤ 3", "All real numbers"],
-            correctAnswer: 0,
-            explanation: "For square root to be defined, x-3 ≥ 0, so x ≥ 3."
+            correctAnswer: "x ≥ 3",
+            explanation: "For square root to be defined, x-3 ≥ 0, so x ≥ 3.",
+            difficulty: "Medium",
+            category: "Functions",
+            points: 7
           },
           {
             id: "q2",
             question: "What is the range of f(x) = -2x² + 8?",
             type: "multiple-choice",
             options: ["All real numbers", "y ≤ 8", "y ≥ 8", "y > 0"],
-            correctAnswer: 1,
-            explanation: "This is a downward parabola with vertex at (0,8), so y ≤ 8."
+            correctAnswer: "y ≤ 8",
+            explanation: "This is a downward parabola with vertex at (0,8), so y ≤ 8.",
+            difficulty: "Medium",
+            category: "Functions",
+            points: 7
           }
-        ],
-        category: "Functions",
-        topics: ["Domain", "Range"]
+        ]
       },
       {
         id: "dom-quiz-3",
         title: "Domain and Range Mastery",
         description: "Master domain and range with challenging questions",
-        difficulty: "Hard",
-        estimatedTime: 15,
+        subject: "Mathematical Methods",
+        totalTime: 15,
+        passingScore: 70,
         questions: [
           {
             id: "q1",
             question: "What is the domain of f(x) = 1/√(4-x²)?",
             type: "multiple-choice",
             options: ["-2 < x < 2", "-2 ≤ x ≤ 2", "x < -2 or x > 2", "All real numbers"],
-            correctAnswer: 0,
-            explanation: "We need 4-x² > 0, which gives -2 < x < 2."
+            correctAnswer: "-2 < x < 2",
+            explanation: "We need 4-x² > 0, which gives -2 < x < 2.",
+            difficulty: "Hard",
+            category: "Functions",
+            points: 10
           }
-        ],
-        category: "Functions",
-        topics: ["Domain", "Range"]
+        ]
       }
     ],
     "1-1": [ // Function Types
