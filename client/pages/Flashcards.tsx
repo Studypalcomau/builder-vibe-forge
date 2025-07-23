@@ -21,8 +21,8 @@ export default function Flashcards() {
 
   const subjects = [
     {
-      name: "Mathematics",
-      slug: "mathematics",
+      name: "Mathematical Methods",
+      slug: "mathematical-methods",
       icon: "📊",
       flashcards: 145,
       completed: 68,
@@ -31,24 +31,14 @@ export default function Flashcards() {
       available: true
     },
     {
-      name: "Biology",
-      slug: "biology",
-      icon: "🧬",
+      name: "Specialist Mathematics",
+      slug: "specialist-mathematics",
+      icon: "🔢",
       flashcards: 120,
       completed: 45,
       accuracy: 85,
       lastStudied: "1 day ago",
       available: true
-    },
-    {
-      name: "Chemistry",
-      slug: "chemistry",
-      icon: "⚗️",
-      flashcards: 98,
-      completed: 23,
-      accuracy: 78,
-      lastStudied: "3 days ago",
-      available: false
     },
     {
       name: "Physics",
@@ -57,13 +47,23 @@ export default function Flashcards() {
       flashcards: 112,
       completed: 15,
       accuracy: 81,
+      lastStudied: "3 days ago",
+      available: false
+    },
+    {
+      name: "Engineering",
+      slug: "engineering",
+      icon: "⚙️",
+      flashcards: 98,
+      completed: 23,
+      accuracy: 78,
       lastStudied: "5 days ago",
       available: false
     },
     {
-      name: "English",
-      slug: "english",
-      icon: "📚",
+      name: "Economics",
+      slug: "economics",
+      icon: "💰",
       flashcards: 89,
       completed: 32,
       accuracy: 87,
@@ -71,9 +71,9 @@ export default function Flashcards() {
       available: false
     },
     {
-      name: "Modern History",
-      slug: "modern-history",
-      icon: "🏛️",
+      name: "English",
+      slug: "english",
+      icon: "📚",
       flashcards: 76,
       completed: 18,
       accuracy: 83,
