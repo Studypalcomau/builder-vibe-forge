@@ -62,7 +62,7 @@ export default function Subject() {
     economics: {
       name: "Economics",
       description: "Microeconomics, macroeconomics, and market analysis",
-      icon: "���",
+      icon: "💰",
       color: "bg-green-500",
       totalTopics: 35,
       completedTopics: 6,
@@ -96,7 +96,7 @@ export default function Subject() {
     );
   }
 
-  const progressPercentage = Math.round((subject.completedTopics / subject.totalTopics) * 100);
+  const progressPercentage = totalTopics > 0 ? Math.round((completedTopics / totalTopics) * 100) : 0;
 
   // Subject curriculum structure mirroring admin curriculum (Units → Topics → Subtopics)
   const subjectCurriculum: Record<string, any[]> = {
