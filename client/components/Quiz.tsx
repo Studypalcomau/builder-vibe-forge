@@ -314,6 +314,177 @@ export function Quiz({ quiz, onComplete, className = "" }: QuizComponentProps) {
     );
   }
 
+  // Detailed answer review screen
+  if (showDetailedReview && detailedResults) {
+    return (
+      <div className={`max-w-4xl mx-auto ${className}`}>
+        <div className="mb-6">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setShowDetailedReview(false)}
+            className="mb-4"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Results
+          </Button>
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Answer Review</h2>
+            <p className="text-gray-600">Review your answers and explanations for each question</p>
+          </div>
+        </div>
+
+        {/* Summary Stats */}
+        <Card className="border-sky-blue-200 mb-6">
+          <CardContent className="p-4">
+            <div className="grid grid-cols-3 gap-4 text-center">
+              <div>
+                <div className="text-2xl font-bold text-green-600">{detailedResults.correctAnswers}</div>
+                <div className="text-sm text-gray-600">Correct</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-red-600">
+                  {detailedResults.totalQuestions - detailedResults.correctAnswers}
+                </div>
+                <div className="text-sm text-gray-600">Incorrect</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-blue-600">{detailedResults.score}%</div>
+                <div className="text-sm text-gray-600">Final Score</div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Question by Question Review */}
+        <div className="space-y-6">
+          {quiz.questions.map((question, index) => {
+            const result = detailedResults.results.find(r => r.questionId === question.id);
+            if (!result) return null;
+
+            return (
+              <Card key={question.id} className={`border-2 ${result.isCorrect ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50'}`}>
+                <CardHeader>
+                  <div className="flex justify-between items-start">
+                    <div className="flex items-center gap-3">
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                        result.isCorrect ? 'bg-green-100' : 'bg-red-100'
+                      }`}>
+                        {result.isCorrect ? (
+                          <CheckCircle className="w-5 h-5 text-green-600" />
+                        ) : (
+                          <XCircle className="w-5 h-5 text-red-600" />
+                        )}
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold">Question {index + 1}</h3>
+                        <Badge className={getDifficultyColor(question.difficulty)}>
+                          {question.difficulty}
+                        </Badge>
+                      </div>
+                    </div>
+                    <Badge variant="outline">
+                      {result.points}/{result.maxPoints} points
+                    </Badge>
+                  </div>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <h4 className="font-medium mb-2">{question.question}</h4>
+                  </div>
+
+                  {/* Multiple Choice / True-False Options */}
+                  {(question.type === "multiple-choice" || question.type === "true-false") && question.options && (
+                    <div className="space-y-2">
+                      {question.options.map((option, optionIndex) => {
+                        const isUserAnswer = result.userAnswer === option;
+                        const isCorrectAnswer = question.correctAnswer === option;
+
+                        return (
+                          <div
+                            key={optionIndex}
+                            className={`p-3 border rounded-lg ${
+                              isCorrectAnswer
+                                ? 'border-green-500 bg-green-100'
+                                : isUserAnswer && !isCorrectAnswer
+                                ? 'border-red-500 bg-red-100'
+                                : 'border-gray-200'
+                            }`}
+                          >
+                            <div className="flex items-center justify-between">
+                              <span>{option}</span>
+                              <div className="flex items-center gap-2">
+                                {isCorrectAnswer && (
+                                  <Badge className="bg-green-100 text-green-700">Correct Answer</Badge>
+                                )}
+                                {isUserAnswer && (
+                                  <Badge variant="outline">Your Answer</Badge>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {/* Numerical / Text Answer */}
+                  {(question.type === "numerical" || question.type === "text") && (
+                    <div className="space-y-2">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="p-3 border border-gray-200 rounded-lg">
+                          <div className="text-sm text-gray-600 mb-1">Your Answer:</div>
+                          <div className={`font-medium ${result.isCorrect ? 'text-green-600' : 'text-red-600'}`}>
+                            {result.userAnswer || 'No answer provided'}
+                          </div>
+                        </div>
+                        <div className="p-3 border border-green-200 bg-green-50 rounded-lg">
+                          <div className="text-sm text-gray-600 mb-1">Correct Answer:</div>
+                          <div className="font-medium text-green-600">
+                            {question.correctAnswer}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Explanation */}
+                  <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                    <div className="flex items-start gap-2">
+                      <BookOpen className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <h5 className="font-medium text-blue-900 mb-1">Explanation</h5>
+                        <p className="text-blue-800">{question.explanation}</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+
+        {/* Bottom Actions */}
+        <div className="mt-8 flex flex-col sm:flex-row gap-4">
+          <Button
+            onClick={resetQuiz}
+            variant="outline"
+            className="flex-1"
+          >
+            <RotateCcw className="w-4 h-4 mr-2" />
+            Retake Quiz
+          </Button>
+          <Button
+            className="flex-1 bg-sky-blue-500 hover:bg-sky-blue-600 text-white"
+            onClick={() => window.history.back()}
+          >
+            Continue Studying
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
   // Quiz question screen
   return (
     <div className={`max-w-2xl mx-auto ${className}`}>
