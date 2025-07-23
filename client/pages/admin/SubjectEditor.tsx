@@ -563,6 +563,35 @@ export default function SubjectEditor() {
     // });
   };
 
+  // Handle incremental content generation for new curriculum additions
+  const generateIncrementalContent = async (changedItems: any[]) => {
+    if (changedItems.length === 0) return;
+
+    setIsGenerating(true);
+    console.log('Generating content for new/modified items:', changedItems);
+
+    // This would be called when:
+    // 1. New units are added to curriculum
+    // 2. New topics are added to existing units
+    // 3. New subtopics are added to existing topics
+    // 4. Curriculum document is re-uploaded with changes
+
+    for (const item of changedItems) {
+      await generateContentForItem(item, 'flashcards');
+      await generateContentForItem(item, 'quiz');
+      await generateContentForItem(item, 'notes');
+
+      await storeGeneratedContent({
+        subjectId: subject.id,
+        ...item,
+        isIncremental: true,
+        previousVersion: item.previousVersion // for tracking changes
+      });
+    }
+
+    setIsGenerating(false);
+  };
+
   return (
     <div className="min-h-screen bg-study-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
