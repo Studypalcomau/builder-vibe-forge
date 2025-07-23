@@ -896,7 +896,41 @@ export default function SubjectNotes() {
   const [selectedNote, setSelectedNote] = useState<StudyNote | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const notes = subjectNotes[slug as string] || [];
+  // Handle subtopic-specific notes
+  const subtopicNotes: Record<string, StudyNote[]> = {
+    "1-0": [ // Domain and Range
+      {
+        id: "dom-note-1",
+        title: "Domain and Range Guide",
+        description: "Complete guide to understanding function domains and ranges",
+        content: "## Domain and Range\n\n**Domain**: The set of all possible input values (x-values) for a function.\n\n**Range**: The set of all possible output values (y-values) from a function.\n\n### Finding Domain\n1. Look for restrictions (division by zero, square roots of negatives)\n2. Consider the context of the problem\n\n### Finding Range\n1. Analyze the function's behavior\n2. Consider transformations applied",
+        category: "Functions",
+        difficulty: "Medium",
+        readTime: 5,
+        lastUpdated: "2024-01-15",
+        tags: ["domain", "range", "functions"],
+        type: "concept"
+      }
+    ],
+    "1-1": [ // Function Types
+      {
+        id: "func-note-1",
+        title: "Types of Functions",
+        description: "Overview of different function types and their properties",
+        content: "## Function Types\n\n### Linear Functions\n- Form: f(x) = mx + b\n- Graph: Straight line\n- Properties: Constant rate of change\n\n### Quadratic Functions\n- Form: f(x) = ax² + bx + c\n- Graph: Parabola\n- Properties: Has vertex, axis of symmetry",
+        category: "Functions",
+        difficulty: "Easy",
+        readTime: 7,
+        lastUpdated: "2024-01-15",
+        tags: ["linear", "quadratic", "functions"],
+        type: "concept"
+      }
+    ]
+  };
+
+  const notes = subtopicId
+    ? (subtopicNotes[subtopicId] || [])
+    : (subjectNotes[slug as string] || []);
   const hasNotes = notes.length > 0;
 
   const subjectNames: Record<string, string> = {
@@ -912,6 +946,15 @@ export default function SubjectNotes() {
   };
 
   const subjectName = subjectNames[slug as string] || "Subject";
+
+  // Get subtopic name from ID
+  const subtopicNames: Record<string, string> = {
+    "1-0": "Domain and Range",
+    "1-1": "Function Types",
+    "1-2": "Transformations"
+  };
+
+  const subtopicName = subtopicId ? subtopicNames[subtopicId] : null;
 
   const filteredNotes = notes.filter(note => 
     note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
