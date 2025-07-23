@@ -43,8 +43,8 @@ const dashboardData = {
   },
   subjects: [
     {
-      name: "Mathematics",
-      slug: "mathematics",
+      name: "Mathematical Methods",
+      slug: "mathematical-methods",
       progress: 68,
       lastStudied: "2 hours ago",
       nextTopic: "Integration Techniques",
@@ -53,34 +53,34 @@ const dashboardData = {
       icon: "📊"
     },
     {
-      name: "Biology", 
-      slug: "biology",
+      name: "Specialist Mathematics",
+      slug: "specialist-mathematics",
       progress: 45,
       lastStudied: "1 day ago",
-      nextTopic: "Photosynthesis",
+      nextTopic: "Complex Numbers",
       recentScore: 85,
-      color: "bg-green-500",
-      icon: "🧬"
-    },
-    {
-      name: "Chemistry",
-      slug: "chemistry", 
-      progress: 32,
-      lastStudied: "3 days ago",
-      nextTopic: "Atomic Structure",
-      recentScore: 78,
-      color: "bg-purple-500",
-      icon: "⚗️"
+      color: "bg-indigo-500",
+      icon: "🔢"
     },
     {
       name: "Physics",
       slug: "physics",
       progress: 28,
-      lastStudied: "5 days ago", 
+      lastStudied: "3 days ago",
       nextTopic: "Mechanics",
       recentScore: 81,
       color: "bg-red-500",
       icon: "⚡"
+    },
+    {
+      name: "Engineering",
+      slug: "engineering",
+      progress: 32,
+      lastStudied: "5 days ago",
+      nextTopic: "Design Process",
+      recentScore: 78,
+      color: "bg-orange-500",
+      icon: "⚙️"
     }
   ],
   recentActivity: [
