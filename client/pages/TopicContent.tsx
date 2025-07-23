@@ -937,6 +937,45 @@ export default function TopicContent() {
                   </div>
                 )}
 
+                {/* Subtopics Section */}
+                {topic.subtopics && topic.subtopics.length > 0 && (
+                  <div className="mt-8 pt-8 border-t border-gray-200">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Study This Topic By Subtopic</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {topic.subtopics.map((subtopic: any, index: number) => (
+                        <Card key={index} className="border-sky-blue-200 hover:shadow-md transition-shadow">
+                          <CardHeader className="pb-3">
+                            <CardTitle className="text-base">{subtopic.title}</CardTitle>
+                            <CardDescription className="text-sm">{subtopic.description}</CardDescription>
+                          </CardHeader>
+                          <CardContent>
+                            <div className="space-y-2">
+                              <Link to={subtopic.links.flashcards}>
+                                <Button variant="outline" size="sm" className="w-full justify-start">
+                                  <Brain className="w-4 h-4 mr-2" />
+                                  Flashcards
+                                </Button>
+                              </Link>
+                              <Link to={subtopic.links.quiz}>
+                                <Button variant="outline" size="sm" className="w-full justify-start">
+                                  <Trophy className="w-4 h-4 mr-2" />
+                                  Quiz
+                                </Button>
+                              </Link>
+                              <Link to={subtopic.links.notes}>
+                                <Button variant="outline" size="sm" className="w-full justify-start">
+                                  <FileText className="w-4 h-4 mr-2" />
+                                  Study Notes
+                                </Button>
+                              </Link>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {/* Navigation */}
                 <div className="flex justify-between pt-6 border-t border-gray-200">
                   <Button
