@@ -309,11 +309,15 @@ export default function Subject() {
             <Card key={unit.unitId} className="border-sky-blue-200">
               <CardHeader className="bg-sky-blue-50">
                 <div className="flex items-center justify-between">
-                  <div>
+                  <div className="flex-1 mr-4">
                     <CardTitle className="text-lg text-gray-900">{unit.unitName}</CardTitle>
-                    <p className="text-sm text-gray-600 mt-1">
+                    <p className="text-sm text-gray-600 mt-1 mb-2">
                       {unit.topics.length} topics • {unit.topics.filter(t => t.completed).length} completed
                     </p>
+                    <Progress
+                      value={unit.topics.length > 0 ? (unit.topics.filter(t => t.completed).length / unit.topics.length) * 100 : 0}
+                      className="h-2"
+                    />
                   </div>
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
                     unit.completed ? 'bg-green-100' : 'bg-gray-100'
