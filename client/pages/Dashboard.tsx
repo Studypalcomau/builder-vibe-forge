@@ -121,29 +121,7 @@ const dashboardData = {
       color: "text-orange-600"
     }
   ],
-  upcomingDeadlines: [
-    {
-      subject: "Mathematics",
-      task: "Calculus Assessment",
-      date: "November 15, 2024",
-      daysLeft: 8,
-      priority: "high"
-    },
-    {
-      subject: "Biology",
-      task: "Evolution Essay",
-      date: "November 20, 2024", 
-      daysLeft: 13,
-      priority: "medium"
-    },
-    {
-      subject: "Chemistry",
-      task: "Lab Report Due",
-      date: "November 25, 2024",
-      daysLeft: 18,
-      priority: "low"
-    }
-  ],
+
   recommendations: [
     {
       type: "study_suggestion",
