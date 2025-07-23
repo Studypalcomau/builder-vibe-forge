@@ -162,98 +162,120 @@ export default function Subject() {
         description: "Descriptive statistics, probability distributions, inference"
       }
     ],
-    biology: [
+    "specialist-mathematics": [
       {
         id: 1,
-        title: "Cells and Cellular Processes",
-        difficulty: "Beginner",
-        duration: "2 hours",
+        title: "Complex Numbers",
+        difficulty: "Advanced",
+        duration: "3 hours",
         completed: true,
-        flashcards: 32,
-        quizzes: 5,
-        description: "Cell structure, organelles, membrane transport"
+        flashcards: 45,
+        quizzes: 6,
+        description: "Imaginary numbers, polar form, De Moivre's theorem"
       },
       {
         id: 2,
-        title: "DNA, RNA and Protein Synthesis",
-        difficulty: "Intermediate",
-        duration: "3 hours",
+        title: "Vectors in 2D and 3D",
+        difficulty: "Advanced",
+        duration: "3.5 hours",
         completed: true,
-        flashcards: 41,
+        flashcards: 38,
         quizzes: 7,
-        description: "Molecular biology, transcription, translation"
+        description: "Vector operations, dot and cross products, applications"
       },
       {
         id: 3,
-        title: "Photosynthesis and Cellular Respiration",
-        difficulty: "Intermediate",
-        duration: "3.5 hours",
+        title: "Further Calculus",
+        difficulty: "Advanced",
+        duration: "4 hours",
         completed: false,
-        flashcards: 38,
-        quizzes: 6,
-        description: "Energy conversion, Calvin cycle, electron transport"
+        flashcards: 52,
+        quizzes: 8,
+        description: "Advanced integration, differential equations"
       },
       {
         id: 4,
-        title: "Genetics and Inheritance",
-        difficulty: "Intermediate",
-        duration: "2.5 hours",
-        completed: false,
-        flashcards: 35,
-        quizzes: 6,
-        description: "Mendelian genetics, chromosomes, genetic disorders"
-      },
-      {
-        id: 5,
-        title: "Evolution and Natural Selection",
-        difficulty: "Advanced",
-        duration: "3 hours",
-        completed: false,
-        flashcards: 42,
-        quizzes: 7,
-        description: "Darwin's theory, speciation, phylogenetics"
-      },
-      {
-        id: 6,
-        title: "Ecosystems and Biodiversity",
-        difficulty: "Intermediate",
-        duration: "2.5 hours",
-        completed: false,
-        flashcards: 29,
-        quizzes: 5,
-        description: "Food webs, energy flow, conservation biology"
-      }
-    ],
-    chemistry: [
-      {
-        id: 1,
-        title: "Atomic Structure and Periodicity",
-        difficulty: "Beginner",
-        duration: "2 hours",
-        completed: false,
-        flashcards: 35,
-        quizzes: 5,
-        description: "Electron configuration, periodic trends, atomic theory"
-      },
-      {
-        id: 2,
-        title: "Chemical Bonding and Structure",
-        difficulty: "Intermediate",
-        duration: "3 hours",
-        completed: false,
-        flashcards: 42,
-        quizzes: 7,
-        description: "Ionic, covalent, metallic bonding, molecular geometry"
-      },
-      {
-        id: 3,
-        title: "Thermochemistry and Kinetics",
+        title: "Mechanics",
         difficulty: "Advanced",
         duration: "3.5 hours",
         completed: false,
+        flashcards: 41,
+        quizzes: 6,
+        description: "Motion, forces, energy applications in calculus"
+      },
+      {
+        id: 5,
+        title: "Statistical Inference",
+        difficulty: "Advanced",
+        duration: "3 hours",
+        completed: false,
+        flashcards: 35,
+        quizzes: 5,
+        description: "Hypothesis testing, confidence intervals, distributions"
+      }
+    ],
+    engineering: [
+      {
+        id: 1,
+        title: "Design Thinking Process",
+        difficulty: "Beginner",
+        duration: "2.5 hours",
+        completed: false,
+        flashcards: 28,
+        quizzes: 4,
+        description: "Problem identification, ideation, prototyping, testing"
+      },
+      {
+        id: 2,
+        title: "Materials and Properties",
+        difficulty: "Intermediate",
+        duration: "3 hours",
+        completed: false,
+        flashcards: 35,
+        quizzes: 6,
+        description: "Material selection, properties, testing methods"
+      },
+      {
+        id: 3,
+        title: "Systems and Control",
+        difficulty: "Advanced",
+        duration: "3.5 hours",
+        completed: false,
+        flashcards: 42,
+        quizzes: 7,
+        description: "Feedback systems, automation, control theory"
+      }
+    ],
+    economics: [
+      {
+        id: 1,
+        title: "Market Structures",
+        difficulty: "Intermediate",
+        duration: "2.5 hours",
+        completed: false,
+        flashcards: 32,
+        quizzes: 5,
+        description: "Perfect competition, monopoly, oligopoly analysis"
+      },
+      {
+        id: 2,
+        title: "Macroeconomic Indicators",
+        difficulty: "Intermediate",
+        duration: "3 hours",
+        completed: false,
         flashcards: 38,
         quizzes: 6,
-        description: "Enthalpy, reaction rates, activation energy"
+        description: "GDP, inflation, unemployment, economic growth"
+      },
+      {
+        id: 3,
+        title: "International Trade",
+        difficulty: "Advanced",
+        duration: "3.5 hours",
+        completed: false,
+        flashcards: 41,
+        quizzes: 7,
+        description: "Comparative advantage, trade policies, exchange rates"
       }
     ],
     physics: [
