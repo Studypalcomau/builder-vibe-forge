@@ -284,7 +284,44 @@ export default function SubjectFlashcards() {
   const [cardsReviewed, setCardsReviewed] = useState(0);
   const [startTime] = useState(Date.now());
 
-  const flashcards = subjectFlashcards[slug as string] || [];
+  // Handle subtopic-specific flashcards
+  const subtopicFlashcards: Record<string, FlashcardData[]> = {
+    "1-0": [ // Domain and Range
+      {
+        id: "dom-1",
+        front: "What is the domain of a function?",
+        back: "The domain is the set of all possible input values (x-values) for which the function is defined.",
+        category: "Functions",
+        difficulty: "Medium",
+        subject: "Mathematical Methods",
+        tags: ["domain", "function", "input"]
+      },
+      {
+        id: "dom-2",
+        front: "What is the range of a function?",
+        back: "The range is the set of all possible output values (y-values) that the function can produce.",
+        category: "Functions",
+        difficulty: "Medium",
+        subject: "Mathematical Methods",
+        tags: ["range", "function", "output"]
+      }
+    ],
+    "1-1": [ // Function Types
+      {
+        id: "func-1",
+        front: "What is a linear function?",
+        back: "A linear function has the form f(x) = mx + b, where m is the slope and b is the y-intercept. Its graph is a straight line.",
+        category: "Functions",
+        difficulty: "Easy",
+        subject: "Mathematical Methods",
+        tags: ["linear", "function", "slope"]
+      }
+    ]
+  };
+
+  const flashcards = subtopicId
+    ? (subtopicFlashcards[subtopicId] || [])
+    : (subjectFlashcards[slug as string] || []);
   const hasFlashcards = flashcards.length > 0;
 
   const subjectNames: Record<string, string> = {
@@ -300,6 +337,15 @@ export default function SubjectFlashcards() {
   };
 
   const subjectName = subjectNames[slug as string] || "Subject";
+
+  // Get subtopic name from ID
+  const subtopicNames: Record<string, string> = {
+    "1-0": "Domain and Range",
+    "1-1": "Function Types",
+    "1-2": "Transformations"
+  };
+
+  const subtopicName = subtopicId ? subtopicNames[subtopicId] : null;
 
   const shuffleCards = () => {
     const shuffled = [...flashcards].sort(() => Math.random() - 0.5);
