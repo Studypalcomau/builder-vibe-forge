@@ -510,74 +510,35 @@ export default function SubjectManagement() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredSubjects.map((subject) => (
             <Card key={subject.id} className="border-sky-blue-200 hover:shadow-md transition-shadow">
-              <CardHeader>
+              <CardHeader className="pb-4">
                 <div className="flex items-center justify-between">
-                  <div className="text-3xl">{subject.icon}</div>
-                  <div className="flex items-center space-x-1">
-                    {getAIStatusIcon(subject.aiStatus)}
-                    <Badge className={getStatusColor(subject.status)}>
-                      {subject.status}
-                    </Badge>
+                  <div className="flex items-center space-x-3">
+                    <div className="text-2xl">{subject.icon}</div>
+                    <div>
+                      <CardTitle className="text-lg">{subject.name}</CardTitle>
+                      <Badge className={`${getStatusColor(subject.status)} text-xs mt-1`}>
+                        {subject.status}
+                      </Badge>
+                    </div>
                   </div>
                 </div>
-                <CardTitle className="text-lg">{subject.name}</CardTitle>
-                <CardDescription className="text-sm">
-                  {subject.description}
-                </CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center">
-                    <Badge className={getDifficultyColor(subject.difficulty)}>
-                      {subject.difficulty}
-                    </Badge>
-                    <span className="text-sm text-gray-600">{subject.totalTopics} topics</span>
-                  </div>
-                  
-                  <div className="grid grid-cols-3 gap-2 text-xs text-gray-600">
-                    <div className="text-center">
-                      <div className="font-semibold">{subject.contentGenerated.flashcards}</div>
-                      <div>Flashcards</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="font-semibold">{subject.contentGenerated.quizzes}</div>
-                      <div>Quizzes</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="font-semibold">{subject.contentGenerated.notes}</div>
-                      <div>Notes</div>
-                    </div>
-                  </div>
-
-                  <div className="flex space-x-2">
-                    <Button 
-                      size="sm" 
-                      variant="outline" 
-                      className="flex-1"
-                      onClick={() => handleSubjectAction("view", subject)}
-                    >
-                      <Eye className="w-3 h-3 mr-1" />
-                      View
+              <CardContent className="pt-0">
+                <div className="flex justify-between items-center">
+                  <Link to={`/admin/subjects/${subject.id}/edit`}>
+                    <Button size="sm" className="bg-study-primary hover:bg-study-primary/90">
+                      <Edit className="w-3 h-3 mr-1" />
+                      Edit
                     </Button>
-                    <Button 
-                      size="sm" 
-                      variant="outline"
-                      onClick={() => handleSubjectAction("edit", subject)}
-                    >
-                      <Edit className="w-3 h-3" />
-                    </Button>
-                    <Button 
-                      size="sm" 
-                      variant="outline"
-                      onClick={() => handleSubjectAction("generate", subject)}
-                    >
-                      <Bot className="w-3 h-3" />
-                    </Button>
-                  </div>
-
-                  <div className="text-xs text-gray-500">
-                    Updated: {subject.lastUpdated}
-                  </div>
+                  </Link>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => handleSubjectAction("view", subject)}
+                  >
+                    <Eye className="w-3 h-3 mr-1" />
+                    View
+                  </Button>
                 </div>
               </CardContent>
             </Card>
