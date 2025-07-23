@@ -545,7 +545,7 @@ export default function SubjectEditor() {
                     AI-Powered Curriculum Upload
                   </h3>
                   <p className="text-blue-700 mb-4">
-                    Upload your curriculum PDF and let AI automatically extract topics, learning objectives, and assessment criteria.
+                    Upload your curriculum PDF and let AI automatically extract units, topics, and subtopics to structure your course content.
                   </p>
 
                   {subject.curriculum.curriculumDocument ? (
