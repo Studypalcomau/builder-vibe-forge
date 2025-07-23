@@ -54,6 +54,33 @@ interface ExamPaper {
   extractedTopics?: string[];
 }
 
+interface CurriculumDocument {
+  id: string;
+  title: string;
+  fileName: string;
+  fileSize: string;
+  uploadDate: string;
+  processed: boolean;
+  extractedTopics?: string[];
+  aiAnalysis?: {
+    topicsIdentified: number;
+    learningObjectivesExtracted: number;
+    assessmentCriteriaFound: number;
+  };
+}
+
+interface SubjectMaterial {
+  id: string;
+  title: string;
+  type: "textbook" | "worksheet" | "video" | "reference" | "other";
+  fileName: string;
+  fileSize: string;
+  uploadDate: string;
+  description?: string;
+  processed: boolean;
+  relevantTopics?: string[];
+}
+
 interface Subject {
   id: string;
   name: string;
