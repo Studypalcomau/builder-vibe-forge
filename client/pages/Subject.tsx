@@ -439,9 +439,18 @@ export default function Subject() {
                               />
                             </div>
 
-                            {/* Subtopics with Study Material Links */}
-                            <div className="space-y-3">
-                              {topic.subtopics.map((subtopic, subtopicIndex) => (
+                            {/* Conditional Subtopics Rendering */}
+                            {!expandedTopics.has(`${unit.unitId}-${topic.topicId}`) && (
+                              <div className="mt-3 p-3 bg-gray-50 rounded-lg">
+                                <p className="text-sm text-gray-600">
+                                  Click to expand and view {topic.subtopics.length} subtopics with study materials
+                                </p>
+                              </div>
+                            )}
+
+                            {expandedTopics.has(`${unit.unitId}-${topic.topicId}`) && (
+                              <div className="space-y-3">
+                                {topic.subtopics.map((subtopic, subtopicIndex) => (
                                 <div key={subtopicIndex} className="border border-gray-200 rounded-lg p-4 bg-white hover:shadow-sm transition-shadow">
                                   <div className="flex items-center justify-between mb-3">
                                     <div className="flex items-center space-x-3">
@@ -502,8 +511,9 @@ export default function Subject() {
                                     </Link>
                                   </div>
                                 </div>
-                              ))}
-                            </div>
+                                ))}
+                              </div>
+                            )}
                           </div>
                         </div>
 
