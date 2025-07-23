@@ -148,8 +148,8 @@ export function Layout({ children }: LayoutProps) {
                 <span className="text-xl font-bold text-gray-900">StudyMate QLD</span>
               </Link>
               <p className="text-gray-600 mb-6 max-w-md">
-                Your comprehensive study companion for Queensland Year 11-12 subjects. 
-                Master your curriculum with interactive flashcards, quizzes, and personalized study plans.
+                Your comprehensive study companion for Queensland Year 11-12 subjects.
+                Master your curriculum with interactive flashcards, quizzes, and detailed study notes.
               </p>
               <div className="space-y-2">
                 <h4 className="font-semibold text-gray-900">Ready to ace your exams?</h4>
