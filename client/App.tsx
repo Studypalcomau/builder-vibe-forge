@@ -47,6 +47,9 @@ const App = () => (
             <Route path="/quizzes" element={<Quizzes />} />
             <Route path="/planner" element={<StudyPlanner />} />
             <Route path="/pricing" element={<Pricing />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/progress" element={
               <PlaceholderPage
                 title="Progress Tracking"
