@@ -354,7 +354,7 @@ export default function Subject() {
               </CardHeader>
               <CardContent>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">32 note sets</span>
+                  <span className="text-sm text-gray-600">{totalStudyNotes} note sets</span>
                   <ArrowRight className="w-4 h-4 text-sky-blue-600" />
                 </div>
               </CardContent>
