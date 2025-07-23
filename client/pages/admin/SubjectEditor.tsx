@@ -522,6 +522,103 @@ export default function SubjectEditor() {
                 <CardDescription>Define the overall curriculum structure and learning framework</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
+                {/* Curriculum PDF Upload Section */}
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                  <h3 className="font-semibold text-blue-900 mb-3 flex items-center">
+                    <Bot className="w-5 h-5 mr-2" />
+                    AI-Powered Curriculum Upload
+                  </h3>
+                  <p className="text-blue-700 mb-4">
+                    Upload your curriculum PDF and let AI automatically extract topics, learning objectives, and assessment criteria.
+                  </p>
+
+                  {subject.curriculum.curriculumDocument ? (
+                    <div className="border border-blue-300 rounded-lg p-4 bg-white">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-3">
+                          <FileText className="w-8 h-8 text-blue-600" />
+                          <div>
+                            <h4 className="font-semibold text-gray-900">{subject.curriculum.curriculumDocument.title}</h4>
+                            <div className="flex items-center space-x-4 text-sm text-gray-600">
+                              <span>{subject.curriculum.curriculumDocument.fileSize}</span>
+                              <span>Uploaded: {subject.curriculum.curriculumDocument.uploadDate}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          {subject.curriculum.curriculumDocument.processed ? (
+                            <CheckCircle className="w-5 h-5 text-green-500" />
+                          ) : (
+                            <Clock className="w-5 h-5 text-yellow-500" />
+                          )}
+                          <Button size="sm" variant="ghost">
+                            <Trash2 className="w-3 h-3" />
+                          </Button>
+                        </div>
+                      </div>
+
+                      {subject.curriculum.curriculumDocument.aiAnalysis && (
+                        <div className="mt-4 pt-4 border-t border-blue-200">
+                          <h5 className="font-medium text-gray-900 mb-2">AI Analysis Results:</h5>
+                          <div className="grid grid-cols-3 gap-4 text-sm">
+                            <div className="text-center">
+                              <div className="text-lg font-bold text-blue-600">{subject.curriculum.curriculumDocument.aiAnalysis.topicsIdentified}</div>
+                              <div className="text-gray-600">Topics Identified</div>
+                            </div>
+                            <div className="text-center">
+                              <div className="text-lg font-bold text-green-600">{subject.curriculum.curriculumDocument.aiAnalysis.learningObjectivesExtracted}</div>
+                              <div className="text-gray-600">Learning Objectives</div>
+                            </div>
+                            <div className="text-center">
+                              <div className="text-lg font-bold text-purple-600">{subject.curriculum.curriculumDocument.aiAnalysis.assessmentCriteriaFound}</div>
+                              <div className="text-gray-600">Assessment Criteria</div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {subject.curriculum.curriculumDocument.extractedTopics && (
+                        <div className="mt-3">
+                          <Label className="text-sm text-gray-600">Extracted Topics:</Label>
+                          <div className="flex flex-wrap gap-2 mt-1">
+                            {subject.curriculum.curriculumDocument.extractedTopics.map((topic, index) => (
+                              <Badge key={index} variant="outline" className="text-xs">
+                                {topic}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div>
+                      <input
+                        type="file"
+                        accept=".pdf"
+                        onChange={handleCurriculumUpload}
+                        className="hidden"
+                        id="curriculum-upload"
+                      />
+                      <Button asChild className="bg-blue-600 hover:bg-blue-700">
+                        <label htmlFor="curriculum-upload" className="cursor-pointer">
+                          <Upload className="w-4 h-4 mr-2" />
+                          Upload Curriculum PDF
+                        </label>
+                      </Button>
+                    </div>
+                  )}
+
+                  {isUploadingCurriculum && (
+                    <div className="mt-4 p-4 border border-blue-200 bg-blue-50 rounded-lg">
+                      <div className="flex items-center space-x-3">
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+                        <span className="text-blue-700">Processing curriculum document and extracting topics...</span>
+                      </div>
+                      <Progress value={60} className="mt-2" />
+                    </div>
+                  )}
+                </div>
+
                 <div>
                   <Label htmlFor="overview">Curriculum Overview *</Label>
                   <Textarea
