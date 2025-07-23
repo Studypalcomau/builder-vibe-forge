@@ -892,7 +892,7 @@ const subjectNotes: Record<string, StudyNote[]> = {
 };
 
 export default function SubjectNotes() {
-  const { slug } = useParams();
+  const { slug, subtopicId } = useParams();
   const [selectedNote, setSelectedNote] = useState<StudyNote | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
 
