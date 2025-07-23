@@ -148,30 +148,7 @@ const dashboardData = {
       link: "/flashcards"
     }
   ],
-  achievements: [
-    {
-      title: "Math Master",
-      description: "Scored 90+ on 5 math quizzes",
-      icon: Trophy,
-      color: "text-yellow-600",
-      unlocked: true
-    },
-    {
-      title: "Study Streak", 
-      description: "Study for 10 consecutive days",
-      icon: Flame,
-      color: "text-orange-600", 
-      unlocked: true
-    },
-    {
-      title: "Quiz Champion",
-      description: "Score 95+ on any quiz",
-      icon: Award,
-      color: "text-purple-600",
-      unlocked: false,
-      progress: 92
-    }
-  ]
+
 };
 
 export default function Dashboard() {
