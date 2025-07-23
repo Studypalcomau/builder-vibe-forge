@@ -358,6 +358,16 @@ export default function Subject() {
                   </div>
                 </div>
               </CardHeader>
+              {!expandedUnits.has(unit.unitId) && (
+                <CardContent className="p-4">
+                  <div className="text-center text-gray-600">
+                    <p className="text-sm">
+                      Click to expand and view {unit.topics.length} topics with detailed subtopics and study materials
+                    </p>
+                  </div>
+                </CardContent>
+              )}
+
               {expandedUnits.has(unit.unitId) && (
                 <CardContent className="p-0">
                 <div className="space-y-0">
