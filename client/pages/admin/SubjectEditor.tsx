@@ -273,11 +273,24 @@ export default function SubjectEditor() {
           fileSize: `${(file.size / 1024 / 1024).toFixed(1)} MB`,
           uploadDate: new Date().toISOString().split('T')[0],
           processed: true,
-          extractedTopics: ["Functions and Relations", "Differential Calculus", "Integral Calculus", "Statistics", "Probability"],
+          extractedUnits: [
+            {
+              unitName: "Unit 1: Algebra and Functions",
+              topics: ["Functions and Relations", "Polynomial Functions", "Exponential Functions"]
+            },
+            {
+              unitName: "Unit 2: Calculus",
+              topics: ["Differential Calculus", "Integral Calculus", "Applications of Calculus"]
+            },
+            {
+              unitName: "Unit 3: Probability and Statistics",
+              topics: ["Probability Distributions", "Statistical Analysis", "Data Interpretation"]
+            }
+          ],
           aiAnalysis: {
-            topicsIdentified: 12,
-            learningObjectivesExtracted: 48,
-            assessmentCriteriaFound: 24
+            unitsIdentified: 3,
+            topicsExtracted: 9,
+            subtopicsFound: 24
           }
         };
         setSubject(prev => ({
