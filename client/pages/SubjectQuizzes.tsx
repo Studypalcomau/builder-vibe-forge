@@ -404,74 +404,86 @@ export default function SubjectQuizzes() {
         id: "func-quiz-1",
         title: "Linear Functions Basics",
         description: "Introduction to linear functions and their properties",
-        difficulty: "Easy",
-        estimatedTime: 8,
+        subject: "Mathematical Methods",
+        totalTime: 8,
+        passingScore: 70,
         questions: [
           {
             id: "q1",
             question: "What type of function has the form f(x) = mx + b?",
             type: "multiple-choice",
             options: ["Quadratic", "Linear", "Exponential", "Logarithmic"],
-            correctAnswer: 1,
-            explanation: "f(x) = mx + b is the standard form of a linear function."
+            correctAnswer: "Linear",
+            explanation: "f(x) = mx + b is the standard form of a linear function.",
+            difficulty: "Easy",
+            category: "Functions",
+            points: 5
           },
           {
             id: "q2",
             question: "In f(x) = 3x + 5, what is the slope?",
             type: "multiple-choice",
             options: ["3", "5", "8", "x"],
-            correctAnswer: 0,
-            explanation: "In f(x) = mx + b, m is the slope, so the slope is 3."
+            correctAnswer: "3",
+            explanation: "In f(x) = mx + b, m is the slope, so the slope is 3.",
+            difficulty: "Easy",
+            category: "Functions",
+            points: 5
           }
-        ],
-        category: "Functions",
-        topics: ["Linear Functions"]
+        ]
       },
       {
         id: "func-quiz-2",
         title: "Quadratic Functions",
         description: "Understanding quadratic functions and parabolas",
-        difficulty: "Medium",
-        estimatedTime: 12,
+        subject: "Mathematical Methods",
+        totalTime: 12,
+        passingScore: 70,
         questions: [
           {
             id: "q1",
             question: "What is the vertex form of a quadratic function?",
             type: "multiple-choice",
             options: ["f(x) = ax² + bx + c", "f(x) = a(x-h)² + k", "f(x) = mx + b", "f(x) = a^x"],
-            correctAnswer: 1,
-            explanation: "The vertex form is f(x) = a(x-h)² + k where (h,k) is the vertex."
+            correctAnswer: "f(x) = a(x-h)² + k",
+            explanation: "The vertex form is f(x) = a(x-h)² + k where (h,k) is the vertex.",
+            difficulty: "Medium",
+            category: "Functions",
+            points: 7
           },
           {
             id: "q2",
             question: "Which direction does f(x) = -2x² + 3 open?",
             type: "multiple-choice",
             options: ["Upward", "Downward", "Left", "Right"],
-            correctAnswer: 1,
-            explanation: "Since a = -2 < 0, the parabola opens downward."
+            correctAnswer: "Downward",
+            explanation: "Since a = -2 < 0, the parabola opens downward.",
+            difficulty: "Medium",
+            category: "Functions",
+            points: 7
           }
-        ],
-        category: "Functions",
-        topics: ["Quadratic Functions"]
+        ]
       },
       {
         id: "func-quiz-3",
         title: "Exponential Functions",
         description: "Explore exponential growth and decay functions",
-        difficulty: "Medium",
-        estimatedTime: 10,
+        subject: "Mathematical Methods",
+        totalTime: 10,
+        passingScore: 70,
         questions: [
           {
             id: "q1",
             question: "What is the general form of an exponential function?",
             type: "multiple-choice",
             options: ["f(x) = ax² + bx + c", "f(x) = mx + b", "f(x) = ab^x", "f(x) = log_a(x)"],
-            correctAnswer: 2,
-            explanation: "An exponential function has the form f(x) = ab^x where a ≠ 0 and b > 0, b ≠ 1."
+            correctAnswer: "f(x) = ab^x",
+            explanation: "An exponential function has the form f(x) = ab^x where a ≠ 0 and b > 0, b ≠ 1.",
+            difficulty: "Medium",
+            category: "Functions",
+            points: 7
           }
-        ],
-        category: "Functions",
-        topics: ["Exponential Functions"]
+        ]
       }
     ],
     "1-2": [ // Transformations
