@@ -190,9 +190,9 @@ export default function Subject() {
             quizzes: 1,
             studyNotes: 1,
             subtopics: [
-              { name: "Normal Distribution", completed: false, flashcards: 4, quizzes: 0 },
-              { name: "Binomial Distribution", completed: false, flashcards: 4, quizzes: 1 },
-              { name: "Continuous Distributions", completed: false, flashcards: 4, quizzes: 0 }
+              { name: "Normal Distribution", completed: false, flashcards: 4, quizzes: 3 },
+              { name: "Binomial Distribution", completed: false, flashcards: 4, quizzes: 4 },
+              { name: "Continuous Distributions", completed: false, flashcards: 4, quizzes: 2 }
             ]
           }
         ]
