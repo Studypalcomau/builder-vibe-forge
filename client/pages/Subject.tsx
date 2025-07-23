@@ -32,7 +32,7 @@ export default function Subject() {
     "specialist-mathematics": {
       name: "Specialist Mathematics",
       description: "Advanced mathematics including complex numbers, vectors, and further calculus",
-      icon: "🔢",
+      icon: "����",
       color: "bg-indigo-500",
       totalTopics: 42,
       completedTopics: 8,
@@ -315,10 +315,10 @@ export default function Subject() {
         id: 1,
         title: "Literary Analysis and Criticism",
         difficulty: "Intermediate",
-        duration: "2 hours",
+        duration: "2.5 hours",
         completed: false,
-        flashcards: 25,
-        quizzes: 4,
+        flashcards: 32,
+        quizzes: 5,
         description: "Close reading, themes, literary devices, critical approaches"
       },
       {
@@ -328,50 +328,28 @@ export default function Subject() {
         duration: "3 hours",
         completed: false,
         flashcards: 28,
-        quizzes: 5,
+        quizzes: 4,
         description: "Narrative techniques, argument structure, rhetorical devices"
       },
       {
         id: 3,
-        title: "Australian Literature and Identity",
-        difficulty: "Advanced",
+        title: "Language and Communication",
+        difficulty: "Intermediate",
         duration: "2.5 hours",
         completed: false,
-        flashcards: 32,
+        flashcards: 35,
         quizzes: 6,
-        description: "National identity, cultural context, Indigenous perspectives"
-      }
-    ],
-    "modern-history": [
+        description: "Language variation, discourse analysis, communication theory"
+      },
       {
-        id: 1,
-        title: "World War I and its Aftermath",
-        difficulty: "Intermediate",
+        id: 4,
+        title: "Australian Literature and Identity",
+        difficulty: "Advanced",
         duration: "3 hours",
         completed: false,
         flashcards: 38,
-        quizzes: 6,
-        description: "Causes, major battles, Treaty of Versailles, social impact"
-      },
-      {
-        id: 2,
-        title: "Rise of Totalitarian Regimes",
-        difficulty: "Advanced",
-        duration: "3.5 hours",
-        completed: false,
-        flashcards: 42,
         quizzes: 7,
-        description: "Nazi Germany, Soviet Union, fascist Italy, propaganda"
-      },
-      {
-        id: 3,
-        title: "Cold War Politics and Society",
-        difficulty: "Advanced",
-        duration: "4 hours",
-        completed: false,
-        flashcards: 45,
-        quizzes: 8,
-        description: "Ideological conflict, nuclear age, decolonization"
+        description: "National identity, cultural context, Indigenous perspectives"
       }
     ]
   };
