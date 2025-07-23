@@ -22,6 +22,195 @@ import {
 
 // Comprehensive topic content for Queensland Mathematics curriculum
 const topicContent: Record<string, any> = {
+  "mathematical-methods": {
+    "1": { // Functions and Relations
+      title: "Functions and Relations",
+      description: "Master domain, range, function types and transformations",
+      difficulty: "Intermediate",
+      estimatedTime: "2 hours",
+      progress: 75,
+      sections: [
+        {
+          id: "intro",
+          title: "Introduction to Functions",
+          type: "concept",
+          content: `
+## Functions and Relations
+
+A **function** is a special type of relation where each input has exactly one output.
+
+### Key Concepts:
+- **Domain**: Set of all possible input values (x-values)
+- **Range**: Set of all possible output values (y-values)
+- **Function notation**: f(x) represents the output when input is x
+
+### Types of Functions:
+1. **Linear**: f(x) = mx + b
+2. **Quadratic**: f(x) = ax² + bx + c
+3. **Exponential**: f(x) = a·b^x
+
+Start with the subtopics below to master each concept step by step.
+          `
+        }
+      ],
+      subtopics: [
+        {
+          id: "domain-range",
+          title: "Domain and Range",
+          description: "Understanding input and output sets of functions",
+          links: {
+            flashcards: "/subjects/mathematical-methods/subtopics/1-0/flashcards",
+            quiz: "/subjects/mathematical-methods/subtopics/1-0/quiz",
+            notes: "/subjects/mathematical-methods/subtopics/1-0/notes"
+          }
+        },
+        {
+          id: "function-types",
+          title: "Function Types",
+          description: "Linear, quadratic, and exponential functions",
+          links: {
+            flashcards: "/subjects/mathematical-methods/subtopics/1-1/flashcards",
+            quiz: "/subjects/mathematical-methods/subtopics/1-1/quiz",
+            notes: "/subjects/mathematical-methods/subtopics/1-1/notes"
+          }
+        },
+        {
+          id: "transformations",
+          title: "Transformations",
+          description: "Shifting, stretching, and reflecting functions",
+          links: {
+            flashcards: "/subjects/mathematical-methods/subtopics/1-2/flashcards",
+            quiz: "/subjects/mathematical-methods/subtopics/1-2/quiz",
+            notes: "/subjects/mathematical-methods/subtopics/1-2/notes"
+          }
+        }
+      ]
+    },
+    "2": { // Polynomial Functions
+      title: "Polynomial Functions",
+      description: "Linear, quadratic, and higher-degree polynomials",
+      difficulty: "Intermediate",
+      estimatedTime: "2.5 hours",
+      progress: 30,
+      sections: [
+        {
+          id: "intro",
+          title: "Understanding Polynomials",
+          type: "concept",
+          content: `
+## Polynomial Functions
+
+Polynomial functions are expressions with variables raised to whole number powers.
+
+### General Form:
+f(x) = a_n·x^n + a_(n-1)·x^(n-1) + ... + a_1·x + a_0
+
+### Common Types:
+- **Linear (Degree 1)**: f(x) = mx + b
+- **Quadratic (Degree 2)**: f(x) = ax² + bx + c
+- **Cubic (Degree 3)**: f(x) = ax³ + bx² + cx + d
+
+Explore each type through the subtopics below.
+          `
+        }
+      ],
+      subtopics: [
+        {
+          id: "linear",
+          title: "Linear Functions",
+          description: "First degree polynomials and straight lines",
+          links: {
+            flashcards: "/subjects/mathematical-methods/subtopics/2-0/flashcards",
+            quiz: "/subjects/mathematical-methods/subtopics/2-0/quiz",
+            notes: "/subjects/mathematical-methods/subtopics/2-0/notes"
+          }
+        },
+        {
+          id: "quadratic",
+          title: "Quadratic Functions",
+          description: "Second degree polynomials and parabolas",
+          links: {
+            flashcards: "/subjects/mathematical-methods/subtopics/2-1/flashcards",
+            quiz: "/subjects/mathematical-methods/subtopics/2-1/quiz",
+            notes: "/subjects/mathematical-methods/subtopics/2-1/notes"
+          }
+        },
+        {
+          id: "cubic",
+          title: "Cubic Functions",
+          description: "Third degree polynomials and their properties",
+          links: {
+            flashcards: "/subjects/mathematical-methods/subtopics/2-2/flashcards",
+            quiz: "/subjects/mathematical-methods/subtopics/2-2/quiz",
+            notes: "/subjects/mathematical-methods/subtopics/2-2/notes"
+          }
+        }
+      ]
+    },
+    "3": { // Differential Calculus
+      title: "Differential Calculus",
+      description: "Limits, derivatives, and rates of change",
+      difficulty: "Advanced",
+      estimatedTime: "3 hours",
+      progress: 0,
+      sections: [
+        {
+          id: "intro",
+          title: "Introduction to Calculus",
+          type: "concept",
+          content: `
+## Differential Calculus
+
+Calculus studies how things change. Differential calculus focuses on **rates of change**.
+
+### Core Concepts:
+- **Limits**: What happens as we approach a value
+- **Derivatives**: Instantaneous rate of change
+- **Applications**: Optimization, motion, growth rates
+
+### Key Skills:
+1. Evaluating limits
+2. Finding derivatives using rules
+3. Applying derivatives to solve problems
+
+Master each concept through the subtopics below.
+          `
+        }
+      ],
+      subtopics: [
+        {
+          id: "limits",
+          title: "Limits",
+          description: "Understanding behavior as variables approach values",
+          links: {
+            flashcards: "/subjects/mathematical-methods/subtopics/3-0/flashcards",
+            quiz: "/subjects/mathematical-methods/subtopics/3-0/quiz",
+            notes: "/subjects/mathematical-methods/subtopics/3-0/notes"
+          }
+        },
+        {
+          id: "derivatives",
+          title: "Derivatives",
+          description: "Instantaneous rates of change and differentiation",
+          links: {
+            flashcards: "/subjects/mathematical-methods/subtopics/3-1/flashcards",
+            quiz: "/subjects/mathematical-methods/subtopics/3-1/quiz",
+            notes: "/subjects/mathematical-methods/subtopics/3-1/notes"
+          }
+        },
+        {
+          id: "chain-rule",
+          title: "Chain Rule",
+          description: "Differentiating composite functions",
+          links: {
+            flashcards: "/subjects/mathematical-methods/subtopics/3-2/flashcards",
+            quiz: "/subjects/mathematical-methods/subtopics/3-2/quiz",
+            notes: "/subjects/mathematical-methods/subtopics/3-2/notes"
+          }
+        }
+      ]
+    }
+  },
   mathematics: {
     "functions-and-relations": {
       title: "Functions and Relations",
