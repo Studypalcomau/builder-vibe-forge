@@ -488,7 +488,7 @@ If f(x) = g(x) ± h(x), then f'(x) = g'(x) ± h'(x)
 f'(x) = 12x³ - 4x + 5
 
 **Example 2:** f(x) = 5x³ - 7x + 2
-f'(x) = 15x² - 7
+f'(x) = 15x�� - 7
 
 **Example 3:** f(x) = 1/x² = x⁻²
 f'(x) = -2x⁻³ = -2/x³
@@ -607,7 +607,7 @@ When r = 5: dV/dt = 4π(25)(2) = 200π cm³/s
         },
         {
           id: 2,
-          question: "What is lim[x→1] (x² - 1)/(x - 1)?",
+          question: "What is lim[x→1] (x�� - 1)/(x - 1)?",
           options: ["0", "1", "2", "undefined"],
           correct: 2,
           explanation: "Factor: (x-1)(x+1)/(x-1) = x+1. As x→1, this approaches 1+1 = 2"
@@ -995,13 +995,21 @@ export default function TopicContent() {
                     >
                       Next Section
                     </Button>
-                  ) : (
+                  ) : topic.practiceProblems && topic.practiceProblems.length > 0 ? (
                     <Button
                       onClick={() => setShowPractice(true)}
                       className="bg-green-500 hover:bg-green-600 text-white"
                     >
                       <Trophy className="w-4 h-4 mr-2" />
                       Take Practice Quiz
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                      className="bg-green-500 hover:bg-green-600 text-white"
+                    >
+                      <CheckCircle className="w-4 h-4 mr-2" />
+                      Topic Complete
                     </Button>
                   )}
                 </div>
