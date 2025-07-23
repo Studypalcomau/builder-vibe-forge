@@ -232,7 +232,7 @@ export default function Subject() {
                     Year 11-12
                   </Badge>
                   <Badge variant="secondary" className="bg-green-100 text-green-700">
-                    {subject.totalTopics} Topics
+                    {totalTopics} Topics
                   </Badge>
                   <Badge variant="secondary" className="bg-purple-100 text-purple-700">
                     Queensland Curriculum
