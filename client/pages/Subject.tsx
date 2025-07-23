@@ -358,7 +358,8 @@ export default function Subject() {
                   </div>
                 </div>
               </CardHeader>
-              <CardContent className="p-0">
+              {expandedUnits.has(unit.unitId) && (
+                <CardContent className="p-0">
                 <div className="space-y-0">
                   {unit.topics.map((topic, topicIndex) => (
                     <div key={topic.topicId} className={`p-6 ${topicIndex < unit.topics.length - 1 ? 'border-b border-gray-100' : ''}`}>
@@ -491,7 +492,8 @@ export default function Subject() {
                     </div>
                   ))}
                 </div>
-              </CardContent>
+                </CardContent>
+              )}
             </Card>
           ))}
         </div>
