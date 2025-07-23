@@ -22,6 +22,7 @@ import { useState } from "react";
 export default function Subject() {
   const { slug } = useParams();
   const [expandedUnits, setExpandedUnits] = useState<Set<number>>(new Set([1])); // Expand first unit by default
+  const [expandedTopics, setExpandedTopics] = useState<Set<string>>(new Set(['1-1'])); // Expand first topic by default
   
   // Mock data - in a real app this would come from an API
   const subjectData = {
