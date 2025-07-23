@@ -166,7 +166,6 @@ export function Layout({ children }: LayoutProps) {
                 <li><Link to="/subjects" className="text-gray-600 hover:text-sky-blue-600">Browse Subjects</Link></li>
                 <li><Link to="/flashcards" className="text-gray-600 hover:text-sky-blue-600">Flashcards</Link></li>
                 <li><Link to="/quizzes" className="text-gray-600 hover:text-sky-blue-600">Practice Quizzes</Link></li>
-                <li><Link to="/planner" className="text-gray-600 hover:text-sky-blue-600">Study Planner</Link></li>
               </ul>
             </div>
 
