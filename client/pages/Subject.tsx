@@ -34,7 +34,7 @@ export default function Subject() {
     "specialist-mathematics": {
       name: "Specialist Mathematics",
       description: "Advanced mathematics including complex numbers, vectors, and further calculus",
-      icon: "������",
+      icon: "����",
       color: "bg-indigo-500",
       totalTopics: 42,
       completedTopics: 8,
@@ -436,19 +436,56 @@ export default function Subject() {
                               </span>
                             </div>
 
-                            {/* Subtopics */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                            {/* Subtopics with Study Material Links */}
+                            <div className="space-y-3">
                               {topic.subtopics.map((subtopic, subtopicIndex) => (
-                                <div key={subtopicIndex} className="flex items-center space-x-2 p-2 bg-gray-50 rounded-md">
-                                  <div className={`w-4 h-4 rounded-full flex items-center justify-center ${
-                                    subtopic.completed ? 'bg-green-500' : 'bg-gray-300'
-                                  }`}>
-                                    {subtopic.completed && (
-                                      <div className="w-1 h-1 bg-white rounded-full"></div>
-                                    )}
+                                <div key={subtopicIndex} className="border border-gray-200 rounded-lg p-4 bg-white hover:shadow-sm transition-shadow">
+                                  <div className="flex items-center justify-between mb-3">
+                                    <div className="flex items-center space-x-3">
+                                      <div className={`w-5 h-5 rounded-full flex items-center justify-center ${
+                                        subtopic.completed ? 'bg-green-500' : 'bg-gray-300'
+                                      }`}>
+                                        {subtopic.completed && (
+                                          <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                                        )}
+                                      </div>
+                                      <h5 className="font-medium text-gray-900">{subtopic.name}</h5>
+                                    </div>
+                                    <div className={`px-2 py-1 rounded-full text-xs font-medium ${
+                                      subtopic.completed ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'
+                                    }`}>
+                                      {subtopic.completed ? 'Completed' : 'In Progress'}
+                                    </div>
                                   </div>
-                                  <span className="text-sm text-gray-700 flex-1">{subtopic.name}</span>
-                                  <span className="text-xs text-gray-500">{subtopic.flashcards}c</span>
+
+                                  <div className="grid grid-cols-3 gap-2">
+                                    {/* Flashcards Link */}
+                                    <Link to={`/subjects/${slug}/subtopics/${topic.topicId}-${subtopicIndex}/flashcards`}>
+                                      <div className="flex flex-col items-center p-3 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors group cursor-pointer">
+                                        <Brain className="w-5 h-5 text-blue-600 mb-1" />
+                                        <span className="text-xs font-medium text-blue-700">Flashcards</span>
+                                        <span className="text-xs text-blue-600">{subtopic.flashcards} cards</span>
+                                      </div>
+                                    </Link>
+
+                                    {/* Quiz Link */}
+                                    <Link to={`/subjects/${slug}/subtopics/${topic.topicId}-${subtopicIndex}/quiz`}>
+                                      <div className="flex flex-col items-center p-3 bg-green-50 hover:bg-green-100 rounded-lg transition-colors group cursor-pointer">
+                                        <Trophy className="w-5 h-5 text-green-600 mb-1" />
+                                        <span className="text-xs font-medium text-green-700">Quiz</span>
+                                        <span className="text-xs text-green-600">{subtopic.quizzes || 1} quiz</span>
+                                      </div>
+                                    </Link>
+
+                                    {/* Study Notes Link */}
+                                    <Link to={`/subjects/${slug}/subtopics/${topic.topicId}-${subtopicIndex}/notes`}>
+                                      <div className="flex flex-col items-center p-3 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors group cursor-pointer">
+                                        <FileText className="w-5 h-5 text-purple-600 mb-1" />
+                                        <span className="text-xs font-medium text-purple-700">Notes</span>
+                                        <span className="text-xs text-purple-600">Study guide</span>
+                                      </div>
+                                    </Link>
+                                  </div>
                                 </div>
                               ))}
                             </div>
