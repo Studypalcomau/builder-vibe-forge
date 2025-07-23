@@ -323,10 +323,20 @@ export default function Subject() {
         <div className="space-y-6">
           {curriculum.map((unit) => (
             <Card key={unit.unitId} className="border-sky-blue-200">
-              <CardHeader className="bg-sky-blue-50">
+              <CardHeader
+                className="bg-sky-blue-50 cursor-pointer hover:bg-sky-blue-100 transition-colors"
+                onClick={() => toggleUnit(unit.unitId)}
+              >
                 <div className="flex items-center justify-between">
                   <div className="flex-1 mr-4">
-                    <CardTitle className="text-lg text-gray-900">{unit.unitName}</CardTitle>
+                    <div className="flex items-center space-x-2">
+                      <CardTitle className="text-lg text-gray-900">{unit.unitName}</CardTitle>
+                      {expandedUnits.has(unit.unitId) ? (
+                        <ChevronUp className="w-5 h-5 text-gray-600" />
+                      ) : (
+                        <ChevronDown className="w-5 h-5 text-gray-600" />
+                      )}
+                    </div>
                     <p className="text-sm text-gray-600 mt-1 mb-2">
                       {unit.topics.length} topics • {unit.topics.filter(t => t.completed).length} completed
                     </p>
