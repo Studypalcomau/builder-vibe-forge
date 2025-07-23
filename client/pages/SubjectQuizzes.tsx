@@ -603,12 +603,17 @@ export default function SubjectQuizzes() {
 
   // Show selected quiz
   if (selectedQuiz) {
+    // Determine the appropriate return path
+    const returnPath = subtopicId
+      ? `/subjects/${slug}` // Go back to main subject page for subtopic quizzes
+      : `/subjects/${slug}/quizzes`; // Go back to quiz list for main subject quizzes
+
     return (
       <div className="min-h-screen bg-study-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="mb-8">
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               size="sm"
               onClick={() => setSelectedQuiz(null)}
               className="mb-4"
@@ -617,10 +622,11 @@ export default function SubjectQuizzes() {
               Back to Quiz List
             </Button>
           </div>
-          
-          <Quiz 
+
+          <Quiz
             quiz={selectedQuiz}
             onComplete={handleQuizComplete}
+            returnPath={returnPath}
           />
         </div>
       </div>
