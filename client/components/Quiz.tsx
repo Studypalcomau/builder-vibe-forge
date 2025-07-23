@@ -13,7 +13,8 @@ import {
   ChevronRight,
   RotateCcw,
   BookOpen,
-  Eye
+  Eye,
+  ArrowLeft
 } from "lucide-react";
 
 export interface QuizQuestion {
