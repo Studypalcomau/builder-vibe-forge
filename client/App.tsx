@@ -27,6 +27,9 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Privacy from "./pages/Privacy";
 import Account from "./pages/Account";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import SubjectManagement from "./pages/admin/SubjectManagement";
+import ContentGeneration from "./pages/admin/ContentGeneration";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import NotFound from "./pages/NotFound";
 
