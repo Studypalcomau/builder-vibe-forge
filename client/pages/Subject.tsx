@@ -363,62 +363,105 @@ export default function Subject() {
         </div>
       </section>
 
-      {/* Topics List */}
+      {/* Curriculum Structure */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Study Topics</h2>
-        
-        <div className="space-y-4">
-          {topics.map((topic) => (
-            <Card key={topic.id} className="border-sky-blue-200 hover:shadow-md transition-shadow">
-              <CardContent className="p-6">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Curriculum Structure</h2>
+
+        <div className="space-y-6">
+          {curriculum.map((unit) => (
+            <Card key={unit.unitId} className="border-sky-blue-200">
+              <CardHeader className="bg-sky-blue-50">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-4">
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                      topic.completed ? 'bg-green-100' : 'bg-gray-100'
-                    }`}>
-                      {topic.completed ? (
-                        <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                          <div className="w-2 h-2 bg-white rounded-full"></div>
+                  <div>
+                    <CardTitle className="text-lg text-gray-900">{unit.unitName}</CardTitle>
+                    <p className="text-sm text-gray-600 mt-1">
+                      {unit.topics.length} topics • {unit.topics.filter(t => t.completed).length} completed
+                    </p>
+                  </div>
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                    unit.completed ? 'bg-green-100' : 'bg-gray-100'
+                  }`}>
+                    {unit.completed ? (
+                      <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
+                        <div className="w-1 h-1 bg-white rounded-full"></div>
+                      </div>
+                    ) : (
+                      <div className="w-4 h-4 border-2 border-gray-300 rounded-full"></div>
+                    )}
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="p-0">
+                <div className="space-y-0">
+                  {unit.topics.map((topic, topicIndex) => (
+                    <div key={topic.topicId} className={`p-6 ${topicIndex < unit.topics.length - 1 ? 'border-b border-gray-100' : ''}`}>
+                      <div className="flex items-start justify-between">
+                        <div className="flex items-start space-x-4 flex-1">
+                          <div className={`w-8 h-8 rounded-full flex items-center justify-center mt-1 ${
+                            topic.completed ? 'bg-green-100' : 'bg-gray-100'
+                          }`}>
+                            {topic.completed ? (
+                              <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
+                                <div className="w-1 h-1 bg-white rounded-full"></div>
+                              </div>
+                            ) : (
+                              <div className="w-4 h-4 border-2 border-gray-300 rounded-full"></div>
+                            )}
+                          </div>
+
+                          <div className="flex-1">
+                            <h4 className="font-semibold text-gray-900 mb-2">{topic.topicName}</h4>
+
+                            <div className="flex items-center space-x-4 mb-3">
+                              <Badge
+                                variant="secondary"
+                                className={`text-xs ${
+                                  topic.difficulty === 'Beginner' ? 'bg-green-100 text-green-700' :
+                                  topic.difficulty === 'Intermediate' ? 'bg-yellow-100 text-yellow-700' :
+                                  'bg-red-100 text-red-700'
+                                }`}
+                              >
+                                {topic.difficulty}
+                              </Badge>
+                              <span className="text-sm text-gray-600">
+                                {topic.flashcards} flashcards
+                              </span>
+                              <span className="text-sm text-gray-600">
+                                {topic.quizzes} quizzes
+                              </span>
+                              <span className="text-sm text-gray-600">
+                                {topic.studyNotes} study notes
+                              </span>
+                            </div>
+
+                            {/* Subtopics */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                              {topic.subtopics.map((subtopic, subtopicIndex) => (
+                                <div key={subtopicIndex} className="flex items-center space-x-2 p-2 bg-gray-50 rounded-md">
+                                  <div className={`w-4 h-4 rounded-full flex items-center justify-center ${
+                                    subtopic.completed ? 'bg-green-500' : 'bg-gray-300'
+                                  }`}>
+                                    {subtopic.completed && (
+                                      <div className="w-1 h-1 bg-white rounded-full"></div>
+                                    )}
+                                  </div>
+                                  <span className="text-sm text-gray-700 flex-1">{subtopic.name}</span>
+                                  <span className="text-xs text-gray-500">{subtopic.flashcards}c</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
                         </div>
-                      ) : (
-                        <div className="w-6 h-6 border-2 border-gray-300 rounded-full"></div>
-                      )}
-                    </div>
-                    
-                    <div>
-                      <h3 className="font-semibold text-gray-900">{topic.title}</h3>
-                      <p className="text-sm text-gray-600 mt-1 mb-2">{topic.description}</p>
-                      <div className="flex items-center space-x-4">
-                        <Badge
-                          variant="secondary"
-                          className={`text-xs ${
-                            topic.difficulty === 'Beginner' ? 'bg-green-100 text-green-700' :
-                            topic.difficulty === 'Intermediate' ? 'bg-yellow-100 text-yellow-700' :
-                            'bg-red-100 text-red-700'
-                          }`}
-                        >
-                          {topic.difficulty}
-                        </Badge>
-                        <span className="text-sm text-gray-600 flex items-center">
-                          <Clock className="w-3 h-3 mr-1" />
-                          {topic.duration}
-                        </span>
-                        <span className="text-sm text-gray-600">
-                          {topic.flashcards} flashcards
-                        </span>
-                        <span className="text-sm text-gray-600">
-                          {topic.quizzes} quizzes
-                        </span>
+
+                        <Link to={`/subjects/${slug}/topics/${topic.topicId}`}>
+                          <Button variant="ghost" size="sm" className="text-sky-blue-600 hover:text-sky-blue-700 ml-4">
+                            {topic.completed ? 'Review' : 'Start'}
+                            <ChevronRight className="w-4 h-4 ml-1" />
+                          </Button>
+                        </Link>
                       </div>
                     </div>
-                  </div>
-                  
-                  <Link to={`/subjects/${slug}/topics/${topic.id === 1 ? 'functions-and-relations' : topic.id === 2 ? 'differential-calculus' : 'topic-' + topic.id}`}>
-                    <Button variant="ghost" size="sm" className="text-sky-blue-600 hover:text-sky-blue-700">
-                      {topic.completed ? 'Review' : 'Start'}
-                      <ChevronRight className="w-4 h-4 ml-1" />
-                    </Button>
-                  </Link>
+                  ))}
                 </div>
               </CardContent>
             </Card>
