@@ -688,8 +688,8 @@ export default function TopicContent() {
 
   const currentSectionData = topic.sections[currentSection];
 
-  if (showPractice) {
-    const correctAnswers = topic.practiceProblems.filter((prob: any, index: number) => 
+  if (showPractice && topic.practiceProblems && topic.practiceProblems.length > 0) {
+    const correctAnswers = topic.practiceProblems.filter((prob: any, index: number) =>
       practiceAnswers[prob.id] === prob.correct
     ).length;
     const score = Math.round((correctAnswers / topic.practiceProblems.length) * 100);
