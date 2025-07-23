@@ -146,7 +146,7 @@ const mockSubject: Subject = {
       assessmentCriteria: ["Function identification", "Transformation application", "Problem solving accuracy"]
     },
     {
-      id: "topic-2", 
+      id: "topic-2",
       title: "Differential Calculus",
       description: "Introduction to derivatives, differentiation rules, and applications",
       learningObjectives: [
@@ -161,6 +161,7 @@ const mockSubject: Subject = {
       assessmentCriteria: ["Rule application", "Problem solving", "Real-world applications"]
     }
   ],
+  subjectMaterials: [],
   examPapers: [
     {
       id: "exam-1",
