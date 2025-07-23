@@ -367,9 +367,200 @@ export default function SubjectEditor() {
 
 
 
-  const generateContent = () => {
-    // Trigger AI content generation based on curriculum and exam papers
-    console.log("Generating content for subject:", subject.name);
+  const generateContent = async () => {
+    if (!subject.curriculum.curriculumDocument?.extractedUnits) {
+      alert("Please upload and process a curriculum document first.");
+      return;
+    }
+
+    setIsGenerating(true);
+
+    // Calculate total items to generate
+    const units = subject.curriculum.curriculumDocument.extractedUnits;
+    let totalItems = 0;
+    const generationQueue: any[] = [];
+
+    units.forEach((unit, unitIndex) => {
+      // Generate for each unit (3 content types: flashcards, quiz, notes)
+      totalItems += 3;
+      generationQueue.push({ unitIndex, unitName: unit.unitName, type: 'unit', contentTypes: ['flashcards', 'quiz', 'notes'] });
+
+      unit.topics.forEach((topic, topicIndex) => {
+        // Generate for each topic (3 content types)
+        totalItems += 3;
+        generationQueue.push({ unitIndex, topicIndex, unitName: unit.unitName, topicName: topic.topicName, type: 'topic', contentTypes: ['flashcards', 'quiz', 'notes'] });
+
+        topic.subtopics.forEach((subtopic, subtopicIndex) => {
+          // Generate for each subtopic (3 content types)
+          totalItems += 3;
+          generationQueue.push({
+            unitIndex,
+            topicIndex,
+            subtopicIndex,
+            unitName: unit.unitName,
+            topicName: topic.topicName,
+            subtopicName: subtopic,
+            type: 'subtopic',
+            contentTypes: ['flashcards', 'quiz', 'notes']
+          });
+        });
+      });
+    });
+
+    setGenerationProgress({
+      currentUnit: '',
+      currentTopic: '',
+      currentSubtopic: '',
+      totalItems,
+      completedItems: 0,
+      generatedContent: []
+    });
+
+    // Simulate AI generation process
+    let completedCount = 0;
+
+    for (const item of generationQueue) {
+      for (const contentType of item.contentTypes) {
+        setGenerationProgress(prev => ({
+          ...prev!,
+          currentUnit: item.unitName,
+          currentTopic: item.topicName || '',
+          currentSubtopic: item.subtopicName || '',
+        }));
+
+        // Add pending item
+        const contentId = `${item.unitIndex}-${item.topicIndex || 'unit'}-${item.subtopicIndex || ''}-${contentType}`;
+        setGenerationProgress(prev => ({
+          ...prev!,
+          generatedContent: [...prev!.generatedContent, {
+            unitId: item.unitIndex.toString(),
+            topicId: (item.topicIndex || 'unit').toString(),
+            subtopicId: item.subtopicIndex?.toString(),
+            contentType: contentType as 'flashcards' | 'quiz' | 'notes',
+            status: 'generating'
+          }]
+        }));
+
+        // Simulate generation time
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
+        // Mark as completed and add to database
+        completedCount++;
+        const itemsGenerated = contentType === 'flashcards' ? Math.floor(Math.random() * 15) + 5 :
+                             contentType === 'quiz' ? 1 : 1;
+
+        setGenerationProgress(prev => ({
+          ...prev!,
+          completedItems: completedCount,
+          generatedContent: prev!.generatedContent.map(content =>
+            content.unitId === item.unitIndex.toString() &&
+            content.topicId === (item.topicIndex || 'unit').toString() &&
+            content.subtopicId === item.subtopicIndex?.toString() &&
+            content.contentType === contentType
+              ? { ...content, status: 'completed' as const, itemsGenerated }
+              : content
+          )
+        }));
+
+        // Store in database (simulate API call)
+        await storeGeneratedContent({
+          subjectId: subject.id,
+          unitIndex: item.unitIndex,
+          topicIndex: item.topicIndex,
+          subtopicIndex: item.subtopicIndex,
+          contentType,
+          content: await generateContentForItem(item, contentType),
+          metadata: {
+            generatedAt: new Date().toISOString(),
+            itemsCount: itemsGenerated,
+            curriculum: subject.curriculum.curriculumDocument
+          }
+        });
+      }
+    }
+
+    // Update subject stats
+    setSubject(prev => ({
+      ...prev,
+      contentGeneration: {
+        flashcardsGenerated: prev.contentGeneration.flashcardsGenerated + Math.floor(totalItems * 0.4),
+        quizzesGenerated: prev.contentGeneration.quizzesGenerated + Math.floor(totalItems * 0.33),
+        notesGenerated: prev.contentGeneration.notesGenerated + Math.floor(totalItems * 0.33),
+        lastGenerated: new Date().toISOString().split('T')[0]
+      }
+    }));
+
+    setTimeout(() => {
+      setIsGenerating(false);
+      setGenerationProgress(null);
+      alert(`Content generation completed! Generated materials for ${units.length} units with comprehensive coverage.`);
+    }, 1000);
+  };
+
+  // Simulate content generation for specific items
+  const generateContentForItem = async (item: any, contentType: string) => {
+    const context = `${item.unitName}${item.topicName ? ` - ${item.topicName}` : ''}${item.subtopicName ? ` - ${item.subtopicName}` : ''}`;
+
+    switch (contentType) {
+      case 'flashcards':
+        return {
+          cards: Array.from({ length: Math.floor(Math.random() * 15) + 5 }, (_, i) => ({
+            id: `card-${i}`,
+            front: `Question about ${context} - ${i + 1}`,
+            back: `Answer covering key concepts of ${context}`,
+            difficulty: ['easy', 'medium', 'hard'][Math.floor(Math.random() * 3)]
+          }))
+        };
+      case 'quiz':
+        return {
+          title: `${context} Quiz`,
+          questions: Array.from({ length: 10 }, (_, i) => ({
+            id: `q-${i}`,
+            question: `Question ${i + 1} about ${context}`,
+            options: ['Option A', 'Option B', 'Option C', 'Option D'],
+            correctAnswer: 0,
+            explanation: `Explanation for ${context} concept`
+          }))
+        };
+      case 'notes':
+        return {
+          title: `${context} Study Notes`,
+          sections: [
+            { heading: 'Overview', content: `Comprehensive overview of ${context}` },
+            { heading: 'Key Concepts', content: `Important concepts in ${context}` },
+            { heading: 'Examples', content: `Practical examples of ${context}` },
+            { heading: 'Summary', content: `Summary of ${context} learning objectives` }
+          ]
+        };
+      default:
+        return {};
+    }
+  };
+
+  // Store generated content in database
+  const storeGeneratedContent = async (data: any) => {
+    // Simulate API call to store in database
+    console.log('Storing in database:', {
+      table: 'generated_content',
+      data: {
+        subject_id: data.subjectId,
+        unit_index: data.unitIndex,
+        topic_index: data.topicIndex,
+        subtopic_index: data.subtopicIndex,
+        content_type: data.contentType,
+        content_data: JSON.stringify(data.content),
+        metadata: JSON.stringify(data.metadata),
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      }
+    });
+
+    // In real implementation, this would be:
+    // await fetch('/api/content/generate', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(data)
+    // });
   };
 
   return (
