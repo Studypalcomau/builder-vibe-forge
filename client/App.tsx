@@ -22,6 +22,10 @@ import Pricing from "./pages/Pricing";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
+import Help from "./pages/Help";
+import Contact from "./pages/Contact";
+import About from "./pages/About";
+import Privacy from "./pages/Privacy";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import NotFound from "./pages/NotFound";
 
@@ -56,30 +60,10 @@ const App = () => (
                 description="Monitor your learning progress with detailed analytics and insights."
               />
             } />
-            <Route path="/help" element={
-              <PlaceholderPage
-                title="Help Center"
-                description="Get help and support for using StudyMate QLD effectively."
-              />
-            } />
-            <Route path="/contact" element={
-              <PlaceholderPage
-                title="Contact Us"
-                description="Get in touch with our support team for assistance."
-              />
-            } />
-            <Route path="/about" element={
-              <PlaceholderPage
-                title="About StudyMate QLD"
-                description="Learn more about our mission to help Queensland students succeed."
-              />
-            } />
-            <Route path="/privacy" element={
-              <PlaceholderPage
-                title="Privacy Policy"
-                description="Our commitment to protecting your privacy and data."
-              />
-            } />
+            <Route path="/help" element={<Help />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/privacy" element={<Privacy />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
