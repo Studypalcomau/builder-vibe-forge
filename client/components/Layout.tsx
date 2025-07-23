@@ -72,13 +72,22 @@ export function Layout({ children }: LayoutProps) {
               </Button>
             </div>
 
-            {/* CTA Button */}
+            {/* CTA Button / Account */}
             <div className="hidden md:block">
-              <Link to="/signup">
-                <Button className="bg-study-accent hover:bg-study-accent/90 text-gray-900 font-medium">
-                  Get Started
-                </Button>
-              </Link>
+              {isLoggedIn ? (
+                <Link to="/account">
+                  <Button variant="outline" className="border-sky-blue-300 text-sky-blue-700 hover:bg-sky-blue-50">
+                    <User className="w-4 h-4 mr-2" />
+                    Account
+                  </Button>
+                </Link>
+              ) : (
+                <Link to="/signup">
+                  <Button className="bg-study-accent hover:bg-study-accent/90 text-gray-900 font-medium">
+                    Get Started
+                  </Button>
+                </Link>
+              )}
             </div>
           </div>
 
