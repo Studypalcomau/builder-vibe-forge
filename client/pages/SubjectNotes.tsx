@@ -341,13 +341,554 @@ This process is fundamental to life on Earth and forms the base of most food cha
   }
 ];
 
+// English study notes for Queensland curriculum
+const englishNotes: StudyNote[] = [
+  {
+    id: "eng-essay-writing",
+    title: "Essay Writing: Structure and Techniques",
+    description: "Complete guide to writing effective essays including structure, thesis statements, and persuasive techniques",
+    content: `# Essay Writing: Structure and Techniques
+
+## The Five-Paragraph Essay Structure
+
+### Introduction Paragraph
+- **Hook**: Grab the reader's attention (quote, question, statistic, anecdote)
+- **Background**: Provide context for your topic
+- **Thesis Statement**: Your main argument or claim (usually the last sentence)
+
+### Body Paragraphs (3 paragraphs)
+Each body paragraph should follow the **PEEL** structure:
+- **P**oint: Topic sentence stating your main idea
+- **E**vidence: Support your point with quotes, examples, statistics
+- **E**xplain: Analyze how your evidence supports your point
+- **L**ink: Connect back to your thesis
+
+### Conclusion Paragraph
+- **Restate thesis**: Rephrase your main argument
+- **Summarize key points**: Briefly review your main arguments
+- **Broader significance**: Why does your argument matter?
+
+## Thesis Statement Guidelines
+
+### What makes a strong thesis?
+1. **Specific**: Clear and focused, not vague
+2. **Arguable**: Takes a position that can be debated
+3. **Supportable**: Can be backed up with evidence
+4. **Significant**: Addresses an important issue
+
+### Examples:
+**Weak**: "Bullying is bad."
+**Strong**: "Schools should implement comprehensive anti-bullying programs because they reduce incidents by 40%, improve academic performance, and create safer learning environments."
+
+## Persuasive Writing Techniques
+
+### Ethos (Credibility)
+- Use credible sources and expert opinions
+- Demonstrate your knowledge of the topic
+- Present yourself as trustworthy and fair
+
+### Pathos (Emotional Appeal)
+- Use vivid language and imagery
+- Include personal anecdotes or case studies
+- Appeal to values your audience shares
+
+### Logos (Logical Appeal)
+- Present clear, logical arguments
+- Use statistics and factual evidence
+- Address counterarguments fairly
+
+## Transition Words and Phrases
+
+### For adding information:
+- Furthermore, Moreover, Additionally, In addition
+
+### For contrasting:
+- However, Nevertheless, On the other hand, Conversely
+
+### For showing cause and effect:
+- Therefore, Consequently, As a result, Thus
+
+### For concluding:
+- In conclusion, Finally, To summarize, Ultimately
+
+## Common Essay Types
+
+### Persuasive Essay
+- Goal: Convince the reader to accept your viewpoint
+- Focus on strong arguments and evidence
+- Address counterarguments
+
+### Analytical Essay
+- Goal: Break down and examine a text or topic
+- Focus on "how" and "why" questions
+- Use textual evidence and analysis
+
+### Compare and Contrast Essay
+- Goal: Examine similarities and differences
+- Use point-by-point or block structure
+- Draw meaningful conclusions
+
+## Revision Checklist
+- [ ] Does your thesis clearly state your main argument?
+- [ ] Does each paragraph have a clear topic sentence?
+- [ ] Have you included sufficient evidence?
+- [ ] Are your ideas logically organized?
+- [ ] Have you addressed counterarguments?
+- [ ] Is your conclusion effective?
+
+## Common Mistakes to Avoid
+1. **Weak thesis statements**
+2. **Lack of evidence** to support claims
+3. **Poor paragraph structure**
+4. **Ignoring counterarguments**
+5. **Weak conclusions** that just repeat the introduction`,
+    category: "Writing",
+    difficulty: "Medium",
+    readTime: 20,
+    lastUpdated: "2024-01-16",
+    tags: ["essay writing", "structure", "thesis", "persuasion", "academic writing"],
+    type: "concept"
+  },
+  {
+    id: "eng-literary-analysis",
+    title: "Literary Analysis: Techniques and Approaches",
+    description: "Guide to analyzing literature including character, theme, symbolism, and literary devices",
+    content: `# Literary Analysis: Techniques and Approaches
+
+## What is Literary Analysis?
+
+Literary analysis involves examining and interpreting a text to understand its deeper meanings, techniques, and effects. It goes beyond plot summary to explore **how** and **why** authors create meaning.
+
+## Key Elements to Analyze
+
+### Character Analysis
+**Types of Characters:**
+- **Protagonist**: Main character
+- **Antagonist**: Character in conflict with protagonist
+- **Static**: Unchanged throughout the story
+- **Dynamic**: Undergoes significant change
+- **Round**: Complex, multi-dimensional
+- **Flat**: Simple, one-dimensional
+
+**Characterization Methods:**
+- **Direct**: Author explicitly tells us about the character
+- **Indirect**: Revealed through actions, dialogue, thoughts, appearance, others' reactions
+
+### Theme Analysis
+**What is theme?**
+Theme is the central message, lesson, or insight about life that the author conveys.
+
+**How to identify themes:**
+- Look for recurring ideas or concepts
+- Consider the main conflict and its resolution
+- Examine character growth and change
+- Notice symbols and their meanings
+
+**Common themes:**
+- Coming of age
+- Good vs. evil
+- Love and sacrifice
+- Power and corruption
+- Individual vs. society
+
+### Setting Analysis
+**Elements of setting:**
+- **Time**: Historical period, season, time of day
+- **Place**: Geographic location, social environment
+- **Atmosphere**: Mood created by the setting
+
+**How setting affects the story:**
+- Influences character behavior
+- Creates mood and atmosphere
+- Reflects or contrasts with themes
+- Can be symbolic
+
+## Literary Devices and Their Effects
+
+### Figurative Language
+**Metaphor**: Direct comparison without "like" or "as"
+- Effect: Creates vivid imagery, emphasizes similarities
+
+**Simile**: Comparison using "like" or "as"
+- Effect: Helps readers visualize, creates connections
+
+**Personification**: Giving human qualities to non-human things
+- Effect: Makes abstract concepts relatable, creates emotional connection
+
+**Symbolism**: Objects representing larger ideas
+- Effect: Adds deeper meaning, creates layers of interpretation
+
+### Sound Devices
+**Alliteration**: Repetition of initial consonant sounds
+- Effect: Creates rhythm, emphasizes words
+
+**Assonance**: Repetition of vowel sounds
+- Effect: Creates musical quality, mood
+
+**Onomatopoeia**: Words that imitate sounds
+- Effect: Creates sensory experience, adds realism
+
+### Irony
+**Verbal**: Saying opposite of what you mean
+**Situational**: Opposite of what's expected happens
+**Dramatic**: Audience knows more than characters
+- Effect: Creates humor, emphasizes themes, builds tension
+
+## Writing a Literary Analysis Essay
+
+### Structure:
+1. **Introduction**: Hook, context, thesis
+2. **Body Paragraphs**: Topic sentence, evidence, analysis, conclusion
+3. **Conclusion**: Restate thesis, broader significance
+
+### Using Textual Evidence:
+- Always support claims with quotes from the text
+- Explain how evidence supports your argument
+- Use proper citation format
+
+### Sample Thesis Statements:
+**Weak**: "The author uses symbolism in the story."
+**Strong**: "Through the recurring symbol of the caged bird, Maya Angelou illustrates the struggle for freedom and the power of the human spirit to overcome oppression."
+
+## Analysis vs. Summary
+
+### Summary (What happens):
+"Romeo and Juliet meet at a party and fall in love."
+
+### Analysis (How and why):
+"Shakespeare uses the balcony scene to emphasize the theme of love transcending social barriers, as Romeo and Juliet's elevated language and celestial imagery suggest their love lifts them above earthly concerns."
+
+## Tips for Effective Analysis
+1. **Ask "How?" and "Why?" questions**
+2. **Look for patterns** in language, imagery, structure
+3. **Consider author's choices** - why this word, image, or structure?
+4. **Connect to themes** - how do literary devices support the message?
+5. **Use present tense** when discussing literature
+6. **Avoid plot summary** - assume your reader knows the story
+
+## Practice Questions
+When analyzing literature, consider:
+- How does the author develop characters?
+- What literary devices create mood or atmosphere?
+- How does setting influence the story?
+- What symbols appear and what do they represent?
+- How does the author's style contribute to meaning?`,
+    category: "Literary Analysis",
+    difficulty: "Hard",
+    readTime: 25,
+    lastUpdated: "2024-01-15",
+    tags: ["literary analysis", "character", "theme", "symbolism", "literary devices"],
+    type: "concept"
+  },
+  {
+    id: "eng-poetry-analysis",
+    title: "Poetry Analysis: Form, Structure, and Meaning",
+    description: "Understanding poetic devices, forms, and techniques for analyzing poetry effectively",
+    content: `# Poetry Analysis: Form, Structure, and Meaning
+
+## Elements of Poetry
+
+### Form and Structure
+**Stanza**: Groups of lines, like paragraphs in prose
+- **Couplet**: 2 lines
+- **Tercet**: 3 lines
+- **Quatrain**: 4 lines
+
+**Meter**: Pattern of stressed and unstressed syllables
+- **Iambic**: Unstressed-stressed (da-DUM)
+- **Trochaic**: Stressed-unstressed (DUM-da)
+- **Pentameter**: 5 metrical feet per line
+
+**Rhyme Scheme**: Pattern of rhyming words
+- **ABAB**: Alternating rhyme
+- **AABB**: Couplet rhyme
+- **ABCB**: Ballad rhyme
+
+### Sound Devices
+**Rhyme**: Words with similar ending sounds
+- **Perfect rhyme**: Exact sound match (cat/bat)
+- **Slant rhyme**: Near rhyme (love/remove)
+- **Internal rhyme**: Rhyme within a line
+
+**Rhythm**: Beat or pattern of stressed syllables
+**Alliteration**: Repetition of initial consonant sounds
+**Assonance**: Repetition of vowel sounds
+**Consonance**: Repetition of consonant sounds
+
+### Figurative Language in Poetry
+**Imagery**: Vivid sensory language
+- Visual, auditory, tactile, olfactory, gustatory
+
+**Metaphor and Simile**: Comparisons that create new understanding
+**Symbolism**: Objects representing abstract ideas
+**Personification**: Human qualities given to non-human things
+
+## Poetic Forms
+
+### Sonnet
+- **14 lines** of iambic pentameter
+- **Shakespearean**: ABAB CDCD EFEF GG
+- **Petrarchan**: ABBAABBA CDECDE (or CDCDCD)
+
+### Haiku
+- **3 lines**: 5-7-5 syllables
+- Focuses on nature and seasons
+- Creates a moment of insight
+
+### Ballad
+- Tells a story in song-like form
+- Usually ABCB rhyme scheme
+- Often about love, tragedy, or adventure
+
+### Free Verse
+- No regular rhyme scheme or meter
+- Relies on natural speech patterns
+- Focuses on imagery and meaning
+
+## Analyzing Poetry: The TPCASTT Method
+
+### **T**itle
+- What does the title suggest about the poem?
+- How does it relate to the content?
+
+### **P**araphrase
+- What is the poem saying in your own words?
+- Don't analyze yet, just understand literally
+
+### **C**onnotation
+- What deeper meanings do words carry?
+- What literary devices are used?
+
+### **A**ttitude/Tone
+- What is the speaker's attitude?
+- What mood does the poem create?
+
+### **S**hifts
+- Where does the poem change direction?
+- Look for transition words, punctuation, stanza breaks
+
+### **T**itle (revisited)
+- How has your understanding changed?
+- What new meaning does the title have?
+
+### **T**heme
+- What is the poem's central message?
+- What insight about life does it offer?
+
+## Common Poetic Themes
+- **Love and loss**
+- **Nature and seasons**
+- **Time and mortality**
+- **Identity and self-discovery**
+- **Social justice and inequality**
+- **Beauty and art**
+
+## Speaker vs. Poet
+**Important distinction:**
+- **Speaker**: The voice in the poem (may be a character)
+- **Poet**: The actual author
+
+Never assume the speaker IS the poet unless you have evidence.
+
+## Analyzing Tone and Mood
+**Tone**: Poet's attitude (serious, playful, angry, nostalgic)
+**Mood**: Feeling created in the reader (melancholy, joyful, tense)
+
+**Tone words:**
+- Admiring, bitter, contemplative, defiant
+- Ironic, nostalgic, optimistic, reverent
+- Satirical, solemn, whimsical
+
+## Writing About Poetry
+
+### Key Guidelines:
+1. **Use present tense** when discussing the poem
+2. **Quote accurately** and use line numbers
+3. **Analyze, don't just identify** devices
+4. **Connect devices to meaning**
+5. **Consider the poem as a whole**
+
+### Sample Analysis:
+**Instead of**: "The poet uses alliteration in line 3."
+**Write**: "The alliteration in 'wild and windy' (line 3) creates a sense of nature's untamed power, reinforcing the poem's theme of humanity's smallness against natural forces."
+
+## Practice Approach
+When analyzing a poem:
+1. **Read multiple times** - for understanding, then for devices
+2. **Mark up the text** - highlight imagery, devices, patterns
+3. **Consider structure** - how does form relate to content?
+4. **Look for patterns** - repeated words, images, sounds
+5. **Ask questions** - Why this word choice? What's the effect?
+
+Remember: Poetry is meant to be **felt** as well as understood. Trust your emotional response while also analyzing technique.`,
+    category: "Poetry",
+    difficulty: "Hard",
+    readTime: 22,
+    lastUpdated: "2024-01-14",
+    tags: ["poetry", "analysis", "form", "structure", "TPCASTT", "literary devices"],
+    type: "concept"
+  }
+];
+
+// Physics study notes
+const physicsNotes: StudyNote[] = [
+  {
+    id: "phys-motion",
+    title: "Motion and Forces: Newton's Laws",
+    description: "Comprehensive guide to understanding motion, forces, and Newton's three laws of motion",
+    content: `# Motion and Forces: Newton's Laws
+
+## Introduction to Motion
+
+**Motion** is the change in position of an object over time. To describe motion, we need to understand several key concepts:
+
+### Key Terms
+- **Displacement**: Change in position (vector quantity)
+- **Velocity**: Rate of change of displacement (vector)
+- **Acceleration**: Rate of change of velocity (vector)
+- **Speed**: Magnitude of velocity (scalar)
+
+### Equations of Motion
+For constant acceleration:
+- **v = u + at** (final velocity)
+- **s = ut + ½at²** (displacement)
+- **v² = u² + 2as** (without time)
+
+Where: u = initial velocity, v = final velocity, a = acceleration, t = time, s = displacement
+
+## Newton's Laws of Motion
+
+### First Law (Law of Inertia)
+**Statement**: An object at rest stays at rest, and an object in motion stays in motion at constant velocity, unless acted upon by an unbalanced external force.
+
+**Key Points:**
+- **Inertia**: Tendency of objects to resist changes in motion
+- Mass is a measure of inertia
+- Net force = 0 → constant velocity (including zero)
+
+**Examples:**
+- Passengers thrown forward when a car brakes suddenly
+- Objects sliding across ice continue moving due to low friction
+
+### Second Law (F = ma)
+**Statement**: The acceleration of an object is directly proportional to the net force acting on it and inversely proportional to its mass.
+
+**Mathematical Form**: **F_net = ma**
+- F_net = net force (Newtons)
+- m = mass (kilograms)
+- a = acceleration (m/s²)
+
+**Key Points:**
+- Force and acceleration are vectors (same direction)
+- Larger force → larger acceleration
+- Larger mass → smaller acceleration (for same force)
+
+**Problem-Solving Steps:**
+1. Identify all forces acting on the object
+2. Calculate net force (vector sum)
+3. Apply F = ma to find acceleration
+4. Use kinematic equations if needed
+
+### Third Law (Action-Reaction)
+**Statement**: For every action force, there is an equal and opposite reaction force.
+
+**Key Points:**
+- Forces always occur in pairs
+- Action and reaction forces act on **different objects**
+- Forces are equal in magnitude, opposite in direction
+- Forces occur simultaneously
+
+**Examples:**
+- Walking: You push back on ground, ground pushes forward on you
+- Rocket propulsion: Rocket pushes gas down, gas pushes rocket up
+- Swimming: You push water back, water pushes you forward
+
+## Types of Forces
+
+### Contact Forces
+**Normal Force (N)**: Perpendicular force from a surface
+**Friction (f)**: Parallel force opposing motion
+- Static friction: Prevents motion from starting
+- Kinetic friction: Opposes motion in progress
+- f = μN (μ = coefficient of friction)
+
+**Applied Force**: Force applied by external agent
+**Tension**: Force in ropes, strings, cables
+
+### Non-Contact Forces
+**Gravitational Force**: F = mg (near Earth's surface)
+- g = 9.8 m/s² (acceleration due to gravity)
+- Always points toward Earth's center
+
+**Electromagnetic Forces**: Forces between charged objects
+
+## Free Body Diagrams
+
+**Purpose**: Visual representation of all forces acting on an object
+
+**Steps to Draw:**
+1. Draw object as a dot or simple shape
+2. Draw arrows representing all forces
+3. Label each force with its name and magnitude
+4. Choose coordinate system
+5. Resolve forces into components if needed
+
+**Common Mistakes:**
+- Including forces the object exerts on other things
+- Forgetting to include all forces (especially normal and friction)
+- Drawing forces on wrong object
+
+## Applications and Problem Solving
+
+### Equilibrium Problems
+When net force = 0:
+- Object at rest OR moving at constant velocity
+- ΣF_x = 0 and ΣF_y = 0
+
+### Acceleration Problems
+When net force ≠ 0:
+- Calculate net force in each direction
+- Use F = ma to find acceleration
+- Apply kinematic equations for motion
+
+### Example Problem:
+A 10 kg box slides down a 30° incline with μ_k = 0.2. Find acceleration.
+
+**Solution:**
+1. Draw free body diagram
+2. Identify forces: mg, N, f_k
+3. Resolve weight: mg_parallel = mg sin(30°), mg_perpendicular = mg cos(30°)
+4. Find normal force: N = mg cos(30°)
+5. Find friction: f_k = μ_k N = μ_k mg cos(30°)
+6. Net force down incline: F_net = mg sin(30°) - f_k
+7. Apply F = ma: a = g(sin(30°) - μ_k cos(30°))
+
+## Real-World Applications
+- **Vehicle safety**: Seat belts, airbags (First Law)
+- **Sports**: Running, jumping, throwing (all three laws)
+- **Engineering**: Building design, machine operation
+- **Space exploration**: Rocket propulsion (Third Law)
+
+Understanding Newton's laws is fundamental to all of mechanics and forms the basis for more advanced topics in physics!`,
+    category: "Mechanics",
+    difficulty: "Medium",
+    readTime: 18,
+    lastUpdated: "2024-01-16",
+    tags: ["Newton's laws", "motion", "forces", "mechanics", "physics"],
+    type: "concept"
+  }
+];
+
 const subjectNotes: Record<string, StudyNote[]> = {
   mathematics: mathematicsNotes,
+  "mathematical-methods": mathematicsNotes,
+  "specialist-mathematics": mathematicsNotes,
   biology: biologyNotes,
+  physics: physicsNotes,
+  english: englishNotes,
   chemistry: [],
-  physics: [],
-  english: [],
-  "modern-history": []
+  engineering: [],
+  economics: []
 };
 
 export default function SubjectNotes() {
