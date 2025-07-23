@@ -71,9 +71,11 @@ export function Layout({ children }: LayoutProps) {
 
             {/* CTA Button */}
             <div className="hidden md:block">
-              <Button className="bg-study-accent hover:bg-study-accent/90 text-gray-900 font-medium">
-                Get Started
-              </Button>
+              <Link to="/signup">
+                <Button className="bg-study-accent hover:bg-study-accent/90 text-gray-900 font-medium">
+                  Get Started
+                </Button>
+              </Link>
             </div>
           </div>
 
