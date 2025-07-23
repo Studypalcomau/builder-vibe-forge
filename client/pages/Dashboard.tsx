@@ -325,48 +325,7 @@ export default function Dashboard() {
           <div className="space-y-8">
 
 
-            {/* Achievements */}
-            <Card className="border-sky-blue-200">
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <Award className="w-5 h-5 mr-2" />
-                  Achievements
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  {dashboardData.achievements.map((achievement, index) => (
-                    <div key={index} className={`p-3 rounded-lg border ${
-                      achievement.unlocked ? 'bg-yellow-50 border-yellow-200' : 'bg-gray-50 border-gray-200'
-                    }`}>
-                      <div className="flex items-start space-x-3">
-                        <achievement.icon className={`w-5 h-5 ${
-                          achievement.unlocked ? achievement.color : 'text-gray-400'
-                        }`} />
-                        <div className="flex-1">
-                          <h4 className={`font-medium text-sm ${
-                            achievement.unlocked ? 'text-gray-900' : 'text-gray-500'
-                          }`}>
-                            {achievement.title}
-                          </h4>
-                          <p className={`text-xs ${
-                            achievement.unlocked ? 'text-gray-600' : 'text-gray-400'
-                          }`}>
-                            {achievement.description}
-                          </p>
-                          {!achievement.unlocked && achievement.progress && (
-                            <div className="mt-2">
-                              <Progress value={achievement.progress} className="h-1" />
-                              <p className="text-xs text-gray-500 mt-1">{achievement.progress}% complete</p>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+
 
             {/* Quick Actions */}
             <Card className="border-sky-blue-200">
