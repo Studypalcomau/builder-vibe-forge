@@ -22,8 +22,8 @@ export default function Quizzes() {
 
   const subjects = [
     {
-      name: "Mathematics",
-      slug: "mathematics",
+      name: "Mathematical Methods",
+      slug: "mathematical-methods",
       icon: "📊",
       totalQuizzes: 19,
       completed: 12,
@@ -33,26 +33,15 @@ export default function Quizzes() {
       available: true
     },
     {
-      name: "Biology",
-      slug: "biology",
-      icon: "🧬",
+      name: "Specialist Mathematics",
+      slug: "specialist-mathematics",
+      icon: "🔢",
       totalQuizzes: 15,
       completed: 8,
       bestScore: 88,
       averageScore: 82,
       lastTaken: "1 day ago",
       available: true
-    },
-    {
-      name: "Chemistry",
-      slug: "chemistry",
-      icon: "⚗️",
-      totalQuizzes: 17,
-      completed: 4,
-      bestScore: 78,
-      averageScore: 73,
-      lastTaken: "3 days ago",
-      available: false
     },
     {
       name: "Physics",
@@ -62,13 +51,24 @@ export default function Quizzes() {
       completed: 3,
       bestScore: 81,
       averageScore: 76,
+      lastTaken: "3 days ago",
+      available: false
+    },
+    {
+      name: "Engineering",
+      slug: "engineering",
+      icon: "⚙️",
+      totalQuizzes: 17,
+      completed: 4,
+      bestScore: 78,
+      averageScore: 73,
       lastTaken: "5 days ago",
       available: false
     },
     {
-      name: "English",
-      slug: "english",
-      icon: "📚",
+      name: "Economics",
+      slug: "economics",
+      icon: "💰",
       totalQuizzes: 14,
       completed: 6,
       bestScore: 85,
@@ -77,9 +77,9 @@ export default function Quizzes() {
       available: false
     },
     {
-      name: "Modern History",
-      slug: "modern-history",
-      icon: "🏛️",
+      name: "English",
+      slug: "english",
+      icon: "📚",
       totalQuizzes: 12,
       completed: 2,
       bestScore: 83,
