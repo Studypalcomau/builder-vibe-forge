@@ -243,27 +243,33 @@ export default function Dashboard() {
                 <CardDescription>Your current progress across all subjects</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-6">
+                <div className="space-y-4">
                   {dashboardData.subjects.map((subject, index) => (
-                    <div key={index}>
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="flex items-center space-x-3">
-                          <div className="text-2xl">{subject.icon}</div>
+                    <div key={index} className="p-4 bg-gray-50 border border-gray-200 rounded-lg hover:shadow-sm transition-shadow">
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center space-x-4">
+                          <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-sm border border-gray-100">
+                            <div className="text-2xl">{subject.icon}</div>
+                          </div>
                           <div>
-                            <h3 className="font-semibold text-gray-900">{subject.name}</h3>
+                            <h3 className="font-semibold text-gray-900 text-lg">{subject.name}</h3>
                             <p className="text-sm text-gray-600">Last studied: {subject.lastStudied}</p>
                           </div>
                         </div>
                         <div className="text-right">
-                          <div className="font-bold text-gray-900">{subject.progress}%</div>
+                          <div className="font-bold text-gray-900 text-xl">{subject.progress}%</div>
                           <div className="text-sm text-gray-600">Score: {subject.recentScore}%</div>
                         </div>
                       </div>
-                      <Progress value={subject.progress} className="h-3 mb-2" />
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm text-gray-600">Next: {subject.nextTopic}</span>
+
+                      <div className="mb-4">
+                        <Progress value={subject.progress} className="h-3" />
+                      </div>
+
+                      <div className="flex justify-between items-center pt-2 border-t border-gray-200">
+                        <span className="text-sm text-gray-600 font-medium">Next: {subject.nextTopic}</span>
                         <Link to={`/subjects/${subject.slug}`}>
-                          <Button variant="ghost" size="sm" className="text-sky-blue-600">
+                          <Button size="sm" className="bg-sky-blue-600 hover:bg-sky-blue-700 text-white">
                             Continue
                             <ChevronRight className="w-4 h-4 ml-1" />
                           </Button>
