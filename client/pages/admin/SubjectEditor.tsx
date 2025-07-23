@@ -633,7 +633,7 @@ export default function SubjectEditor() {
                     <div className="mt-4 p-4 border border-blue-200 bg-blue-50 rounded-lg">
                       <div className="flex items-center space-x-3">
                         <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
-                        <span className="text-blue-700">Processing curriculum document and extracting topics...</span>
+                        <span className="text-blue-700">Processing curriculum document and extracting units and topics...</span>
                       </div>
                       <Progress value={60} className="mt-2" />
                     </div>
