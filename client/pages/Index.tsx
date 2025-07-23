@@ -139,7 +139,7 @@ export default function Index() {
               practice quizzes, and personalized study plans to help you excel in your exams.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/subjects">
+              <Link to="/signup">
                 <Button size="lg" className="bg-study-primary hover:bg-study-primary/90 text-white px-8">
                   <Play className="w-5 h-5 mr-2" />
                   Start Studying Free
@@ -151,6 +151,14 @@ export default function Index() {
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </Link>
+            </div>
+            <div className="mt-6">
+              <p className="text-gray-600">
+                Already have an account?{" "}
+                <Link to="/login" className="text-sky-blue-600 hover:text-sky-blue-700 font-medium">
+                  Sign in here
+                </Link>
+              </p>
             </div>
           </div>
         </div>
