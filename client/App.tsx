@@ -17,7 +17,7 @@ import Quizzes from "./pages/Quizzes";
 import SubjectQuizzes from "./pages/SubjectQuizzes";
 import SubjectNotes from "./pages/SubjectNotes";
 import TopicContent from "./pages/TopicContent";
-import StudyPlanner from "./pages/StudyPlanner";
+
 import Pricing from "./pages/Pricing";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
