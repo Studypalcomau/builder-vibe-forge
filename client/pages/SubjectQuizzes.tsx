@@ -305,7 +305,7 @@ const subjectQuizzes: Record<string, QuizData[]> = {
 };
 
 export default function SubjectQuizzes() {
-  const { slug } = useParams();
+  const { slug, subtopicId } = useParams();
   const [selectedQuiz, setSelectedQuiz] = useState<QuizData | null>(null);
   const [quizResults, setQuizResults] = useState<Record<string, number>>({});
 
