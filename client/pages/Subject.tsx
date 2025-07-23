@@ -62,7 +62,7 @@ export default function Subject() {
     economics: {
       name: "Economics",
       description: "Microeconomics, macroeconomics, and market analysis",
-      icon: "💰",
+      icon: "���",
       color: "bg-green-500",
       totalTopics: 35,
       completedTopics: 6,
@@ -195,7 +195,22 @@ export default function Subject() {
     ]
   };
 
-  const topics = subjectTopics[slug as string] || [];
+  const curriculum = subjectCurriculum[slug as string] || [];
+
+  // Calculate totals from curriculum structure
+  const totalTopics = curriculum.reduce((acc, unit) => acc + unit.topics.length, 0);
+  const completedTopics = curriculum.reduce((acc, unit) =>
+    acc + unit.topics.filter(topic => topic.completed).length, 0
+  );
+  const totalFlashcards = curriculum.reduce((acc, unit) =>
+    acc + unit.topics.reduce((topicAcc, topic) => topicAcc + topic.flashcards, 0), 0
+  );
+  const totalQuizzes = curriculum.reduce((acc, unit) =>
+    acc + unit.topics.reduce((topicAcc, topic) => topicAcc + topic.quizzes, 0), 0
+  );
+  const totalStudyNotes = curriculum.reduce((acc, unit) =>
+    acc + unit.topics.reduce((topicAcc, topic) => topicAcc + (topic.studyNotes || 0), 0), 0
+  );
 
   return (
     <div className="min-h-screen bg-study-background">
