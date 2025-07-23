@@ -578,31 +578,36 @@ export default function SubjectEditor() {
                           <h5 className="font-medium text-gray-900 mb-2">AI Analysis Results:</h5>
                           <div className="grid grid-cols-3 gap-4 text-sm">
                             <div className="text-center">
-                              <div className="text-lg font-bold text-blue-600">{subject.curriculum.curriculumDocument.aiAnalysis.topicsIdentified}</div>
-                              <div className="text-gray-600">Topics Identified</div>
+                              <div className="text-lg font-bold text-blue-600">{subject.curriculum.curriculumDocument.aiAnalysis.unitsIdentified}</div>
+                              <div className="text-gray-600">Units Identified</div>
                             </div>
                             <div className="text-center">
-                              <div className="text-lg font-bold text-green-600">{subject.curriculum.curriculumDocument.aiAnalysis.learningObjectivesExtracted}</div>
-                              <div className="text-gray-600">Learning Objectives</div>
+                              <div className="text-lg font-bold text-green-600">{subject.curriculum.curriculumDocument.aiAnalysis.topicsExtracted}</div>
+                              <div className="text-gray-600">Topics Extracted</div>
                             </div>
                             <div className="text-center">
-                              <div className="text-lg font-bold text-purple-600">{subject.curriculum.curriculumDocument.aiAnalysis.assessmentCriteriaFound}</div>
-                              <div className="text-gray-600">Assessment Criteria</div>
+                              <div className="text-lg font-bold text-purple-600">{subject.curriculum.curriculumDocument.aiAnalysis.subtopicsFound}</div>
+                              <div className="text-gray-600">Subtopics Found</div>
                             </div>
                           </div>
                         </div>
                       )}
 
-                      {subject.curriculum.curriculumDocument.extractedTopics && (
-                        <div className="mt-3">
-                          <Label className="text-sm text-gray-600">Extracted Topics:</Label>
-                          <div className="flex flex-wrap gap-2 mt-1">
-                            {subject.curriculum.curriculumDocument.extractedTopics.map((topic, index) => (
-                              <Badge key={index} variant="outline" className="text-xs">
-                                {topic}
-                              </Badge>
-                            ))}
-                          </div>
+                      {subject.curriculum.curriculumDocument.extractedUnits && (
+                        <div className="mt-4 space-y-3">
+                          <Label className="text-sm text-gray-600">Curriculum Structure:</Label>
+                          {subject.curriculum.curriculumDocument.extractedUnits.map((unit, unitIndex) => (
+                            <div key={unitIndex} className="border border-gray-200 rounded-lg p-3">
+                              <h6 className="font-medium text-gray-900 mb-2">{unit.unitName}</h6>
+                              <div className="flex flex-wrap gap-1">
+                                {unit.topics.map((topic, topicIndex) => (
+                                  <Badge key={topicIndex} variant="outline" className="text-xs">
+                                    {topic}
+                                  </Badge>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
                         </div>
                       )}
                     </div>
