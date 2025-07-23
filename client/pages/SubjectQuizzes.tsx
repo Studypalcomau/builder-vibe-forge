@@ -308,6 +308,7 @@ export default function SubjectQuizzes() {
   const { slug, subtopicId } = useParams();
   const [selectedQuiz, setSelectedQuiz] = useState<QuizData | null>(null);
   const [quizResults, setQuizResults] = useState<Record<string, number>>({});
+  const [detailedQuizResults, setDetailedQuizResults] = useState<Record<string, DetailedQuizResult>>({});
 
   // Handle subtopic-specific quizzes
   const subtopicQuizzes: Record<string, QuizData[]> = {
