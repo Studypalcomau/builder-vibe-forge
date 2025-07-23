@@ -98,9 +98,11 @@ export function Layout({ children }: LayoutProps) {
                   </Link>
                 ))}
                 <div className="pt-2">
-                  <Button className="w-full bg-study-accent hover:bg-study-accent/90 text-gray-900 font-medium">
-                    Get Started
-                  </Button>
+                  <Link to="/signup">
+                    <Button className="w-full bg-study-accent hover:bg-study-accent/90 text-gray-900 font-medium">
+                      Get Started
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
