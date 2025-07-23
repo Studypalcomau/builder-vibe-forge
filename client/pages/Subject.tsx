@@ -3,15 +3,17 @@ import { Button } from "../components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { Progress } from "../components/ui/progress";
-import { 
-  BookOpen, 
-  Brain, 
-  Trophy, 
+import {
+  BookOpen,
+  Brain,
+  Trophy,
   Clock,
   Star,
   ArrowRight,
   Play,
-  ChevronRight
+  ChevronRight,
+  FileText,
+  ExternalLink
 } from "lucide-react";
 
 export default function Subject() {
@@ -32,7 +34,7 @@ export default function Subject() {
     "specialist-mathematics": {
       name: "Specialist Mathematics",
       description: "Advanced mathematics including complex numbers, vectors, and further calculus",
-      icon: "����",
+      icon: "������",
       color: "bg-indigo-500",
       totalTopics: 42,
       completedTopics: 8,
