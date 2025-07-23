@@ -260,6 +260,63 @@ export default function SubjectEditor() {
     }
   };
 
+  const handleCurriculumUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setIsUploadingCurriculum(true);
+      // Simulate curriculum PDF processing
+      setTimeout(() => {
+        const newCurriculumDoc: CurriculumDocument = {
+          id: `curriculum-${Date.now()}`,
+          title: file.name.replace(/\.[^/.]+$/, ""),
+          fileName: file.name,
+          fileSize: `${(file.size / 1024 / 1024).toFixed(1)} MB`,
+          uploadDate: new Date().toISOString().split('T')[0],
+          processed: true,
+          extractedTopics: ["Functions and Relations", "Differential Calculus", "Integral Calculus", "Statistics", "Probability"],
+          aiAnalysis: {
+            topicsIdentified: 12,
+            learningObjectivesExtracted: 48,
+            assessmentCriteriaFound: 24
+          }
+        };
+        setSubject(prev => ({
+          ...prev,
+          curriculum: {
+            ...prev.curriculum,
+            curriculumDocument: newCurriculumDoc
+          }
+        }));
+        setIsUploadingCurriculum(false);
+      }, 3000);
+    }
+  };
+
+  const handleMaterialUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setIsUploadingMaterial(true);
+      // Simulate material upload
+      setTimeout(() => {
+        const newMaterial: SubjectMaterial = {
+          id: `material-${Date.now()}`,
+          title: file.name.replace(/\.[^/.]+$/, ""),
+          type: "other",
+          fileName: file.name,
+          fileSize: `${(file.size / 1024 / 1024).toFixed(1)} MB`,
+          uploadDate: new Date().toISOString().split('T')[0],
+          processed: false,
+          description: ""
+        };
+        setSubject(prev => ({
+          ...prev,
+          subjectMaterials: [...prev.subjectMaterials, newMaterial]
+        }));
+        setIsUploadingMaterial(false);
+      }, 2000);
+    }
+  };
+
   const addTopic = () => {
     const newTopic: Topic = {
       id: `topic-${Date.now()}`,
