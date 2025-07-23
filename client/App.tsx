@@ -19,6 +19,9 @@ import SubjectNotes from "./pages/SubjectNotes";
 import TopicContent from "./pages/TopicContent";
 import StudyPlanner from "./pages/StudyPlanner";
 import Pricing from "./pages/Pricing";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import ForgotPassword from "./pages/ForgotPassword";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import NotFound from "./pages/NotFound";
 
