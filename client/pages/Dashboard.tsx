@@ -189,15 +189,6 @@ export default function Dashboard() {
             </CardContent>
           </Card>
           
-          <Card className="border-sky-blue-200">
-            <CardContent className="p-4 text-center">
-              <div className="flex items-center justify-center mb-2">
-                <Flame className="w-5 h-5 text-orange-500" />
-              </div>
-              <div className="text-2xl font-bold text-gray-900">{dashboardData.overview.streakDays}</div>
-              <div className="text-sm text-gray-600">Day Streak</div>
-            </CardContent>
-          </Card>
 
           <Card className="border-sky-blue-200">
             <CardContent className="p-4 text-center">
