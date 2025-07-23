@@ -333,12 +333,16 @@ export default function Index() {
             Join thousands of Queensland students who are already using StudyMate to achieve their academic goals.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-sky-blue-600 hover:bg-gray-100 px-8">
-              Start Your Free Trial
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-              Learn More
-            </Button>
+            <Link to="/signup">
+              <Button size="lg" className="bg-white text-sky-blue-600 hover:bg-gray-100 px-8">
+                Start Your Free Trial
+              </Button>
+            </Link>
+            <Link to="/pricing">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                View Pricing
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
