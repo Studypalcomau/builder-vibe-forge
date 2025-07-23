@@ -595,16 +595,142 @@ export default function SubjectEditor() {
 
                       {subject.curriculum.curriculumDocument.extractedUnits && (
                         <div className="mt-4 space-y-3">
-                          <Label className="text-sm text-gray-600">Curriculum Structure:</Label>
+                          <div className="flex items-center justify-between">
+                            <Label className="text-sm text-gray-600">Curriculum Structure:</Label>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => {
+                                const newUnit = {
+                                  unitName: "New Unit",
+                                  topics: []
+                                };
+                                setSubject(prev => ({
+                                  ...prev,
+                                  curriculum: {
+                                    ...prev.curriculum,
+                                    curriculumDocument: {
+                                      ...prev.curriculum.curriculumDocument!,
+                                      extractedUnits: [...(prev.curriculum.curriculumDocument?.extractedUnits || []), newUnit]
+                                    }
+                                  }
+                                }));
+                              }}
+                            >
+                              <Plus className="w-3 h-3 mr-1" />
+                              Add Unit
+                            </Button>
+                          </div>
                           {subject.curriculum.curriculumDocument.extractedUnits.map((unit, unitIndex) => (
-                            <div key={unitIndex} className="border border-gray-200 rounded-lg p-3">
-                              <h6 className="font-medium text-gray-900 mb-2">{unit.unitName}</h6>
-                              <div className="flex flex-wrap gap-1">
-                                {unit.topics.map((topic, topicIndex) => (
-                                  <Badge key={topicIndex} variant="outline" className="text-xs">
-                                    {topic}
-                                  </Badge>
-                                ))}
+                            <div key={unitIndex} className="border border-gray-200 rounded-lg p-4">
+                              <div className="flex items-center justify-between mb-3">
+                                <Input
+                                  value={unit.unitName}
+                                  onChange={(e) => {
+                                    const newUnits = [...subject.curriculum.curriculumDocument!.extractedUnits!];
+                                    newUnits[unitIndex] = { ...unit, unitName: e.target.value };
+                                    setSubject(prev => ({
+                                      ...prev,
+                                      curriculum: {
+                                        ...prev.curriculum,
+                                        curriculumDocument: {
+                                          ...prev.curriculum.curriculumDocument!,
+                                          extractedUnits: newUnits
+                                        }
+                                      }
+                                    }));
+                                  }}
+                                  className="font-medium text-gray-900 border-none shadow-none p-0 h-auto text-base"
+                                />
+                                <Button
+                                  size="sm"
+                                  variant="ghost"
+                                  onClick={() => {
+                                    const newUnits = subject.curriculum.curriculumDocument!.extractedUnits!.filter((_, i) => i !== unitIndex);
+                                    setSubject(prev => ({
+                                      ...prev,
+                                      curriculum: {
+                                        ...prev.curriculum,
+                                        curriculumDocument: {
+                                          ...prev.curriculum.curriculumDocument!,
+                                          extractedUnits: newUnits
+                                        }
+                                      }
+                                    }));
+                                  }}
+                                >
+                                  <Trash2 className="w-3 h-3" />
+                                </Button>
+                              </div>
+
+                              <div className="space-y-2">
+                                <div className="flex flex-wrap gap-2">
+                                  {unit.topics.map((topic, topicIndex) => (
+                                    <div key={topicIndex} className="flex items-center space-x-1 bg-gray-50 rounded-md px-2 py-1">
+                                      <Input
+                                        value={topic}
+                                        onChange={(e) => {
+                                          const newUnits = [...subject.curriculum.curriculumDocument!.extractedUnits!];
+                                          newUnits[unitIndex].topics[topicIndex] = e.target.value;
+                                          setSubject(prev => ({
+                                            ...prev,
+                                            curriculum: {
+                                              ...prev.curriculum,
+                                              curriculumDocument: {
+                                                ...prev.curriculum.curriculumDocument!,
+                                                extractedUnits: newUnits
+                                              }
+                                            }
+                                          }));
+                                        }}
+                                        className="text-xs border-none shadow-none p-0 h-auto bg-transparent"
+                                      />
+                                      <Button
+                                        size="sm"
+                                        variant="ghost"
+                                        className="h-4 w-4 p-0"
+                                        onClick={() => {
+                                          const newUnits = [...subject.curriculum.curriculumDocument!.extractedUnits!];
+                                          newUnits[unitIndex].topics = unit.topics.filter((_, i) => i !== topicIndex);
+                                          setSubject(prev => ({
+                                            ...prev,
+                                            curriculum: {
+                                              ...prev.curriculum,
+                                              curriculumDocument: {
+                                                ...prev.curriculum.curriculumDocument!,
+                                                extractedUnits: newUnits
+                                              }
+                                            }
+                                          }));
+                                        }}
+                                      >
+                                        <X className="w-2 h-2" />
+                                      </Button>
+                                    </div>
+                                  ))}
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    className="h-7 text-xs"
+                                    onClick={() => {
+                                      const newUnits = [...subject.curriculum.curriculumDocument!.extractedUnits!];
+                                      newUnits[unitIndex].topics.push("New Topic");
+                                      setSubject(prev => ({
+                                        ...prev,
+                                        curriculum: {
+                                          ...prev.curriculum,
+                                          curriculumDocument: {
+                                            ...prev.curriculum.curriculumDocument!,
+                                            extractedUnits: newUnits
+                                          }
+                                        }
+                                      }));
+                                    }}
+                                  >
+                                    <Plus className="w-2 h-2 mr-1" />
+                                    Add Topic
+                                  </Button>
+                                </div>
                               </div>
                             </div>
                           ))}
