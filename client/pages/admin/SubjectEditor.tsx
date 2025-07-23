@@ -428,7 +428,6 @@ export default function SubjectEditor() {
             {[
               { id: "basic", label: "Basic Info", icon: BookOpen },
               { id: "curriculum", label: "Curriculum", icon: GraduationCap },
-              { id: "topics", label: "Topics", icon: Target },
               { id: "exams", label: "Exam Papers", icon: FileText },
               { id: "materials", label: "Subject Materials", icon: Paperclip },
               { id: "content", label: "Generated Content", icon: Bot }
