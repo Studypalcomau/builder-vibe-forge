@@ -215,6 +215,7 @@ export default function SubjectEditor() {
     },
     topics: [],
     examPapers: [],
+    subjectMaterials: [],
     contentGeneration: {
       flashcardsGenerated: 0,
       quizzesGenerated: 0,
