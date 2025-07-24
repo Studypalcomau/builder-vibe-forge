@@ -329,40 +329,7 @@ export default function AdminDashboard() {
           <div className="space-y-8">
 
 
-            {/* Content Statistics */}
-            <Card className="border-sky-blue-200">
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <BarChart3 className="w-5 h-5 mr-2" />
-                  Content Overview
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <Brain className="w-4 h-4 text-purple-600 mr-2" />
-                      <span className="text-sm text-gray-600">Flashcards</span>
-                    </div>
-                    <span className="font-semibold">{adminData.overview.contentItems.flashcards}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <Trophy className="w-4 h-4 text-yellow-600 mr-2" />
-                      <span className="text-sm text-gray-600">Quizzes</span>
-                    </div>
-                    <span className="font-semibold">{adminData.overview.contentItems.quizzes}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <FileText className="w-4 h-4 text-blue-600 mr-2" />
-                      <span className="text-sm text-gray-600">Study Notes</span>
-                    </div>
-                    <span className="font-semibold">{adminData.overview.contentItems.notes}</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+
 
             {/* Recent Activity */}
             <Card className="border-sky-blue-200">
