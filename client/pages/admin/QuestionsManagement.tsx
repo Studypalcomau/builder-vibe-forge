@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../..
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../components/ui/table";
 import { Badge } from "../../components/ui/badge";
 import { Progress } from "../../components/ui/progress";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../../components/ui/dialog";
 import {
   ArrowLeft,
   Brain,
@@ -14,8 +15,20 @@ import {
   Search,
   Plus,
   Edit,
-  Trash2
+  Trash2,
+  X,
+  Save
 } from "lucide-react";
+
+interface Question {
+  id: number;
+  type: string;
+  title: string;
+  answer: string;
+  workings: string;
+  difficulty: string;
+  status: string;
+}
 
 export default function QuestionsManagement() {
   // Mock data for questions organized by curriculum structure
