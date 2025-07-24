@@ -48,9 +48,9 @@ export default function QuestionsManagement() {
               subtopicId: 1,
               subtopicName: "Domain and Range",
               questions: [
-                { id: 1, type: "flashcard", title: "What is the domain of f(x) = 1/x?", difficulty: "Easy", status: "Published" },
-                { id: 2, type: "quiz", title: "Find the range of y = x² + 1", difficulty: "Intermediate", status: "Published" },
-                { id: 3, type: "flashcard", title: "Define function domain", difficulty: "Easy", status: "Draft" }
+                { id: 1, type: "flashcard", title: "What is the domain of f(x) = 1/x?", answer: "All real numbers except x = 0", workings: "The function is undefined when the denominator equals zero, so x ≠ 0. Domain: (-∞, 0) ∪ (0, ∞)", difficulty: "Easy", status: "Published" },
+                { id: 2, type: "quiz", title: "Find the range of y = x² + 1", answer: "y ≥ 1 or [1, ∞)", workings: "Since x² ≥ 0 for all real x, we have x² + 1 ≥ 1. The minimum value is 1 when x = 0.", difficulty: "Intermediate", status: "Published" },
+                { id: 3, type: "flashcard", title: "Define function domain", answer: "The set of all possible input values (x-values) for which the function is defined", workings: "Domain includes all x-values that don't make the function undefined (e.g., division by zero, negative square roots for real functions)", difficulty: "Easy", status: "Draft" }
               ]
             },
             {
