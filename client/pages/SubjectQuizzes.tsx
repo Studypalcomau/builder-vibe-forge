@@ -771,9 +771,7 @@ export default function SubjectQuizzes() {
                 <span className="text-gray-600">Specific Area</span>
               </div>
             </div>
-            <p className="text-sm text-gray-600 mt-3">
-              Each quiz below shows its position in the curriculum hierarchy to help you understand how topics connect.
-            </p>
+
           </CardContent>
         </Card>
 
