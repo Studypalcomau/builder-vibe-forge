@@ -324,13 +324,15 @@ export default function QuestionsManagement() {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="w-[180px]">Unit</TableHead>
-                    <TableHead className="w-[180px]">Topic</TableHead>
-                    <TableHead className="w-[180px]">Subtopic</TableHead>
-                    <TableHead className="w-[60px]">Type</TableHead>
-                    <TableHead className="w-[300px]">Question Title</TableHead>
-                    <TableHead className="w-[100px]">Difficulty</TableHead>
-                    <TableHead className="w-[100px]">Status</TableHead>
+                    <TableHead className="w-[150px]">Unit</TableHead>
+                    <TableHead className="w-[150px]">Topic</TableHead>
+                    <TableHead className="w-[150px]">Subtopic</TableHead>
+                    <TableHead className="w-[50px]">Type</TableHead>
+                    <TableHead className="w-[250px]">Question Title</TableHead>
+                    <TableHead className="w-[200px]">Answer</TableHead>
+                    <TableHead className="w-[300px]">Workings</TableHead>
+                    <TableHead className="w-[80px]">Difficulty</TableHead>
+                    <TableHead className="w-[80px]">Status</TableHead>
                     <TableHead className="w-[100px]">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
