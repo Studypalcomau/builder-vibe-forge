@@ -15,7 +15,9 @@ import {
   ChevronUp,
   FileText,
   ExternalLink,
-  Download
+  Download,
+  TrendingUp,
+  Users
 } from "lucide-react";
 import { useState } from "react";
 
@@ -393,18 +395,22 @@ export default function Subject() {
           </Card>
 
           <Card className="border-sky-blue-200">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-gray-600">Performance</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="flex items-center space-x-1 mb-1">
-                <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                <Star className="w-4 h-4 text-gray-300" />
+            <CardContent className="p-4 text-center">
+              <div className="flex items-center justify-center mb-2">
+                <TrendingUp className="w-5 h-5 text-blue-500" />
               </div>
-              <p className="text-sm text-gray-600">Excellent work!</p>
+              <div className="text-2xl font-bold text-gray-900">87%</div>
+              <div className="text-sm text-gray-600">Avg Score</div>
+            </CardContent>
+          </Card>
+
+          <Card className="border-sky-blue-200">
+            <CardContent className="p-4 text-center">
+              <div className="flex items-center justify-center mb-2">
+                <Users className="w-5 h-5 text-purple-500" />
+              </div>
+              <div className="text-2xl font-bold text-gray-900">Top 15%</div>
+              <div className="text-sm text-gray-600">Class Rank</div>
             </CardContent>
           </Card>
         </div>
