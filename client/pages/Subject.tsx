@@ -5,17 +5,9 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from ".
 import { Badge } from "../components/ui/badge";
 import { Progress } from "../components/ui/progress";
 import {
-  BookOpen,
   Brain,
   Trophy,
-  Clock,
-  Star,
-  ArrowRight,
-  ChevronRight,
-  ChevronDown,
-  ChevronUp,
   FileText,
-  ExternalLink,
   Download,
   TrendingUp,
   Users
@@ -300,13 +292,7 @@ export default function Subject() {
 
   const progressPercentage = totalTopics > 0 ? Math.round((completedTopics / totalTopics) * 100) : 0;
 
-  // Temporary state to fix references (will be removed with tabular layout)
-  const [expandedUnits, setExpandedUnits] = useState<Set<number>>(new Set([1]));
-  const [expandedTopics, setExpandedTopics] = useState<Set<string>>(new Set(['1-1']));
 
-  // Placeholder functions (will be removed with tabular layout)
-  const toggleUnit = () => {};
-  const toggleTopic = () => {};
 
 
 
