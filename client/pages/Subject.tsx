@@ -23,6 +23,85 @@ export default function Subject() {
   const { slug } = useParams();
   const [expandedUnits, setExpandedUnits] = useState<Set<number>>(new Set([1])); // Expand first unit by default
   const [expandedTopics, setExpandedTopics] = useState<Set<string>>(new Set(['1-1'])); // Expand first topic by default
+
+  // Generate comprehensive study guide
+  const generateStudyGuide = () => {
+    const curriculum = subjectCurriculum[slug as string];
+    const subject = subjectData[slug as string];
+
+    if (!curriculum || !subject) {
+      alert('Study guide not available for this subject');
+      return;
+    }
+
+    let studyGuideContent = `${subject.name} - Complete Study Guide\n`;
+    studyGuideContent += `${'='.repeat(50)}\n\n`;
+    studyGuideContent += `Description: ${subject.description}\n`;
+    studyGuideContent += `Total Topics: ${subject.totalTopics}\n`;
+    studyGuideContent += `Completed: ${subject.completedTopics}\n`;
+    studyGuideContent += `Generated: ${new Date().toLocaleDateString()}\n\n`;
+
+    curriculum.forEach((unit: any) => {
+      studyGuideContent += `UNIT ${unit.unitId}: ${unit.unitName.toUpperCase()}\n`;
+      studyGuideContent += `${'-'.repeat(40)}\n`;
+      studyGuideContent += `Status: ${unit.completed ? '✅ Completed' : '⏳ In Progress'}\n\n`;
+
+      unit.topics.forEach((topic: any, topicIndex: number) => {
+        studyGuideContent += `  ${topicIndex + 1}. ${topic.topicName}\n`;
+        studyGuideContent += `     Difficulty: ${topic.difficulty}\n`;
+        studyGuideContent += `     Status: ${topic.completed ? '✅ Completed' : '⏳ In Progress'}\n`;
+        studyGuideContent += `     Resources: ${topic.flashcards} flashcards, ${topic.quizzes} quizzes, ${topic.studyNotes} study notes\n\n`;
+
+        if (topic.subtopics && topic.subtopics.length > 0) {
+          studyGuideContent += `     Subtopics:\n`;
+          topic.subtopics.forEach((subtopic: any) => {
+            studyGuideContent += `       • ${subtopic.name} ${subtopic.completed ? '✅' : '⏳'}\n`;
+            studyGuideContent += `         Resources: ${subtopic.flashcards} flashcards, ${subtopic.quizzes} quizzes\n`;
+          });
+          studyGuideContent += `\n`;
+        }
+      });
+      studyGuideContent += `\n`;
+    });
+
+    // Add summary section
+    studyGuideContent += `SUMMARY\n`;
+    studyGuideContent += `${'='.repeat(50)}\n`;
+
+    let totalFlashcards = 0;
+    let totalQuizzes = 0;
+    let totalStudyNotes = 0;
+    let completedTopicCount = 0;
+
+    curriculum.forEach((unit: any) => {
+      unit.topics.forEach((topic: any) => {
+        totalFlashcards += topic.flashcards || 0;
+        totalQuizzes += topic.quizzes || 0;
+        totalStudyNotes += topic.studyNotes || 0;
+        if (topic.completed) completedTopicCount++;
+      });
+    });
+
+    studyGuideContent += `Total Units: ${curriculum.length}\n`;
+    studyGuideContent += `Total Topics: ${curriculum.reduce((acc: number, unit: any) => acc + unit.topics.length, 0)}\n`;
+    studyGuideContent += `Completed Topics: ${completedTopicCount}\n`;
+    studyGuideContent += `Total Flashcards: ${totalFlashcards}\n`;
+    studyGuideContent += `Total Quizzes: ${totalQuizzes}\n`;
+    studyGuideContent += `Total Study Notes: ${totalStudyNotes}\n\n`;
+
+    studyGuideContent += `This study guide provides a comprehensive overview of all units, topics, and subtopics in ${subject.name}. Use it to track your progress and plan your study sessions effectively.\n`;
+
+    // Create and download the file
+    const blob = new Blob([studyGuideContent], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${subject.name.replace(/\s+/g, '_')}_Study_Guide.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+  };
   
   // Mock data - in a real app this would come from an API
   const subjectData = {
