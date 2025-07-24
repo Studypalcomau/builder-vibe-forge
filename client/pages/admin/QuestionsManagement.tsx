@@ -396,6 +396,18 @@ export default function QuestionsManagement() {
                               </TableCell>
 
                               <TableCell className="border-r border-gray-200">
+                                <div className="text-sm text-gray-900 max-w-[200px] truncate" title={question.answer}>
+                                  {question.answer}
+                                </div>
+                              </TableCell>
+
+                              <TableCell className="border-r border-gray-200">
+                                <div className="text-sm text-gray-600 max-w-[300px] truncate" title={question.workings}>
+                                  {question.workings}
+                                </div>
+                              </TableCell>
+
+                              <TableCell className="border-r border-gray-200">
                                 <Badge className={getDifficultyColor(question.difficulty)}>
                                   {question.difficulty}
                                 </Badge>
@@ -409,7 +421,14 @@ export default function QuestionsManagement() {
 
                               <TableCell>
                                 <div className="flex space-x-2">
-                                  <Button variant="ghost" size="sm">
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() => {
+                                      setEditingQuestion(question);
+                                      setIsEditModalOpen(true);
+                                    }}
+                                  >
                                     <Edit className="w-4 h-4" />
                                   </Button>
                                   <Button variant="ghost" size="sm">
