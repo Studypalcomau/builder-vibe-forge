@@ -262,8 +262,8 @@ export default function Index() {
               Track Your Progress
             </h2>
             <p className="text-lg text-gray-600 mb-8">
-              Monitor your learning journey with detailed progress tracking, 
-              personalized recommendations, and achievement milestones.
+              Access comprehensive study notes, detailed guides,
+              and organized content for all subjects.
             </p>
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
