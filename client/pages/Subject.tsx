@@ -404,7 +404,135 @@ export default function Subject() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Curriculum Structure</h2>
 
-        <div className="space-y-6">
+        <div className="bg-white rounded-lg border border-sky-blue-200 overflow-hidden shadow-sm">
+          <Table>
+            <TableHeader>
+              <TableRow className="bg-sky-blue-50 hover:bg-sky-blue-50">
+                <TableHead className="w-[200px] font-semibold text-gray-900">Unit</TableHead>
+                <TableHead className="w-[200px] font-semibold text-gray-900">Topic</TableHead>
+                <TableHead className="w-[200px] font-semibold text-gray-900">Subtopic</TableHead>
+                <TableHead className="w-[120px] font-semibold text-gray-900 text-center">Progress</TableHead>
+                <TableHead className="w-[200px] font-semibold text-gray-900 text-center">Study Materials</TableHead>
+                <TableHead className="w-[80px] font-semibold text-gray-900 text-center">Status</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {curriculum.map((unit) => {
+                const unitRowSpan = unit.topics.reduce((acc, topic) => acc + topic.subtopics.length, 0);
+                let firstUnit = true;
+
+                return unit.topics.map((topic, topicIndex) => {
+                  const topicRowSpan = topic.subtopics.length;
+                  let firstTopic = true;
+
+                  return topic.subtopics.map((subtopic, subtopicIndex) => {
+                    const isFirstSubtopic = firstUnit && firstTopic && subtopicIndex === 0;
+                    const isFirstTopicSubtopic = firstTopic && subtopicIndex === 0;
+
+                    const subtopicProgress = subtopic.completed ? 100 : Math.floor(Math.random() * 60) + 20;
+
+                    const row = (
+                      <TableRow key={`${unit.unitId}-${topic.topicId}-${subtopicIndex}`} className="hover:bg-gray-50/50">
+                        {isFirstSubtopic && (
+                          <TableCell rowSpan={unitRowSpan} className="border-r border-gray-200 bg-blue-50/30 align-top">
+                            <div className="space-y-2 p-2">
+                              <div className="font-semibold text-gray-900 text-sm">{unit.unitName}</div>
+                              <div className="text-xs text-gray-600">
+                                {unit.topics.length} topics
+                              </div>
+                              <Progress
+                                value={unit.topics.length > 0 ? (unit.topics.filter(t => t.completed).length / unit.topics.length) * 100 : 0}
+                                className="h-2"
+                              />
+                            </div>
+                          </TableCell>
+                        )}
+
+                        {isFirstTopicSubtopic && (
+                          <TableCell rowSpan={topicRowSpan} className="border-r border-gray-200 bg-green-50/30 align-top">
+                            <div className="space-y-2 p-2">
+                              <div className="font-medium text-gray-900 text-sm">{topic.topicName}</div>
+                              <Badge className={`text-xs ${
+                                topic.difficulty === 'Easy' ? 'bg-green-100 text-green-700' :
+                                topic.difficulty === 'Intermediate' ? 'bg-yellow-100 text-yellow-700' :
+                                'bg-red-100 text-red-700'
+                              }`}>
+                                {topic.difficulty}
+                              </Badge>
+                              <div className="text-xs text-gray-600">
+                                {topic.flashcards} cards • {topic.quizzes} quizzes
+                              </div>
+                            </div>
+                          </TableCell>
+                        )}
+
+                        <TableCell className="border-r border-gray-200 align-top">
+                          <div className="p-2">
+                            <div className="font-medium text-gray-900 text-sm">{subtopic.name}</div>
+                            <div className="text-xs text-gray-600 mt-1">
+                              {subtopic.flashcards} cards • {subtopic.quizzes} quizzes
+                            </div>
+                          </div>
+                        </TableCell>
+
+                        <TableCell className="border-r border-gray-200 text-center align-top">
+                          <div className="space-y-2 p-2">
+                            <div className="text-sm font-medium text-gray-900">{subtopicProgress}%</div>
+                            <Progress value={subtopicProgress} className="h-2" />
+                          </div>
+                        </TableCell>
+
+                        <TableCell className="border-r border-gray-200 align-top">
+                          <div className="flex justify-center space-x-1 p-2">
+                            <Link
+                              to={`/subjects/${slug}/flashcards`}
+                              className="inline-flex items-center px-2 py-1 text-xs font-medium rounded text-blue-700 bg-blue-100 hover:bg-blue-200 transition-colors"
+                            >
+                              <Brain className="w-3 h-3 mr-1" />
+                              Cards
+                            </Link>
+                            <Link
+                              to={`/subjects/${slug}/quizzes`}
+                              className="inline-flex items-center px-2 py-1 text-xs font-medium rounded text-green-700 bg-green-100 hover:bg-green-200 transition-colors"
+                            >
+                              <Trophy className="w-3 h-3 mr-1" />
+                              Quiz
+                            </Link>
+                            <Link
+                              to={`/subjects/${slug}/notes`}
+                              className="inline-flex items-center px-2 py-1 text-xs font-medium rounded text-purple-700 bg-purple-100 hover:bg-purple-200 transition-colors"
+                            >
+                              <FileText className="w-3 h-3 mr-1" />
+                              Notes
+                            </Link>
+                          </div>
+                        </TableCell>
+
+                        <TableCell className="text-center align-top">
+                          <div className="p-2">
+                            <div className={`w-6 h-6 rounded-full mx-auto flex items-center justify-center ${
+                              subtopic.completed ? 'bg-green-100' : 'bg-gray-100'
+                            }`}>
+                              {subtopic.completed ? (
+                                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                              ) : (
+                                <div className="w-3 h-3 border border-gray-300 rounded-full"></div>
+                              )}
+                            </div>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    );
+
+                    if (firstTopic) firstTopic = false;
+                    if (firstUnit) firstUnit = false;
+
+                    return row;
+                  });
+                });
+              }).flat(2)}
+            </TableBody>
+          </Table>
           {curriculum.map((unit) => (
             <Card key={unit.unitId} className="border-sky-blue-200">
               <CardHeader
