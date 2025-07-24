@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
@@ -128,7 +129,7 @@ export default function Subject() {
     physics: {
       name: "Physics",
       description: "Understanding mechanics, waves, electricity, and modern physics",
-      icon: "���",
+      icon: "⚡",
       color: "bg-red-500",
       totalTopics: 39,
       completedTopics: 10,
