@@ -135,7 +135,7 @@ export default function Index() {
               practice quizzes, and comprehensive study notes to help you excel in your exams.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/signup">
+              <Link to="/login">
                 <Button size="lg" className="bg-study-primary hover:bg-study-primary/90 text-white px-8">
                   <Play className="w-5 h-5 mr-2" />
                   Start Free Today
