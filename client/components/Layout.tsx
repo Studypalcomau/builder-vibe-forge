@@ -157,15 +157,7 @@ export function Layout({ children }: LayoutProps) {
               </div>
             </div>
 
-            {/* Quick Links */}
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-4">Quick Links</h3>
-              <ul className="space-y-2">
-                <li><Link to="/subjects" className="text-gray-600 hover:text-sky-blue-600">Browse Subjects</Link></li>
-                <li><Link to="/flashcards" className="text-gray-600 hover:text-sky-blue-600">Flashcards</Link></li>
-                <li><Link to="/quizzes" className="text-gray-600 hover:text-sky-blue-600">Practice Quizzes</Link></li>
-              </ul>
-            </div>
+
 
             {/* Support */}
             <div>
