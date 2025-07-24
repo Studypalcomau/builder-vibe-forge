@@ -57,7 +57,7 @@ export default function Subject() {
         if (topic.subtopics && topic.subtopics.length > 0) {
           studyGuideContent += `     Subtopics:\n`;
           topic.subtopics.forEach((subtopic: any) => {
-            studyGuideContent += `       • ${subtopic.name} ${subtopic.completed ? '��' : '⏳'}\n`;
+            studyGuideContent += `       • ${subtopic.name} ${subtopic.completed ? '��' : '���'}\n`;
             studyGuideContent += `         Resources: ${subtopic.flashcards} flashcards, ${subtopic.quizzes} quizzes\n`;
           });
           studyGuideContent += `\n`;
@@ -300,30 +300,7 @@ export default function Subject() {
 
   const progressPercentage = totalTopics > 0 ? Math.round((completedTopics / totalTopics) * 100) : 0;
 
-  const toggleUnit = (unitId: number) => {
-    setExpandedUnits(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(unitId)) {
-        newSet.delete(unitId);
-      } else {
-        newSet.add(unitId);
-      }
-      return newSet;
-    });
-  };
 
-  const toggleTopic = (unitId: number, topicId: number) => {
-    const topicKey = `${unitId}-${topicId}`;
-    setExpandedTopics(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(topicKey)) {
-        newSet.delete(topicKey);
-      } else {
-        newSet.add(topicKey);
-      }
-      return newSet;
-    });
-  };
 
   return (
     <div className="min-h-screen bg-study-background">
