@@ -552,35 +552,7 @@ export default function SubjectFlashcards() {
           </Card>
         </div>
 
-        {/* Study Tips */}
-        <Card className="mt-8 border-sky-blue-200 bg-sky-blue-50">
-          <CardHeader>
-            <CardTitle className="text-lg flex items-center">
-              <Brain className="w-5 h-5 mr-2 text-sky-blue-600" />
-              Study Tips
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-2 text-gray-700">
-              <li className="flex items-start">
-                <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                <span>Review flashcards daily for better retention</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                <span>Try to explain the answer before flipping the card</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                <span>Focus extra time on difficult cards</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                <span>Use the shuffle feature to test your recall</span>
-              </li>
-            </ul>
-          </CardContent>
-        </Card>
+
       </div>
     </div>
   );
