@@ -345,6 +345,22 @@ const subjectQuizzes: Record<string, QuizData[]> = {
   economics: []
 };
 
+// Helper functions to generate IDs for curriculum sections
+const getUnitNumber = (unitName: string): string => {
+  const match = unitName.match(/Unit (\d+)/);
+  return match ? match[1] : '1';
+};
+
+const getTopicId = (topicName: string): string => {
+  // Convert topic name to a slug-like ID
+  return topicName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+};
+
+const getSubtopicId = (subtopicName: string): string => {
+  // Convert subtopic name to a slug-like ID
+  return subtopicName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+};
+
 export default function SubjectQuizzes() {
   const { slug, subtopicId } = useParams();
   const [selectedQuiz, setSelectedQuiz] = useState<QuizData | null>(null);
