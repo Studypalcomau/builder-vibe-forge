@@ -300,6 +300,10 @@ export default function Subject() {
 
   const progressPercentage = totalTopics > 0 ? Math.round((completedTopics / totalTopics) * 100) : 0;
 
+  // Placeholder functions (will be removed with tabular layout)
+  const toggleUnit = () => {};
+  const toggleTopic = () => {};
+
 
 
   return (
