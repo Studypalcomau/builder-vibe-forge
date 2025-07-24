@@ -236,21 +236,19 @@ export default function Index() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
-              <Link key={index} to={feature.link}>
-                <Card className="h-full text-center hover:shadow-md transition-shadow border-sky-blue-200 hover:border-sky-blue-300">
-                  <CardHeader>
-                    <div className="w-12 h-12 bg-sky-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                      <feature.icon className="w-6 h-6 text-sky-blue-600" />
-                    </div>
-                    <CardTitle className="text-lg">{feature.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-gray-600">
-                      {feature.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
-              </Link>
+              <Card key={index} className="h-full text-center hover:shadow-md transition-shadow border-sky-blue-200 hover:border-sky-blue-300">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-sky-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <feature.icon className="w-6 h-6 text-sky-blue-600" />
+                  </div>
+                  <CardTitle className="text-lg">{feature.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-gray-600">
+                    {feature.description}
+                  </CardDescription>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
