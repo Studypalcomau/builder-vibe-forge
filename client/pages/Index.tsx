@@ -272,7 +272,7 @@ export default function Index() {
               </Button>
             </Link>
             <Link to="/pricing">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-gray-900 border-2">
                 View Pricing
               </Button>
             </Link>
