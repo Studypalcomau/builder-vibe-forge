@@ -15,6 +15,46 @@ import {
   Star
 } from "lucide-react";
 
+// Quiz curriculum mapping
+interface QuizCurriculumInfo {
+  unit: string;
+  topic: string;
+  subtopic?: string;
+}
+
+const quizCurriculumMapping: Record<string, QuizCurriculumInfo> = {
+  "math-calculus-1": {
+    unit: "Unit 2: Calculus",
+    topic: "Differential Calculus",
+    subtopic: "Derivatives and Limits"
+  },
+  "math-integration-1": {
+    unit: "Unit 2: Calculus",
+    topic: "Integral Calculus",
+    subtopic: "Basic Integration"
+  },
+  "bio-genetics-1": {
+    unit: "Unit 3: Genetics and Evolution",
+    topic: "Genetics and Heredity",
+    subtopic: "DNA and Inheritance"
+  },
+  "eng-literary-devices": {
+    unit: "Unit 1: Language and Literature",
+    topic: "Literary Analysis",
+    subtopic: "Literary Devices"
+  },
+  "eng-essay-writing": {
+    unit: "Unit 1: Language and Literature",
+    topic: "Writing Skills",
+    subtopic: "Essay Structure"
+  },
+  "phys-mechanics-1": {
+    unit: "Unit 1: Motion and Forces",
+    topic: "Mechanics",
+    subtopic: "Forces and Motion"
+  }
+};
+
 // Queensland Mathematics curriculum quizzes
 const mathematicsQuizzes: QuizData[] = [
   {
@@ -753,6 +793,29 @@ export default function SubjectQuizzes() {
                   <CardContent className="p-6">
                     <div className="flex justify-between items-start mb-4">
                       <div className="flex-1">
+                        {/* Curriculum Hierarchy */}
+                        {quizCurriculumMapping[quiz.id] && (
+                          <div className="mb-3">
+                            <div className="flex flex-wrap items-center gap-2 text-sm">
+                              <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+                                {quizCurriculumMapping[quiz.id].unit}
+                              </Badge>
+                              <ChevronRight className="w-3 h-3 text-gray-400" />
+                              <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                                {quizCurriculumMapping[quiz.id].topic}
+                              </Badge>
+                              {quizCurriculumMapping[quiz.id].subtopic && (
+                                <>
+                                  <ChevronRight className="w-3 h-3 text-gray-400" />
+                                  <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200">
+                                    {quizCurriculumMapping[quiz.id].subtopic}
+                                  </Badge>
+                                </>
+                              )}
+                            </div>
+                          </div>
+                        )}
+
                         <div className="flex items-center gap-3 mb-2">
                           <h3 className="text-xl font-semibold text-gray-900">{quiz.title}</h3>
                           {hasCompleted && scoreBadge && (
