@@ -521,14 +521,7 @@ export default function SubjectManagement() {
                       Edit
                     </Button>
                   </Link>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => handleSubjectAction("view", subject)}
-                  >
-                    <Eye className="w-3 h-3 mr-1" />
-                    View
-                  </Button>
+
                 </div>
               </CardContent>
             </Card>
