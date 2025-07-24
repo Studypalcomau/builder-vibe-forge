@@ -613,10 +613,7 @@ export default function SubjectEditor() {
               </p>
             </div>
             <div className="flex space-x-3">
-              <Button variant="outline" onClick={generateContent}>
-                <Bot className="w-4 h-4 mr-2" />
-                Generate Content
-              </Button>
+
               <Button onClick={handleSave} className="bg-study-primary hover:bg-study-primary/90">
                 <Save className="w-4 h-4 mr-2" />
                 Save Subject
