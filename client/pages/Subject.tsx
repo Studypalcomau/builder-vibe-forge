@@ -10,12 +10,12 @@ import {
   Clock,
   Star,
   ArrowRight,
-  Play,
   ChevronRight,
   ChevronDown,
   ChevronUp,
   FileText,
-  ExternalLink
+  ExternalLink,
+  Download
 } from "lucide-react";
 import { useState } from "react";
 
@@ -274,11 +274,12 @@ export default function Subject() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3">
-              <Button className="bg-study-primary hover:bg-study-primary/90 text-white">
-                <Play className="w-4 h-4 mr-2" />
-                Continue Studying
-              </Button>
-              <Button variant="outline" className="border-sky-blue-300 text-sky-blue-700">
+              <Button
+                variant="outline"
+                className="border-sky-blue-300 text-sky-blue-700 hover:bg-sky-blue-50"
+                onClick={generateStudyGuide}
+              >
+                <Download className="w-4 h-4 mr-2" />
                 Download Study Guide
               </Button>
             </div>
