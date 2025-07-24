@@ -1185,37 +1185,7 @@ export default function SubjectNotes() {
 
 
 
-        {/* Current Study Notes Topic */}
-        {notesCurriculumMapping[slug as string] && (
-          <Card className="mb-8 border-sky-blue-200">
-            <CardContent className="p-4">
-              <div className="flex flex-wrap items-center gap-2 text-sm">
-                <span className="text-gray-600 font-medium">Currently studying:</span>
-                <Link to={`/subjects/${slug}#unit-${getUnitNumber(notesCurriculumMapping[slug as string].unit)}`}>
-                  <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100 cursor-pointer transition-colors">
-                    {notesCurriculumMapping[slug as string].unit}
-                  </Badge>
-                </Link>
-                <ChevronRight className="w-3 h-3 text-gray-400" />
-                <Link to={`/subjects/${slug}#topic-${getTopicId(notesCurriculumMapping[slug as string].topic)}`}>
-                  <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 hover:bg-green-100 cursor-pointer transition-colors">
-                    {notesCurriculumMapping[slug as string].topic}
-                  </Badge>
-                </Link>
-                {notesCurriculumMapping[slug as string].subtopic && (
-                  <>
-                    <ChevronRight className="w-3 h-3 text-gray-400" />
-                    <Link to={`/subjects/${slug}#subtopic-${getSubtopicId(notesCurriculumMapping[slug as string].subtopic!)}`}>
-                      <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200 hover:bg-purple-100 cursor-pointer transition-colors">
-                        {notesCurriculumMapping[slug as string].subtopic}
-                      </Badge>
-                    </Link>
-                  </>
-                )}
-              </div>
-            </CardContent>
-          </Card>
-        )}
+
 
         {/* Search */}
         <div className="mb-8">
