@@ -268,7 +268,7 @@ export default function Index() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/signup">
               <Button size="lg" className="bg-white text-sky-blue-600 hover:bg-gray-100 px-8">
-                Start Your Free Trial
+                Start Free Today
               </Button>
             </Link>
             <Link to="/pricing">
