@@ -18,7 +18,6 @@ import {
   Download
 } from "lucide-react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 
 export default function Subject() {
   const { slug } = useParams();
@@ -129,7 +128,7 @@ export default function Subject() {
     physics: {
       name: "Physics",
       description: "Understanding mechanics, waves, electricity, and modern physics",
-      icon: "⚡",
+      icon: "���",
       color: "bg-red-500",
       totalTopics: 39,
       completedTopics: 10,
