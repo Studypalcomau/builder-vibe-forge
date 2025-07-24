@@ -83,8 +83,8 @@ export default function Index() {
 
     {
       icon: Target,
-      title: "Progress Tracking",
-      description: "Detailed analytics to monitor your learning progress",
+      title: "Study Notes",
+      description: "Comprehensive notes and guides for all subjects",
       link: "/progress"
     }
   ];
