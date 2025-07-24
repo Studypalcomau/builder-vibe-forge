@@ -828,19 +828,25 @@ export default function SubjectQuizzes() {
                         {quizCurriculumMapping[quiz.id] && (
                           <div className="mb-3">
                             <div className="flex flex-wrap items-center gap-2 text-sm">
-                              <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
-                                {quizCurriculumMapping[quiz.id].unit}
-                              </Badge>
+                              <Link to={`/subjects/${slug}#unit-${getUnitNumber(quizCurriculumMapping[quiz.id].unit)}`}>
+                                <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100 cursor-pointer transition-colors">
+                                  {quizCurriculumMapping[quiz.id].unit}
+                                </Badge>
+                              </Link>
                               <ChevronRight className="w-3 h-3 text-gray-400" />
-                              <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
-                                {quizCurriculumMapping[quiz.id].topic}
-                              </Badge>
+                              <Link to={`/subjects/${slug}#topic-${getTopicId(quizCurriculumMapping[quiz.id].topic)}`}>
+                                <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 hover:bg-green-100 cursor-pointer transition-colors">
+                                  {quizCurriculumMapping[quiz.id].topic}
+                                </Badge>
+                              </Link>
                               {quizCurriculumMapping[quiz.id].subtopic && (
                                 <>
                                   <ChevronRight className="w-3 h-3 text-gray-400" />
-                                  <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200">
-                                    {quizCurriculumMapping[quiz.id].subtopic}
-                                  </Badge>
+                                  <Link to={`/subjects/${slug}#subtopic-${getSubtopicId(quizCurriculumMapping[quiz.id].subtopic)}`}>
+                                    <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200 hover:bg-purple-100 cursor-pointer transition-colors">
+                                      {quizCurriculumMapping[quiz.id].subtopic}
+                                    </Badge>
+                                  </Link>
                                 </>
                               )}
                             </div>
