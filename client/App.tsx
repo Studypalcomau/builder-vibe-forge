@@ -32,6 +32,7 @@ import SubjectManagement from "./pages/admin/SubjectManagement";
 import SubjectEditor from "./pages/admin/SubjectEditor";
 import CurriculumManager from "./pages/admin/CurriculumManager";
 import ContentGeneration from "./pages/admin/ContentGeneration";
+import QuestionsManagement from "./pages/admin/QuestionsManagement";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import NotFound from "./pages/NotFound";
 
@@ -71,6 +72,7 @@ const App = () => (
             <Route path="/admin/subjects/:id/edit" element={<SubjectEditor />} />
             <Route path="/admin/curriculum" element={<CurriculumManager />} />
             <Route path="/admin/generate" element={<ContentGeneration />} />
+            <Route path="/admin/questions" element={<QuestionsManagement />} />
             <Route path="/admin/curriculum" element={
               <PlaceholderPage
                 title="Curriculum Management"
