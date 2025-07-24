@@ -782,7 +782,7 @@ export default function SubjectQuizzes() {
           <Link to={`/subjects/${slug}`}>
             <Button variant="outline" size="sm">
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to {subjectName}
+              Back
             </Button>
           </Link>
           <div>
