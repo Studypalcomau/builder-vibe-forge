@@ -100,8 +100,8 @@ export default function QuestionsManagement() {
               subtopicId: 5,
               subtopicName: "Limits",
               questions: [
-                { id: 11, type: "quiz", title: "Evaluate limit as x approaches 0", difficulty: "Advanced", status: "Published" },
-                { id: 12, type: "flashcard", title: "Define continuity", difficulty: "Intermediate", status: "Published" }
+                { id: 11, type: "quiz", title: "Evaluate limit as x approaches 0", answer: "Depends on the function - could be finite, infinite, or not exist", workings: "For specific function like lim(x→0) sin(x)/x = 1, or lim(x→0) 1/x does not exist (approaches ±∞ from different sides).", difficulty: "Advanced", status: "Published" },
+                { id: 12, type: "flashcard", title: "Define continuity", answer: "A function is continuous at point a if lim(x→a) f(x) = f(a)", workings: "Three conditions: 1) f(a) exists, 2) limit exists, 3) limit equals function value. Function is continuous on interval if continuous at every point.", difficulty: "Intermediate", status: "Published" }
               ]
             },
             {
