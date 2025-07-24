@@ -12,7 +12,8 @@ import {
   Play,
   Target,
   Clock,
-  CheckCircle
+  CheckCircle,
+  FileText
 } from "lucide-react";
 
 export default function Index() {
