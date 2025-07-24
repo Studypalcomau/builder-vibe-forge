@@ -248,13 +248,7 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          <Card className="border-sky-blue-200">
-            <CardContent className="p-4 text-center">
-              <Zap className="w-8 h-8 text-orange-600 mx-auto mb-2" />
-              <div className="text-2xl font-bold text-gray-900">{adminData.overview.activeGenerations}</div>
-              <div className="text-sm text-gray-600">AI Generations</div>
-            </CardContent>
-          </Card>
+
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
