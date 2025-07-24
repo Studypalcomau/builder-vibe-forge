@@ -511,22 +511,7 @@ export default function SubjectFlashcards() {
 
         {/* Study Options */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card className="border-sky-blue-200 hover:shadow-md transition-shadow">
-            <CardHeader>
-              <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-2">
-                <Brain className="w-5 h-5 text-blue-600" />
-              </div>
-              <CardTitle className="text-lg">Smart Review</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription className="mb-4">
-                Focus on cards you find challenging with spaced repetition
-              </CardDescription>
-              <Button variant="outline" className="w-full" disabled>
-                Coming Soon
-              </Button>
-            </CardContent>
-          </Card>
+
 
           <Card className="border-sky-blue-200 hover:shadow-md transition-shadow">
             <CardHeader>
