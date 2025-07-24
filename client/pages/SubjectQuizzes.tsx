@@ -4,15 +4,16 @@ import { Button } from "../components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { Quiz, QuizData, QuizQuestion, DetailedQuizResult } from "../components/Quiz";
-import { 
-  ArrowLeft, 
-  Trophy, 
+import {
+  ArrowLeft,
+  Trophy,
   Clock,
   Target,
   Brain,
   Play,
   CheckCircle,
-  Star
+  Star,
+  ChevronRight
 } from "lucide-react";
 
 // Quiz curriculum mapping
@@ -395,7 +396,7 @@ export default function SubjectQuizzes() {
         questions: [
           {
             id: "q1",
-            question: "What is the domain of f(x) = √(x-3)?",
+            question: "What is the domain of f(x) = ��(x-3)?",
             type: "multiple-choice",
             options: ["x ≥ 3", "x > 3", "x ≤ 3", "All real numbers"],
             correctAnswer: "x ≥ 3",
