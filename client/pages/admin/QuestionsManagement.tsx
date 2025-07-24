@@ -454,6 +454,125 @@ export default function QuestionsManagement() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Edit Question Modal */}
+      <Dialog open={isEditModalOpen} onOpenChange={setIsEditModalOpen}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Edit Question</DialogTitle>
+            <DialogDescription>
+              Make changes to the question details below.
+            </DialogDescription>
+          </DialogHeader>
+
+          {editingQuestion && (
+            <div className="space-y-6">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Question Type
+                  </label>
+                  <select
+                    className="w-full p-2 border border-gray-300 rounded-md"
+                    value={editingQuestion.type}
+                    onChange={(e) => setEditingQuestion({...editingQuestion, type: e.target.value})}
+                  >
+                    <option value="flashcard">Flashcard</option>
+                    <option value="quiz">Quiz Question</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Difficulty
+                  </label>
+                  <select
+                    className="w-full p-2 border border-gray-300 rounded-md"
+                    value={editingQuestion.difficulty}
+                    onChange={(e) => setEditingQuestion({...editingQuestion, difficulty: e.target.value})}
+                  >
+                    <option value="Easy">Easy</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Question Title
+                </label>
+                <input
+                  type="text"
+                  className="w-full p-3 border border-gray-300 rounded-md"
+                  value={editingQuestion.title}
+                  onChange={(e) => setEditingQuestion({...editingQuestion, title: e.target.value})}
+                  placeholder="Enter question title..."
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Answer
+                </label>
+                <textarea
+                  className="w-full p-3 border border-gray-300 rounded-md h-24"
+                  value={editingQuestion.answer}
+                  onChange={(e) => setEditingQuestion({...editingQuestion, answer: e.target.value})}
+                  placeholder="Enter the correct answer..."
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Workings / Explanation
+                </label>
+                <textarea
+                  className="w-full p-3 border border-gray-300 rounded-md h-32"
+                  value={editingQuestion.workings}
+                  onChange={(e) => setEditingQuestion({...editingQuestion, workings: e.target.value})}
+                  placeholder="Enter detailed workings and explanation..."
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Status
+                </label>
+                <select
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                  value={editingQuestion.status}
+                  onChange={(e) => setEditingQuestion({...editingQuestion, status: e.target.value})}
+                >
+                  <option value="Draft">Draft</option>
+                  <option value="Published">Published</option>
+                  <option value="Archived">Archived</option>
+                </select>
+              </div>
+
+              <div className="flex justify-end space-x-3 pt-6">
+                <Button
+                  variant="outline"
+                  onClick={() => setIsEditModalOpen(false)}
+                >
+                  <X className="w-4 h-4 mr-2" />
+                  Cancel
+                </Button>
+                <Button
+                  onClick={() => {
+                    // Here you would typically save to a backend
+                    console.log('Saving question:', editingQuestion);
+                    setIsEditModalOpen(false);
+                    // You might want to update the local state or refetch data
+                  }}
+                >
+                  <Save className="w-4 h-4 mr-2" />
+                  Save Changes
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
