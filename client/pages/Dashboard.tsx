@@ -316,34 +316,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Recommendations */}
-        <Card className="mt-8 border-sky-blue-200">
-          <CardHeader>
-            <CardTitle className="flex items-center">
-              <Target className="w-5 h-5 mr-2" />
-              Personalized Recommendations
-            </CardTitle>
-            <CardDescription>Based on your progress and study patterns</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {dashboardData.recommendations.map((rec, index) => (
-                <div key={index} className="p-4 border border-sky-blue-200 rounded-lg hover:shadow-md transition-shadow">
-                  <h4 className="font-semibold text-gray-900 mb-2">{rec.title}</h4>
-                  <p className="text-sm text-gray-600 mb-3">{rec.description}</p>
-                  <div className="flex justify-between items-center">
-                    <Badge variant="outline" className="text-xs">{rec.subject}</Badge>
-                    <Link to={rec.link}>
-                      <Button size="sm" className="bg-sky-blue-500 hover:bg-sky-blue-600 text-white">
-                        {rec.action}
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+
       </div>
     </div>
   );
