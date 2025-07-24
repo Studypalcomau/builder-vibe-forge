@@ -79,9 +79,9 @@ export default function QuestionsManagement() {
               subtopicId: 4,
               subtopicName: "Quadratic Functions",
               questions: [
-                { id: 8, type: "quiz", title: "Complete the square for x² + 4x + 3", difficulty: "Intermediate", status: "Published" },
-                { id: 9, type: "flashcard", title: "What is the vertex form of a parabola?", difficulty: "Intermediate", status: "Draft" },
-                { id: 10, type: "quiz", title: "Find roots using quadratic formula", difficulty: "Advanced", status: "Published" }
+                { id: 8, type: "quiz", title: "Complete the square for x² + 4x + 3", answer: "(x + 2)² - 1", workings: "x² + 4x + 3 = x² + 4x + 4 - 4 + 3 = (x + 2)² - 1. Take half of coefficient of x: 4/2 = 2, then square it: 2² = 4.", difficulty: "Intermediate", status: "Published" },
+                { id: 9, type: "flashcard", title: "What is the vertex form of a parabola?", answer: "y = a(x - h)² + k, where (h,k) is the vertex", workings: "This form shows the vertex (h,k) directly. The value 'a' determines if parabola opens up (a > 0) or down (a < 0) and how wide/narrow it is.", difficulty: "Intermediate", status: "Draft" },
+                { id: 10, type: "quiz", title: "Find roots using quadratic formula", answer: "x = (-b ± √(b² - 4ac)) / 2a", workings: "For ax² + bx + c = 0, discriminant Δ = b² - 4ac. If Δ > 0: two real roots, Δ = 0: one root, Δ < 0: no real roots.", difficulty: "Advanced", status: "Published" }
               ]
             }
           ]
