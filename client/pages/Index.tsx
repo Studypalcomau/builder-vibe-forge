@@ -266,11 +266,7 @@ export default function Index() {
                 Start Free Today
               </Button>
             </Link>
-            <Link to="/pricing">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-gray-900 border-2">
-                View Pricing
-              </Button>
-            </Link>
+
           </div>
         </div>
       </section>
