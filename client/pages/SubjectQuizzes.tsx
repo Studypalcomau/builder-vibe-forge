@@ -23,6 +23,36 @@ interface QuizCurriculumInfo {
   subtopic?: string;
 }
 
+// Subject-level curriculum mapping for "Currently studying" section
+const subjectQuizCurriculumMapping: Record<string, QuizCurriculumInfo> = {
+  "mathematical-methods": {
+    unit: "Unit 2: Calculus",
+    topic: "Differential Calculus",
+    subtopic: "Derivatives and Limits"
+  },
+  "physics": {
+    unit: "Unit 1: Motion and Forces",
+    topic: "Mechanics",
+    subtopic: "Forces and Motion"
+  },
+  "biology": {
+    unit: "Unit 3: Genetics and Evolution",
+    topic: "Genetics and Heredity",
+    subtopic: "DNA and Inheritance"
+  },
+  "english": {
+    unit: "Unit 1: Language and Literature",
+    topic: "Literary Analysis",
+    subtopic: "Literary Devices"
+  },
+  "chemistry": {
+    unit: "Unit 2: Chemical Bonding",
+    topic: "Atomic Structure",
+    subtopic: "Electron Configuration"
+  }
+};
+
+// Individual quiz curriculum mapping (kept for potential future use)
 const quizCurriculumMapping: Record<string, QuizCurriculumInfo> = {
   "math-calculus-1": {
     unit: "Unit 2: Calculus",
@@ -762,28 +792,28 @@ export default function SubjectQuizzes() {
         </div>
 
         {/* Current Quiz Topic */}
-        {quizCurriculumMapping[slug as string] && (
+        {subjectQuizCurriculumMapping[slug as string] && (
           <Card className="mb-8 border-sky-blue-200">
             <CardContent className="p-4">
               <div className="flex flex-wrap items-center gap-2 text-sm">
                 <span className="text-gray-600 font-medium">Currently studying:</span>
-                <Link to={`/subjects/${slug}#unit-${getUnitNumber(quizCurriculumMapping[slug as string].unit)}`}>
+                <Link to={`/subjects/${slug}#unit-${getUnitNumber(subjectQuizCurriculumMapping[slug as string].unit)}`}>
                   <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100 cursor-pointer transition-colors">
-                    {quizCurriculumMapping[slug as string].unit}
+                    {subjectQuizCurriculumMapping[slug as string].unit}
                   </Badge>
                 </Link>
                 <ChevronRight className="w-3 h-3 text-gray-400" />
-                <Link to={`/subjects/${slug}#topic-${getTopicId(quizCurriculumMapping[slug as string].topic)}`}>
+                <Link to={`/subjects/${slug}#topic-${getTopicId(subjectQuizCurriculumMapping[slug as string].topic)}`}>
                   <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 hover:bg-green-100 cursor-pointer transition-colors">
-                    {quizCurriculumMapping[slug as string].topic}
+                    {subjectQuizCurriculumMapping[slug as string].topic}
                   </Badge>
                 </Link>
-                {quizCurriculumMapping[slug as string].subtopic && (
+                {subjectQuizCurriculumMapping[slug as string].subtopic && (
                   <>
                     <ChevronRight className="w-3 h-3 text-gray-400" />
-                    <Link to={`/subjects/${slug}#subtopic-${getSubtopicId(quizCurriculumMapping[slug as string].subtopic)}`}>
+                    <Link to={`/subjects/${slug}#subtopic-${getSubtopicId(subjectQuizCurriculumMapping[slug as string].subtopic)}`}>
                       <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200 hover:bg-purple-100 cursor-pointer transition-colors">
-                        {quizCurriculumMapping[slug as string].subtopic}
+                        {subjectQuizCurriculumMapping[slug as string].subtopic}
                       </Badge>
                     </Link>
                   </>
@@ -842,34 +872,7 @@ export default function SubjectQuizzes() {
                   <CardContent className="p-6">
                     <div className="flex justify-between items-start mb-4">
                       <div className="flex-1">
-                        {/* Curriculum Hierarchy */}
-                        {quizCurriculumMapping[quiz.id] && (
-                          <div className="mb-3">
-                            <div className="flex flex-wrap items-center gap-2 text-sm">
-                              <Link to={`/subjects/${slug}#unit-${getUnitNumber(quizCurriculumMapping[quiz.id].unit)}`}>
-                                <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100 cursor-pointer transition-colors">
-                                  {quizCurriculumMapping[quiz.id].unit}
-                                </Badge>
-                              </Link>
-                              <ChevronRight className="w-3 h-3 text-gray-400" />
-                              <Link to={`/subjects/${slug}#topic-${getTopicId(quizCurriculumMapping[quiz.id].topic)}`}>
-                                <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 hover:bg-green-100 cursor-pointer transition-colors">
-                                  {quizCurriculumMapping[quiz.id].topic}
-                                </Badge>
-                              </Link>
-                              {quizCurriculumMapping[quiz.id].subtopic && (
-                                <>
-                                  <ChevronRight className="w-3 h-3 text-gray-400" />
-                                  <Link to={`/subjects/${slug}#subtopic-${getSubtopicId(quizCurriculumMapping[quiz.id].subtopic)}`}>
-                                    <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200 hover:bg-purple-100 cursor-pointer transition-colors">
-                                      {quizCurriculumMapping[quiz.id].subtopic}
-                                    </Badge>
-                                  </Link>
-                                </>
-                              )}
-                            </div>
-                          </div>
-                        )}
+
 
                         <div className="flex items-center gap-3 mb-2">
                           <h3 className="text-xl font-semibold text-gray-900">{quiz.title}</h3>
