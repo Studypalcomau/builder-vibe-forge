@@ -57,8 +57,8 @@ export default function QuestionsManagement() {
               subtopicId: 2,
               subtopicName: "Function Types",
               questions: [
-                { id: 4, type: "quiz", title: "Identify linear vs quadratic functions", difficulty: "Intermediate", status: "Published" },
-                { id: 5, type: "flashcard", title: "What is a polynomial function?", difficulty: "Easy", status: "Published" }
+                { id: 4, type: "quiz", title: "Identify linear vs quadratic functions", answer: "Linear: f(x) = mx + b (degree 1), Quadratic: f(x) = ax² + bx + c (degree 2)", workings: "Linear functions have constant rate of change, graph as straight lines. Quadratic functions have variable rate of change, graph as parabolas.", difficulty: "Intermediate", status: "Published" },
+                { id: 5, type: "flashcard", title: "What is a polynomial function?", answer: "A function of the form f(x) = aₙxⁿ + aₙ₋₁xⁿ⁻¹ + ... + a₁x + a₀", workings: "Polynomial functions are sums of terms with non-negative integer exponents. Examples: f(x) = 3x² + 2x - 1", difficulty: "Easy", status: "Published" }
               ]
             }
           ]
