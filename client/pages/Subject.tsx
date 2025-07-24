@@ -469,21 +469,21 @@ export default function Subject() {
                               className="inline-flex items-center px-1.5 py-1 text-xs font-medium rounded text-blue-700 bg-blue-100 hover:bg-blue-200 transition-colors"
                             >
                               <Brain className="w-3 h-3 mr-1" />
-                              <span>{subtopic.flashcards}</span>
+                              <span>Cards {subtopic.flashcards}</span>
                             </Link>
                             <Link
                               to={`/subjects/${slug}/quizzes`}
                               className="inline-flex items-center px-1.5 py-1 text-xs font-medium rounded text-green-700 bg-green-100 hover:bg-green-200 transition-colors"
                             >
                               <Trophy className="w-3 h-3 mr-1" />
-                              <span>{subtopic.quizzes}</span>
+                              <span>Quiz {subtopic.quizzes}</span>
                             </Link>
                             <Link
                               to={`/subjects/${slug}/notes`}
                               className="inline-flex items-center px-1.5 py-1 text-xs font-medium rounded text-purple-700 bg-purple-100 hover:bg-purple-200 transition-colors"
                             >
                               <FileText className="w-3 h-3 mr-1" />
-                              <span>1</span>
+                              <span>Notes 1</span>
                             </Link>
                           </div>
                         </TableCell>
