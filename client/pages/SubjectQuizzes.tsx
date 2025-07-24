@@ -808,35 +808,7 @@ export default function SubjectQuizzes() {
           </div>
         </div>
 
-        {/* Study Tips */}
-        <Card className="mt-8 border-sky-blue-200 bg-sky-blue-50">
-          <CardHeader>
-            <CardTitle className="text-lg flex items-center">
-              <Star className="w-5 h-5 mr-2 text-sky-blue-600" />
-              Quiz Tips
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-2 text-gray-700">
-              <li className="flex items-start">
-                <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                <span>Read each question carefully before selecting an answer</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                <span>You can navigate back to previous questions if needed</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                <span>Review flashcards and notes before taking quizzes</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                <span>Retake quizzes to improve your understanding</span>
-              </li>
-            </ul>
-          </CardContent>
-        </Card>
+
       </div>
     </div>
   );
