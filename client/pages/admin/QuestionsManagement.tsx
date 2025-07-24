@@ -108,9 +108,9 @@ export default function QuestionsManagement() {
               subtopicId: 6,
               subtopicName: "Derivatives",
               questions: [
-                { id: 13, type: "quiz", title: "Find derivative of x³ + 2x", difficulty: "Intermediate", status: "Published" },
-                { id: 14, type: "flashcard", title: "What is the power rule?", difficulty: "Easy", status: "Published" },
-                { id: 15, type: "quiz", title: "Apply chain rule to composite functions", difficulty: "Advanced", status: "Draft" }
+                { id: 13, type: "quiz", title: "Find derivative of x³ + 2x", answer: "3x² + 2", workings: "Using power rule: d/dx(x³) = 3x², d/dx(2x) = 2, d/dx(constant) = 0. So d/dx(x³ + 2x) = 3x² + 2.", difficulty: "Intermediate", status: "Published" },
+                { id: 14, type: "flashcard", title: "What is the power rule?", answer: "d/dx(xⁿ) = nxⁿ⁻¹", workings: "For any real number n, the derivative of x to the n power is n times x to the (n-1) power. Example: d/dx(x⁵) = 5x⁴.", difficulty: "Easy", status: "Published" },
+                { id: 15, type: "quiz", title: "Apply chain rule to composite functions", answer: "d/dx[f(g(x))] = f'(g(x)) · g'(x)", workings: "For composite function, multiply derivative of outer function (evaluated at inner) by derivative of inner function. Example: d/dx(sin(x²)) = cos(x²) · 2x.", difficulty: "Advanced", status: "Draft" }
               ]
             }
           ]
