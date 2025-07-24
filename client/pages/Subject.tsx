@@ -463,30 +463,27 @@ export default function Subject() {
                         </TableCell>
 
                         <TableCell className="border-r border-gray-200 align-top">
-                          <div className="flex flex-col space-y-1 p-2">
+                          <div className="flex space-x-1 p-2">
                             <Link
                               to={`/subjects/${slug}/flashcards`}
-                              className="inline-flex flex-col items-center px-2 py-1 text-xs font-medium rounded text-blue-700 bg-blue-100 hover:bg-blue-200 transition-colors"
+                              className="inline-flex items-center px-1.5 py-1 text-xs font-medium rounded text-blue-700 bg-blue-100 hover:bg-blue-200 transition-colors"
                             >
-                              <Brain className="w-3 h-3 mb-0.5" />
-                              <span>Cards</span>
-                              <span className="text-xs">{subtopic.flashcards}</span>
+                              <Brain className="w-3 h-3 mr-1" />
+                              <span>{subtopic.flashcards}</span>
                             </Link>
                             <Link
                               to={`/subjects/${slug}/quizzes`}
-                              className="inline-flex flex-col items-center px-2 py-1 text-xs font-medium rounded text-green-700 bg-green-100 hover:bg-green-200 transition-colors"
+                              className="inline-flex items-center px-1.5 py-1 text-xs font-medium rounded text-green-700 bg-green-100 hover:bg-green-200 transition-colors"
                             >
-                              <Trophy className="w-3 h-3 mb-0.5" />
-                              <span>Quiz</span>
-                              <span className="text-xs">{subtopic.quizzes}</span>
+                              <Trophy className="w-3 h-3 mr-1" />
+                              <span>{subtopic.quizzes}</span>
                             </Link>
                             <Link
                               to={`/subjects/${slug}/notes`}
-                              className="inline-flex flex-col items-center px-2 py-1 text-xs font-medium rounded text-purple-700 bg-purple-100 hover:bg-purple-200 transition-colors"
+                              className="inline-flex items-center px-1.5 py-1 text-xs font-medium rounded text-purple-700 bg-purple-100 hover:bg-purple-200 transition-colors"
                             >
-                              <FileText className="w-3 h-3 mb-0.5" />
-                              <span>Notes</span>
-                              <span className="text-xs">1</span>
+                              <FileText className="w-3 h-3 mr-1" />
+                              <span>1</span>
                             </Link>
                           </div>
                         </TableCell>
