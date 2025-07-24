@@ -745,6 +745,38 @@ export default function SubjectQuizzes() {
           </div>
         </div>
 
+        {/* Curriculum Structure Legend */}
+        <Card className="mb-8 border-sky-blue-200 bg-gradient-to-r from-blue-50 to-purple-50">
+          <CardContent className="p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Curriculum Structure</h3>
+            <div className="flex flex-wrap items-center gap-4 text-sm">
+              <div className="flex items-center gap-2">
+                <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+                  Unit
+                </Badge>
+                <span className="text-gray-600">Learning Unit</span>
+              </div>
+              <ChevronRight className="w-4 h-4 text-gray-400" />
+              <div className="flex items-center gap-2">
+                <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                  Topic
+                </Badge>
+                <span className="text-gray-600">Main Topic</span>
+              </div>
+              <ChevronRight className="w-4 h-4 text-gray-400" />
+              <div className="flex items-center gap-2">
+                <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200">
+                  Subtopic
+                </Badge>
+                <span className="text-gray-600">Specific Area</span>
+              </div>
+            </div>
+            <p className="text-sm text-gray-600 mt-3">
+              Each quiz below shows its position in the curriculum hierarchy to help you understand how topics connect.
+            </p>
+          </CardContent>
+        </Card>
+
         {/* Quiz Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           <Card className="border-sky-blue-200">
