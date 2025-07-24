@@ -699,7 +699,7 @@ export default function SubjectQuizzes() {
             <Link to={`/subjects/${slug}`}>
               <Button variant="outline" size="sm">
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to {subjectName}
+                Back
               </Button>
             </Link>
             <div>
@@ -761,35 +761,37 @@ export default function SubjectQuizzes() {
           </div>
         </div>
 
-        {/* Curriculum Structure Legend */}
-        <Card className="mb-8 border-sky-blue-200 bg-gradient-to-r from-blue-50 to-purple-50">
-          <CardContent className="p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Curriculum Structure</h3>
-            <div className="flex flex-wrap items-center gap-4 text-sm">
-              <div className="flex items-center gap-2">
-                <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
-                  Unit
-                </Badge>
-                <span className="text-gray-600">Learning Unit</span>
+        {/* Current Quiz Topic */}
+        {quizCurriculumMapping[slug as string] && (
+          <Card className="mb-8 border-sky-blue-200">
+            <CardContent className="p-4">
+              <div className="flex flex-wrap items-center gap-2 text-sm">
+                <span className="text-gray-600 font-medium">Currently studying:</span>
+                <Link to={`/subjects/${slug}#unit-${getUnitNumber(quizCurriculumMapping[slug as string].unit)}`}>
+                  <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100 cursor-pointer transition-colors">
+                    {quizCurriculumMapping[slug as string].unit}
+                  </Badge>
+                </Link>
+                <ChevronRight className="w-3 h-3 text-gray-400" />
+                <Link to={`/subjects/${slug}#topic-${getTopicId(quizCurriculumMapping[slug as string].topic)}`}>
+                  <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 hover:bg-green-100 cursor-pointer transition-colors">
+                    {quizCurriculumMapping[slug as string].topic}
+                  </Badge>
+                </Link>
+                {quizCurriculumMapping[slug as string].subtopic && (
+                  <>
+                    <ChevronRight className="w-3 h-3 text-gray-400" />
+                    <Link to={`/subjects/${slug}#subtopic-${getSubtopicId(quizCurriculumMapping[slug as string].subtopic)}`}>
+                      <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200 hover:bg-purple-100 cursor-pointer transition-colors">
+                        {quizCurriculumMapping[slug as string].subtopic}
+                      </Badge>
+                    </Link>
+                  </>
+                )}
               </div>
-              <ChevronRight className="w-4 h-4 text-gray-400" />
-              <div className="flex items-center gap-2">
-                <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
-                  Topic
-                </Badge>
-                <span className="text-gray-600">Main Topic</span>
-              </div>
-              <ChevronRight className="w-4 h-4 text-gray-400" />
-              <div className="flex items-center gap-2">
-                <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200">
-                  Subtopic
-                </Badge>
-                <span className="text-gray-600">Specific Area</span>
-              </div>
-            </div>
-
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Quiz Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
