@@ -71,21 +71,22 @@ export default function Index() {
     {
       icon: Brain,
       title: "Smart Flashcards",
-      description: "AI-powered spaced repetition system that adapts to your learning pace",
-      link: "/flashcards"
+      description: "AI-powered spaced repetition system that adapts to your learning pace"
     },
     {
       icon: Trophy,
-      title: "Practice Quizzes", 
-      description: "Comprehensive quizzes aligned with Queensland curriculum standards",
-      link: "/quizzes"
+      title: "Practice Quizzes",
+      description: "Comprehensive quizzes aligned with Queensland curriculum standards"
     },
-
+    {
+      icon: FileText,
+      title: "Study Notes",
+      description: "Comprehensive notes and guides for all subjects"
+    },
     {
       icon: Target,
-      title: "Study Notes",
-      description: "Comprehensive notes and guides for all subjects",
-      link: "/progress"
+      title: "Track Your Progress",
+      description: "Monitor your learning journey with detailed analytics and insights"
     }
   ];
 
