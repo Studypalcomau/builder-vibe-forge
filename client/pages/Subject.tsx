@@ -423,9 +423,6 @@ export default function Subject() {
                           <TableCell rowSpan={unitRowSpan} className="border-r border-gray-200 bg-blue-50/30 align-top">
                             <div className="space-y-2 p-2">
                               <div className="font-semibold text-gray-900 text-sm">{unit.unitName}</div>
-                              <div className="text-xs text-gray-600">
-                                {unit.topics.length} topics
-                              </div>
                               <Progress
                                 value={unit.topics.length > 0 ? (unit.topics.filter(t => t.completed).length / unit.topics.length) * 100 : 0}
                                 className="h-2"
