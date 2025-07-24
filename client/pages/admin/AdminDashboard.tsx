@@ -217,12 +217,7 @@ export default function AdminDashboard() {
                   New Subject
                 </Button>
               </Link>
-              <Link to="/admin/generate">
-                <Button variant="outline" className="border-sky-blue-300 text-sky-blue-700">
-                  <Bot className="w-4 h-4 mr-2" />
-                  Generate Content
-                </Button>
-              </Link>
+
             </div>
           </div>
         </div>
