@@ -322,55 +322,7 @@ export default function AdminDashboard() {
               </CardContent>
             </Card>
 
-            {/* Content Generation Queue */}
-            <Card className="border-sky-blue-200">
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <Bot className="w-5 h-5 mr-2" />
-                  AI Generation Queue
-                </CardTitle>
-                <CardDescription>Current and pending AI content generation tasks</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {adminData.generationQueue.map((item) => (
-                    <div key={item.id} className="p-4 border border-gray-200 rounded-lg">
-                      <div className="flex items-center justify-between mb-3">
-                        <div>
-                          <h4 className="font-medium text-gray-900">
-                            {item.subject} - {item.topic}
-                          </h4>
-                          <p className="text-sm text-gray-600 capitalize">
-                            Generating {item.type}
-                          </p>
-                        </div>
-                        <Badge variant="outline" className={
-                          item.status === "processing" ? "border-yellow-300 text-yellow-700" : 
-                          item.status === "queued" ? "border-blue-300 text-blue-700" : 
-                          "border-gray-300 text-gray-700"
-                        }>
-                          {item.status}
-                        </Badge>
-                      </div>
-                      {item.progress > 0 && (
-                        <div>
-                          <div className="flex justify-between text-sm mb-1">
-                            <span className="text-gray-600">Progress</span>
-                            <span className="font-medium">{item.progress}%</span>
-                          </div>
-                          <div className="w-full bg-gray-200 rounded-full h-2">
-                            <div 
-                              className="bg-sky-blue-500 h-2 rounded-full transition-all duration-300" 
-                              style={{ width: `${item.progress}%` }}
-                            />
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+
           </div>
 
           {/* Right Column - Side Panels */}
