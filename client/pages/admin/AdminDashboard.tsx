@@ -311,6 +311,46 @@ export default function AdminDashboard() {
               </CardContent>
             </Card>
 
+            {/* Questions Management */}
+            <Card className="border-sky-blue-200">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle className="flex items-center">
+                      <FileText className="w-5 h-5 mr-2" />
+                      Questions Management
+                    </CardTitle>
+                    <CardDescription>View and manage all questions by curriculum structure</CardDescription>
+                  </div>
+                  <Link to="/admin/questions">
+                    <Button variant="outline" size="sm">
+                      View Table
+                    </Button>
+                  </Link>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-3 gap-4 text-center">
+                  <div className="p-4 bg-blue-50 rounded-lg">
+                    <div className="text-2xl font-bold text-blue-700">156</div>
+                    <div className="text-sm text-blue-600">Total Questions</div>
+                  </div>
+                  <div className="p-4 bg-green-50 rounded-lg">
+                    <div className="text-2xl font-bold text-green-700">89</div>
+                    <div className="text-sm text-green-600">Flashcards</div>
+                  </div>
+                  <div className="p-4 bg-purple-50 rounded-lg">
+                    <div className="text-2xl font-bold text-purple-700">67</div>
+                    <div className="text-sm text-purple-600">Quiz Questions</div>
+                  </div>
+                </div>
+                <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+                  <div className="text-sm text-gray-600">
+                    Questions organized by Unit → Topic → Subtopic for easy curriculum management
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
 
           </div>
 
