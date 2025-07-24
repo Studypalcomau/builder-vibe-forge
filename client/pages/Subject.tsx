@@ -300,6 +300,10 @@ export default function Subject() {
 
   const progressPercentage = totalTopics > 0 ? Math.round((completedTopics / totalTopics) * 100) : 0;
 
+  // Temporary state to fix references (will be removed with tabular layout)
+  const [expandedUnits, setExpandedUnits] = useState<Set<number>>(new Set([1]));
+  const [expandedTopics, setExpandedTopics] = useState<Set<string>>(new Set(['1-1']));
+
   // Placeholder functions (will be removed with tabular layout)
   const toggleUnit = () => {};
   const toggleTopic = () => {};
