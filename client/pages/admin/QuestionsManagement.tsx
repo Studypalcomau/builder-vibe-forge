@@ -71,8 +71,8 @@ export default function QuestionsManagement() {
               subtopicId: 3,
               subtopicName: "Linear Functions",
               questions: [
-                { id: 6, type: "quiz", title: "Solve linear equation ax + b = 0", difficulty: "Easy", status: "Published" },
-                { id: 7, type: "flashcard", title: "What is the slope-intercept form?", difficulty: "Easy", status: "Published" }
+                { id: 6, type: "quiz", title: "Solve linear equation ax + b = 0", answer: "x = -b/a (where a ≠ 0)", workings: "ax + b = 0 → ax = -b → x = -b/a. If a = 0 and b ≠ 0, no solution. If a = 0 and b = 0, infinitely many solutions.", difficulty: "Easy", status: "Published" },
+                { id: 7, type: "flashcard", title: "What is the slope-intercept form?", answer: "y = mx + b, where m is slope and b is y-intercept", workings: "This form immediately shows the slope (m) and where the line crosses the y-axis (b). Example: y = 3x + 2 has slope 3 and y-intercept 2.", difficulty: "Easy", status: "Published" }
               ]
             },
             {
