@@ -31,6 +31,9 @@ interface Question {
 }
 
 export default function QuestionsManagement() {
+  const [editingQuestion, setEditingQuestion] = useState<Question | null>(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
   // Mock data for questions organized by curriculum structure
   const questionsData = [
     {
