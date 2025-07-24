@@ -4,16 +4,61 @@ import { Button } from "../components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { FlashcardStack, FlashcardData } from "../components/Flashcard";
-import { 
-  ArrowLeft, 
-  Brain, 
-  Trophy, 
+import {
+  ArrowLeft,
+  Brain,
+  Trophy,
   Shuffle,
   RotateCcw,
   Filter,
   CheckCircle,
-  Clock
+  Clock,
+  ChevronRight
 } from "lucide-react";
+
+// Flashcard curriculum mapping
+interface FlashcardCurriculumInfo {
+  unit: string;
+  topic: string;
+  subtopic?: string;
+}
+
+const flashcardCurriculumMapping: Record<string, FlashcardCurriculumInfo> = {
+  "mathematical-methods": {
+    unit: "Unit 1: Algebra and Functions",
+    topic: "Functions and Relations",
+    subtopic: "Domain and Range"
+  },
+  "biology": {
+    unit: "Unit 3: Genetics and Evolution",
+    topic: "Molecular Biology",
+    subtopic: "DNA and RNA Structure"
+  },
+  "physics": {
+    unit: "Unit 1: Motion and Forces",
+    topic: "Mechanics",
+    subtopic: "Forces and Energy"
+  },
+  "chemistry": {
+    unit: "Unit 2: Chemical Bonding",
+    topic: "Atomic Structure",
+    subtopic: "Electron Configuration"
+  }
+};
+
+// Helper functions to generate IDs for curriculum sections
+const getUnitNumber = (unitName: string): string => {
+  const match = unitName.match(/Unit (\d+)/);
+  return match ? match[1] : '1';
+};
+
+const getTopicId = (topicName: string): string => {
+  return topicName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+};
+
+const getSubtopicId = (subtopicName: string): string => {
+  return subtopicName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+};
 
 // Queensland Biology curriculum flashcards
 const biologyFlashcards: FlashcardData[] = [
