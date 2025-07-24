@@ -254,68 +254,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Study Progress Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Track Your Progress
-            </h2>
-            <p className="text-lg text-gray-600 mb-8">
-              Access comprehensive study notes, detailed guides,
-              and organized content for all subjects.
-            </p>
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <CheckCircle className="w-5 h-5 text-green-500" />
-                <span className="text-gray-700">Comprehensive study notes</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <CheckCircle className="w-5 h-5 text-green-500" />
-                <span className="text-gray-700">Personalized study recommendations</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <CheckCircle className="w-5 h-5 text-green-500" />
-                <span className="text-gray-700">Detailed performance analytics</span>
-              </div>
-            </div>
-            <Link to="/dashboard">
-              <Button className="mt-8 bg-study-primary hover:bg-study-primary/90 text-white">
-                View Your Dashboard
-              </Button>
-            </Link>
-          </div>
 
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">Your Recent Topics</h3>
-            {recentTopics.map((topic, index) => (
-              <Card key={index} className="border-sky-blue-200">
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <div>
-                      <p className="font-medium text-gray-900">{topic.topic}</p>
-                      <p className="text-sm text-gray-600">{topic.subject}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-sm font-medium text-gray-900">{topic.progress}%</p>
-                      <p className="text-xs text-gray-500 flex items-center">
-                        <Clock className="w-3 h-3 mr-1" />
-                        {topic.timeLeft}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div 
-                      className="bg-sky-blue-500 h-2 rounded-full" 
-                      style={{ width: `${topic.progress}%` }}
-                    ></div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="bg-gradient-to-r from-sky-blue-500 to-sky-blue-600 text-white">
