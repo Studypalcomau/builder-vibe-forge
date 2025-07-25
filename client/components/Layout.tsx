@@ -163,7 +163,7 @@ export function Layout({ children }: LayoutProps) {
             <div>
               <h3 className="font-semibold text-gray-900 mb-4">Support</h3>
               <ul className="space-y-2">
-                <li><Link to="/help" className="text-gray-600 hover:text-sky-blue-600">Help Center</Link></li>
+
                 <li><Link to="/contact" className="text-gray-600 hover:text-sky-blue-600">Contact Us</Link></li>
                 <li><Link to="/about" className="text-gray-600 hover:text-sky-blue-600">About</Link></li>
                 <li><Link to="/privacy" className="text-gray-600 hover:text-sky-blue-600">Privacy Policy</Link></li>
