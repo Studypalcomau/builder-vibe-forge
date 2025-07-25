@@ -30,10 +30,10 @@ export default function Pricing() {
       price: { monthly: 0, yearly: 0 },
       popular: false,
       features: [
-        { name: "3 subjects access", included: true },
+        { name: "3 subject access", included: true },
         { name: "50 flashcards per month", included: true },
         { name: "5 practice quizzes per month", included: true },
-        { name: "Basic study notes", included: true },
+        { name: "2 study notes", included: true },
         { name: "Progress tracking", included: true },
         { name: "Mobile app access", included: true },
         { name: "Community support", included: true },
