@@ -64,7 +64,7 @@ export default function Pricing() {
       popular: false,
       features: [
         { name: "Everything in Student Pro", included: true },
-        { name: "Up to 500 student accounts", included: true },
+        { name: "Up to 300 student accounts", included: true },
         { name: "Teacher dashboard", included: true },
         { name: "Class progress monitoring", included: true },
         { name: "Bulk account management", included: true },
