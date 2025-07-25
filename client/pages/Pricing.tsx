@@ -46,23 +46,15 @@ export default function Pricing() {
       price: { monthly: 19, yearly: 190 }, // yearly = 16/month
       popular: true,
       features: [
-        { name: "All 6 subjects access", included: true },
+        { name: "Unlimited subject access", included: true },
         { name: "Unlimited flashcards", included: true },
         { name: "Unlimited practice quizzes", included: true },
         { name: "Comprehensive study notes", included: true },
-        { name: "Advanced progress tracking", included: true },
-        { name: "Mobile app access", included: true },
+        { name: "Progress tracking", included: true },
         { name: "AI-powered recommendations", included: true },
-        { name: "Detailed analytics", included: true },
-        { name: "Priority email support", included: true },
-        { name: "Offline downloads", included: true },
-        { name: "Custom study plans", included: true },
-        { name: "Exam preparation tools", included: true },
-        { name: "Performance insights", included: true },
-        { name: "Study streak tracking", included: true },
-        { name: "Achievement system", included: true }
+        { name: "Detailed analytics", included: true }
       ],
-      cta: "Start 7-Day Free Trial",
+      cta: "Sign up",
       ctaVariant: "default" as const
     },
     {
