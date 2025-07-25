@@ -34,8 +34,6 @@ export default function Pricing() {
         { name: "50 flashcards per month", included: true },
         { name: "5 practice quizzes per month", included: true },
         { name: "2 study notes", included: true },
-        { name: "Progress tracking", included: true },
-        { name: "Mobile app access", included: true },
         { name: "Community support", included: true },
         { name: "Unlimited subjects", included: false },
         { name: "Unlimited flashcards", included: false },
