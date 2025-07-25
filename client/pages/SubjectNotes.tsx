@@ -24,6 +24,51 @@ interface NotesCurriculumInfo {
   subtopic?: string;
 }
 
+// Subject-level curriculum mapping for "Currently studying" section
+const subjectNotesCurriculumMapping: Record<string, NotesCurriculumInfo> = {
+  "mathematical-methods": {
+    unit: "Unit 2: Calculus",
+    topic: "Differential Calculus",
+    subtopic: "Derivatives and Limits"
+  },
+  "physics": {
+    unit: "Unit 1: Motion and Forces",
+    topic: "Mechanics",
+    subtopic: "Forces and Motion"
+  },
+  "biology": {
+    unit: "Unit 3: Genetics and Evolution",
+    topic: "Genetics and Heredity",
+    subtopic: "DNA and Inheritance"
+  },
+  "english": {
+    unit: "Unit 1: Language and Literature",
+    topic: "Literary Analysis",
+    subtopic: "Literary Devices"
+  },
+  "chemistry": {
+    unit: "Unit 2: Chemical Bonding",
+    topic: "Atomic Structure",
+    subtopic: "Electron Configuration"
+  }
+};
+
+// Helper functions to generate IDs for curriculum sections
+const getUnitNumber = (unitName: string): string => {
+  const match = unitName.match(/Unit (\d+)/);
+  return match ? match[1] : '1';
+};
+
+const getTopicId = (topicName: string): string => {
+  // Convert topic name to a slug-like ID
+  return topicName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+};
+
+const getSubtopicId = (subtopicName: string): string => {
+  // Convert subtopic name to a slug-like ID
+  return subtopicName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+};
+
 const notesCurriculumMapping: Record<string, NotesCurriculumInfo> = {
   "mathematical-methods": {
     unit: "Unit 1: Algebra and Functions",
