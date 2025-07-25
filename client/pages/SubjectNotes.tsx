@@ -14,7 +14,9 @@ import {
   ChevronRight,
   FileText,
   Calculator,
-  Lightbulb
+  Lightbulb,
+  Brain,
+  Trophy
 } from "lucide-react";
 
 // Notes curriculum mapping
