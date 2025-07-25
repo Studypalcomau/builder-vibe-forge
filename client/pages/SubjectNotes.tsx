@@ -1309,6 +1309,48 @@ export default function SubjectNotes() {
             ))
           )}
         </div>
+
+        {/* Study Options */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+          <Card className="border-sky-blue-200 hover:shadow-md transition-shadow">
+            <CardHeader>
+              <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-2">
+                <Brain className="w-5 h-5 text-blue-600" />
+              </div>
+              <CardTitle className="text-lg">Quick Cards</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CardDescription className="mb-4">
+                Review key concepts with interactive flashcards
+              </CardDescription>
+              <Link to={`/subjects/${slug}/flashcards`}>
+                <Button variant="outline" className="w-full">
+                  Study Cards
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+
+          <Card className="border-sky-blue-200 hover:shadow-md transition-shadow">
+            <CardHeader>
+              <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mb-2">
+                <Trophy className="w-5 h-5 text-green-600" />
+              </div>
+              <CardTitle className="text-lg">Quick Quizzes</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CardDescription className="mb-4">
+                Test yourself with timed quizzes based on these topics
+              </CardDescription>
+              <Link to={`/subjects/${slug}/quizzes`}>
+                <Button variant="outline" className="w-full">
+                  Take Quiz
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+        </div>
+
       </div>
     </div>
   );
