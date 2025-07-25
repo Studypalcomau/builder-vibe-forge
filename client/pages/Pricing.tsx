@@ -35,14 +35,7 @@ export default function Pricing() {
         { name: "5 practice quizzes per month", included: true },
         { name: "2 study notes", included: true },
         { name: "Community support", included: true },
-        { name: "Unlimited subjects", included: false },
-        { name: "Unlimited flashcards", included: false },
-        { name: "Unlimited quizzes", included: false },
-        { name: "AI-powered recommendations", included: false },
         { name: "Advanced analytics", included: false },
-        { name: "Priority support", included: false },
-        { name: "Offline downloads", included: false },
-        { name: "Custom study plans", included: false }
       ],
       cta: "Start Free",
       ctaVariant: "outline" as const
