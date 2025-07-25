@@ -92,20 +92,6 @@ const notesCurriculumMapping: Record<string, NotesCurriculumInfo> = {
   }
 };
 
-// Helper functions to generate IDs for curriculum sections
-const getUnitNumber = (unitName: string): string => {
-  const match = unitName.match(/Unit (\d+)/);
-  return match ? match[1] : '1';
-};
-
-const getTopicId = (topicName: string): string => {
-  return topicName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
-};
-
-const getSubtopicId = (subtopicName: string): string => {
-  return subtopicName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
-};
-
 interface StudyNote {
   id: string;
   title: string;
