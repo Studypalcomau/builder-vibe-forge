@@ -50,7 +50,7 @@ export default function Pricing() {
         { name: "Unlimited practice quizzes", included: true },
         { name: "Comprehensive study notes", included: true },
         { name: "Progress tracking", included: true },
-        { name: "AI-powered recommendations", included: true },
+        { name: "AI-powered recommendations (coming soon)", included: true },
         { name: "Detailed analytics", included: true }
       ],
       cta: "Sign up",
