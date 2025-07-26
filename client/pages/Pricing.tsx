@@ -308,25 +308,6 @@ export default function Pricing() {
           </div>
         </div>
 
-        {/* FAQ Section */}
-        <div className="mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 text-center mb-8">
-            Frequently Asked Questions
-          </h2>
-          
-          <div className="max-w-3xl mx-auto">
-            <div className="space-y-6">
-              {faqs.map((faq, index) => (
-                <Card key={index} className="border-sky-blue-200">
-                  <CardContent className="p-6">
-                    <h3 className="font-semibold text-gray-900 mb-2">{faq.question}</h3>
-                    <p className="text-gray-600">{faq.answer}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </div>
 
         {/* CTA Section */}
         <Card className="bg-gradient-to-r from-sky-blue-500 to-sky-blue-600 text-white">
