@@ -69,14 +69,10 @@ export default function Pricing() {
         { name: "Bulk account management", included: true },
         { name: "Custom branding", included: true },
         { name: "Advanced reporting", included: true },
-        { name: "API access", included: true },
-        { name: "Single sign-on (SSO)", included: true },
         { name: "Dedicated account manager", included: true },
         { name: "Priority phone support", included: true },
         { name: "Training sessions", included: true },
-        { name: "Custom integrations", included: true },
-        { name: "White-label options", included: true },
-        { name: "Advanced security features", included: true }
+        { name: "Custom integrations", included: true }
       ],
       cta: "Contact Sales",
       ctaVariant: "outline" as const
