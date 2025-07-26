@@ -225,17 +225,49 @@ export default function Pricing() {
                 </CardHeader>
 
                 <CardContent>
-                  <Button 
-                    className={`w-full mb-6 ${
-                      plan.popular 
-                        ? "bg-sky-blue-500 hover:bg-sky-blue-600 text-white" 
-                        : ""
-                    }`}
-                    variant={plan.ctaVariant}
-                    size="lg"
-                  >
-                    {plan.cta}
-                  </Button>
+                  {plan.name === "Free" ? (
+                    <Link to="/account">
+                      <Button
+                        className={`w-full mb-6 ${
+                          plan.popular
+                            ? "bg-sky-blue-500 hover:bg-sky-blue-600 text-white"
+                            : ""
+                        }`}
+                        variant={plan.ctaVariant}
+                        size="lg"
+                      >
+                        {plan.cta}
+                      </Button>
+                    </Link>
+                  ) : plan.name === "School License" ? (
+                    <Link to="/contact">
+                      <Button
+                        className={`w-full mb-6 ${
+                          plan.popular
+                            ? "bg-sky-blue-500 hover:bg-sky-blue-600 text-white"
+                            : ""
+                        }`}
+                        variant={plan.ctaVariant}
+                        size="lg"
+                      >
+                        {plan.cta}
+                      </Button>
+                    </Link>
+                  ) : (
+                    <Link to="/account">
+                      <Button
+                        className={`w-full mb-6 ${
+                          plan.popular
+                            ? "bg-sky-blue-500 hover:bg-sky-blue-600 text-white"
+                            : ""
+                        }`}
+                        variant={plan.ctaVariant}
+                        size="lg"
+                      >
+                        {plan.cta}
+                      </Button>
+                    </Link>
+                  )}
 
                   <ul className="space-y-3">
                     {plan.features.map((feature, featureIndex) => (
@@ -320,13 +352,17 @@ export default function Pricing() {
               Start your free trial today - no credit card required.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-sky-blue-600 hover:bg-gray-100">
-                Start Free Trial
-              </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                <Headphones className="w-5 h-5 mr-2" />
-                Talk to Sales
-              </Button>
+              <Link to="/account">
+                <Button size="lg" className="bg-white text-sky-blue-600 hover:bg-gray-100">
+                  Start Free Trial
+                </Button>
+              </Link>
+              <Link to="/contact">
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                  <Headphones className="w-5 h-5 mr-2" />
+                  Talk to Sales
+                </Button>
+              </Link>
             </div>
           </CardContent>
         </Card>
