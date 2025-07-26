@@ -292,7 +292,7 @@ export default function Pricing() {
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Proven Results</h3>
               <p className="text-sm text-gray-600">
-                94% success rate with over 15,000 active students across Queensland
+                94% success rate with many active students across Queensland
               </p>
             </div>
             
