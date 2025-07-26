@@ -33,7 +33,7 @@ export default function Pricing() {
         { name: "3 subject access", included: true },
         { name: "50 flashcards per month", included: true },
         { name: "5 practice quizzes per month", included: true },
-        { name: "2 study notes", included: true },
+        { name: "2 study notes per month", included: true },
         { name: "Community support", included: true },
         { name: "Advanced analytics", included: false },
       ],
