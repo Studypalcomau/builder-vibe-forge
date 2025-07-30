@@ -284,7 +284,7 @@ export function Quiz({
           <CardContent className="space-y-6">
             <div className="grid grid-cols-2 gap-4">
               <div className="text-center p-4 bg-sky-blue-50 rounded-lg">
-                <div className="font-bold text-2xl text-gray-900">{quiz.questions.length}</div>
+                <div className="font-bold text-2xl text-gray-900">{currentQuizQuestions.length}</div>
                 <div className="text-sm text-gray-600">Questions</div>
               </div>
               <div className="text-center p-4 bg-sky-blue-50 rounded-lg">
