@@ -113,7 +113,7 @@ const mathematicsQuizzes: QuizData[] = [
           "Start with f(x) = 3x² + 2x - 5",
           "Apply the power rule to each term: d/dx(xⁿ) = n·xⁿ⁻¹",
           "For 3x²: d/dx(3x²) = 3 × 2 × x²⁻¹ = 6x",
-          "For 2x: d/dx(2x) = 2 × 1 × x¹⁻¹ = 2",
+          "For 2x: d/dx(2x) = 2 × 1 × x¹���¹ = 2",
           "For -5: d/dx(-5) = 0 (constant rule)",
           "Combine all terms: f'(x) = 6x + 2 + 0 = 6x + 2"
         ],
@@ -462,6 +462,9 @@ const decodeCurriculumInfo = (subtopicId: string): CurriculumDetails | null => {
 export default function SubjectQuizzes() {
   const { slug, subtopicId } = useParams();
   const [selectedQuiz, setSelectedQuiz] = useState<QuizData | null>(null);
+
+  // Detect if this is the full test mode
+  const isFullTest = window.location.pathname.includes('/test');
   const [quizResults, setQuizResults] = useState<Record<string, number>>({});
   const [detailedQuizResults, setDetailedQuizResults] = useState<Record<string, DetailedQuizResult>>({});
   const [quizProgress, setQuizProgress] = useState<Record<string, QuizProgress>>({});
