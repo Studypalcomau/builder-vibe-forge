@@ -895,18 +895,6 @@ export default function SubjectQuizzes() {
     }
   }, [subtopicId, isFullTest, hasQuizzes, quizzes, selectedQuiz]);
 
-  const subjectNames: Record<string, string> = {
-    biology: "Biology",
-    mathematics: "Mathematics",
-    "mathematical-methods": "Mathematical Methods",
-    "specialist-mathematics": "Specialist Mathematics",
-    physics: "Physics",
-    english: "English",
-    chemistry: "Chemistry",
-    engineering: "Engineering",
-    economics: "Economics"
-  };
-
   const subjectName = subjectNames[slug as string] || "Subject";
 
   // Get subtopic name from ID
