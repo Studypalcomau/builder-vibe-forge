@@ -1025,7 +1025,10 @@ export function Quiz({
               </Button>
               {previousAttempts.length > 0 && (
                 <Button
-                  onClick={() => setShowTestHistory(true)}
+                  onClick={() => {
+                    setSelectedHistoryAttempt(null);
+                    setShowTestHistory(true);
+                  }}
                   variant="outline"
                   className="w-full"
                 >
