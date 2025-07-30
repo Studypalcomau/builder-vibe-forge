@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
-import { Quiz, QuizData, QuizQuestion, DetailedQuizResult } from "../components/Quiz";
+import { Quiz, QuizData, QuizQuestion, DetailedQuizResult, QuizAttempt, QuizProgress } from "../components/Quiz";
 import {
   ArrowLeft,
   Trophy,
@@ -396,6 +396,7 @@ export default function SubjectQuizzes() {
   const [selectedQuiz, setSelectedQuiz] = useState<QuizData | null>(null);
   const [quizResults, setQuizResults] = useState<Record<string, number>>({});
   const [detailedQuizResults, setDetailedQuizResults] = useState<Record<string, DetailedQuizResult>>({});
+  const [quizProgress, setQuizProgress] = useState<Record<string, QuizProgress>>({});
 
   // Handle subtopic-specific quizzes
   const subtopicQuizzes: Record<string, QuizData[]> = {
@@ -656,8 +657,9 @@ export default function SubjectQuizzes() {
 
   const subtopicName = subtopicId ? subtopicNames[subtopicId] : null;
 
-  const handleQuizComplete = (score: number, answers: Record<string, any>, detailedResults?: DetailedQuizResult) => {
+  const handleQuizComplete = (score: number, answers: Record<string, any>, detailedResults?: DetailedQuizResult, attempt?: QuizAttempt) => {
     if (selectedQuiz) {
+      // Update latest score for quick access
       setQuizResults(prev => ({
         ...prev,
         [selectedQuiz.id]: score
@@ -668,6 +670,34 @@ export default function SubjectQuizzes() {
           ...prev,
           [selectedQuiz.id]: detailedResults
         }));
+      }
+
+      // Update quiz progress with attempt tracking
+      if (attempt) {
+        setQuizProgress(prev => {
+          const existing = prev[selectedQuiz.id] || {
+            quizId: selectedQuiz.id,
+            attempts: [],
+            bestScore: 0,
+            hasPassed: false,
+            lastAttemptDate: new Date()
+          };
+
+          const newAttempts = [...existing.attempts, attempt];
+          const bestScore = Math.max(existing.bestScore, score);
+          const hasPassed = existing.hasPassed || attempt.passed;
+
+          return {
+            ...prev,
+            [selectedQuiz.id]: {
+              ...existing,
+              attempts: newAttempts,
+              bestScore,
+              hasPassed,
+              lastAttemptDate: attempt.completedAt
+            }
+          };
+        });
       }
     }
   };
@@ -681,11 +711,24 @@ export default function SubjectQuizzes() {
     }
   };
 
-  const getScoreBadge = (score: number) => {
+  const getScoreBadge = (score: number, passingScore: number = 70) => {
     if (score >= 90) return { text: "Excellent", color: "bg-green-100 text-green-700" };
     if (score >= 80) return { text: "Good", color: "bg-blue-100 text-blue-700" };
-    if (score >= 70) return { text: "Pass", color: "bg-yellow-100 text-yellow-700" };
-    return { text: "Needs Work", color: "bg-red-100 text-red-700" };
+    if (score >= passingScore) return { text: "Pass", color: "bg-yellow-100 text-yellow-700" };
+    return { text: "Needs Improvement", color: "bg-red-100 text-red-700" };
+  };
+
+  const getQuizStatus = (quizId: string, passingScore: number) => {
+    const progress = quizProgress[quizId];
+    if (!progress || progress.attempts.length === 0) {
+      return { status: 'not_attempted', text: 'Not Attempted', color: 'bg-gray-100 text-gray-700' };
+    }
+
+    if (progress.hasPassed) {
+      return { status: 'passed', text: 'Passed', color: 'bg-green-100 text-green-700' };
+    }
+
+    return { status: 'needs_retake', text: 'Needs Retake', color: 'bg-orange-100 text-orange-700' };
   };
 
   // Show selected quiz
@@ -714,6 +757,9 @@ export default function SubjectQuizzes() {
             quiz={selectedQuiz}
             onComplete={handleQuizComplete}
             returnPath={returnPath}
+            previousAttempts={quizProgress[selectedQuiz.id]?.attempts || []}
+            allowRetakes={true}
+            requirePassingGrade={false}
           />
         </div>
       </div>
@@ -833,18 +879,18 @@ export default function SubjectQuizzes() {
           </Card>
           <Card className="border-sky-blue-200">
             <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-gray-900">{Object.keys(quizResults).length}</div>
-              <div className="text-sm text-gray-600">Completed</div>
+              <div className="text-2xl font-bold text-gray-900">{Object.keys(quizProgress).length}</div>
+              <div className="text-sm text-gray-600">Attempted</div>
             </CardContent>
           </Card>
           <Card className="border-sky-blue-200">
             <CardContent className="p-4 text-center">
               <div className="text-2xl font-bold text-gray-900">
-                {Object.keys(quizResults).length > 0 
-                  ? Math.round(Object.values(quizResults).reduce((a, b) => a + b, 0) / Object.values(quizResults).length)
+                {Object.keys(quizProgress).length > 0
+                  ? Math.round(Object.values(quizProgress).reduce((sum, progress) => sum + progress.bestScore, 0) / Object.values(quizProgress).length)
                   : 0}%
               </div>
-              <div className="text-sm text-gray-600">Average Score</div>
+              <div className="text-sm text-gray-600">Average Best Score</div>
             </CardContent>
           </Card>
           <Card className="border-sky-blue-200">
@@ -865,7 +911,11 @@ export default function SubjectQuizzes() {
             {quizzes.map((quiz) => {
               const hasCompleted = quizResults[quiz.id] !== undefined;
               const score = quizResults[quiz.id];
-              const scoreBadge = score ? getScoreBadge(score) : null;
+              const progress = quizProgress[quiz.id];
+              const quizStatus = getQuizStatus(quiz.id, quiz.passingScore);
+              const scoreBadge = score ? getScoreBadge(score, quiz.passingScore) : null;
+              const bestScore = progress?.bestScore || score;
+              const attemptCount = progress?.attempts.length || 0;
               
               return (
                 <Card key={quiz.id} className="border-sky-blue-200 hover:shadow-md transition-shadow">
@@ -876,11 +926,16 @@ export default function SubjectQuizzes() {
 
                         <div className="flex items-center gap-3 mb-2">
                           <h3 className="text-xl font-semibold text-gray-900">{quiz.title}</h3>
-                          {hasCompleted && scoreBadge && (
-                            <Badge className={scoreBadge.color}>
-                              {score}% - {scoreBadge.text}
+                          <div className="flex items-center gap-2">
+                            <Badge className={quizStatus.color}>
+                              {quizStatus.text}
                             </Badge>
-                          )}
+                            {hasCompleted && scoreBadge && (
+                              <Badge className={scoreBadge.color}>
+                                {bestScore}% {attemptCount > 1 ? `(Best of ${attemptCount})` : ''}
+                              </Badge>
+                            )}
+                          </div>
                         </div>
                         <p className="text-gray-600 mb-4">{quiz.description}</p>
                         
@@ -901,24 +956,48 @@ export default function SubjectQuizzes() {
                       </div>
                       
                       <div className="ml-6">
-                        <Button 
+                        <Button
                           onClick={() => setSelectedQuiz(quiz)}
-                          className="bg-sky-blue-500 hover:bg-sky-blue-600 text-white"
+                          className={`text-white ${
+                            quizStatus.status === 'needs_retake'
+                              ? 'bg-orange-500 hover:bg-orange-600'
+                              : 'bg-sky-blue-500 hover:bg-sky-blue-600'
+                          }`}
                         >
                           <Play className="w-4 h-4 mr-2" />
-                          {hasCompleted ? 'Retake' : 'Start'} Quiz
+                          {quizStatus.status === 'not_attempted' ? 'Start Quiz' :
+                           quizStatus.status === 'needs_retake' ? 'Retake Quiz' :
+                           'Practice Again'}
                         </Button>
                       </div>
                     </div>
 
                     {hasCompleted && (
                       <div className="border-t border-gray-200 pt-4 mt-4">
-                        <div className="flex items-center justify-between text-sm">
-                          <span className="text-gray-600">Last Score:</span>
-                          <div className="flex items-center">
-                            <CheckCircle className="w-4 h-4 text-green-500 mr-1" />
-                            <span className="font-medium">{score}%</span>
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between text-sm">
+                            <span className="text-gray-600">Best Score:</span>
+                            <div className="flex items-center">
+                              <CheckCircle className={`w-4 h-4 mr-1 ${
+                                bestScore >= quiz.passingScore ? 'text-green-500' : 'text-red-500'
+                              }`} />
+                              <span className="font-medium">{bestScore}%</span>
+                            </div>
                           </div>
+                          {attemptCount > 1 && (
+                            <div className="flex items-center justify-between text-sm">
+                              <span className="text-gray-600">Attempts:</span>
+                              <span className="font-medium">{attemptCount}</span>
+                            </div>
+                          )}
+                          {progress && (
+                            <div className="flex items-center justify-between text-sm">
+                              <span className="text-gray-600">Last Attempt:</span>
+                              <span className="text-gray-500">
+                                {progress.lastAttemptDate.toLocaleDateString()}
+                              </span>
+                            </div>
+                          )}
                         </div>
                       </div>
                     )}
