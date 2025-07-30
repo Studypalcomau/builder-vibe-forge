@@ -1004,9 +1004,9 @@ export function Quiz({
           </CardHeader>
           <CardContent className="space-y-6">
             {/* Curriculum Information */}
-            {curriculumInfo && (
-              <div className="bg-sky-blue-50 border border-sky-blue-200 rounded-lg p-4">
-                <h3 className="font-semibold text-gray-900 mb-3">Test Coverage</h3>
+            <div className="bg-sky-blue-50 border border-sky-blue-200 rounded-lg p-4">
+              <h3 className="font-semibold text-gray-900 mb-3">Test Coverage</h3>
+              {curriculumInfo ? (
                 <div className="flex flex-wrap items-center gap-2 text-sm">
                   <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
                     {curriculumInfo.unitName}
@@ -1020,8 +1020,16 @@ export function Quiz({
                     {curriculumInfo.subtopicName}
                   </Badge>
                 </div>
-              </div>
-            )}
+              ) : (
+                <div className="flex items-center gap-2">
+                  <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200">
+                    <Star className="w-3 h-3 mr-1" />
+                    Comprehensive Test
+                  </Badge>
+                  <span className="text-sm text-gray-600">All topics and subtopics for this subject</span>
+                </div>
+              )}
+            </div>
 
             <div className="text-center">
               <div className="text-4xl font-bold text-gray-900 mb-2">{score}%</div>
