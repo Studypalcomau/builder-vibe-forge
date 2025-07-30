@@ -128,7 +128,7 @@ export default function Privacy() {
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Introduction</h2>
         <div className="prose prose-gray max-w-none">
           <p className="text-gray-600 mb-4">
-            StudyMate QLD ("we," "our," or "us") is committed to protecting your privacy and ensuring you have a positive experience 
+            StudyPal QLD ("we," "our," or "us") is committed to protecting your privacy and ensuring you have a positive experience 
             on our platform. This Privacy Policy describes how we collect, use, disclose, and safeguard your information when you 
             use our educational platform and services.
           </p>
@@ -281,7 +281,7 @@ export default function Privacy() {
             <CardContent>
               <div className="space-y-3 text-sm">
                 <p><strong>Account Settings:</strong> Access and update most information directly in your account</p>
-                <p><strong>Contact Us:</strong> Email privacy@studymateqld.com for data requests</p>
+                <p><strong>Contact Us:</strong> Email privacy@studypal.com.au for data requests</p>
                 <p><strong>Response Time:</strong> We respond to requests within 30 days</p>
                 <p><strong>Verification:</strong> We may need to verify your identity for security</p>
               </div>
@@ -353,7 +353,7 @@ export default function Privacy() {
             As an educational platform primarily serving students aged 16-18, we take special care to protect younger users:
           </p>
           <ul className="text-gray-600 space-y-2">
-            <li>��� Users under 13 require parental consent before creating an account</li>
+            <li>• Users under 13 require parental consent before creating an account</li>
             <li>• We collect only necessary information for educational purposes</li>
             <li>• Parents can request access to or deletion of their child's information</li>
             <li>• We never show behavioral advertising to users under 18</li>
@@ -391,8 +391,8 @@ export default function Privacy() {
               If you have questions about this Privacy Policy or how we handle your information, we're here to help.
             </p>
             <div className="space-y-2 text-sky-blue-700 mb-6">
-              <p><strong>Email:</strong> privacy@studymateqld.com</p>
-              <p><strong>Mail:</strong> Privacy Officer, StudyMate QLD, Level 15, 123 Queen Street, Brisbane QLD 4000</p>
+              <p><strong>Email:</strong> privacy@studypal.com.au</p>
+              <p><strong>Mail:</strong> Privacy Officer, StudyPal QLD, Level 15, 123 Queen Street, Brisbane QLD 4000</p>
               <p><strong>Response Time:</strong> We respond to privacy inquiries within 5 business days</p>
             </div>
             <Link to="/contact">
@@ -407,7 +407,7 @@ export default function Privacy() {
       {/* Footer */}
       <div className="text-center text-sm text-gray-500 border-t pt-8">
         <p>
-          This Privacy Policy is effective as of {lastUpdated} and applies to all users of the StudyMate QLD platform.
+          This Privacy Policy is effective as of {lastUpdated} and applies to all users of the StudyPal QLD platform.
         </p>
       </div>
     </div>

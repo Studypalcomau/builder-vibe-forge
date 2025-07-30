@@ -177,7 +177,7 @@ export default function Contact() {
           <CardContent className="p-6 text-center">
             <Mail className="w-8 h-8 text-sky-blue-600 mx-auto mb-3" />
             <h3 className="font-semibold text-gray-900 mb-2">Email Support</h3>
-            <p className="text-gray-600 text-sm">support@studymateqld.com</p>
+            <p className="text-gray-600 text-sm">support@studypal.com.au</p>
           </CardContent>
         </Card>
         

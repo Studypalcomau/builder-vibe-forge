@@ -55,7 +55,7 @@ export default function Login() {
             <div className="w-10 h-10 bg-gradient-to-br from-sky-blue-500 to-sky-blue-600 rounded-lg flex items-center justify-center">
               <BookOpen className="w-6 h-6 text-white" />
             </div>
-            <span className="text-2xl font-bold text-gray-900">StudyMate QLD</span>
+            <span className="text-2xl font-bold text-gray-900">StudyPal QLD</span>
           </Link>
           <h2 className="text-3xl font-bold text-gray-900">Welcome back</h2>
           <p className="mt-2 text-gray-600">

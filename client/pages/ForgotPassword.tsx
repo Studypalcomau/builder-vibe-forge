@@ -48,7 +48,7 @@ export default function ForgotPassword() {
               <div className="w-10 h-10 bg-gradient-to-br from-sky-blue-500 to-sky-blue-600 rounded-lg flex items-center justify-center">
                 <BookOpen className="w-6 h-6 text-white" />
               </div>
-              <span className="text-2xl font-bold text-gray-900">StudyMate QLD</span>
+              <span className="text-2xl font-bold text-gray-900">StudyPal QLD</span>
             </Link>
           </div>
 
@@ -147,7 +147,7 @@ export default function ForgotPassword() {
                   />
                 </div>
                 <p className="text-xs text-gray-500">
-                  Enter the email address associated with your StudyMate account.
+                  Enter the email address associated with your StudyPal account.
                 </p>
               </div>
 
