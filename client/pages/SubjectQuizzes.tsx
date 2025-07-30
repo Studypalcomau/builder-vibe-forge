@@ -113,7 +113,7 @@ const mathematicsQuizzes: QuizData[] = [
           "Start with f(x) = 3x² + 2x - 5",
           "Apply the power rule to each term: d/dx(xⁿ) = n·xⁿ⁻¹",
           "For 3x²: d/dx(3x²) = 3 × 2 × x²⁻¹ = 6x",
-          "For 2x: d/dx(2x) = 2 × 1 × x¹���¹ = 2",
+          "For 2x: d/dx(2x) = 2 × 1 × x¹⁻¹ = 2",
           "For -5: d/dx(-5) = 0 (constant rule)",
           "Combine all terms: f'(x) = 6x + 2 + 0 = 6x + 2"
         ],
@@ -504,7 +504,7 @@ export default function SubjectQuizzes() {
           "The minimum value occurs when x = 0, giving f(0) = 0",
           "As |x| increases, x² increases without bound",
           "Therefore, f(x) can take any value ≥ 0",
-          "Range: [0, ∞) or all non-negative numbers"
+          "Range: [0, ���) or all non-negative numbers"
         ],
         difficulty: "Easy",
         category: "Functions",
@@ -843,7 +843,34 @@ export default function SubjectQuizzes() {
     ]
   };
 
-  const quizzes = subtopicId
+  // Create comprehensive test that includes questions from all subtopics
+  const createFullTest = (): QuizData => {
+    const allQuestions: QuizQuestion[] = [];
+
+    // Collect questions from all subtopic question pools
+    Object.values(questionPools).forEach(pool => {
+      // Take 2-3 questions from each subtopic pool
+      const selectedQuestions = pool.slice(0, 3);
+      allQuestions.push(...selectedQuestions);
+    });
+
+    // Shuffle questions for randomization
+    const shuffledQuestions = allQuestions.sort(() => Math.random() - 0.5);
+
+    return {
+      id: `${slug}-full-test`,
+      title: `${subjectNames[slug as string]} Comprehensive Test`,
+      description: `Complete assessment covering all topics in ${subjectNames[slug as string]}`,
+      subject: subjectNames[slug as string] || "Subject",
+      totalTime: Math.max(45, shuffledQuestions.length * 2), // Minimum 45 minutes or 2 minutes per question
+      passingScore: 70,
+      questions: shuffledQuestions
+    };
+  };
+
+  const quizzes = isFullTest
+    ? [createFullTest()]
+    : subtopicId
     ? (subtopicQuizzes[subtopicId] || [])
     : (subjectQuizzes[slug as string] || []);
   const hasQuizzes = quizzes.length > 0;
