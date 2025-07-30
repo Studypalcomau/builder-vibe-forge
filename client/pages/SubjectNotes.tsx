@@ -1031,9 +1031,9 @@ export default function SubjectNotes() {
 
   // Get subtopic name from ID
   const subtopicNames: Record<string, string> = {
-    "1-0": "Domain and Range",
-    "1-1": "Function Types",
-    "1-2": "Transformations"
+    "0-0-0": "Domain and Range",
+    "0-0-1": "Function Types",
+    "0-0-2": "Transformations"
   };
 
   const subtopicName = subtopicId ? subtopicNames[subtopicId] : null;
