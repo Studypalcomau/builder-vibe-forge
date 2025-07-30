@@ -504,7 +504,7 @@ export default function SubjectQuizzes() {
           "The minimum value occurs when x = 0, giving f(0) = 0",
           "As |x| increases, x² increases without bound",
           "Therefore, f(x) can take any value ≥ 0",
-          "Range: [0, ���) or all non-negative numbers"
+          "Range: [0, ∞) or all non-negative numbers"
         ],
         difficulty: "Easy",
         category: "Functions",
@@ -875,13 +875,13 @@ export default function SubjectQuizzes() {
     : (subjectQuizzes[slug as string] || []);
   const hasQuizzes = quizzes.length > 0;
 
-  // Auto-start quiz when accessing via direct subtopic route
+  // Auto-start quiz when accessing via direct subtopic route or full test route
   useEffect(() => {
-    if (subtopicId && hasQuizzes && !selectedQuiz) {
-      // Start the first (and only) quiz for this subtopic automatically
+    if ((subtopicId || isFullTest) && hasQuizzes && !selectedQuiz) {
+      // Start the quiz automatically
       setSelectedQuiz(quizzes[0]);
     }
-  }, [subtopicId, hasQuizzes, quizzes, selectedQuiz]);
+  }, [subtopicId, isFullTest, hasQuizzes, quizzes, selectedQuiz]);
 
   const subjectNames: Record<string, string> = {
     biology: "Biology",
