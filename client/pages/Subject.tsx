@@ -325,6 +325,12 @@ export default function Subject() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3">
+              <Link to={`/subjects/${slug}/test`}>
+                <Button className="bg-study-primary hover:bg-study-primary/90 text-white">
+                  <Trophy className="w-4 h-4 mr-2" />
+                  Take Full Test
+                </Button>
+              </Link>
               <Button
                 variant="outline"
                 className="border-sky-blue-300 text-sky-blue-700 hover:bg-sky-blue-50"
@@ -340,7 +346,7 @@ export default function Subject() {
 
       {/* Progress Overview */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
           <Card className="border-sky-blue-200">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-medium text-gray-600">Progress</CardTitle>
@@ -381,6 +387,21 @@ export default function Subject() {
               </div>
               <div className="text-2xl font-bold text-gray-900">Top 15%</div>
               <div className="text-sm text-gray-600">Class Rank</div>
+            </CardContent>
+          </Card>
+
+          <Card className="border-sky-blue-200 hover:shadow-md transition-shadow">
+            <CardContent className="p-4 text-center">
+              <div className="flex items-center justify-center mb-2">
+                <Trophy className="w-5 h-5 text-orange-500" />
+              </div>
+              <div className="text-lg font-bold text-gray-900 mb-1">Full Test</div>
+              <div className="text-xs text-gray-600 mb-3">All Topics</div>
+              <Link to={`/subjects/${slug}/test`}>
+                <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white text-xs px-2 py-1">
+                  Start Test
+                </Button>
+              </Link>
             </CardContent>
           </Card>
         </div>
