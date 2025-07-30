@@ -670,7 +670,7 @@ export function Quiz({
                 <div className="text-sm text-gray-600">Answered</div>
               </div>
               <div className="p-3 bg-sky-blue-50 rounded-lg">
-                <div className="font-bold text-lg">{quiz.questions.length}</div>
+                <div className="font-bold text-lg">{currentQuizQuestions.length}</div>
                 <div className="text-sm text-gray-600">Total Questions</div>
               </div>
               <div className="p-3 bg-sky-blue-50 rounded-lg">
