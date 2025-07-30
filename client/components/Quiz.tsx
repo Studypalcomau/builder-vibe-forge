@@ -602,13 +602,59 @@ export function Quiz({
                     </div>
                   )}
 
-                  {/* Explanation */}
-                  <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                    <div className="flex items-start gap-2">
-                      <BookOpen className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <h5 className="font-medium text-blue-900 mb-1">Explanation</h5>
-                        <p className="text-blue-800">{question.explanation}</p>
+                  {/* Detailed Solution */}
+                  <div className="space-y-4">
+                    {/* Working Steps */}
+                    {question.workingSteps && question.workingSteps.length > 0 && (
+                      <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                        <div className="flex items-start gap-2">
+                          <Target className="w-4 h-4 text-yellow-600 mt-0.5 flex-shrink-0" />
+                          <div className="flex-1">
+                            <h5 className="font-medium text-yellow-900 mb-3">Step-by-Step Solution</h5>
+                            <div className="space-y-2">
+                              {question.workingSteps.map((step, stepIndex) => (
+                                <div key={stepIndex} className="flex items-start gap-3">
+                                  <div className="w-6 h-6 bg-yellow-200 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <span className="text-xs font-bold text-yellow-800">{stepIndex + 1}</span>
+                                  </div>
+                                  <div className="text-yellow-800 leading-relaxed">{step}</div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Final Explanation */}
+                    <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                      <div className="flex items-start gap-2">
+                        <BookOpen className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                        <div className="flex-1">
+                          <h5 className="font-medium text-blue-900 mb-2">Explanation</h5>
+                          <div className="text-blue-800 leading-relaxed">
+                            {question.explanation.split('. ').map((sentence, index, array) => (
+                              <div key={index} className={index < array.length - 1 ? 'mb-2' : ''}>
+                                {sentence}{index < array.length - 1 ? '.' : ''}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Key Concepts */}
+                    <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg">
+                      <div className="flex items-start gap-2">
+                        <Brain className="w-4 h-4 text-purple-600 mt-0.5 flex-shrink-0" />
+                        <div className="flex-1">
+                          <h5 className="font-medium text-purple-900 mb-2">Key Concepts</h5>
+                          <div className="flex flex-wrap gap-2">
+                            <Badge className="bg-purple-100 text-purple-700">{question.category}</Badge>
+                            <Badge className="bg-purple-100 text-purple-700">{question.difficulty} Level</Badge>
+                            <Badge className="bg-purple-100 text-purple-700">{question.points} Points</Badge>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
