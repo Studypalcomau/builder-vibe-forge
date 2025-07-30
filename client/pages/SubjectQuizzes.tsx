@@ -691,9 +691,9 @@ export default function SubjectQuizzes() {
 
   // Get subtopic name from ID
   const subtopicNames: Record<string, string> = {
-    "1-0": "Domain and Range",
-    "1-1": "Function Types",
-    "1-2": "Transformations",
+    "0-0-0": "Domain and Range",
+    "0-0-1": "Function Types",
+    "0-0-2": "Transformations",
     "2-0": "Linear Functions",
     "2-1": "Quadratic Functions",
     "2-2": "Cubic Functions",
