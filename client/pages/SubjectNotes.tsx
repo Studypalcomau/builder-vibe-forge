@@ -975,7 +975,7 @@ export default function SubjectNotes() {
 
   // Handle subtopic-specific notes
   const subtopicNotes: Record<string, StudyNote[]> = {
-    "1-0": [ // Domain and Range
+    "0-0-0": [ // Domain and Range
       {
         id: "dom-note-1",
         title: "Domain and Range Guide",
@@ -989,7 +989,7 @@ export default function SubjectNotes() {
         type: "concept"
       }
     ],
-    "1-1": [ // Function Types
+    "0-0-1": [ // Function Types
       {
         id: "func-note-1",
         title: "Types of Functions",
