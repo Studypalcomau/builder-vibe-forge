@@ -217,7 +217,9 @@ export function Quiz({
         passed: finalScore >= quiz.passingScore,
         completedAt: new Date(),
         timeTaken,
-        detailedResults: detailed
+        detailedResults: detailed,
+        questionsAsked: currentQuizQuestions,
+        userAnswers: answers
       };
 
       setDetailedResults(detailed);
