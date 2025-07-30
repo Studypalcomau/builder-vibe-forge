@@ -85,7 +85,19 @@ interface QuizComponentProps {
   previousAttempts?: QuizAttempt[];
   allowRetakes?: boolean;
   requirePassingGrade?: boolean;
+  questionPool?: QuizQuestion[]; // Larger pool of questions to select from
+  questionsPerAttempt?: number; // Number of questions to show per attempt
 }
+
+// Function to randomize and select questions from a larger pool
+const selectRandomQuestions = (questionPool: QuizQuestion[], count: number): QuizQuestion[] => {
+  if (questionPool.length <= count) {
+    return [...questionPool]; // Return all questions if pool is smaller than requested count
+  }
+
+  const shuffled = [...questionPool].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count);
+};
 
 export function Quiz({
   quiz,
