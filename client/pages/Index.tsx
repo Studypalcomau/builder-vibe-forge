@@ -92,7 +92,7 @@ export default function Index() {
   ];
 
   const stats = [
-    { label: "Subject Numbers", value: "15K+", icon: Users },
+    { label: "Subjects", value: "10+", icon: Users },
     { label: "Study Topics", value: "500+", icon: BookOpen },
     { label: "Practice Questions", value: "25K+", icon: Trophy },
     { label: "Success Rate", value: "94%", icon: Star }
