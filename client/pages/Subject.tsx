@@ -403,7 +403,7 @@ export default function Subject() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {curriculum.map((unit) => {
+              {curriculum.map((unit, unitIndex) => {
                 const unitRowSpan = unit.topics.reduce((acc, topic) => acc + topic.subtopics.length, 0);
                 let firstUnit = true;
 
