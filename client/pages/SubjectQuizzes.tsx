@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
@@ -195,7 +195,7 @@ const mathematicsQuizzes: QuizData[] = [
       {
         id: "int-2",
         type: "multiple-choice", 
-        question: "Evaluate ∫₀¹ x² dx",
+        question: "Evaluate ��₀¹ x² dx",
         options: ["1/3", "1/2", "1", "2/3"],
         correctAnswer: "1/3",
         explanation: "∫x² dx = x³/3 + C. Evaluating from 0 to 1: (1³/3) - (0³/3) = 1/3 - 0 = 1/3",
