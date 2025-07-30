@@ -724,9 +724,9 @@ export function Quiz({
                           variant="outline"
                           onClick={() => {
                             console.log('Review clicked for attempt:', attempt);
+                            console.log('Attempt has detailedResults:', !!attempt.detailedResults);
                             setSelectedHistoryAttempt(attempt);
                           }}
-                          disabled={!attempt.detailedResults}
                         >
                           <Eye className="w-3 h-3 mr-1" />
                           Review
