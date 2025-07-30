@@ -735,7 +735,7 @@ export function Quiz({
       <div className="mb-6">
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm text-gray-600">
-            Question {currentQuestionIndex + 1} of {quiz.questions.length}
+            Question {currentQuestionIndex + 1} of {currentQuizQuestions.length}
           </span>
           <div className="flex items-center text-sm text-gray-600">
             <Clock className="w-4 h-4 mr-1" />
