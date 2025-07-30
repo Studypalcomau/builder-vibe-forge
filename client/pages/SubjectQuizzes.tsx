@@ -440,6 +440,158 @@ export default function SubjectQuizzes() {
   const [detailedQuizResults, setDetailedQuizResults] = useState<Record<string, DetailedQuizResult>>({});
   const [quizProgress, setQuizProgress] = useState<Record<string, QuizProgress>>({});
 
+  // Question pools for randomized quizzes
+  const questionPools: Record<string, QuizQuestion[]> = {
+    "0-0-0": [ // Domain and Range Question Pool
+      {
+        id: "dr-q1",
+        question: "What is the domain of f(x) = 1/(x-2)?",
+        type: "multiple-choice",
+        options: ["All real numbers", "All real numbers except 2", "All positive numbers", "All numbers greater than 2"],
+        correctAnswer: "All real numbers except 2",
+        explanation: "The function is undefined when x-2=0, so x cannot equal 2.",
+        workingSteps: [
+          "Identify restrictions on the function f(x) = 1/(x-2)",
+          "The function is undefined when the denominator equals zero",
+          "Set the denominator equal to zero: x - 2 = 0",
+          "Solve for x: x = 2",
+          "Therefore, x cannot equal 2",
+          "Domain: All real numbers except x = 2"
+        ],
+        difficulty: "Easy",
+        category: "Functions",
+        points: 5
+      },
+      {
+        id: "dr-q2",
+        question: "What is the range of f(x) = x²?",
+        type: "multiple-choice",
+        options: ["All real numbers", "All positive numbers", "All non-negative numbers", "All negative numbers"],
+        correctAnswer: "All non-negative numbers",
+        explanation: "Since x² is always non-negative, the range is [0, ∞).",
+        workingSteps: [
+          "Consider the function f(x) = x²",
+          "For any real number x, x² ≥ 0",
+          "The minimum value occurs when x = 0, giving f(0) = 0",
+          "As |x| increases, x² increases without bound",
+          "Therefore, f(x) can take any value ≥ 0",
+          "Range: [0, ∞) or all non-negative numbers"
+        ],
+        difficulty: "Easy",
+        category: "Functions",
+        points: 5
+      },
+      {
+        id: "dr-q3",
+        question: "What is the domain of f(x) = √(x-3)?",
+        type: "multiple-choice",
+        options: ["x ≥ 3", "x > 3", "x ≤ 3", "All real numbers"],
+        correctAnswer: "x ≥ 3",
+        explanation: "For square root to be defined, x-3 ≥ 0, so x ≥ 3.",
+        workingSteps: [
+          "For √(x-3) to be defined, the expression under the square root must be non-negative",
+          "Set up the inequality: x - 3 ≥ 0",
+          "Solve for x: x ≥ 3",
+          "Domain: x ≥ 3 or [3, ∞)"
+        ],
+        difficulty: "Medium",
+        category: "Functions",
+        points: 7
+      },
+      {
+        id: "dr-q4",
+        question: "What is the range of f(x) = -2x² + 8?",
+        type: "multiple-choice",
+        options: ["All real numbers", "y ≤ 8", "y ≥ 8", "y > 0"],
+        correctAnswer: "y ≤ 8",
+        explanation: "This is a downward parabola with vertex at (0,8), so y ≤ 8.",
+        workingSteps: [
+          "Identify the function as a quadratic: f(x) = -2x² + 8",
+          "The coefficient of x² is negative (-2), so the parabola opens downward",
+          "Find the vertex: x = 0 (since there's no linear term)",
+          "Calculate the maximum value: f(0) = -2(0)² + 8 = 8",
+          "Since the parabola opens downward, the maximum y-value is 8",
+          "Range: y ≤ 8 or (-∞, 8]"
+        ],
+        difficulty: "Medium",
+        category: "Functions",
+        points: 7
+      },
+      {
+        id: "dr-q5",
+        question: "What is the domain of f(x) = 1/√(4-x²)?",
+        type: "multiple-choice",
+        options: ["-2 < x < 2", "-2 ≤ x ≤ 2", "x < -2 or x > 2", "All real numbers"],
+        correctAnswer: "-2 < x < 2",
+        explanation: "We need 4-x² > 0, which gives -2 < x < 2.",
+        workingSteps: [
+          "For the function to be defined, the denominator cannot be zero and the expression under the square root must be positive",
+          "Set up the inequality: 4 - x² > 0 (must be positive, not just non-negative)",
+          "Rearrange: 4 > x²",
+          "Take square root: 2 > |x| or |x| < 2",
+          "This means: -2 < x < 2",
+          "Domain: (-2, 2)"
+        ],
+        difficulty: "Hard",
+        category: "Functions",
+        points: 10
+      },
+      {
+        id: "dr-q6",
+        question: "What is the domain of f(x) = ln(x-1)?",
+        type: "multiple-choice",
+        options: ["x > 1", "x ≥ 1", "x < 1", "All real numbers"],
+        correctAnswer: "x > 1",
+        explanation: "The natural logarithm is only defined for positive arguments, so x-1 > 0.",
+        workingSteps: [
+          "For ln(x-1) to be defined, the argument must be positive",
+          "Set up the inequality: x - 1 > 0",
+          "Solve for x: x > 1",
+          "Domain: (1, ∞)"
+        ],
+        difficulty: "Medium",
+        category: "Functions",
+        points: 7
+      },
+      {
+        id: "dr-q7",
+        question: "What is the range of f(x) = |x - 3|?",
+        type: "multiple-choice",
+        options: ["All real numbers", "y ≥ 0", "y ≥ 3", "y ��� -3"],
+        correctAnswer: "y ≥ 0",
+        explanation: "Absolute value functions always produce non-negative outputs.",
+        workingSteps: [
+          "The absolute value function |x - 3| measures distance from 3 on the number line",
+          "Distance is always non-negative",
+          "The minimum value occurs when x = 3: |3 - 3| = 0",
+          "As x moves away from 3, the absolute value increases without bound",
+          "Range: [0, ∞) or y ≥ 0"
+        ],
+        difficulty: "Easy",
+        category: "Functions",
+        points: 5
+      },
+      {
+        id: "dr-q8",
+        question: "What is the domain of f(x) = (x+2)/(x²-4)?",
+        type: "multiple-choice",
+        options: ["All real numbers except ±2", "All real numbers except 2", "All real numbers except -2", "All real numbers"],
+        correctAnswer: "All real numbers except ±2",
+        explanation: "The function is undefined when the denominator equals zero: x²-4 = 0, so x = ±2.",
+        workingSteps: [
+          "Find where the denominator equals zero: x² - 4 = 0",
+          "Factor: (x - 2)(x + 2) = 0",
+          "Solve: x = 2 or x = -2",
+          "The function is undefined at these points",
+          "Domain: All real numbers except x = 2 and x = -2"
+        ],
+        difficulty: "Medium",
+        category: "Functions",
+        points: 7
+      }
+    ]
+  };
+
   // Handle subtopic-specific quizzes
   const subtopicQuizzes: Record<string, QuizData[]> = {
     "0-0-0": [ // Domain and Range
