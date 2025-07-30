@@ -444,11 +444,11 @@ export default function SubjectQuizzes() {
   const subtopicQuizzes: Record<string, QuizData[]> = {
     "0-0-0": [ // Domain and Range
       {
-        id: "dom-quiz-1",
-        title: "Domain and Range Fundamentals",
+        id: "domain-range-quiz",
+        title: "Domain and Range",
         description: "Test your understanding of function domains and ranges",
         subject: "Mathematical Methods",
-        totalTime: 10,
+        totalTime: 15,
         passingScore: 70,
         questions: [
           {
