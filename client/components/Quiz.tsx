@@ -131,10 +131,10 @@ export function Quiz({
     }
   }, [questionPool, questionsPerAttempt, quiz.questions]);
 
-  const currentQuestion = quiz.questions[currentQuestionIndex];
-  const progress = ((currentQuestionIndex + 1) / quiz.questions.length) * 100;
-  const isLastQuestion = currentQuestionIndex === quiz.questions.length - 1;
-  const hasAnsweredCurrent = answers[currentQuestion?.id] !== undefined;
+  const currentQuestion = currentQuizQuestions[currentQuestionIndex];
+  const progress = ((currentQuestionIndex + 1) / currentQuizQuestions.length) * 100;
+  const isLastQuestion = currentQuestionIndex === currentQuizQuestions.length - 1;
+  const hasAnsweredCurrent = currentQuestion && answers[currentQuestion?.id] !== undefined;
 
   const calculateScore = () => {
     let correct = 0;
