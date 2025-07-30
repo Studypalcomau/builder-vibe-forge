@@ -970,15 +970,16 @@ export default function SubjectQuizzes() {
       <div className="min-h-screen bg-study-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="mb-8">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => window.history.back()}
-              className="mb-4"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back
-            </Button>
+            <Link to={`/subjects/${slug}`}>
+              <Button
+                variant="outline"
+                size="sm"
+                className="mb-4"
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back
+              </Button>
+            </Link>
           </div>
 
           <Quiz
