@@ -795,7 +795,7 @@ export default function SubjectQuizzes() {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setSelectedQuiz(null)}
+              onClick={() => window.history.back()}
               className="mb-4"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
