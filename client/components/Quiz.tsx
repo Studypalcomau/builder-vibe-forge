@@ -47,6 +47,23 @@ export interface DetailedQuizResult {
   timeTaken?: number;
 }
 
+export interface QuizAttempt {
+  attemptNumber: number;
+  score: number;
+  passed: boolean;
+  completedAt: Date;
+  timeTaken?: number;
+  detailedResults?: DetailedQuizResult;
+}
+
+export interface QuizProgress {
+  quizId: string;
+  attempts: QuizAttempt[];
+  bestScore: number;
+  hasPassed: boolean;
+  lastAttemptDate: Date;
+}
+
 export interface QuizData {
   id: string;
   title: string;
@@ -59,12 +76,23 @@ export interface QuizData {
 
 interface QuizComponentProps {
   quiz: QuizData;
-  onComplete: (score: number, answers: Record<string, any>, detailedResults?: DetailedQuizResult) => void;
+  onComplete: (score: number, answers: Record<string, any>, detailedResults?: DetailedQuizResult, attempt?: QuizAttempt) => void;
   className?: string;
   returnPath?: string;
+  previousAttempts?: QuizAttempt[];
+  allowRetakes?: boolean;
+  requirePassingGrade?: boolean;
 }
 
-export function Quiz({ quiz, onComplete, className = "", returnPath }: QuizComponentProps) {
+export function Quiz({
+  quiz,
+  onComplete,
+  className = "",
+  returnPath,
+  previousAttempts = [],
+  allowRetakes = true,
+  requirePassingGrade = false
+}: QuizComponentProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, any>>({});
   const [timeLeft, setTimeLeft] = useState(quiz.totalTime * 60);
@@ -72,6 +100,8 @@ export function Quiz({ quiz, onComplete, className = "", returnPath }: QuizCompo
   const [quizStarted, setQuizStarted] = useState(false);
   const [showDetailedReview, setShowDetailedReview] = useState(false);
   const [detailedResults, setDetailedResults] = useState<DetailedQuizResult | null>(null);
+  const [showAttemptHistory, setShowAttemptHistory] = useState(false);
+  const [quizStartTime, setQuizStartTime] = useState<Date | null>(null);
 
   const currentQuestion = quiz.questions[currentQuestionIndex];
   const progress = ((currentQuestionIndex + 1) / quiz.questions.length) * 100;
@@ -151,9 +181,20 @@ export function Quiz({ quiz, onComplete, className = "", returnPath }: QuizCompo
     if (isLastQuestion) {
       const finalScore = calculateScore();
       const detailed = calculateDetailedResults();
+      const timeTaken = quizStartTime ? (Date.now() - quizStartTime.getTime()) / 1000 : undefined;
+
+      const attempt: QuizAttempt = {
+        attemptNumber: previousAttempts.length + 1,
+        score: finalScore,
+        passed: finalScore >= quiz.passingScore,
+        completedAt: new Date(),
+        timeTaken,
+        detailedResults: detailed
+      };
+
       setDetailedResults(detailed);
       setShowResult(true);
-      onComplete(finalScore, answers, detailed);
+      onComplete(finalScore, answers, detailed, attempt);
     } else {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     }
@@ -173,6 +214,8 @@ export function Quiz({ quiz, onComplete, className = "", returnPath }: QuizCompo
     setQuizStarted(false);
     setShowDetailedReview(false);
     setDetailedResults(null);
+    setShowAttemptHistory(false);
+    setQuizStartTime(null);
   };
 
   const formatTime = (seconds: number) => {
@@ -224,13 +267,95 @@ export function Quiz({ quiz, onComplete, className = "", returnPath }: QuizCompo
               </ul>
             </div>
 
-            <Button 
-              onClick={() => setQuizStarted(true)}
-              className="w-full bg-sky-blue-500 hover:bg-sky-blue-600 text-white"
-              size="lg"
-            >
-              Start Quiz
-            </Button>
+            {/* Previous Attempts Summary */}
+            {previousAttempts.length > 0 && (
+              <div className="bg-gray-50 rounded-lg p-4">
+                <div className="flex items-center justify-between mb-3">
+                  <h4 className="font-semibold text-gray-900">Previous Attempts</h4>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setShowAttemptHistory(!showAttemptHistory)}
+                    className="text-sky-blue-600 hover:text-sky-blue-700"
+                  >
+                    {showAttemptHistory ? 'Hide' : 'Show'} History
+                  </Button>
+                </div>
+
+                <div className="grid grid-cols-3 gap-4 text-sm">
+                  <div className="text-center">
+                    <div className="font-bold text-lg text-gray-900">{previousAttempts.length}</div>
+                    <div className="text-gray-600">Attempts</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="font-bold text-lg text-gray-900">
+                      {Math.max(...previousAttempts.map(a => a.score))}%
+                    </div>
+                    <div className="text-gray-600">Best Score</div>
+                  </div>
+                  <div className="text-center">
+                    <div className={`font-bold text-lg ${
+                      previousAttempts.some(a => a.passed) ? 'text-green-600' : 'text-red-600'
+                    }`}>
+                      {previousAttempts.some(a => a.passed) ? 'PASSED' : 'NOT PASSED'}
+                    </div>
+                    <div className="text-gray-600">Status</div>
+                  </div>
+                </div>
+
+                {showAttemptHistory && (
+                  <div className="mt-4 space-y-2">
+                    {previousAttempts.slice(-3).reverse().map((attempt, index) => (
+                      <div key={index} className="flex items-center justify-between py-2 px-3 bg-white rounded border">
+                        <div className="flex items-center gap-3">
+                          <span className="text-sm font-medium">Attempt {attempt.attemptNumber}</span>
+                          <Badge className={attempt.passed ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}>
+                            {attempt.score}%
+                          </Badge>
+                        </div>
+                        <span className="text-xs text-gray-500">
+                          {attempt.completedAt.toLocaleDateString()}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Start Quiz Button */}
+            <div className="space-y-3">
+              <Button
+                onClick={() => {
+                  setQuizStarted(true);
+                  setQuizStartTime(new Date());
+                }}
+                className="w-full bg-sky-blue-500 hover:bg-sky-blue-600 text-white"
+                size="lg"
+              >
+                {previousAttempts.length > 0 ?
+                  `Start Attempt ${previousAttempts.length + 1}` :
+                  'Start Quiz'
+                }
+              </Button>
+
+              {/* Retake Instructions */}
+              {previousAttempts.length > 0 && (
+                <div className="text-center">
+                  <p className="text-sm text-gray-600">
+                    {previousAttempts.some(a => a.passed) ? (
+                      requirePassingGrade ?
+                        "You've already passed this quiz. Retaking is optional for practice." :
+                        "Retake to improve your score or for additional practice."
+                    ) : (
+                      requirePassingGrade ?
+                        `You need ${quiz.passingScore}% to pass. Keep trying!` :
+                        "Retake to improve your understanding and score."
+                    )}
+                  </p>
+                </div>
+              )}
+            </div>
           </CardContent>
         </Card>
       </div>
@@ -259,7 +384,15 @@ export function Quiz({ quiz, onComplete, className = "", returnPath }: QuizCompo
               {passed ? 'Congratulations!' : 'Keep Studying!'}
             </CardTitle>
             <p className="text-gray-600">
-              {passed ? 'You passed the quiz!' : 'You can retake this quiz anytime.'}
+              {passed ? (
+                requirePassingGrade ?
+                  'Congratulations! You\'ve met the passing requirement.' :
+                  'Great job! You passed the quiz.'
+              ) : (
+                requirePassingGrade ?
+                  `You need ${quiz.passingScore}% to pass. You can retake this quiz.` :
+                  'You can retake this quiz anytime to improve your score.'
+              )}
             </p>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -270,7 +403,11 @@ export function Quiz({ quiz, onComplete, className = "", returnPath }: QuizCompo
               </Badge>
             </div>
 
-            <div className="grid grid-cols-3 gap-4 text-center">
+            <div className="grid grid-cols-4 gap-3 text-center">
+              <div className="p-3 bg-sky-blue-50 rounded-lg">
+                <div className="font-bold text-lg">{previousAttempts.length + 1}</div>
+                <div className="text-sm text-gray-600">Attempt #</div>
+              </div>
               <div className="p-3 bg-sky-blue-50 rounded-lg">
                 <div className="font-bold text-lg">{Object.keys(answers).length}</div>
                 <div className="text-sm text-gray-600">Answered</div>
@@ -294,16 +431,28 @@ export function Quiz({ quiz, onComplete, className = "", returnPath }: QuizCompo
                 Review Answers
               </Button>
               <div className="flex gap-3">
+                {(allowRetakes && (!requirePassingGrade || !passed)) && (
+                  <Button
+                    onClick={resetQuiz}
+                    variant="outline"
+                    className="flex-1"
+                  >
+                    <RotateCcw className="w-4 h-4 mr-2" />
+                    Retake Quiz
+                  </Button>
+                )}
+                {(allowRetakes && passed && !requirePassingGrade) && (
+                  <Button
+                    onClick={resetQuiz}
+                    variant="outline"
+                    className="flex-1"
+                  >
+                    <RotateCcw className="w-4 h-4 mr-2" />
+                    Practice Again
+                  </Button>
+                )}
                 <Button
-                  onClick={resetQuiz}
-                  variant="outline"
-                  className="flex-1"
-                >
-                  <RotateCcw className="w-4 h-4 mr-2" />
-                  Retake Quiz
-                </Button>
-                <Button
-                  className="flex-1 bg-sky-blue-500 hover:bg-sky-blue-600 text-white"
+                  className={`${allowRetakes && (!requirePassingGrade || !passed) ? 'flex-1' : 'w-full'} bg-sky-blue-500 hover:bg-sky-blue-600 text-white`}
                   onClick={() => {
                     if (returnPath) {
                       window.location.href = returnPath;
@@ -312,7 +461,7 @@ export function Quiz({ quiz, onComplete, className = "", returnPath }: QuizCompo
                     }
                   }}
                 >
-                  Continue Studying
+                  {passed ? 'Continue Studying' : 'Back to Lessons'}
                 </Button>
               </div>
             </div>
@@ -475,16 +624,18 @@ export function Quiz({ quiz, onComplete, className = "", returnPath }: QuizCompo
 
         {/* Bottom Actions */}
         <div className="mt-8 flex flex-col sm:flex-row gap-4">
+          {allowRetakes && (
+            <Button
+              onClick={resetQuiz}
+              variant="outline"
+              className="flex-1"
+            >
+              <RotateCcw className="w-4 h-4 mr-2" />
+              Retake Quiz
+            </Button>
+          )}
           <Button
-            onClick={resetQuiz}
-            variant="outline"
-            className="flex-1"
-          >
-            <RotateCcw className="w-4 h-4 mr-2" />
-            Retake Quiz
-          </Button>
-          <Button
-            className="flex-1 bg-sky-blue-500 hover:bg-sky-blue-600 text-white"
+            className={`${allowRetakes ? 'flex-1' : 'w-full'} bg-sky-blue-500 hover:bg-sky-blue-600 text-white`}
             onClick={() => {
               if (returnPath) {
                 window.location.href = returnPath;
