@@ -616,7 +616,7 @@ export default function SubjectQuizzes() {
         ]
       }
     ],
-    "1-2": [ // Transformations
+    "0-0-2": [ // Transformations
       {
         id: "trans-quiz-1",
         title: "Function Transformations Basics",
