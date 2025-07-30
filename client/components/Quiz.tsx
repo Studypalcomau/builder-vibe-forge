@@ -257,14 +257,9 @@ export function Quiz({
               </div>
             </div>
             
-            <div className="space-y-3">
-              <h4 className="font-semibold">Quiz Instructions:</h4>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Answer all questions to the best of your ability</li>
-                <li>• You can go back to previous questions</li>
-                <li>• Passing score: {quiz.passingScore}%</li>
-                <li>• Take your time and read carefully</li>
-              </ul>
+            <div className="text-center p-4 bg-sky-blue-50 rounded-lg">
+              <div className="text-sm text-gray-600 mb-1">Passing Score</div>
+              <div className="text-2xl font-bold text-gray-900">{quiz.passingScore}%</div>
             </div>
 
             {/* Previous Attempts Summary */}
