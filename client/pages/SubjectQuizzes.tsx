@@ -917,6 +917,64 @@ export default function SubjectQuizzes() {
 
   const subtopicName = subtopicId ? subtopicNames[subtopicId] : null;
 
+  // Mock test history data
+  const mockTestHistory = [
+    {
+      id: "attempt-1",
+      date: "2024-12-15",
+      score: 85,
+      totalQuestions: 45,
+      timeSpent: 42,
+      passed: true,
+      type: "comprehensive"
+    },
+    {
+      id: "attempt-2",
+      date: "2024-11-28",
+      score: 67,
+      totalQuestions: 42,
+      timeSpent: 38,
+      passed: false,
+      type: "comprehensive"
+    },
+    {
+      id: "attempt-3",
+      date: "2024-11-15",
+      score: 72,
+      totalQuestions: 40,
+      timeSpent: 35,
+      passed: true,
+      type: "comprehensive"
+    }
+  ];
+
+  const mockTopicHistory = [
+    {
+      id: "topic-attempt-1",
+      date: "2024-12-10",
+      score: 95,
+      totalQuestions: 8,
+      timeSpent: 12,
+      passed: true
+    },
+    {
+      id: "topic-attempt-2",
+      date: "2024-12-01",
+      score: 78,
+      totalQuestions: 8,
+      timeSpent: 15,
+      passed: true
+    },
+    {
+      id: "topic-attempt-3",
+      date: "2024-11-20",
+      score: 65,
+      totalQuestions: 8,
+      timeSpent: 18,
+      passed: false
+    }
+  ];
+
   const handleQuizComplete = (score: number, answers: Record<string, any>, detailedResults?: DetailedQuizResult, attempt?: QuizAttempt) => {
     if (selectedQuiz) {
       // Update latest score for quick access
