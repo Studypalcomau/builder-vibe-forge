@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
@@ -442,13 +442,13 @@ export default function SubjectQuizzes() {
 
   // Handle subtopic-specific quizzes
   const subtopicQuizzes: Record<string, QuizData[]> = {
-    "0-0-0": [ // Domain and Range
+    "1-0": [ // Domain and Range
       {
-        id: "domain-range-quiz",
-        title: "Domain and Range",
+        id: "dom-quiz-1",
+        title: "Domain and Range Fundamentals",
         description: "Test your understanding of function domains and ranges",
         subject: "Mathematical Methods",
-        totalTime: 15,
+        totalTime: 10,
         passingScore: 70,
         questions: [
           {
@@ -458,14 +458,6 @@ export default function SubjectQuizzes() {
             options: ["All real numbers", "All real numbers except 2", "All positive numbers", "All numbers greater than 2"],
             correctAnswer: "All real numbers except 2",
             explanation: "The function is undefined when x-2=0, so x cannot equal 2.",
-            workingSteps: [
-              "Identify restrictions on the function f(x) = 1/(x-2)",
-              "The function is undefined when the denominator equals zero",
-              "Set the denominator equal to zero: x - 2 = 0",
-              "Solve for x: x = 2",
-              "Therefore, x cannot equal 2",
-              "Domain: All real numbers except x = 2"
-            ],
             difficulty: "Easy",
             category: "Functions",
             points: 5
@@ -477,14 +469,6 @@ export default function SubjectQuizzes() {
             options: ["All real numbers", "All positive numbers", "All non-negative numbers", "All negative numbers"],
             correctAnswer: "All non-negative numbers",
             explanation: "Since x² is always non-negative, the range is [0, ∞).",
-            workingSteps: [
-              "Consider the function f(x) = x²",
-              "For any real number x, x² ≥ 0",
-              "The minimum value occurs when x = 0, giving f(0) = 0",
-              "As |x| increases, x² increases without bound",
-              "Therefore, f(x) can take any value ≥ 0",
-              "Range: [0, ∞) or all non-negative numbers"
-            ],
             difficulty: "Easy",
             category: "Functions",
             points: 5
@@ -545,7 +529,7 @@ export default function SubjectQuizzes() {
         ]
       }
     ],
-    "0-0-1": [ // Function Types
+    "1-1": [ // Function Types
       {
         id: "func-quiz-1",
         title: "Linear Functions Basics",
@@ -632,7 +616,7 @@ export default function SubjectQuizzes() {
         ]
       }
     ],
-    "0-0-2": [ // Transformations
+    "1-2": [ // Transformations
       {
         id: "trans-quiz-1",
         title: "Function Transformations Basics",
@@ -683,14 +667,6 @@ export default function SubjectQuizzes() {
     : (subjectQuizzes[slug as string] || []);
   const hasQuizzes = quizzes.length > 0;
 
-  // Auto-start quiz if accessing via subtopic ID
-  useEffect(() => {
-    if (subtopicId && hasQuizzes && !selectedQuiz) {
-      // Only use the first quiz for each subtopic - no multiple options
-      setSelectedQuiz(quizzes[0]);
-    }
-  }, [subtopicId, hasQuizzes, quizzes, selectedQuiz]);
-
   const subjectNames: Record<string, string> = {
     biology: "Biology",
     mathematics: "Mathematics",
@@ -707,18 +683,18 @@ export default function SubjectQuizzes() {
 
   // Get subtopic name from ID
   const subtopicNames: Record<string, string> = {
-    "0-0-0": "Domain and Range",
-    "0-0-1": "Function Types",
-    "0-0-2": "Transformations",
-    "0-1-0": "Linear Functions",
-    "0-1-1": "Quadratic Functions",
-    "0-1-2": "Cubic Functions",
-    "1-0-0": "Limits",
-    "1-0-1": "Derivatives",
-    "1-0-2": "Chain Rule",
-    "1-1-0": "Antiderivatives",
-    "1-1-1": "Definite Integrals",
-    "1-1-2": "Applications"
+    "1-0": "Domain and Range",
+    "1-1": "Function Types",
+    "1-2": "Transformations",
+    "2-0": "Linear Functions",
+    "2-1": "Quadratic Functions",
+    "2-2": "Cubic Functions",
+    "3-0": "Limits",
+    "3-1": "Derivatives",
+    "3-2": "Chain Rule",
+    "4-0": "Antiderivatives",
+    "4-1": "Definite Integrals",
+    "4-2": "Applications"
   };
 
   const subtopicName = subtopicId ? subtopicNames[subtopicId] : null;
