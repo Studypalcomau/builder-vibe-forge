@@ -1079,15 +1079,16 @@ export default function SubjectNotes() {
       <div className="min-h-screen bg-study-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="mb-8">
-            <Button 
-              variant="outline" 
-              size="sm"
-              onClick={() => setSelectedNote(null)}
-              className="mb-4"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Notes
-            </Button>
+            <Link to={`/subjects/${slug}`}>
+              <Button
+                variant="outline"
+                size="sm"
+                className="mb-4"
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Curriculum
+              </Button>
+            </Link>
           </div>
           
           <Card className="border-sky-blue-200">
