@@ -469,7 +469,7 @@ export default function Subject() {
                               <span>Cards {subtopic.flashcards}</span>
                             </Link>
                             <Link
-                              to={`/subjects/${slug}/quizzes`}
+                              to={`/subjects/${slug}/quiz/${unitIndex}-${topicIndex}-${subtopicIndex}`}
                               className="inline-flex items-center px-1.5 py-1 text-xs font-medium rounded text-green-700 bg-green-100 hover:bg-green-200 transition-colors"
                             >
                               <Trophy className="w-3 h-3 mr-1" />
