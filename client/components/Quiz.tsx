@@ -24,6 +24,7 @@ export interface QuizQuestion {
   options?: string[];
   correctAnswer: string | number;
   explanation: string;
+  workingSteps?: string[]; // Step-by-step working
   difficulty: "Easy" | "Medium" | "Hard";
   category: string;
   points: number;
