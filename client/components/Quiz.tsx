@@ -140,7 +140,7 @@ export function Quiz({
     let correct = 0;
     let totalPoints = 0;
 
-    quiz.questions.forEach(question => {
+    currentQuizQuestions.forEach(question => {
       totalPoints += question.points;
       const userAnswer = answers[question.id];
 
@@ -162,7 +162,7 @@ export function Quiz({
     let totalPointsEarned = 0;
     let totalPointsPossible = 0;
 
-    quiz.questions.forEach(question => {
+    currentQuizQuestions.forEach(question => {
       const userAnswer = answers[question.id];
       let isCorrect = false;
 
