@@ -140,6 +140,14 @@ const mathematicsQuizzes: QuizData[] = [
         question: "If f(x) = sin(x), what is f'(π/2)? (Enter the exact numerical value)",
         correctAnswer: 0,
         explanation: "f'(x) = cos(x), so f'(π/2) = cos(π/2) = 0.",
+        workingSteps: [
+          "Given: f(x) = sin(x)",
+          "Find the derivative: f'(x) = d/dx[sin(x)]",
+          "Apply the trigonometric derivative rule: d/dx[sin(x)] = cos(x)",
+          "So f'(x) = cos(x)",
+          "Evaluate at x = π/2: f'(π/2) = cos(π/2)",
+          "From the unit circle: cos(π/2) = 0"
+        ],
         difficulty: "Medium",
         category: "Trigonometric Derivatives",
         points: 7
