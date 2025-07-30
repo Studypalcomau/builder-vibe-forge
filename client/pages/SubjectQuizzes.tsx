@@ -637,7 +637,7 @@ export default function SubjectQuizzes() {
         questions: [
           {
             id: "q1",
-            question: "What is the domain of f(x) = ��(x-3)?",
+            question: "What is the domain of f(x) = ���(x-3)?",
             type: "multiple-choice",
             options: ["x ≥ 3", "x > 3", "x ≤ 3", "All real numbers"],
             correctAnswer: "x ≥ 3",
@@ -962,6 +962,8 @@ export default function SubjectQuizzes() {
             previousAttempts={quizProgress[selectedQuiz.id]?.attempts || []}
             allowRetakes={true}
             requirePassingGrade={false}
+            questionPool={subtopicId ? questionPools[subtopicId] : undefined}
+            questionsPerAttempt={5}
           />
         </div>
       </div>
