@@ -465,6 +465,18 @@ export default function SubjectQuizzes() {
 
   // Detect if this is the full test mode
   const isFullTest = window.location.pathname.includes('/test');
+
+  const subjectNames: Record<string, string> = {
+    biology: "Biology",
+    mathematics: "Mathematics",
+    "mathematical-methods": "Mathematical Methods",
+    "specialist-mathematics": "Specialist Mathematics",
+    physics: "Physics",
+    english: "English",
+    chemistry: "Chemistry",
+    engineering: "Engineering",
+    economics: "Economics"
+  };
   const [quizResults, setQuizResults] = useState<Record<string, number>>({});
   const [detailedQuizResults, setDetailedQuizResults] = useState<Record<string, DetailedQuizResult>>({});
   const [quizProgress, setQuizProgress] = useState<Record<string, QuizProgress>>({});
