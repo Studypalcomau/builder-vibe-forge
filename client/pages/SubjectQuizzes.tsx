@@ -460,11 +460,13 @@ const decodeCurriculumInfo = (subtopicId: string): CurriculumDetails | null => {
 };
 
 export default function SubjectQuizzes() {
-  const { slug, subtopicId } = useParams();
+  const { slug, subtopicId, attemptId } = useParams();
   const [selectedQuiz, setSelectedQuiz] = useState<QuizData | null>(null);
 
-  // Detect if this is the full test mode
-  const isFullTest = window.location.pathname.includes('/test');
+  // Detect different modes based on URL
+  const isFullTest = window.location.pathname.includes('/test') && !window.location.pathname.includes('/history');
+  const isTestHistory = window.location.pathname.includes('/test/history');
+  const isTopicHistory = window.location.pathname.includes('/quiz/') && window.location.pathname.includes('/history');
 
   const subjectNames: Record<string, string> = {
     biology: "Biology",
