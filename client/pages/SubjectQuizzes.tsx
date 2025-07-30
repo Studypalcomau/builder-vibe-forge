@@ -439,6 +439,26 @@ const getSubtopicId = (subtopicName: string): string => {
   return subtopicName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
 };
 
+// Function to decode subtopic ID into curriculum details
+const decodeCurriculumInfo = (subtopicId: string): CurriculumDetails | null => {
+  const curriculumMapping: Record<string, CurriculumDetails> = {
+    "0-0-0": { unitName: "Unit 1: Functions and Relations", topicName: "Functions and Relations", subtopicName: "Domain and Range" },
+    "0-0-1": { unitName: "Unit 1: Functions and Relations", topicName: "Functions and Relations", subtopicName: "Function Types" },
+    "0-0-2": { unitName: "Unit 1: Functions and Relations", topicName: "Functions and Relations", subtopicName: "Transformations" },
+    "0-1-0": { unitName: "Unit 1: Functions and Relations", topicName: "Advanced Functions", subtopicName: "Linear Functions" },
+    "0-1-1": { unitName: "Unit 1: Functions and Relations", topicName: "Advanced Functions", subtopicName: "Quadratic Functions" },
+    "0-1-2": { unitName: "Unit 1: Functions and Relations", topicName: "Advanced Functions", subtopicName: "Cubic Functions" },
+    "1-0-0": { unitName: "Unit 2: Calculus", topicName: "Differential Calculus", subtopicName: "Limits" },
+    "1-0-1": { unitName: "Unit 2: Calculus", topicName: "Differential Calculus", subtopicName: "Derivatives" },
+    "1-0-2": { unitName: "Unit 2: Calculus", topicName: "Differential Calculus", subtopicName: "Chain Rule" },
+    "1-1-0": { unitName: "Unit 2: Calculus", topicName: "Integral Calculus", subtopicName: "Antiderivatives" },
+    "1-1-1": { unitName: "Unit 2: Calculus", topicName: "Integral Calculus", subtopicName: "Definite Integrals" },
+    "1-1-2": { unitName: "Unit 2: Calculus", topicName: "Integral Calculus", subtopicName: "Applications" }
+  };
+
+  return curriculumMapping[subtopicId] || null;
+};
+
 export default function SubjectQuizzes() {
   const { slug, subtopicId } = useParams();
   const [selectedQuiz, setSelectedQuiz] = useState<QuizData | null>(null);
