@@ -77,6 +77,12 @@ export interface QuizData {
   passingScore: number; // percentage
 }
 
+interface CurriculumInfo {
+  unitName: string;
+  topicName: string;
+  subtopicName: string;
+}
+
 interface QuizComponentProps {
   quiz: QuizData;
   onComplete: (score: number, answers: Record<string, any>, detailedResults?: DetailedQuizResult, attempt?: QuizAttempt) => void;
@@ -87,6 +93,7 @@ interface QuizComponentProps {
   requirePassingGrade?: boolean;
   questionPool?: QuizQuestion[]; // Larger pool of questions to select from
   questionsPerAttempt?: number; // Number of questions to show per attempt
+  curriculumInfo?: CurriculumInfo; // Unit, topic, subtopic information
 }
 
 // Function to randomize and select questions from a larger pool
