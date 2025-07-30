@@ -442,7 +442,7 @@ export default function SubjectQuizzes() {
 
   // Handle subtopic-specific quizzes
   const subtopicQuizzes: Record<string, QuizData[]> = {
-    "1-0": [ // Domain and Range
+    "0-0-0": [ // Domain and Range
       {
         id: "dom-quiz-1",
         title: "Domain and Range Fundamentals",
