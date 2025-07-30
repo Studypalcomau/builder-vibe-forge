@@ -118,6 +118,8 @@ export function Quiz({
   const [showDetailedReview, setShowDetailedReview] = useState(false);
   const [detailedResults, setDetailedResults] = useState<DetailedQuizResult | null>(null);
   const [showAttemptHistory, setShowAttemptHistory] = useState(false);
+  const [showTestHistory, setShowTestHistory] = useState(false);
+  const [selectedHistoryAttempt, setSelectedHistoryAttempt] = useState<QuizAttempt | null>(null);
   const [quizStartTime, setQuizStartTime] = useState<Date | null>(null);
   const [currentQuizQuestions, setCurrentQuizQuestions] = useState<QuizQuestion[]>([]);
 
