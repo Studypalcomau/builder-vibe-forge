@@ -121,7 +121,7 @@ const mathematicsQuizzes: QuizData[] = [
         question: "Find the limit: lim(x→2) (x² - 4)/(x - 2)",
         options: ["0", "2", "4", "undefined"],
         correctAnswer: "4",
-        explanation: "Factor the numerator: (x² - 4) = (x - 2)(x + 2). Cancel (x - 2) terms. The limit becomes lim(x→2) (x + 2) = 4.",
+        explanation: "Factor the numerator: (x�� - 4) = (x - 2)(x + 2). Cancel (x - 2) terms. The limit becomes lim(x→2) (x + 2) = 4.",
         workingSteps: [
           "Start with lim(x→2) (x² - 4)/(x - 2)",
           "Notice direct substitution gives 0/0 (indeterminate form)",
@@ -799,7 +799,7 @@ export default function SubjectQuizzes() {
               className="mb-4"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Quiz List
+              Back
             </Button>
           </div>
 
