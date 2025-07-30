@@ -1010,6 +1010,11 @@ export default function SubjectNotes() {
     : (subjectNotes[slug as string] || []);
   const hasNotes = notes.length > 0;
 
+  // Auto-select the single note for subtopic-specific pages
+  if (subtopicId && notes.length > 0 && !selectedNote) {
+    setSelectedNote(notes[0]);
+  }
+
   const subjectNames: Record<string, string> = {
     biology: "Biology",
     mathematics: "Mathematics",
