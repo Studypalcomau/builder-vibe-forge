@@ -1101,7 +1101,7 @@ export function Quiz({
                     }
                   }}
                 >
-                  {passed ? 'Continue Studying' : 'Back to Lessons'}
+                  {passed ? 'Continue Studying' : 'Back to Curriculum'}
                 </Button>
               </div>
             </div>
