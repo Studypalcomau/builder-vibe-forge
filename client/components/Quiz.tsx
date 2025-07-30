@@ -744,8 +744,8 @@ export function Quiz({
   }
 
   // Historical Attempt Review screen
-  if (selectedHistoryAttempt && selectedHistoryAttempt.detailedResults) {
-    const historyResults = selectedHistoryAttempt.detailedResults;
+  if (selectedHistoryAttempt) {
+    const historyResults = selectedHistoryAttempt.detailedResults || calculateDetailedResults();
     const historyQuestions = selectedHistoryAttempt.questionsAsked || currentQuizQuestions;
 
     return (
