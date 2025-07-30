@@ -407,6 +407,166 @@ export default function Subject() {
         </div>
       </section>
 
+      {/* Test History & Progress Review */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Test History & Progress Review</h2>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          {/* Comprehensive Test History */}
+          <Card className="border-sky-blue-200">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Trophy className="w-5 h-5 text-orange-500" />
+                Comprehensive Tests
+              </CardTitle>
+              <CardDescription>
+                Full subject assessments covering all topics
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                  <div>
+                    <div className="font-medium text-sm">December 15, 2024</div>
+                    <div className="text-xs text-gray-600">45 questions • 85% score</div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Badge className="bg-green-100 text-green-700">Passed</Badge>
+                    <Link to={`/subjects/${slug}/test/history/latest`}>
+                      <Button size="sm" variant="outline" className="text-xs">
+                        Review
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                  <div>
+                    <div className="font-medium text-sm">November 28, 2024</div>
+                    <div className="text-xs text-gray-600">42 questions • 67% score</div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Badge className="bg-red-100 text-red-700">Needs Work</Badge>
+                    <Link to={`/subjects/${slug}/test/history/attempt-2`}>
+                      <Button size="sm" variant="outline" className="text-xs">
+                        Review
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+                <Link to={`/subjects/${slug}/test/history`}>
+                  <Button variant="outline" className="w-full mt-3">
+                    <TrendingUp className="w-4 h-4 mr-2" />
+                    View All Comprehensive Tests
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Topic-Level Progress */}
+          <Card className="border-sky-blue-200">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Brain className="w-5 h-5 text-blue-500" />
+                Topic Performance
+              </CardTitle>
+              <CardDescription>
+                Individual topic and subtopic test results
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                  <div>
+                    <div className="font-medium text-sm">Domain and Range</div>
+                    <div className="text-xs text-gray-600">Latest: 95% • 3 attempts</div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Badge className="bg-green-100 text-green-700">Mastered</Badge>
+                    <Link to={`/subjects/${slug}/quiz/0-0-0/history`}>
+                      <Button size="sm" variant="outline" className="text-xs">
+                        History
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                  <div>
+                    <div className="font-medium text-sm">Function Types</div>
+                    <div className="text-xs text-gray-600">Latest: 78% • 2 attempts</div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Badge className="bg-yellow-100 text-yellow-700">Good</Badge>
+                    <Link to={`/subjects/${slug}/quiz/0-0-1/history`}>
+                      <Button size="sm" variant="outline" className="text-xs">
+                        History
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+                <Link to={`/subjects/${slug}/progress`}>
+                  <Button variant="outline" className="w-full mt-3">
+                    <FileText className="w-4 h-4 mr-2" />
+                    View All Topic Results
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Performance Trends */}
+        <Card className="border-sky-blue-200">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <TrendingUp className="w-5 h-5 text-green-500" />
+              Performance Trends
+            </CardTitle>
+            <CardDescription>
+              Your progress over time across all test types
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="text-center p-4 bg-blue-50 rounded-lg">
+                <div className="text-2xl font-bold text-blue-600">8</div>
+                <div className="text-sm text-gray-600">Tests Taken</div>
+                <div className="text-xs text-gray-500">This month</div>
+              </div>
+              <div className="text-center p-4 bg-green-50 rounded-lg">
+                <div className="text-2xl font-bold text-green-600">82%</div>
+                <div className="text-sm text-gray-600">Average Score</div>
+                <div className="text-xs text-green-600">↑ 12% from last month</div>
+              </div>
+              <div className="text-center p-4 bg-orange-50 rounded-lg">
+                <div className="text-2xl font-bold text-orange-600">6</div>
+                <div className="text-sm text-gray-600">Topics Mastered</div>
+                <div className="text-xs text-gray-500">Score &gt; 85%</div>
+              </div>
+              <div className="text-center p-4 bg-purple-50 rounded-lg">
+                <div className="text-2xl font-bold text-purple-600">3</div>
+                <div className="text-sm text-gray-600">Areas to Improve</div>
+                <div className="text-xs text-gray-500">Score &lt; 70%</div>
+              </div>
+            </div>
+            <div className="mt-4 flex gap-3">
+              <Link to={`/subjects/${slug}/analytics`}>
+                <Button variant="outline" className="flex-1">
+                  <TrendingUp className="w-4 h-4 mr-2" />
+                  Detailed Analytics
+                </Button>
+              </Link>
+              <Link to={`/subjects/${slug}/recommendations`}>
+                <Button variant="outline" className="flex-1">
+                  <Brain className="w-4 h-4 mr-2" />
+                  Study Recommendations
+                </Button>
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+
       {/* Curriculum Structure */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Curriculum Structure</h2>
