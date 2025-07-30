@@ -192,7 +192,7 @@ export function Quiz({
 
     return {
       score,
-      totalQuestions: quiz.questions.length,
+      totalQuestions: currentQuizQuestions.length,
       correctAnswers: correctCount,
       results
     };
