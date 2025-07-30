@@ -82,7 +82,7 @@ export default function About() {
     {
       year: "2021",
       title: "Founded",
-      description: "StudyMate QLD was founded by Queensland educators to address the gap in curriculum-specific study resources."
+      description: "StudyPal QLD was founded by Queensland educators to address the gap in curriculum-specific study resources."
     },
     {
       year: "2022",
@@ -103,13 +103,13 @@ export default function About() {
 
   const testimonials = [
     {
-      quote: "StudyMate QLD completely transformed how I approach studying. The practice quizzes helped me identify my weak areas and the flashcards made memorization so much easier.",
+      quote: "StudyPal QLD completely transformed how I approach studying. The practice quizzes helped me identify my weak areas and the flashcards made memorization so much easier.",
       author: "Jessica M.",
       grade: "Year 12 Student",
       subject: "Mathematical Methods"
     },
     {
-      quote: "As a teacher, I recommend StudyMate QLD to all my students. The content is perfectly aligned with our curriculum and helps students practice at their own pace.",
+      quote: "As a teacher, I recommend StudyPal QLD to all my students. The content is perfectly aligned with our curriculum and helps students practice at their own pace.",
       author: "Mr. David Thompson",
       role: "Mathematics Teacher",
       school: "Brisbane State High School"
@@ -136,7 +136,7 @@ export default function About() {
       {/* Hero Section */}
       <section className="text-center mb-16">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-          About StudyMate QLD
+          About StudyPal QLD
         </h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
           We're on a mission to help every Queensland Year 11-12 student achieve their academic goals 
@@ -175,7 +175,7 @@ export default function About() {
           <div>
             <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Mission</h2>
             <p className="text-lg text-gray-600 mb-6">
-              StudyMate QLD was born from a simple observation: Queensland students needed study resources 
+              StudyPal QLD was born from a simple observation: Queensland students needed study resources 
               that were specifically designed for their curriculum, not generic materials that didn't quite fit.
             </p>
             <p className="text-lg text-gray-600 mb-6">
@@ -297,7 +297,7 @@ export default function About() {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">What Our Community Says</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Hear from students and teachers who use StudyMate QLD every day.
+            Hear from students and teachers who use StudyPal QLD every day.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -322,10 +322,10 @@ export default function About() {
 
       {/* CTA Section */}
       <section className="bg-gradient-to-r from-sky-blue-500 to-sky-blue-600 rounded-lg text-white p-12 text-center">
-        <h2 className="text-3xl font-bold mb-4">Join the StudyMate QLD Community</h2>
+        <h2 className="text-3xl font-bold mb-4">Join the StudyPal QLD Community</h2>
         <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
           Ready to transform your study experience? Join thousands of Queensland students 
-          who are already achieving their academic goals with StudyMate QLD.
+          who are already achieving their academic goals with StudyPal QLD.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link to="/signup">

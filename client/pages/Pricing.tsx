@@ -130,7 +130,7 @@ export default function Pricing() {
             Choose Your Study Plan
           </h1>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
-            Start with our free plan or unlock your full potential with StudyMate Pro. 
+            Start with our free plan or unlock your full potential with StudyPal Pro. 
             All plans include access to Queensland curriculum-aligned content.
           </p>
 
@@ -294,7 +294,7 @@ export default function Pricing() {
         {/* Feature Comparison */}
         <div className="mb-16">
           <h2 className="text-2xl font-bold text-gray-900 text-center mb-8">
-            Why Choose StudyMate QLD?
+            Why Choose StudyPal QLD?
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -348,7 +348,7 @@ export default function Pricing() {
               Ready to Transform Your Study Experience?
             </h2>
             <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-              Join thousands of Queensland students who are already achieving better results with StudyMate. 
+              Join thousands of Queensland students who are already achieving better results with StudyPal. 
               Start your free trial today - no credit card required.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

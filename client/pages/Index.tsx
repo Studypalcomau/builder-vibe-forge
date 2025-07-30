@@ -258,7 +258,7 @@ export default function Index() {
             Ready to Excel in Your Exams?
           </h2>
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-            Join thousands of Queensland students who are already using StudyMate to achieve their academic goals.
+            Join thousands of Queensland students who are already using StudyPal to achieve their academic goals.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/login">
