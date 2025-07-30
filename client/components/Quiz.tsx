@@ -119,6 +119,17 @@ export function Quiz({
   const [detailedResults, setDetailedResults] = useState<DetailedQuizResult | null>(null);
   const [showAttemptHistory, setShowAttemptHistory] = useState(false);
   const [quizStartTime, setQuizStartTime] = useState<Date | null>(null);
+  const [currentQuizQuestions, setCurrentQuizQuestions] = useState<QuizQuestion[]>([]);
+
+  // Initialize quiz questions (randomized if question pool provided)
+  useEffect(() => {
+    if (questionPool && questionPool.length > 0) {
+      const selectedQuestions = selectRandomQuestions(questionPool, questionsPerAttempt);
+      setCurrentQuizQuestions(selectedQuestions);
+    } else {
+      setCurrentQuizQuestions(quiz.questions);
+    }
+  }, [questionPool, questionsPerAttempt, quiz.questions]);
 
   const currentQuestion = quiz.questions[currentQuestionIndex];
   const progress = ((currentQuestionIndex + 1) / quiz.questions.length) * 100;
