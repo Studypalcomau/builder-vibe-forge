@@ -115,7 +115,8 @@ export function Quiz({
   allowRetakes = true,
   requirePassingGrade = false,
   questionPool,
-  questionsPerAttempt = 5
+  questionsPerAttempt = 5,
+  curriculumInfo
 }: QuizComponentProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, any>>({});
