@@ -466,7 +466,7 @@ export default function Subject() {
                               className="inline-flex items-center px-1.5 py-1 text-xs font-medium rounded text-blue-700 bg-blue-100 hover:bg-blue-200 transition-colors"
                             >
                               <Brain className="w-3 h-3 mr-1" />
-                              <span>Cards {subtopic.flashcards}</span>
+                              <span>Cards</span>
                             </Link>
                             <Link
                               to={`/subjects/${slug}/quiz/${unitIndex}-${topicIndex}-${subtopicIndex}`}
@@ -480,7 +480,7 @@ export default function Subject() {
                               className="inline-flex items-center px-1.5 py-1 text-xs font-medium rounded text-purple-700 bg-purple-100 hover:bg-purple-200 transition-colors"
                             >
                               <FileText className="w-3 h-3 mr-1" />
-                              <span>Notes 1</span>
+                              <span>Notes</span>
                             </Link>
                           </div>
                         </TableCell>
