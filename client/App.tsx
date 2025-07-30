@@ -53,7 +53,28 @@ const App = () => (
             <Route path="/subjects/:slug/flashcards" element={<SubjectFlashcards />} />
             <Route path="/subjects/:slug/quizzes" element={<SubjectQuizzes />} />
             <Route path="/subjects/:slug/quiz/:subtopicId" element={<SubjectQuizzes />} />
+            <Route path="/subjects/:slug/quiz/:subtopicId/history" element={<SubjectQuizzes />} />
             <Route path="/subjects/:slug/test" element={<SubjectQuizzes />} />
+            <Route path="/subjects/:slug/test/history" element={<SubjectQuizzes />} />
+            <Route path="/subjects/:slug/test/history/:attemptId" element={<SubjectQuizzes />} />
+            <Route path="/subjects/:slug/progress" element={
+              <PlaceholderPage
+                title="Topic Progress Analytics"
+                description="Detailed analytics for individual topic and subtopic performance over time."
+              />
+            } />
+            <Route path="/subjects/:slug/analytics" element={
+              <PlaceholderPage
+                title="Performance Analytics"
+                description="Comprehensive analytics dashboard showing learning trends and performance insights."
+              />
+            } />
+            <Route path="/subjects/:slug/recommendations" element={
+              <PlaceholderPage
+                title="Study Recommendations"
+                description="Personalized study recommendations based on your performance data and learning patterns."
+              />
+            } />
             <Route path="/subjects/:slug/notes" element={<SubjectNotes />} />
             <Route path="/subjects/:slug/notes/:subtopicId" element={<SubjectNotes />} />
             <Route path="/subjects/:slug/topics/:topicId" element={<TopicContent />} />
