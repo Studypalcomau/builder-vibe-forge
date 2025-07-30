@@ -179,6 +179,15 @@ const mathematicsQuizzes: QuizData[] = [
         options: ["x² + C", "2x² + C", "x² + 2C", "2x + C"],
         correctAnswer: "x² + C",
         explanation: "∫2x dx = 2∫x dx = 2(x²/2) + C = x² + C",
+        workingSteps: [
+          "Start with ∫2x dx",
+          "Factor out the constant: ∫2x dx = 2∫x dx",
+          "Apply the power rule for integration: ∫xⁿ dx = xⁿ⁺¹/(n+1) + C",
+          "For x¹: ∫x dx = x¹⁺¹/(1+1) + C = x²/2 + C",
+          "Substitute back: 2∫x dx = 2(x²/2 + C)",
+          "Simplify: 2 × x²/2 + 2C = x² + 2C",
+          "Since 2C is still an arbitrary constant, write as: x² + C"
+        ],
         difficulty: "Easy",
         category: "Basic Integration",
         points: 5
