@@ -667,6 +667,14 @@ export default function SubjectQuizzes() {
     : (subjectQuizzes[slug as string] || []);
   const hasQuizzes = quizzes.length > 0;
 
+  // Auto-start quiz if accessing via subtopic ID
+  useEffect(() => {
+    if (subtopicId && hasQuizzes && !selectedQuiz) {
+      // Only use the first quiz for each subtopic - no multiple options
+      setSelectedQuiz(quizzes[0]);
+    }
+  }, [subtopicId, hasQuizzes, quizzes, selectedQuiz]);
+
   const subjectNames: Record<string, string> = {
     biology: "Biology",
     mathematics: "Mathematics",
