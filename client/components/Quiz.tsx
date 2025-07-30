@@ -722,7 +722,17 @@ export function Quiz({
                         <Button
                           size="sm"
                           variant="outline"
-                          onClick={() => setSelectedHistoryAttempt(attempt)}
+                          onClick={() => {
+                            // Set the historical attempt data and show detailed review
+                            if (attempt.detailedResults) {
+                              setDetailedResults(attempt.detailedResults);
+                            }
+                            if (attempt.userAnswers) {
+                              setAnswers(attempt.userAnswers);
+                            }
+                            setShowTestHistory(false);
+                            setShowDetailedReview(true);
+                          }}
                         >
                           <Eye className="w-3 h-3 mr-1" />
                           Review
