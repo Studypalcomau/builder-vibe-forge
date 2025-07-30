@@ -247,6 +247,8 @@ export function Quiz({
     setShowDetailedReview(false);
     setDetailedResults(null);
     setShowAttemptHistory(false);
+    setShowTestHistory(false);
+    setSelectedHistoryAttempt(null);
     setQuizStartTime(null);
 
     // Generate new randomized questions for the next attempt
