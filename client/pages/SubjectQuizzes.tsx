@@ -103,6 +103,14 @@ const mathematicsQuizzes: QuizData[] = [
         options: ["6x + 2", "6x - 2", "3x + 2", "6x² + 2x"],
         correctAnswer: "6x + 2",
         explanation: "Using the power rule: d/dx(3x²) = 6x, d/dx(2x) = 2, d/dx(-5) = 0. Therefore, f'(x) = 6x + 2.",
+        workingSteps: [
+          "Start with f(x) = 3x² + 2x - 5",
+          "Apply the power rule to each term: d/dx(xⁿ) = n·xⁿ⁻¹",
+          "For 3x²: d/dx(3x²) = 3 × 2 × x²⁻¹ = 6x",
+          "For 2x: d/dx(2x) = 2 × 1 × x¹⁻¹ = 2",
+          "For -5: d/dx(-5) = 0 (constant rule)",
+          "Combine all terms: f'(x) = 6x + 2 + 0 = 6x + 2"
+        ],
         difficulty: "Easy",
         category: "Derivatives",
         points: 5
