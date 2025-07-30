@@ -529,7 +529,7 @@ export default function SubjectQuizzes() {
         ]
       }
     ],
-    "1-1": [ // Function Types
+    "0-0-1": [ // Function Types
       {
         id: "func-quiz-1",
         title: "Linear Functions Basics",
