@@ -722,7 +722,10 @@ export function Quiz({
                         <Button
                           size="sm"
                           variant="outline"
-                          onClick={() => setSelectedHistoryAttempt(attempt)}
+                          onClick={() => {
+                            console.log('Review clicked for attempt:', attempt);
+                            setSelectedHistoryAttempt(attempt);
+                          }}
                           disabled={!attempt.detailedResults}
                         >
                           <Eye className="w-3 h-3 mr-1" />
