@@ -1142,6 +1142,107 @@ export default function SubjectQuizzes() {
     );
   }
 
+  // Show test history view
+  if (isTestHistory || isTopicHistory) {
+    const historyData = isTestHistory ? mockTestHistory : mockTopicHistory;
+    const pageTitle = isTestHistory ? "Comprehensive Test History" : `${subtopicName} Test History`;
+    const pageDescription = isTestHistory ? "Review your comprehensive test attempts" : `Review your ${subtopicName} quiz attempts`;
+
+    return (
+      <div className="min-h-screen bg-study-background">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Header */}
+          <div className="flex items-center space-x-4 mb-8">
+            <Link to={`/subjects/${slug}`}>
+              <Button variant="outline" size="sm">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to {subjectName}
+              </Button>
+            </Link>
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">{pageTitle}</h1>
+              <p className="text-gray-600">{pageDescription}</p>
+            </div>
+          </div>
+
+          {/* History List */}
+          <div className="space-y-4">
+            {historyData.map((attempt, index) => (
+              <Card key={attempt.id} className="border-sky-blue-200">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-4 mb-2">
+                        <div className="text-lg font-semibold text-gray-900">
+                          Attempt #{historyData.length - index}
+                        </div>
+                        <Badge className={attempt.passed ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}>
+                          {attempt.passed ? 'PASSED' : 'NEEDS WORK'}
+                        </Badge>
+                        <Badge variant="outline">
+                          {attempt.score}%
+                        </Badge>
+                      </div>
+                      <div className="text-sm text-gray-600 space-y-1">
+                        <div>Date: {new Date(attempt.date).toLocaleDateString()}</div>
+                        <div>Questions: {attempt.totalQuestions} • Time: {attempt.timeSpent} minutes</div>
+                      </div>
+                    </div>
+                    <div className="flex gap-2">
+                      <Button variant="outline" size="sm">
+                        <Eye className="w-4 h-4 mr-2" />
+                        Review Answers
+                      </Button>
+                      {isTestHistory && (
+                        <Button variant="outline" size="sm">
+                          <FileText className="w-4 h-4 mr-2" />
+                          Performance Report
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Summary Stats */}
+          <Card className="border-sky-blue-200 mt-8">
+            <CardHeader>
+              <CardTitle>Performance Summary</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="text-center p-3 bg-blue-50 rounded-lg">
+                  <div className="text-2xl font-bold text-blue-600">{historyData.length}</div>
+                  <div className="text-sm text-gray-600">Total Attempts</div>
+                </div>
+                <div className="text-center p-3 bg-green-50 rounded-lg">
+                  <div className="text-2xl font-bold text-green-600">
+                    {Math.round(historyData.reduce((acc, attempt) => acc + attempt.score, 0) / historyData.length)}%
+                  </div>
+                  <div className="text-sm text-gray-600">Average Score</div>
+                </div>
+                <div className="text-center p-3 bg-orange-50 rounded-lg">
+                  <div className="text-2xl font-bold text-orange-600">
+                    {Math.max(...historyData.map(attempt => attempt.score))}%
+                  </div>
+                  <div className="text-sm text-gray-600">Best Score</div>
+                </div>
+                <div className="text-center p-3 bg-purple-50 rounded-lg">
+                  <div className="text-2xl font-bold text-purple-600">
+                    {historyData.filter(attempt => attempt.passed).length}
+                  </div>
+                  <div className="text-sm text-gray-600">Tests Passed</div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-study-background">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
