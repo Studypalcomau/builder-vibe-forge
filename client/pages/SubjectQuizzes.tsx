@@ -116,12 +116,20 @@ const mathematicsQuizzes: QuizData[] = [
         points: 5
       },
       {
-        id: "calc-2", 
+        id: "calc-2",
         type: "multiple-choice",
         question: "Find the limit: lim(x→2) (x² - 4)/(x - 2)",
         options: ["0", "2", "4", "undefined"],
         correctAnswer: "4",
         explanation: "Factor the numerator: (x² - 4) = (x - 2)(x + 2). Cancel (x - 2) terms. The limit becomes lim(x→2) (x + 2) = 4.",
+        workingSteps: [
+          "Start with lim(x→2) (x² - 4)/(x - 2)",
+          "Notice direct substitution gives 0/0 (indeterminate form)",
+          "Factor the numerator: x² - 4 = (x - 2)(x + 2) using difference of squares",
+          "Rewrite: lim(x→2) [(x - 2)(x + 2)]/(x - 2)",
+          "Cancel the common factor (x - 2): lim(x→2) (x + 2)",
+          "Now substitute x = 2: (2) + 2 = 4"
+        ],
         difficulty: "Medium",
         category: "Limits",
         points: 8
