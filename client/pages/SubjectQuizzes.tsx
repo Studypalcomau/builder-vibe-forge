@@ -691,18 +691,18 @@ export default function SubjectQuizzes() {
 
   // Get subtopic name from ID
   const subtopicNames: Record<string, string> = {
-    "1-0": "Domain and Range",
-    "1-1": "Function Types",
-    "1-2": "Transformations",
-    "2-0": "Linear Functions",
-    "2-1": "Quadratic Functions",
-    "2-2": "Cubic Functions",
-    "3-0": "Limits",
-    "3-1": "Derivatives",
-    "3-2": "Chain Rule",
-    "4-0": "Antiderivatives",
-    "4-1": "Definite Integrals",
-    "4-2": "Applications"
+    "0-0-0": "Domain and Range",
+    "0-0-1": "Function Types",
+    "0-0-2": "Transformations",
+    "0-1-0": "Linear Functions",
+    "0-1-1": "Quadratic Functions",
+    "0-1-2": "Cubic Functions",
+    "1-0-0": "Limits",
+    "1-0-1": "Derivatives",
+    "1-0-2": "Chain Rule",
+    "1-1-0": "Antiderivatives",
+    "1-1-1": "Definite Integrals",
+    "1-1-2": "Applications"
   };
 
   const subtopicName = subtopicId ? subtopicNames[subtopicId] : null;
