@@ -244,6 +244,15 @@ const biologyQuizzes: QuizData[] = [
         options: ["1:1", "3:1", "2:1", "1:2:1"],
         correctAnswer: "3:1",
         explanation: "The genotypic ratio is 1:2:1 (AA:Aa:aa), but the phenotypic ratio is 3:1 (dominant:recessive) since AA and Aa show the same phenotype.",
+        workingSteps: [
+          "Set up the cross: Aa × Aa",
+          "Draw a Punnett square with gametes A and a from each parent",
+          "Fill in the squares: AA, Aa, aA, aa",
+          "Count genotypes: 1 AA : 2 Aa : 1 aa (genotypic ratio 1:2:1)",
+          "Determine phenotypes: A is dominant, so AA and Aa both show dominant phenotype",
+          "Count phenotypes: 3 dominant (AA + Aa + aA) : 1 recessive (aa)",
+          "Final phenotypic ratio: 3:1 (dominant:recessive)"
+        ],
         difficulty: "Medium",
         category: "Mendelian Genetics",
         points: 8
