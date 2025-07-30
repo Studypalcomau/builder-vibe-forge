@@ -106,7 +106,9 @@ export function Quiz({
   returnPath,
   previousAttempts = [],
   allowRetakes = true,
-  requirePassingGrade = false
+  requirePassingGrade = false,
+  questionPool,
+  questionsPerAttempt = 5
 }: QuizComponentProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, any>>({});
