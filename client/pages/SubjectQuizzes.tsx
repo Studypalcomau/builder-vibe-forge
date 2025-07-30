@@ -477,6 +477,14 @@ export default function SubjectQuizzes() {
             options: ["All real numbers", "All positive numbers", "All non-negative numbers", "All negative numbers"],
             correctAnswer: "All non-negative numbers",
             explanation: "Since x² is always non-negative, the range is [0, ∞).",
+            workingSteps: [
+              "Consider the function f(x) = x²",
+              "For any real number x, x² ≥ 0",
+              "The minimum value occurs when x = 0, giving f(0) = 0",
+              "As |x| increases, x² increases without bound",
+              "Therefore, f(x) can take any value ≥ 0",
+              "Range: [0, ∞) or all non-negative numbers"
+            ],
             difficulty: "Easy",
             category: "Functions",
             points: 5
