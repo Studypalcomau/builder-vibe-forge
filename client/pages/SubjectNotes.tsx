@@ -1212,8 +1212,12 @@ export default function SubjectNotes() {
             </Button>
           </Link>
           <div className="flex-1">
-            <h1 className="text-3xl font-bold text-gray-900">{subjectName} Study Notes</h1>
-            <p className="text-gray-600">Comprehensive notes covering all key concepts</p>
+            <h1 className="text-3xl font-bold text-gray-900">
+              {subtopicId ? `${subtopicName} Notes` : `${subjectName} Study Notes`}
+            </h1>
+            <p className="text-gray-600">
+              {subtopicId ? `Study notes for ${subtopicName}` : "Comprehensive notes covering all key concepts"}
+            </p>
           </div>
         </div>
 
