@@ -34,7 +34,7 @@ export function Layout({ children }: LayoutProps) {
               <div className="w-8 h-8 bg-gradient-to-br from-sky-blue-500 to-sky-blue-600 rounded-lg flex items-center justify-center">
                 <BookOpen className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold text-gray-900">StudyMate QLD</span>
+              <span className="text-xl font-bold text-gray-900">StudyPal QLD</span>
             </Link>
 
             {/* Desktop Navigation */}
@@ -143,7 +143,7 @@ export function Layout({ children }: LayoutProps) {
                 <div className="w-8 h-8 bg-gradient-to-br from-sky-blue-500 to-sky-blue-600 rounded-lg flex items-center justify-center">
                   <BookOpen className="w-5 h-5 text-white" />
                 </div>
-                <span className="text-xl font-bold text-gray-900">StudyMate QLD</span>
+                <span className="text-xl font-bold text-gray-900">StudyPal QLD</span>
               </Link>
               <p className="text-gray-600 mb-6 max-w-md">
                 Your comprehensive study companion for Queensland Year 11-12 subjects.
@@ -172,7 +172,7 @@ export function Layout({ children }: LayoutProps) {
           </div>
 
           <div className="border-t border-sky-blue-200 mt-8 pt-8 text-center text-gray-600">
-            <p>&copy; 2024 StudyMate QLD. All rights reserved. Built for Queensland students.</p>
+            <p>&copy; 2024 StudyPal QLD. All rights reserved. Built for Queensland students.</p>
           </div>
         </div>
       </footer>

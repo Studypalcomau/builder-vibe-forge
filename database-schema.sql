@@ -608,14 +608,14 @@ INSERT INTO subjects (name, slug, description, year_level) VALUES
 
 -- Insert system settings
 INSERT INTO system_settings (setting_key, setting_value, setting_type, description, is_public) VALUES
-('site_name', 'StudyMate QLD', 'string', 'Website name displayed to users', TRUE),
+('site_name', 'StudyPal QLD', 'string', 'Website name displayed to users', TRUE),
 ('maintenance_mode', 'false', 'boolean', 'Enable/disable maintenance mode', FALSE),
 ('max_file_upload_size', '10485760', 'integer', 'Maximum file upload size in bytes (10MB)', FALSE),
-('support_email', 'support@studymateqld.com', 'string', 'Support contact email', TRUE),
+('support_email', 'support@studypal.com.au', 'string', 'Support contact email', TRUE),
 ('trial_duration_days', '7', 'integer', 'Free trial duration in days', FALSE);
 
 -- Insert email templates
 INSERT INTO email_templates (template_key, subject, html_body, text_body, variables) VALUES
-('welcome', 'Welcome to StudyMate QLD!', '<h1>Welcome {{first_name}}!</h1><p>Thank you for joining StudyMate QLD. Your journey to academic success starts here.</p>', 'Welcome {{first_name}}! Thank you for joining StudyMate QLD. Your journey to academic success starts here.', ARRAY['first_name', 'email']),
+('welcome', 'Welcome to StudyPal QLD!', '<h1>Welcome {{first_name}}!</h1><p>Thank you for joining StudyPal QLD. Your journey to academic success starts here.</p>', 'Welcome {{first_name}}! Thank you for joining StudyPal QLD. Your journey to academic success starts here.', ARRAY['first_name', 'email']),
 ('trial_ending', 'Your Free Trial is Ending Soon', '<h1>Hi {{first_name}},</h1><p>Your 7-day free trial will end in {{days_remaining}} days. Upgrade now to continue your studies!</p>', 'Hi {{first_name}}, Your 7-day free trial will end in {{days_remaining}} days. Upgrade now to continue your studies!', ARRAY['first_name', 'days_remaining']),
 ('password_reset', 'Reset Your Password', '<h1>Password Reset Request</h1><p>Click the link below to reset your password: {{reset_link}}</p>', 'Password Reset Request: Click the link below to reset your password: {{reset_link}}', ARRAY['first_name', 'reset_link']);

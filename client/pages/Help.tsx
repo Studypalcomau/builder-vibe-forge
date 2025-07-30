@@ -38,7 +38,7 @@ export default function Help() {
           answer: "We offer comprehensive study materials for Mathematical Methods, Specialist Mathematics, Physics, Engineering, Economics, and English - all aligned with the Queensland curriculum."
         },
         {
-          question: "Is StudyMate QLD really free?",
+          question: "Is StudyPal QLD really free?",
           answer: "Yes! Our basic plan includes access to flashcards, practice quizzes, and study notes. Premium features like advanced analytics and unlimited practice tests are available with paid plans."
         },
         {
@@ -85,7 +85,7 @@ export default function Help() {
           answer: "Ensure you're logged in and have a stable internet connection. Progress is automatically saved every few seconds when you're connected."
         },
         {
-          question: "Can I use StudyMate on my phone?",
+          question: "Can I use StudyPal on my phone?",
           answer: "Yes! Our website is fully responsive and works great on mobile devices. We recommend using the latest version of your mobile browser for the best experience."
         }
       ]
@@ -173,7 +173,7 @@ export default function Help() {
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold text-gray-900 mb-4">Help Center</h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
-          Find answers to common questions and get the support you need to succeed with StudyMate QLD
+          Find answers to common questions and get the support you need to succeed with StudyPal QLD
         </p>
         
         {/* Search */}
