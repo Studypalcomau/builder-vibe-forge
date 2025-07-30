@@ -55,6 +55,8 @@ export interface QuizAttempt {
   completedAt: Date;
   timeTaken?: number;
   detailedResults?: DetailedQuizResult;
+  questionsAsked?: QuizQuestion[]; // Store the actual questions for this attempt
+  userAnswers?: Record<string, any>; // Store user's answers for review
 }
 
 export interface QuizProgress {
