@@ -23,6 +23,12 @@ interface QuizCurriculumInfo {
   subtopic?: string;
 }
 
+interface CurriculumDetails {
+  unitName: string;
+  topicName: string;
+  subtopicName: string;
+}
+
 // Subject-level curriculum mapping for "Currently studying" section
 const subjectQuizCurriculumMapping: Record<string, QuizCurriculumInfo> = {
   "mathematical-methods": {
