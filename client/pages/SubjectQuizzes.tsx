@@ -458,6 +458,14 @@ export default function SubjectQuizzes() {
             options: ["All real numbers", "All real numbers except 2", "All positive numbers", "All numbers greater than 2"],
             correctAnswer: "All real numbers except 2",
             explanation: "The function is undefined when x-2=0, so x cannot equal 2.",
+            workingSteps: [
+              "Identify restrictions on the function f(x) = 1/(x-2)",
+              "The function is undefined when the denominator equals zero",
+              "Set the denominator equal to zero: x - 2 = 0",
+              "Solve for x: x = 2",
+              "Therefore, x cannot equal 2",
+              "Domain: All real numbers except x = 2"
+            ],
             difficulty: "Easy",
             category: "Functions",
             points: 5
