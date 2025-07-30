@@ -476,7 +476,7 @@ export default function Subject() {
                               <span>Start Quiz</span>
                             </Link>
                             <Link
-                              to={`/subjects/${slug}/notes`}
+                              to={`/subjects/${slug}/notes/${unitIndex}-${topicIndex}-${subtopicIndex}`}
                               className="inline-flex items-center px-1.5 py-1 text-xs font-medium rounded text-purple-700 bg-purple-100 hover:bg-purple-200 transition-colors"
                             >
                               <FileText className="w-3 h-3 mr-1" />
