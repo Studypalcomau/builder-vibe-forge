@@ -689,6 +689,16 @@ export function Quiz({
                 <Eye className="w-4 h-4 mr-2" />
                 Review Answers
               </Button>
+              {previousAttempts.length > 0 && (
+                <Button
+                  onClick={() => setShowTestHistory(true)}
+                  variant="outline"
+                  className="w-full"
+                >
+                  <Clock className="w-4 h-4 mr-2" />
+                  View Test History ({previousAttempts.length} attempts)
+                </Button>
+              )}
               <div className="flex gap-3">
                 {(allowRetakes && (!requirePassingGrade || !passed)) && (
                   <Button
