@@ -483,8 +483,8 @@ export function Quiz({
             Back to Results
           </Button>
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Answer Review</h2>
-            <p className="text-gray-600">Review your answers and explanations for each question</p>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Detailed Answer Review</h2>
+            <p className="text-gray-600">Complete solutions with step-by-step workings for each question</p>
           </div>
         </div>
 
