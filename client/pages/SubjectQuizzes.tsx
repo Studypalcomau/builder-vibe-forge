@@ -990,6 +990,7 @@ export default function SubjectQuizzes() {
             requirePassingGrade={false}
             questionPool={subtopicId ? questionPools[subtopicId] : undefined}
             questionsPerAttempt={5}
+            curriculumInfo={subtopicId ? decodeCurriculumInfo(subtopicId) : undefined}
           />
         </div>
       </div>
