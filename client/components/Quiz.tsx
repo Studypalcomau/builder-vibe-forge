@@ -246,6 +246,12 @@ export function Quiz({
     setDetailedResults(null);
     setShowAttemptHistory(false);
     setQuizStartTime(null);
+
+    // Generate new randomized questions for the next attempt
+    if (questionPool && questionPool.length > 0) {
+      const newQuestions = selectRandomQuestions(questionPool, questionsPerAttempt);
+      setCurrentQuizQuestions(newQuestions);
+    }
   };
 
   const formatTime = (seconds: number) => {
