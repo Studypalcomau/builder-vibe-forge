@@ -438,7 +438,7 @@ export function Quiz({
 
         {/* Question by Question Review */}
         <div className="space-y-6">
-          {quiz.questions.map((question, index) => {
+          {currentQuizQuestions.map((question, index) => {
             const result = reviewResults.results.find(r => r.questionId === question.id);
             if (!result) return null;
 
