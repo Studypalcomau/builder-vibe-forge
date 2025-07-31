@@ -282,6 +282,7 @@ export default function SubjectEditor() {
   const [isUploadingCurriculum, setIsUploadingCurriculum] = useState(false);
   const [isUploadingMaterial, setIsUploadingMaterial] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [generatedNotes, setGeneratedNotes] = useState<GeneratedNote[]>([]);
   const [generatedQuestions, setGeneratedQuestions] = useState<GeneratedQuestion[]>(() => {
     // Initialize with some sample questions for demonstration
     const sampleQuestions: GeneratedQuestion[] = [];
