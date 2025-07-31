@@ -1,9 +1,22 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
-import { Quiz, QuizData, QuizQuestion, DetailedQuizResult, QuizAttempt, QuizProgress } from "../components/Quiz";
+import {
+  Quiz,
+  QuizData,
+  QuizQuestion,
+  DetailedQuizResult,
+  QuizAttempt,
+  QuizProgress,
+} from "../components/Quiz";
 import {
   ArrowLeft,
   Trophy,
@@ -16,7 +29,7 @@ import {
   ChevronRight,
   Eye,
   FileText,
-  AlertCircle
+  AlertCircle,
 } from "lucide-react";
 
 // Quiz curriculum mapping
@@ -37,28 +50,28 @@ const subjectQuizCurriculumMapping: Record<string, QuizCurriculumInfo> = {
   "mathematical-methods": {
     unit: "Unit 2: Calculus",
     topic: "Differential Calculus",
-    subtopic: "Derivatives and Limits"
+    subtopic: "Derivatives and Limits",
   },
-  "physics": {
+  physics: {
     unit: "Unit 1: Motion and Forces",
     topic: "Mechanics",
-    subtopic: "Forces and Motion"
+    subtopic: "Forces and Motion",
   },
-  "biology": {
+  biology: {
     unit: "Unit 3: Genetics and Evolution",
     topic: "Genetics and Heredity",
-    subtopic: "DNA and Inheritance"
+    subtopic: "DNA and Inheritance",
   },
-  "english": {
+  english: {
     unit: "Unit 1: Language and Literature",
     topic: "Literary Analysis",
-    subtopic: "Literary Devices"
+    subtopic: "Literary Devices",
   },
-  "chemistry": {
+  chemistry: {
     unit: "Unit 2: Chemical Bonding",
     topic: "Atomic Structure",
-    subtopic: "Electron Configuration"
-  }
+    subtopic: "Electron Configuration",
+  },
 };
 
 // Individual quiz curriculum mapping (kept for potential future use)
@@ -66,33 +79,33 @@ const quizCurriculumMapping: Record<string, QuizCurriculumInfo> = {
   "math-calculus-1": {
     unit: "Unit 2: Calculus",
     topic: "Differential Calculus",
-    subtopic: "Derivatives and Limits"
+    subtopic: "Derivatives and Limits",
   },
   "math-integration-1": {
     unit: "Unit 2: Calculus",
     topic: "Integral Calculus",
-    subtopic: "Basic Integration"
+    subtopic: "Basic Integration",
   },
   "bio-genetics-1": {
     unit: "Unit 3: Genetics and Evolution",
     topic: "Genetics and Heredity",
-    subtopic: "DNA and Inheritance"
+    subtopic: "DNA and Inheritance",
   },
   "eng-literary-devices": {
     unit: "Unit 1: Language and Literature",
     topic: "Literary Analysis",
-    subtopic: "Literary Devices"
+    subtopic: "Literary Devices",
   },
   "eng-essay-writing": {
     unit: "Unit 1: Language and Literature",
     topic: "Writing Skills",
-    subtopic: "Essay Structure"
+    subtopic: "Essay Structure",
   },
   "phys-mechanics-1": {
     unit: "Unit 1: Motion and Forces",
     topic: "Mechanics",
-    subtopic: "Forces and Motion"
-  }
+    subtopic: "Forces and Motion",
+  },
 };
 
 // Queensland Mathematics curriculum quizzes
@@ -100,7 +113,8 @@ const mathematicsQuizzes: QuizData[] = [
   {
     id: "math-calculus-1",
     title: "Differential Calculus Fundamentals",
-    description: "Test your understanding of derivatives, limits, and basic calculus concepts",
+    description:
+      "Test your understanding of derivatives, limits, and basic calculus concepts",
     subject: "Mathematics",
     totalTime: 30,
     passingScore: 70,
@@ -111,18 +125,19 @@ const mathematicsQuizzes: QuizData[] = [
         question: "What is the derivative of f(x) = 3x² + 2x - 5?",
         options: ["6x + 2", "6x - 2", "3x + 2", "6x² + 2x"],
         correctAnswer: "6x + 2",
-        explanation: "Using the power rule: d/dx(3x²) = 6x, d/dx(2x) = 2, d/dx(-5) = 0. Therefore, f'(x) = 6x + 2.",
+        explanation:
+          "Using the power rule: d/dx(3x²) = 6x, d/dx(2x) = 2, d/dx(-5) = 0. Therefore, f'(x) = 6x + 2.",
         workingSteps: [
           "Start with f(x) = 3x² + 2x - 5",
           "Apply the power rule to each term: d/dx(xⁿ) = n·xⁿ⁻¹",
           "For 3x²: d/dx(3x²) = 3 × 2 × x²⁻¹ = 6x",
           "For 2x: d/dx(2x) = 2 × 1 × x¹⁻¹ = 2",
           "For -5: d/dx(-5) = 0 (constant rule)",
-          "Combine all terms: f'(x) = 6x + 2 + 0 = 6x + 2"
+          "Combine all terms: f'(x) = 6x + 2 + 0 = 6x + 2",
         ],
         difficulty: "Easy",
         category: "Derivatives",
-        points: 5
+        points: 5,
       },
       {
         id: "calc-2",
@@ -130,23 +145,25 @@ const mathematicsQuizzes: QuizData[] = [
         question: "Find the limit: lim(x→2) (x² - 4)/(x - 2)",
         options: ["0", "2", "4", "undefined"],
         correctAnswer: "4",
-        explanation: "Factor the numerator: (x�� - 4) = (x - 2)(x + 2). Cancel (x - 2) terms. The limit becomes lim(x→2) (x + 2) = 4.",
+        explanation:
+          "Factor the numerator: (x�� - 4) = (x - 2)(x + 2). Cancel (x - 2) terms. The limit becomes lim(x→2) (x + 2) = 4.",
         workingSteps: [
           "Start with lim(x→2) (x² - 4)/(x - 2)",
           "Notice direct substitution gives 0/0 (indeterminate form)",
           "Factor the numerator: x² - 4 = (x - 2)(x + 2) using difference of squares",
           "Rewrite: lim(x→2) [(x - 2)(x + 2)]/(x - 2)",
           "Cancel the common factor (x - 2): lim(x→2) (x + 2)",
-          "Now substitute x = 2: (2) + 2 = 4"
+          "Now substitute x = 2: (2) + 2 = 4",
         ],
         difficulty: "Medium",
         category: "Limits",
-        points: 8
+        points: 8,
       },
       {
         id: "calc-3",
         type: "numerical",
-        question: "If f(x) = sin(x), what is f'(π/2)? (Enter the exact numerical value)",
+        question:
+          "If f(x) = sin(x), what is f'(π/2)? (Enter the exact numerical value)",
         correctAnswer: 0,
         explanation: "f'(x) = cos(x), so f'(π/2) = cos(π/2) = 0.",
         workingSteps: [
@@ -155,29 +172,31 @@ const mathematicsQuizzes: QuizData[] = [
           "Apply the trigonometric derivative rule: d/dx[sin(x)] = cos(x)",
           "So f'(x) = cos(x)",
           "Evaluate at x = π/2: f'(π/2) = cos(π/2)",
-          "From the unit circle: cos(π/2) = 0"
+          "From the unit circle: cos(π/2) = 0",
         ],
         difficulty: "Medium",
         category: "Trigonometric Derivatives",
-        points: 7
+        points: 7,
       },
       {
         id: "calc-4",
         type: "true-false",
         question: "The derivative of e^x is e^x.",
         correctAnswer: "True",
-        explanation: "The exponential function e^x is its own derivative. This is a fundamental property of the natural exponential function.",
+        explanation:
+          "The exponential function e^x is its own derivative. This is a fundamental property of the natural exponential function.",
         difficulty: "Easy",
         category: "Exponential Functions",
-        points: 5
-      }
-    ]
+        points: 5,
+      },
+    ],
   },
   {
     id: "math-integration-1",
     title: "Integration Techniques",
-    description: "Practice integration methods including substitution and integration by parts",
-    subject: "Mathematics", 
+    description:
+      "Practice integration methods including substitution and integration by parts",
+    subject: "Mathematics",
     totalTime: 45,
     passingScore: 75,
     questions: [
@@ -195,32 +214,34 @@ const mathematicsQuizzes: QuizData[] = [
           "For x¹: ∫x dx = x¹⁺¹/(1+1) + C = x²/2 + C",
           "Substitute back: 2∫x dx = 2(x²/2 + C)",
           "Simplify: 2 × x²/2 + 2C = x² + 2C",
-          "Since 2C is still an arbitrary constant, write as: x² + C"
+          "Since 2C is still an arbitrary constant, write as: x² + C",
         ],
         difficulty: "Easy",
         category: "Basic Integration",
-        points: 5
+        points: 5,
       },
       {
         id: "int-2",
-        type: "multiple-choice", 
+        type: "multiple-choice",
         question: "Evaluate ��₀¹ x² dx",
         options: ["1/3", "1/2", "1", "2/3"],
         correctAnswer: "1/3",
-        explanation: "∫x² dx = x³/3 + C. Evaluating from 0 to 1: (1³/3) - (0³/3) = 1/3 - 0 = 1/3",
+        explanation:
+          "∫x² dx = x³/3 + C. Evaluating from 0 to 1: (1³/3) - (0³/3) = 1/3 - 0 = 1/3",
         difficulty: "Medium",
         category: "Definite Integrals",
-        points: 8
-      }
-    ]
-  }
+        points: 8,
+      },
+    ],
+  },
 ];
 
 const biologyQuizzes: QuizData[] = [
   {
     id: "bio-genetics-1",
     title: "Genetics and Heredity",
-    description: "Test your knowledge of DNA, RNA, and genetic inheritance patterns",
+    description:
+      "Test your knowledge of DNA, RNA, and genetic inheritance patterns",
     subject: "Biology",
     totalTime: 25,
     passingScore: 70,
@@ -231,28 +252,32 @@ const biologyQuizzes: QuizData[] = [
         question: "Which nitrogen base is found in RNA but not in DNA?",
         options: ["Adenine", "Guanine", "Uracil", "Cytosine"],
         correctAnswer: "Uracil",
-        explanation: "RNA contains uracil (U) instead of thymine (T). DNA contains A, T, G, C while RNA contains A, U, G, C.",
+        explanation:
+          "RNA contains uracil (U) instead of thymine (T). DNA contains A, T, G, C while RNA contains A, U, G, C.",
         difficulty: "Easy",
         category: "Molecular Biology",
-        points: 5
+        points: 5,
       },
       {
         id: "gen-2",
         type: "true-false",
         question: "Mitosis results in four genetically different cells.",
         correctAnswer: "False",
-        explanation: "Mitosis results in two genetically identical diploid cells. Meiosis results in four genetically different haploid gametes.",
+        explanation:
+          "Mitosis results in two genetically identical diploid cells. Meiosis results in four genetically different haploid gametes.",
         difficulty: "Medium",
         category: "Cell Division",
-        points: 7
+        points: 7,
       },
       {
         id: "gen-3",
         type: "multiple-choice",
-        question: "In a monohybrid cross between two heterozygotes (Aa × Aa), what is the expected phenotypic ratio?",
+        question:
+          "In a monohybrid cross between two heterozygotes (Aa × Aa), what is the expected phenotypic ratio?",
         options: ["1:1", "3:1", "2:1", "1:2:1"],
         correctAnswer: "3:1",
-        explanation: "The genotypic ratio is 1:2:1 (AA:Aa:aa), but the phenotypic ratio is 3:1 (dominant:recessive) since AA and Aa show the same phenotype.",
+        explanation:
+          "The genotypic ratio is 1:2:1 (AA:Aa:aa), but the phenotypic ratio is 3:1 (dominant:recessive) since AA and Aa show the same phenotype.",
         workingSteps: [
           "Set up the cross: Aa × Aa",
           "Draw a Punnett square with gametes A and a from each parent",
@@ -260,14 +285,14 @@ const biologyQuizzes: QuizData[] = [
           "Count genotypes: 1 AA : 2 Aa : 1 aa (genotypic ratio 1:2:1)",
           "Determine phenotypes: A is dominant, so AA and Aa both show dominant phenotype",
           "Count phenotypes: 3 dominant (AA + Aa + aA) : 1 recessive (aa)",
-          "Final phenotypic ratio: 3:1 (dominant:recessive)"
+          "Final phenotypic ratio: 3:1 (dominant:recessive)",
         ],
         difficulty: "Medium",
         category: "Mendelian Genetics",
-        points: 8
-      }
-    ]
-  }
+        points: 8,
+      },
+    ],
+  },
 ];
 
 // English quizzes for Queensland curriculum
@@ -275,7 +300,8 @@ const englishQuizzes: QuizData[] = [
   {
     id: "eng-literary-devices",
     title: "Literary Devices and Techniques",
-    description: "Test your knowledge of metaphors, similes, irony, and other literary devices",
+    description:
+      "Test your knowledge of metaphors, similes, irony, and other literary devices",
     subject: "English",
     totalTime: 20,
     passingScore: 70,
@@ -283,52 +309,66 @@ const englishQuizzes: QuizData[] = [
       {
         id: "lit-1",
         type: "multiple-choice",
-        question: "Which literary device is used in the phrase 'The classroom was a zoo'?",
+        question:
+          "Which literary device is used in the phrase 'The classroom was a zoo'?",
         options: ["Simile", "Metaphor", "Personification", "Alliteration"],
         correctAnswer: "Metaphor",
-        explanation: "This is a metaphor because it directly compares the classroom to a zoo without using 'like' or 'as'. It suggests the classroom was chaotic and noisy.",
+        explanation:
+          "This is a metaphor because it directly compares the classroom to a zoo without using 'like' or 'as'. It suggests the classroom was chaotic and noisy.",
         difficulty: "Easy",
         category: "Literary Devices",
-        points: 5
+        points: 5,
       },
       {
         id: "lit-2",
         type: "multiple-choice",
-        question: "What type of irony is present when the audience knows something the character doesn't?",
-        options: ["Verbal irony", "Situational irony", "Dramatic irony", "Cosmic irony"],
+        question:
+          "What type of irony is present when the audience knows something the character doesn't?",
+        options: [
+          "Verbal irony",
+          "Situational irony",
+          "Dramatic irony",
+          "Cosmic irony",
+        ],
         correctAnswer: "Dramatic irony",
-        explanation: "Dramatic irony occurs when the audience has knowledge that the characters lack, creating tension or humor.",
+        explanation:
+          "Dramatic irony occurs when the audience has knowledge that the characters lack, creating tension or humor.",
         difficulty: "Medium",
         category: "Literary Devices",
-        points: 7
+        points: 7,
       },
       {
         id: "lit-3",
         type: "true-false",
-        question: "Alliteration is the repetition of vowel sounds in consecutive words.",
+        question:
+          "Alliteration is the repetition of vowel sounds in consecutive words.",
         correctAnswer: "False",
-        explanation: "Alliteration is the repetition of initial consonant sounds. The repetition of vowel sounds is called assonance.",
+        explanation:
+          "Alliteration is the repetition of initial consonant sounds. The repetition of vowel sounds is called assonance.",
         difficulty: "Medium",
         category: "Literary Devices",
-        points: 6
+        points: 6,
       },
       {
         id: "lit-4",
         type: "multiple-choice",
-        question: "In the sentence 'The wind whispered through the trees,' what literary device is used?",
+        question:
+          "In the sentence 'The wind whispered through the trees,' what literary device is used?",
         options: ["Metaphor", "Simile", "Personification", "Symbolism"],
         correctAnswer: "Personification",
-        explanation: "Personification gives human qualities (whispering) to non-human things (wind). Wind cannot literally whisper.",
+        explanation:
+          "Personification gives human qualities (whispering) to non-human things (wind). Wind cannot literally whisper.",
         difficulty: "Easy",
         category: "Literary Devices",
-        points: 5
-      }
-    ]
+        points: 5,
+      },
+    ],
   },
   {
     id: "eng-essay-writing",
     title: "Essay Structure and Persuasive Writing",
-    description: "Practice essay planning, thesis statements, and persuasive techniques",
+    description:
+      "Practice essay planning, thesis statements, and persuasive techniques",
     subject: "English",
     totalTime: 25,
     passingScore: 75,
@@ -341,42 +381,47 @@ const englishQuizzes: QuizData[] = [
           "To introduce the topic",
           "To state the main argument or claim",
           "To provide evidence",
-          "To conclude the essay"
+          "To conclude the essay",
         ],
         correctAnswer: "To state the main argument or claim",
-        explanation: "A thesis statement presents the main argument or central claim that the essay will support and develop.",
+        explanation:
+          "A thesis statement presents the main argument or central claim that the essay will support and develop.",
         difficulty: "Easy",
         category: "Essay Writing",
-        points: 5
+        points: 5,
       },
       {
         id: "essay-2",
         type: "multiple-choice",
-        question: "Which of these is the most effective way to start a persuasive essay?",
+        question:
+          "Which of these is the most effective way to start a persuasive essay?",
         options: [
           "With a dictionary definition",
           "With a compelling hook that relates to your argument",
           "With your thesis statement",
-          "With background information only"
+          "With background information only",
         ],
         correctAnswer: "With a compelling hook that relates to your argument",
-        explanation: "A compelling hook grabs the reader's attention and draws them into your argument, making them want to continue reading.",
+        explanation:
+          "A compelling hook grabs the reader's attention and draws them into your argument, making them want to continue reading.",
         difficulty: "Medium",
         category: "Essay Writing",
-        points: 7
+        points: 7,
       },
       {
         id: "essay-3",
         type: "true-false",
-        question: "Each body paragraph should focus on one main idea that supports your thesis.",
+        question:
+          "Each body paragraph should focus on one main idea that supports your thesis.",
         correctAnswer: "True",
-        explanation: "Effective paragraphs have unity - each should focus on a single main idea that supports and develops your overall thesis.",
+        explanation:
+          "Effective paragraphs have unity - each should focus on a single main idea that supports and develops your overall thesis.",
         difficulty: "Easy",
         category: "Essay Writing",
-        points: 5
-      }
-    ]
-  }
+        points: 5,
+      },
+    ],
+  },
 ];
 
 // Physics quizzes
@@ -395,23 +440,25 @@ const physicsQuizzes: QuizData[] = [
         question: "What is the SI unit for force?",
         options: ["Joule", "Newton", "Watt", "Pascal"],
         correctAnswer: "Newton",
-        explanation: "The Newton (N) is the SI unit for force, named after Sir Isaac Newton. 1 N = 1 kg⋅m/s².",
+        explanation:
+          "The Newton (N) is the SI unit for force, named after Sir Isaac Newton. 1 N = 1 kg⋅m/s².",
         difficulty: "Easy",
         category: "Mechanics",
-        points: 5
+        points: 5,
       },
       {
         id: "mech-2",
         type: "numerical",
-        question: "A 10 kg object accelerates at 5 m/s². What is the net force acting on it? (Answer in Newtons)",
+        question:
+          "A 10 kg object accelerates at 5 m/s². What is the net force acting on it? (Answer in Newtons)",
         correctAnswer: 50,
         explanation: "Using F = ma: F = 10 kg × 5 m/s² = 50 N",
         difficulty: "Medium",
         category: "Mechanics",
-        points: 8
-      }
-    ]
-  }
+        points: 8,
+      },
+    ],
+  },
 ];
 
 const subjectQuizzes: Record<string, QuizData[]> = {
@@ -423,40 +470,94 @@ const subjectQuizzes: Record<string, QuizData[]> = {
   english: englishQuizzes,
   chemistry: [],
   engineering: [],
-  economics: []
+  economics: [],
 };
 
 // Helper functions to generate IDs for curriculum sections
 const getUnitNumber = (unitName: string): string => {
   const match = unitName.match(/Unit (\d+)/);
-  return match ? match[1] : '1';
+  return match ? match[1] : "1";
 };
 
 const getTopicId = (topicName: string): string => {
   // Convert topic name to a slug-like ID
-  return topicName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+  return topicName
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9\-]/g, "");
 };
 
 const getSubtopicId = (subtopicName: string): string => {
   // Convert subtopic name to a slug-like ID
-  return subtopicName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+  return subtopicName
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9\-]/g, "");
 };
 
 // Function to decode subtopic ID into curriculum details
 const decodeCurriculumInfo = (subtopicId: string): CurriculumDetails | null => {
   const curriculumMapping: Record<string, CurriculumDetails> = {
-    "0-0-0": { unitName: "Unit 1: Functions and Relations", topicName: "Functions and Relations", subtopicName: "Domain and Range" },
-    "0-0-1": { unitName: "Unit 1: Functions and Relations", topicName: "Functions and Relations", subtopicName: "Function Types" },
-    "0-0-2": { unitName: "Unit 1: Functions and Relations", topicName: "Functions and Relations", subtopicName: "Transformations" },
-    "0-1-0": { unitName: "Unit 1: Functions and Relations", topicName: "Advanced Functions", subtopicName: "Linear Functions" },
-    "0-1-1": { unitName: "Unit 1: Functions and Relations", topicName: "Advanced Functions", subtopicName: "Quadratic Functions" },
-    "0-1-2": { unitName: "Unit 1: Functions and Relations", topicName: "Advanced Functions", subtopicName: "Cubic Functions" },
-    "1-0-0": { unitName: "Unit 2: Calculus", topicName: "Differential Calculus", subtopicName: "Limits" },
-    "1-0-1": { unitName: "Unit 2: Calculus", topicName: "Differential Calculus", subtopicName: "Derivatives" },
-    "1-0-2": { unitName: "Unit 2: Calculus", topicName: "Differential Calculus", subtopicName: "Chain Rule" },
-    "1-1-0": { unitName: "Unit 2: Calculus", topicName: "Integral Calculus", subtopicName: "Antiderivatives" },
-    "1-1-1": { unitName: "Unit 2: Calculus", topicName: "Integral Calculus", subtopicName: "Definite Integrals" },
-    "1-1-2": { unitName: "Unit 2: Calculus", topicName: "Integral Calculus", subtopicName: "Applications" }
+    "0-0-0": {
+      unitName: "Unit 1: Functions and Relations",
+      topicName: "Functions and Relations",
+      subtopicName: "Domain and Range",
+    },
+    "0-0-1": {
+      unitName: "Unit 1: Functions and Relations",
+      topicName: "Functions and Relations",
+      subtopicName: "Function Types",
+    },
+    "0-0-2": {
+      unitName: "Unit 1: Functions and Relations",
+      topicName: "Functions and Relations",
+      subtopicName: "Transformations",
+    },
+    "0-1-0": {
+      unitName: "Unit 1: Functions and Relations",
+      topicName: "Advanced Functions",
+      subtopicName: "Linear Functions",
+    },
+    "0-1-1": {
+      unitName: "Unit 1: Functions and Relations",
+      topicName: "Advanced Functions",
+      subtopicName: "Quadratic Functions",
+    },
+    "0-1-2": {
+      unitName: "Unit 1: Functions and Relations",
+      topicName: "Advanced Functions",
+      subtopicName: "Cubic Functions",
+    },
+    "1-0-0": {
+      unitName: "Unit 2: Calculus",
+      topicName: "Differential Calculus",
+      subtopicName: "Limits",
+    },
+    "1-0-1": {
+      unitName: "Unit 2: Calculus",
+      topicName: "Differential Calculus",
+      subtopicName: "Derivatives",
+    },
+    "1-0-2": {
+      unitName: "Unit 2: Calculus",
+      topicName: "Differential Calculus",
+      subtopicName: "Chain Rule",
+    },
+    "1-1-0": {
+      unitName: "Unit 2: Calculus",
+      topicName: "Integral Calculus",
+      subtopicName: "Antiderivatives",
+    },
+    "1-1-1": {
+      unitName: "Unit 2: Calculus",
+      topicName: "Integral Calculus",
+      subtopicName: "Definite Integrals",
+    },
+    "1-1-2": {
+      unitName: "Unit 2: Calculus",
+      topicName: "Integral Calculus",
+      subtopicName: "Applications",
+    },
   };
 
   return curriculumMapping[subtopicId] || null;
@@ -467,10 +568,15 @@ export default function SubjectQuizzes() {
   const [selectedQuiz, setSelectedQuiz] = useState<QuizData | null>(null);
 
   // Detect different modes based on URL
-  const isFullTest = window.location.pathname.includes('/test') && !window.location.pathname.includes('/history') && !window.location.pathname.includes('/results');
-  const isTestHistory = window.location.pathname.includes('/test/history');
-  const isTopicHistory = window.location.pathname.includes('/quiz/') && window.location.pathname.includes('/history');
-  const isResultsView = window.location.pathname.includes('/results');
+  const isFullTest =
+    window.location.pathname.includes("/test") &&
+    !window.location.pathname.includes("/history") &&
+    !window.location.pathname.includes("/results");
+  const isTestHistory = window.location.pathname.includes("/test/history");
+  const isTopicHistory =
+    window.location.pathname.includes("/quiz/") &&
+    window.location.pathname.includes("/history");
+  const isResultsView = window.location.pathname.includes("/results");
 
   const subjectNames: Record<string, string> = {
     biology: "Biology",
@@ -481,39 +587,55 @@ export default function SubjectQuizzes() {
     english: "English",
     chemistry: "Chemistry",
     engineering: "Engineering",
-    economics: "Economics"
+    economics: "Economics",
   };
   const [quizResults, setQuizResults] = useState<Record<string, number>>({});
-  const [detailedQuizResults, setDetailedQuizResults] = useState<Record<string, DetailedQuizResult>>({});
-  const [quizProgress, setQuizProgress] = useState<Record<string, QuizProgress>>({});
+  const [detailedQuizResults, setDetailedQuizResults] = useState<
+    Record<string, DetailedQuizResult>
+  >({});
+  const [quizProgress, setQuizProgress] = useState<
+    Record<string, QuizProgress>
+  >({});
 
   // Question pools for randomized quizzes
   const questionPools: Record<string, QuizQuestion[]> = {
-    "0-0-0": [ // Domain and Range Question Pool
+    "0-0-0": [
+      // Domain and Range Question Pool
       {
         id: "dr-q1",
         question: "What is the domain of f(x) = 1/(x-2)?",
         type: "multiple-choice",
-        options: ["All real numbers", "All real numbers except 2", "All positive numbers", "All numbers greater than 2"],
+        options: [
+          "All real numbers",
+          "All real numbers except 2",
+          "All positive numbers",
+          "All numbers greater than 2",
+        ],
         correctAnswer: "All real numbers except 2",
-        explanation: "The function is undefined when x-2=0, so x cannot equal 2.",
+        explanation:
+          "The function is undefined when x-2=0, so x cannot equal 2.",
         workingSteps: [
           "Identify restrictions on the function f(x) = 1/(x-2)",
           "The function is undefined when the denominator equals zero",
           "Set the denominator equal to zero: x - 2 = 0",
           "Solve for x: x = 2",
           "Therefore, x cannot equal 2",
-          "Domain: All real numbers except x = 2"
+          "Domain: All real numbers except x = 2",
         ],
         difficulty: "Easy",
         category: "Functions",
-        points: 5
+        points: 5,
       },
       {
         id: "dr-q2",
         question: "What is the range of f(x) = x²?",
         type: "multiple-choice",
-        options: ["All real numbers", "All positive numbers", "All non-negative numbers", "All negative numbers"],
+        options: [
+          "All real numbers",
+          "All positive numbers",
+          "All non-negative numbers",
+          "All negative numbers",
+        ],
         correctAnswer: "All non-negative numbers",
         explanation: "Since x² is always non-negative, the range is [0, ∞).",
         workingSteps: [
@@ -522,11 +644,11 @@ export default function SubjectQuizzes() {
           "The minimum value occurs when x = 0, giving f(0) = 0",
           "As |x| increases, x² increases without bound",
           "Therefore, f(x) can take any value ≥ 0",
-          "Range: [0, ∞) or all non-negative numbers"
+          "Range: [0, ∞) or all non-negative numbers",
         ],
         difficulty: "Easy",
         category: "Functions",
-        points: 5
+        points: 5,
       },
       {
         id: "dr-q3",
@@ -539,11 +661,11 @@ export default function SubjectQuizzes() {
           "For √(x-3) to be defined, the expression under the square root must be non-negative",
           "Set up the inequality: x - 3 ≥ 0",
           "Solve for x: x ≥ 3",
-          "Domain: x ≥ 3 or [3, ∞)"
+          "Domain: x ≥ 3 or [3, ∞)",
         ],
         difficulty: "Medium",
         category: "Functions",
-        points: 7
+        points: 7,
       },
       {
         id: "dr-q4",
@@ -551,24 +673,30 @@ export default function SubjectQuizzes() {
         type: "multiple-choice",
         options: ["All real numbers", "y ≤ 8", "y ≥ 8", "y > 0"],
         correctAnswer: "y ≤ 8",
-        explanation: "This is a downward parabola with vertex at (0,8), so y ≤ 8.",
+        explanation:
+          "This is a downward parabola with vertex at (0,8), so y ≤ 8.",
         workingSteps: [
           "Identify the function as a quadratic: f(x) = -2x² + 8",
           "The coefficient of x² is negative (-2), so the parabola opens downward",
           "Find the vertex: x = 0 (since there's no linear term)",
           "Calculate the maximum value: f(0) = -2(0)² + 8 = 8",
           "Since the parabola opens downward, the maximum y-value is 8",
-          "Range: y ≤ 8 or (-∞, 8]"
+          "Range: y ≤ 8 or (-∞, 8]",
         ],
         difficulty: "Medium",
         category: "Functions",
-        points: 7
+        points: 7,
       },
       {
         id: "dr-q5",
         question: "What is the domain of f(x) = 1/√(4-x²)?",
         type: "multiple-choice",
-        options: ["-2 < x < 2", "-2 ≤ x ≤ 2", "x < -2 or x > 2", "All real numbers"],
+        options: [
+          "-2 < x < 2",
+          "-2 ≤ x ≤ 2",
+          "x < -2 or x > 2",
+          "All real numbers",
+        ],
         correctAnswer: "-2 < x < 2",
         explanation: "We need 4-x² > 0, which gives -2 < x < 2.",
         workingSteps: [
@@ -577,11 +705,11 @@ export default function SubjectQuizzes() {
           "Rearrange: 4 > x²",
           "Take square root: 2 > |x| or |x| < 2",
           "This means: -2 < x < 2",
-          "Domain: (-2, 2)"
+          "Domain: (-2, 2)",
         ],
         difficulty: "Hard",
         category: "Functions",
-        points: 10
+        points: 10,
       },
       {
         id: "dr-q6",
@@ -589,16 +717,17 @@ export default function SubjectQuizzes() {
         type: "multiple-choice",
         options: ["x > 1", "x ≥ 1", "x < 1", "All real numbers"],
         correctAnswer: "x > 1",
-        explanation: "The natural logarithm is only defined for positive arguments, so x-1 > 0.",
+        explanation:
+          "The natural logarithm is only defined for positive arguments, so x-1 > 0.",
         workingSteps: [
           "For ln(x-1) to be defined, the argument must be positive",
           "Set up the inequality: x - 1 > 0",
           "Solve for x: x > 1",
-          "Domain: (1, ∞)"
+          "Domain: (1, ∞)",
         ],
         difficulty: "Medium",
         category: "Functions",
-        points: 7
+        points: 7,
       },
       {
         id: "dr-q7",
@@ -606,42 +735,50 @@ export default function SubjectQuizzes() {
         type: "multiple-choice",
         options: ["All real numbers", "y ≥ 0", "y ≥ 3", "y ��� -3"],
         correctAnswer: "y ≥ 0",
-        explanation: "Absolute value functions always produce non-negative outputs.",
+        explanation:
+          "Absolute value functions always produce non-negative outputs.",
         workingSteps: [
           "The absolute value function |x - 3| measures distance from 3 on the number line",
           "Distance is always non-negative",
           "The minimum value occurs when x = 3: |3 - 3| = 0",
           "As x moves away from 3, the absolute value increases without bound",
-          "Range: [0, ∞) or y ≥ 0"
+          "Range: [0, ∞) or y ≥ 0",
         ],
         difficulty: "Easy",
         category: "Functions",
-        points: 5
+        points: 5,
       },
       {
         id: "dr-q8",
         question: "What is the domain of f(x) = (x+2)/(x²-4)?",
         type: "multiple-choice",
-        options: ["All real numbers except ±2", "All real numbers except 2", "All real numbers except -2", "All real numbers"],
+        options: [
+          "All real numbers except ±2",
+          "All real numbers except 2",
+          "All real numbers except -2",
+          "All real numbers",
+        ],
         correctAnswer: "All real numbers except ±2",
-        explanation: "The function is undefined when the denominator equals zero: x²-4 = 0, so x = ±2.",
+        explanation:
+          "The function is undefined when the denominator equals zero: x²-4 = 0, so x = ±2.",
         workingSteps: [
           "Find where the denominator equals zero: x² - 4 = 0",
           "Factor: (x - 2)(x + 2) = 0",
           "Solve: x = 2 or x = -2",
           "The function is undefined at these points",
-          "Domain: All real numbers except x = 2 and x = -2"
+          "Domain: All real numbers except x = 2 and x = -2",
         ],
         difficulty: "Medium",
         category: "Functions",
-        points: 7
-      }
-    ]
+        points: 7,
+      },
+    ],
   };
 
   // Handle subtopic-specific quizzes
   const subtopicQuizzes: Record<string, QuizData[]> = {
-    "0-0-0": [ // Domain and Range
+    "0-0-0": [
+      // Domain and Range
       {
         id: "dom-quiz-1",
         title: "Domain and Range Fundamentals",
@@ -654,30 +791,43 @@ export default function SubjectQuizzes() {
             id: "q1",
             question: "What is the domain of f(x) = 1/(x-2)?",
             type: "multiple-choice",
-            options: ["All real numbers", "All real numbers except 2", "All positive numbers", "All numbers greater than 2"],
+            options: [
+              "All real numbers",
+              "All real numbers except 2",
+              "All positive numbers",
+              "All numbers greater than 2",
+            ],
             correctAnswer: "All real numbers except 2",
-            explanation: "The function is undefined when x-2=0, so x cannot equal 2.",
+            explanation:
+              "The function is undefined when x-2=0, so x cannot equal 2.",
             difficulty: "Easy",
             category: "Functions",
-            points: 5
+            points: 5,
           },
           {
             id: "q2",
             question: "What is the range of f(x) = x²?",
             type: "multiple-choice",
-            options: ["All real numbers", "All positive numbers", "All non-negative numbers", "All negative numbers"],
+            options: [
+              "All real numbers",
+              "All positive numbers",
+              "All non-negative numbers",
+              "All negative numbers",
+            ],
             correctAnswer: "All non-negative numbers",
-            explanation: "Since x² is always non-negative, the range is [0, ∞).",
+            explanation:
+              "Since x² is always non-negative, the range is [0, ∞).",
             difficulty: "Easy",
             category: "Functions",
-            points: 5
-          }
-        ]
+            points: 5,
+          },
+        ],
       },
       {
         id: "dom-quiz-2",
         title: "Advanced Domain and Range",
-        description: "Challenge yourself with complex domain and range problems",
+        description:
+          "Challenge yourself with complex domain and range problems",
         subject: "Mathematical Methods",
         totalTime: 12,
         passingScore: 70,
@@ -691,7 +841,7 @@ export default function SubjectQuizzes() {
             explanation: "For square root to be defined, x-3 ≥ 0, so x ≥ 3.",
             difficulty: "Medium",
             category: "Functions",
-            points: 7
+            points: 7,
           },
           {
             id: "q2",
@@ -699,12 +849,13 @@ export default function SubjectQuizzes() {
             type: "multiple-choice",
             options: ["All real numbers", "y ≤ 8", "y ��� 8", "y > 0"],
             correctAnswer: "y ≤ 8",
-            explanation: "This is a downward parabola with vertex at (0,8), so y ≤ 8.",
+            explanation:
+              "This is a downward parabola with vertex at (0,8), so y ≤ 8.",
             difficulty: "Medium",
             category: "Functions",
-            points: 7
-          }
-        ]
+            points: 7,
+          },
+        ],
       },
       {
         id: "dom-quiz-3",
@@ -718,17 +869,23 @@ export default function SubjectQuizzes() {
             id: "q1",
             question: "What is the domain of f(x) = 1/√(4-x²)?",
             type: "multiple-choice",
-            options: ["-2 < x < 2", "-2 ≤ x ≤ 2", "x < -2 or x > 2", "All real numbers"],
+            options: [
+              "-2 < x < 2",
+              "-2 ≤ x ≤ 2",
+              "x < -2 or x > 2",
+              "All real numbers",
+            ],
             correctAnswer: "-2 < x < 2",
             explanation: "We need 4-x² > 0, which gives -2 < x < 2.",
             difficulty: "Hard",
             category: "Functions",
-            points: 10
-          }
-        ]
-      }
+            points: 10,
+          },
+        ],
+      },
     ],
-    "0-0-1": [ // Function Types
+    "0-0-1": [
+      // Function Types
       {
         id: "func-quiz-1",
         title: "Linear Functions Basics",
@@ -743,10 +900,11 @@ export default function SubjectQuizzes() {
             type: "multiple-choice",
             options: ["Quadratic", "Linear", "Exponential", "Logarithmic"],
             correctAnswer: "Linear",
-            explanation: "f(x) = mx + b is the standard form of a linear function.",
+            explanation:
+              "f(x) = mx + b is the standard form of a linear function.",
             difficulty: "Easy",
             category: "Functions",
-            points: 5
+            points: 5,
           },
           {
             id: "q2",
@@ -757,9 +915,9 @@ export default function SubjectQuizzes() {
             explanation: "In f(x) = mx + b, m is the slope, so the slope is 3.",
             difficulty: "Easy",
             category: "Functions",
-            points: 5
-          }
-        ]
+            points: 5,
+          },
+        ],
       },
       {
         id: "func-quiz-2",
@@ -773,12 +931,18 @@ export default function SubjectQuizzes() {
             id: "q1",
             question: "What is the vertex form of a quadratic function?",
             type: "multiple-choice",
-            options: ["f(x) = ax² + bx + c", "f(x) = a(x-h)² + k", "f(x) = mx + b", "f(x) = a^x"],
+            options: [
+              "f(x) = ax² + bx + c",
+              "f(x) = a(x-h)² + k",
+              "f(x) = mx + b",
+              "f(x) = a^x",
+            ],
             correctAnswer: "f(x) = a(x-h)² + k",
-            explanation: "The vertex form is f(x) = a(x-h)² + k where (h,k) is the vertex.",
+            explanation:
+              "The vertex form is f(x) = a(x-h)² + k where (h,k) is the vertex.",
             difficulty: "Medium",
             category: "Functions",
-            points: 7
+            points: 7,
           },
           {
             id: "q2",
@@ -789,9 +953,9 @@ export default function SubjectQuizzes() {
             explanation: "Since a = -2 < 0, the parabola opens downward.",
             difficulty: "Medium",
             category: "Functions",
-            points: 7
-          }
-        ]
+            points: 7,
+          },
+        ],
       },
       {
         id: "func-quiz-3",
@@ -805,17 +969,24 @@ export default function SubjectQuizzes() {
             id: "q1",
             question: "What is the general form of an exponential function?",
             type: "multiple-choice",
-            options: ["f(x) = ax² + bx + c", "f(x) = mx + b", "f(x) = ab^x", "f(x) = log_a(x)"],
+            options: [
+              "f(x) = ax² + bx + c",
+              "f(x) = mx + b",
+              "f(x) = ab^x",
+              "f(x) = log_a(x)",
+            ],
             correctAnswer: "f(x) = ab^x",
-            explanation: "An exponential function has the form f(x) = ab^x where a ≠ 0 and b > 0, b ≠ 1.",
+            explanation:
+              "An exponential function has the form f(x) = ab^x where a ≠ 0 and b > 0, b ≠ 1.",
             difficulty: "Medium",
             category: "Functions",
-            points: 7
-          }
-        ]
-      }
+            points: 7,
+          },
+        ],
+      },
     ],
-    "0-0-2": [ // Transformations
+    "0-0-2": [
+      // Transformations
       {
         id: "trans-quiz-1",
         title: "Function Transformations Basics",
@@ -828,14 +999,20 @@ export default function SubjectQuizzes() {
             id: "q1",
             question: "How does f(x) + 3 transform the graph of f(x)?",
             type: "multiple-choice",
-            options: ["Shifts up 3 units", "Shifts down 3 units", "Shifts left 3 units", "Shifts right 3 units"],
+            options: [
+              "Shifts up 3 units",
+              "Shifts down 3 units",
+              "Shifts left 3 units",
+              "Shifts right 3 units",
+            ],
             correctAnswer: "Shifts up 3 units",
-            explanation: "Adding a constant to the function shifts the graph vertically upward.",
+            explanation:
+              "Adding a constant to the function shifts the graph vertically upward.",
             difficulty: "Easy",
             category: "Functions",
-            points: 5
-          }
-        ]
+            points: 5,
+          },
+        ],
       },
       {
         id: "trans-quiz-2",
@@ -849,16 +1026,21 @@ export default function SubjectQuizzes() {
             id: "q1",
             question: "How does f(x-2) transform the graph of f(x)?",
             type: "multiple-choice",
-            options: ["Shifts up 2 units", "Shifts down 2 units", "Shifts left 2 units", "Shifts right 2 units"],
+            options: [
+              "Shifts up 2 units",
+              "Shifts down 2 units",
+              "Shifts left 2 units",
+              "Shifts right 2 units",
+            ],
             correctAnswer: "Shifts right 2 units",
             explanation: "f(x-h) shifts the graph h units to the right.",
             difficulty: "Medium",
             category: "Functions",
-            points: 7
-          }
-        ]
-      }
-    ]
+            points: 7,
+          },
+        ],
+      },
+    ],
   };
 
   // Create comprehensive test that includes questions from all subtopics
@@ -870,15 +1052,15 @@ export default function SubjectQuizzes() {
       subject: subjectNames[slug as string] || "Subject",
       totalTime: 50, // Default time, will be overridden by dynamic calculation
       passingScore: 70,
-      questions: [] // Empty array, questions will be selected dynamically from questionPool
+      questions: [], // Empty array, questions will be selected dynamically from questionPool
     };
   };
 
   const quizzes = isFullTest
     ? [createFullTest()]
     : subtopicId
-    ? (subtopicQuizzes[subtopicId] || [])
-    : (subjectQuizzes[slug as string] || []);
+      ? subtopicQuizzes[subtopicId] || []
+      : subjectQuizzes[slug as string] || [];
   const hasQuizzes = quizzes.length > 0;
 
   // Auto-start quiz when accessing via direct subtopic route or full test route
@@ -904,7 +1086,7 @@ export default function SubjectQuizzes() {
     "3-2": "Chain Rule",
     "4-0": "Antiderivatives",
     "4-1": "Definite Integrals",
-    "4-2": "Applications"
+    "4-2": "Applications",
   };
 
   const subtopicName = subtopicId ? subtopicNames[subtopicId] : null;
@@ -918,7 +1100,7 @@ export default function SubjectQuizzes() {
       totalQuestions: 45,
       timeSpent: 42,
       passed: true,
-      type: "comprehensive"
+      type: "comprehensive",
     },
     {
       id: "attempt-2",
@@ -927,7 +1109,7 @@ export default function SubjectQuizzes() {
       totalQuestions: 42,
       timeSpent: 38,
       passed: false,
-      type: "comprehensive"
+      type: "comprehensive",
     },
     {
       id: "attempt-3",
@@ -936,8 +1118,8 @@ export default function SubjectQuizzes() {
       totalQuestions: 40,
       timeSpent: 35,
       passed: true,
-      type: "comprehensive"
-    }
+      type: "comprehensive",
+    },
   ];
 
   const mockTopicHistory = [
@@ -947,7 +1129,7 @@ export default function SubjectQuizzes() {
       score: 95,
       totalQuestions: 8,
       timeSpent: 12,
-      passed: true
+      passed: true,
     },
     {
       id: "topic-attempt-2",
@@ -955,7 +1137,7 @@ export default function SubjectQuizzes() {
       score: 78,
       totalQuestions: 8,
       timeSpent: 15,
-      passed: true
+      passed: true,
     },
     {
       id: "topic-attempt-3",
@@ -963,34 +1145,39 @@ export default function SubjectQuizzes() {
       score: 65,
       totalQuestions: 8,
       timeSpent: 18,
-      passed: false
-    }
+      passed: false,
+    },
   ];
 
-  const handleQuizComplete = (score: number, answers: Record<string, any>, detailedResults?: DetailedQuizResult, attempt?: QuizAttempt) => {
+  const handleQuizComplete = (
+    score: number,
+    answers: Record<string, any>,
+    detailedResults?: DetailedQuizResult,
+    attempt?: QuizAttempt,
+  ) => {
     if (selectedQuiz) {
       // Update latest score for quick access
-      setQuizResults(prev => ({
+      setQuizResults((prev) => ({
         ...prev,
-        [selectedQuiz.id]: score
+        [selectedQuiz.id]: score,
       }));
 
       if (detailedResults) {
-        setDetailedQuizResults(prev => ({
+        setDetailedQuizResults((prev) => ({
           ...prev,
-          [selectedQuiz.id]: detailedResults
+          [selectedQuiz.id]: detailedResults,
         }));
       }
 
       // Update quiz progress with attempt tracking
       if (attempt) {
-        setQuizProgress(prev => {
+        setQuizProgress((prev) => {
           const existing = prev[selectedQuiz.id] || {
             quizId: selectedQuiz.id,
             attempts: [],
             bestScore: 0,
             hasPassed: false,
-            lastAttemptDate: new Date()
+            lastAttemptDate: new Date(),
           };
 
           const newAttempts = [...existing.attempts, attempt];
@@ -1004,8 +1191,8 @@ export default function SubjectQuizzes() {
               attempts: newAttempts,
               bestScore,
               hasPassed,
-              lastAttemptDate: attempt.completedAt
-            }
+              lastAttemptDate: attempt.completedAt,
+            },
           };
         });
       }
@@ -1014,31 +1201,50 @@ export default function SubjectQuizzes() {
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
-      case "Easy": return "bg-green-100 text-green-700";
-      case "Medium": return "bg-yellow-100 text-yellow-700";
-      case "Hard": return "bg-red-100 text-red-700";
-      default: return "bg-gray-100 text-gray-700";
+      case "Easy":
+        return "bg-green-100 text-green-700";
+      case "Medium":
+        return "bg-yellow-100 text-yellow-700";
+      case "Hard":
+        return "bg-red-100 text-red-700";
+      default:
+        return "bg-gray-100 text-gray-700";
     }
   };
 
   const getScoreBadge = (score: number, passingScore: number = 70) => {
-    if (score >= 90) return { text: "Excellent", color: "bg-green-100 text-green-700" };
-    if (score >= 80) return { text: "Good", color: "bg-blue-100 text-blue-700" };
-    if (score >= passingScore) return { text: "Pass", color: "bg-yellow-100 text-yellow-700" };
+    if (score >= 90)
+      return { text: "Excellent", color: "bg-green-100 text-green-700" };
+    if (score >= 80)
+      return { text: "Good", color: "bg-blue-100 text-blue-700" };
+    if (score >= passingScore)
+      return { text: "Pass", color: "bg-yellow-100 text-yellow-700" };
     return { text: "Needs Improvement", color: "bg-red-100 text-red-700" };
   };
 
   const getQuizStatus = (quizId: string, passingScore: number) => {
     const progress = quizProgress[quizId];
     if (!progress || progress.attempts.length === 0) {
-      return { status: 'not_attempted', text: 'Not Attempted', color: 'bg-gray-100 text-gray-700' };
+      return {
+        status: "not_attempted",
+        text: "Not Attempted",
+        color: "bg-gray-100 text-gray-700",
+      };
     }
 
     if (progress.hasPassed) {
-      return { status: 'passed', text: 'Passed', color: 'bg-green-100 text-green-700' };
+      return {
+        status: "passed",
+        text: "Passed",
+        color: "bg-green-100 text-green-700",
+      };
     }
 
-    return { status: 'needs_retake', text: 'Needs Retake', color: 'bg-orange-100 text-orange-700' };
+    return {
+      status: "needs_retake",
+      text: "Needs Retake",
+      color: "bg-orange-100 text-orange-700",
+    };
   };
 
   // Show selected quiz
@@ -1053,11 +1259,7 @@ export default function SubjectQuizzes() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="mb-8">
             <Link to={`/subjects/${slug}`}>
-              <Button
-                variant="outline"
-                size="sm"
-                className="mb-4"
-              >
+              <Button variant="outline" size="sm" className="mb-4">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back
               </Button>
@@ -1071,12 +1273,19 @@ export default function SubjectQuizzes() {
             previousAttempts={quizProgress[selectedQuiz.id]?.attempts || []}
             allowRetakes={true}
             requirePassingGrade={false}
-            questionPool={isFullTest ?
-              Object.values(questionPools).flat() :
-              (subtopicId ? questionPools[subtopicId] : undefined)
+            questionPool={
+              isFullTest
+                ? Object.values(questionPools).flat()
+                : subtopicId
+                  ? questionPools[subtopicId]
+                  : undefined
             }
             questionsPerAttempt={isFullTest ? 25 : 5}
-            curriculumInfo={subtopicId ? decodeCurriculumInfo(subtopicId) || undefined : undefined}
+            curriculumInfo={
+              subtopicId
+                ? decodeCurriculumInfo(subtopicId) || undefined
+                : undefined
+            }
           />
         </div>
       </div>
@@ -1096,8 +1305,12 @@ export default function SubjectQuizzes() {
               </Button>
             </Link>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">{subjectName} Quizzes</h1>
-              <p className="text-gray-600">Test your knowledge with curriculum-aligned questions</p>
+              <h1 className="text-3xl font-bold text-gray-900">
+                {subjectName} Quizzes
+              </h1>
+              <p className="text-gray-600">
+                Test your knowledge with curriculum-aligned questions
+              </p>
             </div>
           </div>
 
@@ -1109,13 +1322,15 @@ export default function SubjectQuizzes() {
               </div>
               <CardTitle className="text-2xl">Quizzes Coming Soon</CardTitle>
               <CardDescription className="text-lg">
-                {subjectName} practice quizzes are currently being developed. Check back soon!
+                {subjectName} practice quizzes are currently being developed.
+                Check back soon!
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 <p className="text-gray-600">
-                  In the meantime, try our Mathematics and Biology quizzes to see how the system works.
+                  In the meantime, try our Mathematics and Biology quizzes to
+                  see how the system works.
                 </p>
                 <div className="flex gap-3 justify-center">
                   <Link to="/subjects/mathematics/quizzes">
@@ -1124,9 +1339,7 @@ export default function SubjectQuizzes() {
                     </Button>
                   </Link>
                   <Link to="/subjects/biology/quizzes">
-                    <Button variant="outline">
-                      Try Biology Quizzes
-                    </Button>
+                    <Button variant="outline">Try Biology Quizzes</Button>
                   </Link>
                 </div>
               </div>
@@ -1139,13 +1352,17 @@ export default function SubjectQuizzes() {
 
   // Show test results view
   if (isResultsView && attemptId) {
-    const attempt = mockTestHistory.find(a => a.id === attemptId) || mockTopicHistory.find(a => a.id === attemptId);
+    const attempt =
+      mockTestHistory.find((a) => a.id === attemptId) ||
+      mockTopicHistory.find((a) => a.id === attemptId);
 
     if (!attempt) {
       return (
         <div className="min-h-screen bg-study-background flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">Test Attempt Not Found</h1>
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">
+              Test Attempt Not Found
+            </h1>
             <Link to={`/subjects/${slug}`}>
               <Button variant="outline">Back to Subject</Button>
             </Link>
@@ -1163,15 +1380,16 @@ export default function SubjectQuizzes() {
           correctAnswer: "All real numbers except 2",
           userAnswer: "All real numbers except 2",
           isCorrect: true,
-          explanation: "The function is undefined when x-2=0, so x cannot equal 2.",
+          explanation:
+            "The function is undefined when x-2=0, so x cannot equal 2.",
           workingSteps: [
             "Identify restrictions on the function f(x) = 1/(x-2)",
             "The function is undefined when the denominator equals zero",
             "Set the denominator equal to zero: x - 2 = 0",
             "Solve for x: x = 2",
             "Therefore, x cannot equal 2",
-            "Domain: All real numbers except x = 2"
-          ]
+            "Domain: All real numbers except x = 2",
+          ],
         },
         {
           id: "q2",
@@ -1186,8 +1404,8 @@ export default function SubjectQuizzes() {
             "The minimum value occurs when x = 0, giving f(0) = 0",
             "As |x| increases, x² increases without bound",
             "Therefore, f(x) can take any value ≥ 0",
-            "Range: [0, ∞) or all non-negative numbers"
-          ]
+            "Range: [0, ∞) or all non-negative numbers",
+          ],
         },
         {
           id: "q3",
@@ -1200,10 +1418,10 @@ export default function SubjectQuizzes() {
             "For √(x-3) to be defined, the expression under the square root must be non-negative",
             "Set up the inequality: x - 3 ≥ 0",
             "Solve for x: x ≥ 3",
-            "Domain: x ≥ 3 or [3, ∞)"
-          ]
-        }
-      ]
+            "Domain: x ≥ 3 or [3, ∞)",
+          ],
+        },
+      ],
     };
 
     return (
@@ -1211,15 +1429,22 @@ export default function SubjectQuizzes() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Header */}
           <div className="flex items-center space-x-4 mb-8">
-            <Link to={`/subjects/${slug}/${isTestHistory ? 'test/history' : `quiz/${subtopicId}/history`}`}>
+            <Link
+              to={`/subjects/${slug}/${isTestHistory ? "test/history" : `quiz/${subtopicId}/history`}`}
+            >
               <Button variant="outline" size="sm">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to History
               </Button>
             </Link>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Test Results Review</h1>
-              <p className="text-gray-600">Attempt #{attempt.id} • {attempt.score}% • {new Date(attempt.date).toLocaleDateString()}</p>
+              <h1 className="text-3xl font-bold text-gray-900">
+                Test Results Review
+              </h1>
+              <p className="text-gray-600">
+                Attempt #{attempt.id} • {attempt.score}% •{" "}
+                {new Date(attempt.date).toLocaleDateString()}
+              </p>
             </div>
           </div>
 
@@ -1227,30 +1452,42 @@ export default function SubjectQuizzes() {
           <Card className="border-sky-blue-200 mb-8">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Trophy className={`w-5 h-5 ${attempt.passed ? 'text-green-500' : 'text-red-500'}`} />
+                <Trophy
+                  className={`w-5 h-5 ${attempt.passed ? "text-green-500" : "text-red-500"}`}
+                />
                 Test Performance
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="text-center p-3 bg-blue-50 rounded-lg">
-                  <div className="text-2xl font-bold text-blue-600">{attempt.score}%</div>
+                  <div className="text-2xl font-bold text-blue-600">
+                    {attempt.score}%
+                  </div>
                   <div className="text-sm text-gray-600">Final Score</div>
                 </div>
                 <div className="text-center p-3 bg-green-50 rounded-lg">
                   <div className="text-2xl font-bold text-green-600">
-                    {mockDetailedResults.questions.filter(q => q.isCorrect).length}
+                    {
+                      mockDetailedResults.questions.filter((q) => q.isCorrect)
+                        .length
+                    }
                   </div>
                   <div className="text-sm text-gray-600">Correct</div>
                 </div>
                 <div className="text-center p-3 bg-red-50 rounded-lg">
                   <div className="text-2xl font-bold text-red-600">
-                    {mockDetailedResults.questions.filter(q => !q.isCorrect).length}
+                    {
+                      mockDetailedResults.questions.filter((q) => !q.isCorrect)
+                        .length
+                    }
                   </div>
                   <div className="text-sm text-gray-600">Incorrect</div>
                 </div>
                 <div className="text-center p-3 bg-orange-50 rounded-lg">
-                  <div className="text-2xl font-bold text-orange-600">{attempt.timeSpent}</div>
+                  <div className="text-2xl font-bold text-orange-600">
+                    {attempt.timeSpent}
+                  </div>
                   <div className="text-sm text-gray-600">Minutes</div>
                 </div>
               </div>
@@ -1259,14 +1496,27 @@ export default function SubjectQuizzes() {
 
           {/* Question by Question Review */}
           <div className="space-y-6">
-            <h2 className="text-xl font-semibold text-gray-900">Question by Question Review</h2>
+            <h2 className="text-xl font-semibold text-gray-900">
+              Question by Question Review
+            </h2>
 
             {mockDetailedResults.questions.map((question, index) => (
-              <Card key={question.id} className={`border-2 ${question.isCorrect ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50'}`}>
+              <Card
+                key={question.id}
+                className={`border-2 ${question.isCorrect ? "border-green-200 bg-green-50" : "border-red-200 bg-red-50"}`}
+              >
                 <CardHeader>
                   <div className="flex items-start justify-between">
-                    <CardTitle className="text-lg">Question {index + 1}</CardTitle>
-                    <Badge className={question.isCorrect ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}>
+                    <CardTitle className="text-lg">
+                      Question {index + 1}
+                    </CardTitle>
+                    <Badge
+                      className={
+                        question.isCorrect
+                          ? "bg-green-100 text-green-700"
+                          : "bg-red-100 text-red-700"
+                      }
+                    >
                       {question.isCorrect ? (
                         <>
                           <CheckCircle className="w-3 h-3 mr-1" />
@@ -1282,26 +1532,42 @@ export default function SubjectQuizzes() {
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="font-medium text-gray-900">{question.question}</div>
+                  <div className="font-medium text-gray-900">
+                    {question.question}
+                  </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="p-3 bg-white rounded-lg border">
-                      <div className="text-sm font-medium text-gray-600 mb-1">Your Answer</div>
-                      <div className={`font-medium ${question.isCorrect ? 'text-green-700' : 'text-red-700'}`}>
+                      <div className="text-sm font-medium text-gray-600 mb-1">
+                        Your Answer
+                      </div>
+                      <div
+                        className={`font-medium ${question.isCorrect ? "text-green-700" : "text-red-700"}`}
+                      >
                         {question.userAnswer}
                       </div>
                     </div>
                     <div className="p-3 bg-white rounded-lg border">
-                      <div className="text-sm font-medium text-gray-600 mb-1">Correct Answer</div>
-                      <div className="font-medium text-green-700">{question.correctAnswer}</div>
+                      <div className="text-sm font-medium text-gray-600 mb-1">
+                        Correct Answer
+                      </div>
+                      <div className="font-medium text-green-700">
+                        {question.correctAnswer}
+                      </div>
                     </div>
                   </div>
 
                   <div className="bg-white rounded-lg border p-4">
-                    <div className="text-sm font-medium text-gray-700 mb-2">Explanation</div>
-                    <div className="text-gray-600 mb-3">{question.explanation}</div>
+                    <div className="text-sm font-medium text-gray-700 mb-2">
+                      Explanation
+                    </div>
+                    <div className="text-gray-600 mb-3">
+                      {question.explanation}
+                    </div>
 
-                    <div className="text-sm font-medium text-gray-700 mb-2">Step-by-Step Solution</div>
+                    <div className="text-sm font-medium text-gray-700 mb-2">
+                      Step-by-Step Solution
+                    </div>
                     <ol className="list-decimal list-inside space-y-1 text-sm text-gray-600">
                       {question.workingSteps.map((step, stepIndex) => (
                         <li key={stepIndex}>{step}</li>
@@ -1317,7 +1583,9 @@ export default function SubjectQuizzes() {
           <Card className="border-sky-blue-200 mt-8">
             <CardContent className="p-6">
               <div className="flex gap-4 justify-center">
-                <Link to={`/subjects/${slug}/${isTestHistory ? 'test' : `quiz/${subtopicId}`}`}>
+                <Link
+                  to={`/subjects/${slug}/${isTestHistory ? "test" : `quiz/${subtopicId}`}`}
+                >
                   <Button>
                     <Trophy className="w-4 h-4 mr-2" />
                     Retake Test
@@ -1340,8 +1608,12 @@ export default function SubjectQuizzes() {
   // Show test history view
   if (isTestHistory || isTopicHistory) {
     const historyData = isTestHistory ? mockTestHistory : mockTopicHistory;
-    const pageTitle = isTestHistory ? "Comprehensive Test History" : `${subtopicName} Test History`;
-    const pageDescription = isTestHistory ? "Review your comprehensive test attempts" : `Review your ${subtopicName} quiz attempts`;
+    const pageTitle = isTestHistory
+      ? "Comprehensive Test History"
+      : `${subtopicName} Test History`;
+    const pageDescription = isTestHistory
+      ? "Review your comprehensive test attempts"
+      : `Review your ${subtopicName} quiz attempts`;
 
     return (
       <div className="min-h-screen bg-study-background">
@@ -1368,24 +1640,32 @@ export default function SubjectQuizzes() {
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="text-center p-3 bg-blue-50 rounded-lg">
-                  <div className="text-2xl font-bold text-blue-600">{historyData.length}</div>
+                  <div className="text-2xl font-bold text-blue-600">
+                    {historyData.length}
+                  </div>
                   <div className="text-sm text-gray-600">Total Attempts</div>
                 </div>
                 <div className="text-center p-3 bg-green-50 rounded-lg">
                   <div className="text-2xl font-bold text-green-600">
-                    {Math.round(historyData.reduce((acc, attempt) => acc + attempt.score, 0) / historyData.length)}%
+                    {Math.round(
+                      historyData.reduce(
+                        (acc, attempt) => acc + attempt.score,
+                        0,
+                      ) / historyData.length,
+                    )}
+                    %
                   </div>
                   <div className="text-sm text-gray-600">Average Score</div>
                 </div>
                 <div className="text-center p-3 bg-orange-50 rounded-lg">
                   <div className="text-2xl font-bold text-orange-600">
-                    {Math.max(...historyData.map(attempt => attempt.score))}%
+                    {Math.max(...historyData.map((attempt) => attempt.score))}%
                   </div>
                   <div className="text-sm text-gray-600">Best Score</div>
                 </div>
                 <div className="text-center p-3 bg-purple-50 rounded-lg">
                   <div className="text-2xl font-bold text-purple-600">
-                    {historyData.filter(attempt => attempt.passed).length}
+                    {historyData.filter((attempt) => attempt.passed).length}
                   </div>
                   <div className="text-sm text-gray-600">Tests Passed</div>
                 </div>
@@ -1404,20 +1684,31 @@ export default function SubjectQuizzes() {
                         <div className="text-lg font-semibold text-gray-900">
                           Attempt #{historyData.length - index}
                         </div>
-                        <Badge className={attempt.passed ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}>
-                          {attempt.passed ? 'PASSED' : 'NEEDS WORK'}
+                        <Badge
+                          className={
+                            attempt.passed
+                              ? "bg-green-100 text-green-700"
+                              : "bg-red-100 text-red-700"
+                          }
+                        >
+                          {attempt.passed ? "PASSED" : "NEEDS WORK"}
                         </Badge>
-                        <Badge variant="outline">
-                          {attempt.score}%
-                        </Badge>
+                        <Badge variant="outline">{attempt.score}%</Badge>
                       </div>
                       <div className="text-sm text-gray-600 space-y-1">
-                        <div>Date: {new Date(attempt.date).toLocaleDateString()}</div>
-                        <div>Questions: {attempt.totalQuestions} • Time: {attempt.timeSpent} minutes</div>
+                        <div>
+                          Date: {new Date(attempt.date).toLocaleDateString()}
+                        </div>
+                        <div>
+                          Questions: {attempt.totalQuestions} • Time:{" "}
+                          {attempt.timeSpent} minutes
+                        </div>
                       </div>
                     </div>
                     <div className="flex gap-2">
-                      <Link to={`/subjects/${slug}/${isTestHistory ? 'test' : 'quiz'}/${subtopicId || 'comprehensive'}/results/${attempt.id}`}>
+                      <Link
+                        to={`/subjects/${slug}/${isTestHistory ? "test" : "quiz"}/${subtopicId || "comprehensive"}/results/${attempt.id}`}
+                      >
                         <Button variant="outline" size="sm">
                           <Eye className="w-4 h-4 mr-2" />
                           Review Answers
@@ -1446,8 +1737,12 @@ export default function SubjectQuizzes() {
             </Button>
           </Link>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">{subjectName} Quizzes</h1>
-            <p className="text-gray-600">Test your knowledge with curriculum-aligned questions</p>
+            <h1 className="text-3xl font-bold text-gray-900">
+              {subjectName} Quizzes
+            </h1>
+            <p className="text-gray-600">
+              Test your knowledge with curriculum-aligned questions
+            </p>
           </div>
         </div>
 
@@ -1456,23 +1751,40 @@ export default function SubjectQuizzes() {
           <Card className="mb-8 border-sky-blue-200">
             <CardContent className="p-4">
               <div className="flex flex-wrap items-center gap-2 text-sm">
-                <span className="text-gray-600 font-medium">Currently studying:</span>
-                <Link to={`/subjects/${slug}#unit-${getUnitNumber(subjectQuizCurriculumMapping[slug as string].unit)}`}>
-                  <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100 cursor-pointer transition-colors">
+                <span className="text-gray-600 font-medium">
+                  Currently studying:
+                </span>
+                <Link
+                  to={`/subjects/${slug}#unit-${getUnitNumber(subjectQuizCurriculumMapping[slug as string].unit)}`}
+                >
+                  <Badge
+                    variant="outline"
+                    className="bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100 cursor-pointer transition-colors"
+                  >
                     {subjectQuizCurriculumMapping[slug as string].unit}
                   </Badge>
                 </Link>
                 <ChevronRight className="w-3 h-3 text-gray-400" />
-                <Link to={`/subjects/${slug}#topic-${getTopicId(subjectQuizCurriculumMapping[slug as string].topic)}`}>
-                  <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 hover:bg-green-100 cursor-pointer transition-colors">
+                <Link
+                  to={`/subjects/${slug}#topic-${getTopicId(subjectQuizCurriculumMapping[slug as string].topic)}`}
+                >
+                  <Badge
+                    variant="outline"
+                    className="bg-green-50 text-green-700 border-green-200 hover:bg-green-100 cursor-pointer transition-colors"
+                  >
                     {subjectQuizCurriculumMapping[slug as string].topic}
                   </Badge>
                 </Link>
                 {subjectQuizCurriculumMapping[slug as string].subtopic && (
                   <>
                     <ChevronRight className="w-3 h-3 text-gray-400" />
-                    <Link to={`/subjects/${slug}#subtopic-${getSubtopicId(subjectQuizCurriculumMapping[slug as string].subtopic)}`}>
-                      <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200 hover:bg-purple-100 cursor-pointer transition-colors">
+                    <Link
+                      to={`/subjects/${slug}#subtopic-${getSubtopicId(subjectQuizCurriculumMapping[slug as string].subtopic)}`}
+                    >
+                      <Badge
+                        variant="outline"
+                        className="bg-purple-50 text-purple-700 border-purple-200 hover:bg-purple-100 cursor-pointer transition-colors"
+                      >
                         {subjectQuizCurriculumMapping[slug as string].subtopic}
                       </Badge>
                     </Link>
@@ -1487,13 +1799,17 @@ export default function SubjectQuizzes() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           <Card className="border-sky-blue-200">
             <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-gray-900">{quizzes.length}</div>
+              <div className="text-2xl font-bold text-gray-900">
+                {quizzes.length}
+              </div>
               <div className="text-sm text-gray-600">Available Quizzes</div>
             </CardContent>
           </Card>
           <Card className="border-sky-blue-200">
             <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-gray-900">{Object.keys(quizProgress).length}</div>
+              <div className="text-2xl font-bold text-gray-900">
+                {Object.keys(quizProgress).length}
+              </div>
               <div className="text-sm text-gray-600">Attempted</div>
             </CardContent>
           </Card>
@@ -1501,8 +1817,14 @@ export default function SubjectQuizzes() {
             <CardContent className="p-4 text-center">
               <div className="text-2xl font-bold text-gray-900">
                 {Object.keys(quizProgress).length > 0
-                  ? Math.round(Object.values(quizProgress).reduce((sum, progress) => sum + progress.bestScore, 0) / Object.values(quizProgress).length)
-                  : 0}%
+                  ? Math.round(
+                      Object.values(quizProgress).reduce(
+                        (sum, progress) => sum + progress.bestScore,
+                        0,
+                      ) / Object.values(quizProgress).length,
+                    )
+                  : 0}
+                %
               </div>
               <div className="text-sm text-gray-600">Average Best Score</div>
             </CardContent>
@@ -1510,7 +1832,10 @@ export default function SubjectQuizzes() {
           <Card className="border-sky-blue-200">
             <CardContent className="p-4 text-center">
               <div className="text-2xl font-bold text-gray-900">
-                {quizzes.reduce((total, quiz) => total + quiz.questions.length, 0)}
+                {quizzes.reduce(
+                  (total, quiz) => total + quiz.questions.length,
+                  0,
+                )}
               </div>
               <div className="text-sm text-gray-600">Total Questions</div>
             </CardContent>
@@ -1519,40 +1844,50 @@ export default function SubjectQuizzes() {
 
         {/* Quiz List */}
         <div className="space-y-6">
-          <h2 className="text-xl font-semibold text-gray-900">Available Quizzes</h2>
-          
+          <h2 className="text-xl font-semibold text-gray-900">
+            Available Quizzes
+          </h2>
+
           <div className="grid gap-6">
             {quizzes.map((quiz) => {
               const hasCompleted = quizResults[quiz.id] !== undefined;
               const score = quizResults[quiz.id];
               const progress = quizProgress[quiz.id];
               const quizStatus = getQuizStatus(quiz.id, quiz.passingScore);
-              const scoreBadge = score ? getScoreBadge(score, quiz.passingScore) : null;
+              const scoreBadge = score
+                ? getScoreBadge(score, quiz.passingScore)
+                : null;
               const bestScore = progress?.bestScore || score;
               const attemptCount = progress?.attempts.length || 0;
-              
+
               return (
-                <Card key={quiz.id} className="border-sky-blue-200 hover:shadow-md transition-shadow">
+                <Card
+                  key={quiz.id}
+                  className="border-sky-blue-200 hover:shadow-md transition-shadow"
+                >
                   <CardContent className="p-6">
                     <div className="flex justify-between items-start mb-4">
                       <div className="flex-1">
-
-
                         <div className="flex items-center gap-3 mb-2">
-                          <h3 className="text-xl font-semibold text-gray-900">{quiz.title}</h3>
+                          <h3 className="text-xl font-semibold text-gray-900">
+                            {quiz.title}
+                          </h3>
                           <div className="flex items-center gap-2">
                             <Badge className={quizStatus.color}>
                               {quizStatus.text}
                             </Badge>
                             {hasCompleted && scoreBadge && (
                               <Badge className={scoreBadge.color}>
-                                {bestScore}% {attemptCount > 1 ? `(Best of ${attemptCount})` : ''}
+                                {bestScore}%{" "}
+                                {attemptCount > 1
+                                  ? `(Best of ${attemptCount})`
+                                  : ""}
                               </Badge>
                             )}
                           </div>
                         </div>
                         <p className="text-gray-600 mb-4">{quiz.description}</p>
-                        
+
                         <div className="flex flex-wrap gap-4 text-sm text-gray-600">
                           <div className="flex items-center">
                             <Brain className="w-4 h-4 mr-1" />
@@ -1568,20 +1903,22 @@ export default function SubjectQuizzes() {
                           </div>
                         </div>
                       </div>
-                      
+
                       <div className="ml-6">
                         <Button
                           onClick={() => setSelectedQuiz(quiz)}
                           className={`text-white ${
-                            quizStatus.status === 'needs_retake'
-                              ? 'bg-orange-500 hover:bg-orange-600'
-                              : 'bg-sky-blue-500 hover:bg-sky-blue-600'
+                            quizStatus.status === "needs_retake"
+                              ? "bg-orange-500 hover:bg-orange-600"
+                              : "bg-sky-blue-500 hover:bg-sky-blue-600"
                           }`}
                         >
                           <Play className="w-4 h-4 mr-2" />
-                          {quizStatus.status === 'not_attempted' ? 'Start Quiz' :
-                           quizStatus.status === 'needs_retake' ? 'Retake Quiz' :
-                           'Practice Again'}
+                          {quizStatus.status === "not_attempted"
+                            ? "Start Quiz"
+                            : quizStatus.status === "needs_retake"
+                              ? "Retake Quiz"
+                              : "Practice Again"}
                         </Button>
                       </div>
                     </div>
@@ -1592,21 +1929,29 @@ export default function SubjectQuizzes() {
                           <div className="flex items-center justify-between text-sm">
                             <span className="text-gray-600">Best Score:</span>
                             <div className="flex items-center">
-                              <CheckCircle className={`w-4 h-4 mr-1 ${
-                                bestScore >= quiz.passingScore ? 'text-green-500' : 'text-red-500'
-                              }`} />
+                              <CheckCircle
+                                className={`w-4 h-4 mr-1 ${
+                                  bestScore >= quiz.passingScore
+                                    ? "text-green-500"
+                                    : "text-red-500"
+                                }`}
+                              />
                               <span className="font-medium">{bestScore}%</span>
                             </div>
                           </div>
                           {attemptCount > 1 && (
                             <div className="flex items-center justify-between text-sm">
                               <span className="text-gray-600">Attempts:</span>
-                              <span className="font-medium">{attemptCount}</span>
+                              <span className="font-medium">
+                                {attemptCount}
+                              </span>
                             </div>
                           )}
                           {progress && (
                             <div className="flex items-center justify-between text-sm">
-                              <span className="text-gray-600">Last Attempt:</span>
+                              <span className="text-gray-600">
+                                Last Attempt:
+                              </span>
                               <span className="text-gray-500">
                                 {progress.lastAttemptDate.toLocaleDateString()}
                               </span>
@@ -1662,7 +2007,6 @@ export default function SubjectQuizzes() {
             </CardContent>
           </Card>
         </div>
-
       </div>
     </div>
   );

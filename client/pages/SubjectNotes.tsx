@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import {
   ArrowLeft,
@@ -16,7 +22,7 @@ import {
   Calculator,
   Lightbulb,
   Brain,
-  Trophy
+  Trophy,
 } from "lucide-react";
 
 // Notes curriculum mapping
@@ -31,67 +37,73 @@ const subjectNotesCurriculumMapping: Record<string, NotesCurriculumInfo> = {
   "mathematical-methods": {
     unit: "Unit 2: Calculus",
     topic: "Differential Calculus",
-    subtopic: "Derivatives and Limits"
+    subtopic: "Derivatives and Limits",
   },
-  "physics": {
+  physics: {
     unit: "Unit 1: Motion and Forces",
     topic: "Mechanics",
-    subtopic: "Forces and Motion"
+    subtopic: "Forces and Motion",
   },
-  "biology": {
+  biology: {
     unit: "Unit 3: Genetics and Evolution",
     topic: "Genetics and Heredity",
-    subtopic: "DNA and Inheritance"
+    subtopic: "DNA and Inheritance",
   },
-  "english": {
+  english: {
     unit: "Unit 1: Language and Literature",
     topic: "Literary Analysis",
-    subtopic: "Literary Devices"
+    subtopic: "Literary Devices",
   },
-  "chemistry": {
+  chemistry: {
     unit: "Unit 2: Chemical Bonding",
     topic: "Atomic Structure",
-    subtopic: "Electron Configuration"
-  }
+    subtopic: "Electron Configuration",
+  },
 };
 
 // Helper functions to generate IDs for curriculum sections
 const getUnitNumber = (unitName: string): string => {
   const match = unitName.match(/Unit (\d+)/);
-  return match ? match[1] : '1';
+  return match ? match[1] : "1";
 };
 
 const getTopicId = (topicName: string): string => {
   // Convert topic name to a slug-like ID
-  return topicName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+  return topicName
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9\-]/g, "");
 };
 
 const getSubtopicId = (subtopicName: string): string => {
   // Convert subtopic name to a slug-like ID
-  return subtopicName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+  return subtopicName
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9\-]/g, "");
 };
 
 const notesCurriculumMapping: Record<string, NotesCurriculumInfo> = {
   "mathematical-methods": {
     unit: "Unit 1: Algebra and Functions",
     topic: "Functions and Relations",
-    subtopic: "Domain and Range"
+    subtopic: "Domain and Range",
   },
-  "biology": {
+  biology: {
     unit: "Unit 3: Genetics and Evolution",
     topic: "Molecular Biology",
-    subtopic: "DNA and RNA Structure"
+    subtopic: "DNA and RNA Structure",
   },
-  "physics": {
+  physics: {
     unit: "Unit 1: Motion and Forces",
     topic: "Mechanics",
-    subtopic: "Forces and Energy"
+    subtopic: "Forces and Energy",
   },
-  "chemistry": {
+  chemistry: {
     unit: "Unit 2: Chemical Bonding",
     topic: "Atomic Structure",
-    subtopic: "Electron Configuration"
-  }
+    subtopic: "Electron Configuration",
+  },
 };
 
 interface StudyNote {
@@ -112,7 +124,8 @@ const mathematicsNotes: StudyNote[] = [
   {
     id: "math-derivatives",
     title: "Introduction to Derivatives",
-    description: "Fundamental concepts of derivatives including definition, notation, and basic rules",
+    description:
+      "Fundamental concepts of derivatives including definition, notation, and basic rules",
     content: `# Introduction to Derivatives
 
 ## What is a Derivative?
@@ -175,12 +188,13 @@ Try differentiating these functions:
     readTime: 12,
     lastUpdated: "2024-01-15",
     tags: ["derivatives", "calculus", "rates of change", "differentiation"],
-    type: "concept"
+    type: "concept",
   },
   {
     id: "math-integration",
     title: "Integration Fundamentals",
-    description: "Understanding antiderivatives, indefinite integrals, and basic integration techniques",
+    description:
+      "Understanding antiderivatives, indefinite integrals, and basic integration techniques",
     content: `# Integration Fundamentals
 
 ## What is Integration?
@@ -256,16 +270,17 @@ Evaluate these integrals:
 2. $\\int_0^1 x^2 \\, dx$
 3. $\\int \\sin(2x) \\, dx$`,
     category: "Calculus",
-    difficulty: "Medium", 
+    difficulty: "Medium",
     readTime: 15,
     lastUpdated: "2024-01-14",
     tags: ["integration", "antiderivatives", "definite integrals", "calculus"],
-    type: "concept"
+    type: "concept",
   },
   {
     id: "math-quadratic-formula",
     title: "Quadratic Formula and Applications",
-    description: "Complete guide to solving quadratic equations using the quadratic formula",
+    description:
+      "Complete guide to solving quadratic equations using the quadratic formula",
     content: `# The Quadratic Formula
 
 ## Standard Form
@@ -323,15 +338,16 @@ Remember: Always check your solutions by substituting back into the original equ
     readTime: 8,
     lastUpdated: "2024-01-13",
     tags: ["quadratic formula", "algebra", "equations", "discriminant"],
-    type: "formula"
-  }
+    type: "formula",
+  },
 ];
 
 const biologyNotes: StudyNote[] = [
   {
     id: "bio-photosynthesis",
     title: "Photosynthesis: Light-Dependent and Independent Reactions",
-    description: "Comprehensive overview of photosynthesis including the Calvin cycle and electron transport chain",
+    description:
+      "Comprehensive overview of photosynthesis including the Calvin cycle and electron transport chain",
     content: `# Photosynthesis
 
 ## Overview
@@ -414,8 +430,8 @@ This process is fundamental to life on Earth and forms the base of most food cha
     readTime: 18,
     lastUpdated: "2024-01-16",
     tags: ["photosynthesis", "Calvin cycle", "chloroplasts", "plant biology"],
-    type: "concept"
-  }
+    type: "concept",
+  },
 ];
 
 // English study notes for Queensland curriculum
@@ -423,7 +439,8 @@ const englishNotes: StudyNote[] = [
   {
     id: "eng-essay-writing",
     title: "Essay Writing: Structure and Techniques",
-    description: "Complete guide to writing effective essays including structure, thesis statements, and persuasive techniques",
+    description:
+      "Complete guide to writing effective essays including structure, thesis statements, and persuasive techniques",
     content: `# Essay Writing: Structure and Techniques
 
 ## The Five-Paragraph Essay Structure
@@ -523,13 +540,20 @@ Each body paragraph should follow the **PEEL** structure:
     difficulty: "Medium",
     readTime: 20,
     lastUpdated: "2024-01-16",
-    tags: ["essay writing", "structure", "thesis", "persuasion", "academic writing"],
-    type: "concept"
+    tags: [
+      "essay writing",
+      "structure",
+      "thesis",
+      "persuasion",
+      "academic writing",
+    ],
+    type: "concept",
   },
   {
     id: "eng-literary-analysis",
     title: "Literary Analysis: Techniques and Approaches",
-    description: "Guide to analyzing literature including character, theme, symbolism, and literary devices",
+    description:
+      "Guide to analyzing literature including character, theme, symbolism, and literary devices",
     content: `# Literary Analysis: Techniques and Approaches
 
 ## What is Literary Analysis?
@@ -654,13 +678,20 @@ When analyzing literature, consider:
     difficulty: "Hard",
     readTime: 25,
     lastUpdated: "2024-01-15",
-    tags: ["literary analysis", "character", "theme", "symbolism", "literary devices"],
-    type: "concept"
+    tags: [
+      "literary analysis",
+      "character",
+      "theme",
+      "symbolism",
+      "literary devices",
+    ],
+    type: "concept",
   },
   {
     id: "eng-poetry-analysis",
     title: "Poetry Analysis: Form, Structure, and Meaning",
-    description: "Understanding poetic devices, forms, and techniques for analyzing poetry effectively",
+    description:
+      "Understanding poetic devices, forms, and techniques for analyzing poetry effectively",
     content: `# Poetry Analysis: Form, Structure, and Meaning
 
 ## Elements of Poetry
@@ -802,9 +833,16 @@ Remember: Poetry is meant to be **felt** as well as understood. Trust your emoti
     difficulty: "Hard",
     readTime: 22,
     lastUpdated: "2024-01-14",
-    tags: ["poetry", "analysis", "form", "structure", "TPCASTT", "literary devices"],
-    type: "concept"
-  }
+    tags: [
+      "poetry",
+      "analysis",
+      "form",
+      "structure",
+      "TPCASTT",
+      "literary devices",
+    ],
+    type: "concept",
+  },
 ];
 
 // Physics study notes
@@ -812,7 +850,8 @@ const physicsNotes: StudyNote[] = [
   {
     id: "phys-motion",
     title: "Motion and Forces: Newton's Laws",
-    description: "Comprehensive guide to understanding motion, forces, and Newton's three laws of motion",
+    description:
+      "Comprehensive guide to understanding motion, forces, and Newton's three laws of motion",
     content: `# Motion and Forces: Newton's Laws
 
 ## Introduction to Motion
@@ -952,8 +991,8 @@ Understanding Newton's laws is fundamental to all of mechanics and forms the bas
     readTime: 18,
     lastUpdated: "2024-01-16",
     tags: ["Newton's laws", "motion", "forces", "mechanics", "physics"],
-    type: "concept"
-  }
+    type: "concept",
+  },
 ];
 
 const subjectNotes: Record<string, StudyNote[]> = {
@@ -965,7 +1004,7 @@ const subjectNotes: Record<string, StudyNote[]> = {
   english: englishNotes,
   chemistry: [],
   engineering: [],
-  economics: []
+  economics: [],
 };
 
 export default function SubjectNotes() {
@@ -975,95 +1014,117 @@ export default function SubjectNotes() {
 
   // Handle subtopic-specific notes
   const subtopicNotes: Record<string, StudyNote[]> = {
-    "0-0-0": [ // Domain and Range
+    "0-0-0": [
+      // Domain and Range
       {
         id: "dom-note-1",
         title: "Domain and Range Guide",
-        description: "Complete guide to understanding function domains and ranges",
-        content: "## Domain and Range\n\n**Domain**: The set of all possible input values (x-values) for a function.\n\n**Range**: The set of all possible output values (y-values) from a function.\n\n### Finding Domain\n1. Look for restrictions (division by zero, square roots of negatives)\n2. Consider the context of the problem\n\n### Finding Range\n1. Analyze the function's behavior\n2. Consider transformations applied",
+        description:
+          "Complete guide to understanding function domains and ranges",
+        content:
+          "## Domain and Range\n\n**Domain**: The set of all possible input values (x-values) for a function.\n\n**Range**: The set of all possible output values (y-values) from a function.\n\n### Finding Domain\n1. Look for restrictions (division by zero, square roots of negatives)\n2. Consider the context of the problem\n\n### Finding Range\n1. Analyze the function's behavior\n2. Consider transformations applied",
         category: "Functions",
         difficulty: "Medium",
         readTime: 5,
         lastUpdated: "2024-01-15",
         tags: ["domain", "range", "functions"],
-        type: "concept"
-      }
+        type: "concept",
+      },
     ],
-    "0-0-1": [ // Function Types
+    "0-0-1": [
+      // Function Types
       {
         id: "func-note-1",
         title: "Types of Functions",
-        description: "Overview of different function types and their properties",
-        content: "## Function Types\n\n### Linear Functions\n- Form: f(x) = mx + b\n- Graph: Straight line\n- Properties: Constant rate of change\n\n### Quadratic Functions\n- Form: f(x) = ax² + bx + c\n- Graph: Parabola\n- Properties: Has vertex, axis of symmetry",
+        description:
+          "Overview of different function types and their properties",
+        content:
+          "## Function Types\n\n### Linear Functions\n- Form: f(x) = mx + b\n- Graph: Straight line\n- Properties: Constant rate of change\n\n### Quadratic Functions\n- Form: f(x) = ax² + bx + c\n- Graph: Parabola\n- Properties: Has vertex, axis of symmetry",
         category: "Functions",
         difficulty: "Easy",
         readTime: 7,
         lastUpdated: "2024-01-15",
         tags: ["linear", "quadratic", "functions"],
-        type: "concept"
-      }
+        type: "concept",
+      },
     ],
-    "0-0-2": [ // Transformations
+    "0-0-2": [
+      // Transformations
       {
         id: "trans-note-1",
         title: "Function Transformations",
-        description: "Understanding horizontal and vertical shifts, reflections, and scaling",
-        content: "## Function Transformations\n\n### Vertical Transformations\n- **f(x) + k**: Shifts graph up k units\n- **f(x) - k**: Shifts graph down k units\n\n### Horizontal Transformations\n- **f(x - h)**: Shifts graph right h units\n- **f(x + h)**: Shifts graph left h units\n\n### Reflections\n- **-f(x)**: Reflects across x-axis\n- **f(-x)**: Reflects across y-axis\n\n### Scaling\n- **a·f(x)**: Vertical stretch/compression by factor a\n- **f(b·x)**: Horizontal compression/stretch by factor 1/b",
+        description:
+          "Understanding horizontal and vertical shifts, reflections, and scaling",
+        content:
+          "## Function Transformations\n\n### Vertical Transformations\n- **f(x) + k**: Shifts graph up k units\n- **f(x) - k**: Shifts graph down k units\n\n### Horizontal Transformations\n- **f(x - h)**: Shifts graph right h units\n- **f(x + h)**: Shifts graph left h units\n\n### Reflections\n- **-f(x)**: Reflects across x-axis\n- **f(-x)**: Reflects across y-axis\n\n### Scaling\n- **a·f(x)**: Vertical stretch/compression by factor a\n- **f(b·x)**: Horizontal compression/stretch by factor 1/b",
         category: "Functions",
         difficulty: "Medium",
         readTime: 8,
         lastUpdated: "2024-01-15",
         tags: ["transformations", "shifts", "reflections", "scaling"],
-        type: "concept"
-      }
+        type: "concept",
+      },
     ],
-    "1-0-0": [ // Limits
+    "1-0-0": [
+      // Limits
       {
         id: "limits-note-1",
         title: "Introduction to Limits",
         description: "Understanding limits, one-sided limits, and continuity",
-        content: "## Introduction to Limits\n\n### What is a Limit?\nA limit describes the behavior of a function as the input approaches a particular value.\n\n### Notation\n$$\\lim_{x \\to a} f(x) = L$$\n\n### One-Sided Limits\n- **Left-hand limit**: $\\lim_{x \\to a^-} f(x)$\n- **Right-hand limit**: $\\lim_{x \\to a^+} f(x)$\n\n### Continuity\nA function is continuous at x = a if:\n1. f(a) exists\n2. $\\lim_{x \\to a} f(x)$ exists\n3. $\\lim_{x \\to a} f(x) = f(a)$\n\n### Common Limit Rules\n- $\\lim_{x \\to a} c = c$ (constant)\n- $\\lim_{x \\to a} x = a$\n- $\\lim_{x \\to a} [f(x) ± g(x)] = \\lim_{x \\to a} f(x) ± \\lim_{x \\to a} g(x)$",
+        content:
+          "## Introduction to Limits\n\n### What is a Limit?\nA limit describes the behavior of a function as the input approaches a particular value.\n\n### Notation\n$$\\lim_{x \\to a} f(x) = L$$\n\n### One-Sided Limits\n- **Left-hand limit**: $\\lim_{x \\to a^-} f(x)$\n- **Right-hand limit**: $\\lim_{x \\to a^+} f(x)$\n\n### Continuity\nA function is continuous at x = a if:\n1. f(a) exists\n2. $\\lim_{x \\to a} f(x)$ exists\n3. $\\lim_{x \\to a} f(x) = f(a)$\n\n### Common Limit Rules\n- $\\lim_{x \\to a} c = c$ (constant)\n- $\\lim_{x \\to a} x = a$\n- $\\lim_{x \\to a} [f(x) ± g(x)] = \\lim_{x \\to a} f(x) ± \\lim_{x \\to a} g(x)$",
         category: "Calculus",
         difficulty: "Hard",
         readTime: 12,
         lastUpdated: "2024-01-15",
         tags: ["limits", "continuity", "one-sided limits", "calculus"],
-        type: "concept"
-      }
+        type: "concept",
+      },
     ],
-    "1-0-1": [ // Derivatives
+    "1-0-1": [
+      // Derivatives
       {
         id: "deriv-note-1",
         title: "Derivatives and the Chain Rule",
-        description: "Understanding derivatives and mastering chain rule applications",
-        content: "## Derivatives and the Chain Rule\n\n### Definition of a Derivative\n$$f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$$\n\n### Basic Derivative Rules\n- **Power Rule**: $\\frac{d}{dx}(x^n) = nx^{n-1}$\n- **Product Rule**: $\\frac{d}{dx}[f(x)g(x)] = f'(x)g(x) + f(x)g'(x)$\n- **Quotient Rule**: $\\frac{d}{dx}[\\frac{f(x)}{g(x)}] = \\frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2}$\n\n### Chain Rule\nFor composite functions: $\\frac{d}{dx}[f(g(x))] = f'(g(x)) \\cdot g'(x)$\n\n### Chain Rule Examples\n1. $\\frac{d}{dx}[(2x+1)^3] = 3(2x+1)^2 \\cdot 2 = 6(2x+1)^2$\n2. $\\frac{d}{dx}[\\sin(x^2)] = \\cos(x^2) \\cdot 2x$\n3. $\\frac{d}{dx}[e^{3x}] = e^{3x} \\cdot 3$",
+        description:
+          "Understanding derivatives and mastering chain rule applications",
+        content:
+          "## Derivatives and the Chain Rule\n\n### Definition of a Derivative\n$$f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$$\n\n### Basic Derivative Rules\n- **Power Rule**: $\\frac{d}{dx}(x^n) = nx^{n-1}$\n- **Product Rule**: $\\frac{d}{dx}[f(x)g(x)] = f'(x)g(x) + f(x)g'(x)$\n- **Quotient Rule**: $\\frac{d}{dx}[\\frac{f(x)}{g(x)}] = \\frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2}$\n\n### Chain Rule\nFor composite functions: $\\frac{d}{dx}[f(g(x))] = f'(g(x)) \\cdot g'(x)$\n\n### Chain Rule Examples\n1. $\\frac{d}{dx}[(2x+1)^3] = 3(2x+1)^2 \\cdot 2 = 6(2x+1)^2$\n2. $\\frac{d}{dx}[\\sin(x^2)] = \\cos(x^2) \\cdot 2x$\n3. $\\frac{d}{dx}[e^{3x}] = e^{3x} \\cdot 3$",
         category: "Calculus",
         difficulty: "Medium",
         readTime: 10,
         lastUpdated: "2024-01-15",
         tags: ["derivatives", "chain rule", "calculus", "differentiation"],
-        type: "concept"
-      }
+        type: "concept",
+      },
     ],
-    "1-1-0": [ // Antiderivatives
+    "1-1-0": [
+      // Antiderivatives
       {
         id: "antider-note-1",
         title: "Antiderivatives and Integration",
-        description: "Understanding antiderivatives and basic integration techniques",
-        content: "## Antiderivatives and Integration\n\n### What is an Antiderivative?\nAn antiderivative of f(x) is a function F(x) such that F'(x) = f(x).\n\n### Indefinite Integral Notation\n$$\\int f(x) \\, dx = F(x) + C$$\n\nWhere C is the constant of integration.\n\n### Basic Integration Rules\n- **Power Rule**: $\\int x^n \\, dx = \\frac{x^{n+1}}{n+1} + C$ (n ≠ -1)\n- **Constant Rule**: $\\int k \\, dx = kx + C$\n- **Sum Rule**: $\\int [f(x) + g(x)] \\, dx = \\int f(x) \\, dx + \\int g(x) \\, dx$\n\n### Common Antiderivatives\n- $\\int \\frac{1}{x} \\, dx = \\ln|x| + C$\n- $\\int e^x \\, dx = e^x + C$\n- $\\int \\sin x \\, dx = -\\cos x + C$\n- $\\int \\cos x \\, dx = \\sin x + C$\n\n### Integration by Substitution\nWhen integrand contains a function and its derivative:\n1. Let u = g(x)\n2. Find du = g'(x)dx\n3. Substitute and integrate\n4. Replace u with original expression",
+        description:
+          "Understanding antiderivatives and basic integration techniques",
+        content:
+          "## Antiderivatives and Integration\n\n### What is an Antiderivative?\nAn antiderivative of f(x) is a function F(x) such that F'(x) = f(x).\n\n### Indefinite Integral Notation\n$$\\int f(x) \\, dx = F(x) + C$$\n\nWhere C is the constant of integration.\n\n### Basic Integration Rules\n- **Power Rule**: $\\int x^n \\, dx = \\frac{x^{n+1}}{n+1} + C$ (n ≠ -1)\n- **Constant Rule**: $\\int k \\, dx = kx + C$\n- **Sum Rule**: $\\int [f(x) + g(x)] \\, dx = \\int f(x) \\, dx + \\int g(x) \\, dx$\n\n### Common Antiderivatives\n- $\\int \\frac{1}{x} \\, dx = \\ln|x| + C$\n- $\\int e^x \\, dx = e^x + C$\n- $\\int \\sin x \\, dx = -\\cos x + C$\n- $\\int \\cos x \\, dx = \\sin x + C$\n\n### Integration by Substitution\nWhen integrand contains a function and its derivative:\n1. Let u = g(x)\n2. Find du = g'(x)dx\n3. Substitute and integrate\n4. Replace u with original expression",
         category: "Calculus",
         difficulty: "Medium",
         readTime: 10,
         lastUpdated: "2024-01-15",
-        tags: ["antiderivatives", "integration", "calculus", "indefinite integrals"],
-        type: "concept"
-      }
-    ]
+        tags: [
+          "antiderivatives",
+          "integration",
+          "calculus",
+          "indefinite integrals",
+        ],
+        type: "concept",
+      },
+    ],
   };
 
   const notes = subtopicId
-    ? (subtopicNotes[subtopicId] || [])
-    : (subjectNotes[slug as string] || []);
+    ? subtopicNotes[subtopicId] || []
+    : subjectNotes[slug as string] || [];
   const hasNotes = notes.length > 0;
 
   // Auto-select the single note for subtopic-specific pages
@@ -1080,7 +1141,7 @@ export default function SubjectNotes() {
     english: "English",
     chemistry: "Chemistry",
     engineering: "Engineering",
-    economics: "Economics"
+    economics: "Economics",
   };
 
   const subjectName = subjectNames[slug as string] || "Subject";
@@ -1092,43 +1153,60 @@ export default function SubjectNotes() {
     "0-0-2": "Transformations",
     "1-0-0": "Limits",
     "1-0-1": "Derivatives",
-    "1-1-0": "Antiderivatives"
+    "1-1-0": "Antiderivatives",
   };
 
   const subtopicName = subtopicId ? subtopicNames[subtopicId] : null;
 
-  const filteredNotes = notes.filter(note => 
-    note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    note.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    note.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+  const filteredNotes = notes.filter(
+    (note) =>
+      note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      note.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      note.tags.some((tag) =>
+        tag.toLowerCase().includes(searchTerm.toLowerCase()),
+      ),
   );
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
-      case "Easy": return "bg-green-100 text-green-700";
-      case "Medium": return "bg-yellow-100 text-yellow-700";
-      case "Hard": return "bg-red-100 text-red-700";
-      default: return "bg-gray-100 text-gray-700";
+      case "Easy":
+        return "bg-green-100 text-green-700";
+      case "Medium":
+        return "bg-yellow-100 text-yellow-700";
+      case "Hard":
+        return "bg-red-100 text-red-700";
+      default:
+        return "bg-gray-100 text-gray-700";
     }
   };
 
   const getTypeIcon = (type: string) => {
     switch (type) {
-      case "concept": return <Lightbulb className="w-4 h-4" />;
-      case "formula": return <Calculator className="w-4 h-4" />;
-      case "example": return <Eye className="w-4 h-4" />;
-      case "summary": return <FileText className="w-4 h-4" />;
-      default: return <BookOpen className="w-4 h-4" />;
+      case "concept":
+        return <Lightbulb className="w-4 h-4" />;
+      case "formula":
+        return <Calculator className="w-4 h-4" />;
+      case "example":
+        return <Eye className="w-4 h-4" />;
+      case "summary":
+        return <FileText className="w-4 h-4" />;
+      default:
+        return <BookOpen className="w-4 h-4" />;
     }
   };
 
   const getTypeColor = (type: string) => {
     switch (type) {
-      case "concept": return "bg-blue-100 text-blue-700";
-      case "formula": return "bg-purple-100 text-purple-700";
-      case "example": return "bg-green-100 text-green-700";
-      case "summary": return "bg-orange-100 text-orange-700";
-      default: return "bg-gray-100 text-gray-700";
+      case "concept":
+        return "bg-blue-100 text-blue-700";
+      case "formula":
+        return "bg-purple-100 text-purple-700";
+      case "example":
+        return "bg-green-100 text-green-700";
+      case "summary":
+        return "bg-orange-100 text-orange-700";
+      default:
+        return "bg-gray-100 text-gray-700";
     }
   };
 
@@ -1139,22 +1217,20 @@ export default function SubjectNotes() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="mb-8">
             <Link to={`/subjects/${slug}`}>
-              <Button
-                variant="outline"
-                size="sm"
-                className="mb-4"
-              >
+              <Button variant="outline" size="sm" className="mb-4">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to Curriculum
               </Button>
             </Link>
           </div>
-          
+
           <Card className="border-sky-blue-200">
             <CardHeader>
               <div className="flex justify-between items-start mb-4">
                 <div className="flex gap-2">
-                  <Badge className={getDifficultyColor(selectedNote.difficulty)}>
+                  <Badge
+                    className={getDifficultyColor(selectedNote.difficulty)}
+                  >
                     {selectedNote.difficulty}
                   </Badge>
                   <Badge className={getTypeColor(selectedNote.type)}>
@@ -1168,8 +1244,10 @@ export default function SubjectNotes() {
                 </div>
               </div>
               <CardTitle className="text-2xl">{selectedNote.title}</CardTitle>
-              <CardDescription className="text-lg">{selectedNote.description}</CardDescription>
-              
+              <CardDescription className="text-lg">
+                {selectedNote.description}
+              </CardDescription>
+
               <div className="flex flex-wrap gap-2 mt-4">
                 {selectedNote.tags.map((tag, index) => (
                   <Badge key={index} variant="outline" className="text-xs">
@@ -1179,21 +1257,36 @@ export default function SubjectNotes() {
               </div>
             </CardHeader>
             <CardContent>
-              <div 
+              <div
                 className="prose prose-lg max-w-none"
-                dangerouslySetInnerHTML={{ 
+                dangerouslySetInnerHTML={{
                   __html: selectedNote.content
-                    .replace(/\$\$(.*?)\$\$/g, '<div class="math-block">$1</div>')
-                    .replace(/\$(.*?)\$/g, '<span class="math-inline">$1</span>')
-                    .replace(/\n/g, '<br>')
-                    .replace(/^# (.*$)/gm, '<h1 class="text-2xl font-bold mt-6 mb-4">$1</h1>')
-                    .replace(/^## (.*$)/gm, '<h2 class="text-xl font-semibold mt-5 mb-3">$1</h2>')
-                    .replace(/^### (.*$)/gm, '<h3 class="text-lg font-medium mt-4 mb-2">$1</h3>')
-                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                    .replace(
+                      /\$\$(.*?)\$\$/g,
+                      '<div class="math-block">$1</div>',
+                    )
+                    .replace(
+                      /\$(.*?)\$/g,
+                      '<span class="math-inline">$1</span>',
+                    )
+                    .replace(/\n/g, "<br>")
+                    .replace(
+                      /^# (.*$)/gm,
+                      '<h1 class="text-2xl font-bold mt-6 mb-4">$1</h1>',
+                    )
+                    .replace(
+                      /^## (.*$)/gm,
+                      '<h2 class="text-xl font-semibold mt-5 mb-3">$1</h2>',
+                    )
+                    .replace(
+                      /^### (.*$)/gm,
+                      '<h3 class="text-lg font-medium mt-4 mb-2">$1</h3>',
+                    )
+                    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+                    .replace(/\*(.*?)\*/g, "<em>$1</em>"),
                 }}
               />
-              
+
               <div className="mt-8 pt-6 border-t border-gray-200">
                 <div className="flex justify-between items-center text-sm text-gray-600">
                   <span>Last updated: {selectedNote.lastUpdated}</span>
@@ -1223,8 +1316,12 @@ export default function SubjectNotes() {
               </Button>
             </Link>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">{subjectName} Study Notes</h1>
-              <p className="text-gray-600">Comprehensive notes covering all key concepts</p>
+              <h1 className="text-3xl font-bold text-gray-900">
+                {subjectName} Study Notes
+              </h1>
+              <p className="text-gray-600">
+                Comprehensive notes covering all key concepts
+              </p>
             </div>
           </div>
 
@@ -1234,15 +1331,19 @@ export default function SubjectNotes() {
               <div className="w-16 h-16 bg-sky-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <BookOpen className="w-8 h-8 text-sky-blue-600" />
               </div>
-              <CardTitle className="text-2xl">Study Notes Coming Soon</CardTitle>
+              <CardTitle className="text-2xl">
+                Study Notes Coming Soon
+              </CardTitle>
               <CardDescription className="text-lg">
-                {subjectName} study notes are currently being developed. Check back soon!
+                {subjectName} study notes are currently being developed. Check
+                back soon!
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 <p className="text-gray-600">
-                  In the meantime, try our Mathematics and Biology notes to see how comprehensive they are.
+                  In the meantime, try our Mathematics and Biology notes to see
+                  how comprehensive they are.
                 </p>
                 <div className="flex gap-3 justify-center">
                   <Link to="/subjects/mathematics/notes">
@@ -1251,9 +1352,7 @@ export default function SubjectNotes() {
                     </Button>
                   </Link>
                   <Link to="/subjects/biology/notes">
-                    <Button variant="outline">
-                      Biology Notes
-                    </Button>
+                    <Button variant="outline">Biology Notes</Button>
                   </Link>
                 </div>
               </div>
@@ -1277,10 +1376,14 @@ export default function SubjectNotes() {
           </Link>
           <div className="flex-1">
             <h1 className="text-3xl font-bold text-gray-900">
-              {subtopicId ? `${subtopicName} Notes` : `${subjectName} Study Notes`}
+              {subtopicId
+                ? `${subtopicName} Notes`
+                : `${subjectName} Study Notes`}
             </h1>
             <p className="text-gray-600">
-              {subtopicId ? `Study notes for ${subtopicName}` : "Comprehensive notes covering all key concepts"}
+              {subtopicId
+                ? `Study notes for ${subtopicName}`
+                : "Comprehensive notes covering all key concepts"}
             </p>
           </div>
         </div>
@@ -1290,23 +1393,40 @@ export default function SubjectNotes() {
           <Card className="mb-8 border-sky-blue-200">
             <CardContent className="p-4">
               <div className="flex flex-wrap items-center gap-2 text-sm">
-                <span className="text-gray-600 font-medium">Currently studying:</span>
-                <Link to={`/subjects/${slug}#unit-${getUnitNumber(subjectNotesCurriculumMapping[slug as string].unit)}`}>
-                  <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100 cursor-pointer transition-colors">
+                <span className="text-gray-600 font-medium">
+                  Currently studying:
+                </span>
+                <Link
+                  to={`/subjects/${slug}#unit-${getUnitNumber(subjectNotesCurriculumMapping[slug as string].unit)}`}
+                >
+                  <Badge
+                    variant="outline"
+                    className="bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100 cursor-pointer transition-colors"
+                  >
                     {subjectNotesCurriculumMapping[slug as string].unit}
                   </Badge>
                 </Link>
                 <ChevronRight className="w-3 h-3 text-gray-400" />
-                <Link to={`/subjects/${slug}#topic-${getTopicId(subjectNotesCurriculumMapping[slug as string].topic)}`}>
-                  <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 hover:bg-green-100 cursor-pointer transition-colors">
+                <Link
+                  to={`/subjects/${slug}#topic-${getTopicId(subjectNotesCurriculumMapping[slug as string].topic)}`}
+                >
+                  <Badge
+                    variant="outline"
+                    className="bg-green-50 text-green-700 border-green-200 hover:bg-green-100 cursor-pointer transition-colors"
+                  >
                     {subjectNotesCurriculumMapping[slug as string].topic}
                   </Badge>
                 </Link>
                 {subjectNotesCurriculumMapping[slug as string].subtopic && (
                   <>
                     <ChevronRight className="w-3 h-3 text-gray-400" />
-                    <Link to={`/subjects/${slug}#subtopic-${getSubtopicId(subjectNotesCurriculumMapping[slug as string].subtopic)}`}>
-                      <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200 hover:bg-purple-100 cursor-pointer transition-colors">
+                    <Link
+                      to={`/subjects/${slug}#subtopic-${getSubtopicId(subjectNotesCurriculumMapping[slug as string].subtopic)}`}
+                    >
+                      <Badge
+                        variant="outline"
+                        className="bg-purple-50 text-purple-700 border-purple-200 hover:bg-purple-100 cursor-pointer transition-colors"
+                      >
                         {subjectNotesCurriculumMapping[slug as string].subtopic}
                       </Badge>
                     </Link>
@@ -1317,23 +1437,23 @@ export default function SubjectNotes() {
           </Card>
         )}
 
-
-
-
-
-
         {/* Notes List */}
         <div className="space-y-6">
           {filteredNotes.length === 0 ? (
             <Card className="text-center border-sky-blue-200 p-8">
               <BookOpen className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No notes found</h3>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">
+                No notes found
+              </h3>
               <p className="text-gray-600">Try adjusting your search terms.</p>
             </Card>
           ) : (
             filteredNotes.map((note) => (
-              <Card key={note.id} className="border-sky-blue-200 hover:shadow-md transition-shadow cursor-pointer"
-                    onClick={() => setSelectedNote(note)}>
+              <Card
+                key={note.id}
+                className="border-sky-blue-200 hover:shadow-md transition-shadow cursor-pointer"
+                onClick={() => setSelectedNote(note)}
+              >
                 <CardContent className="p-6">
                   <div className="flex justify-between items-start mb-3">
                     <div className="flex gap-2">
@@ -1350,14 +1470,20 @@ export default function SubjectNotes() {
                       {note.readTime} min
                     </div>
                   </div>
-                  
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{note.title}</h3>
+
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                    {note.title}
+                  </h3>
                   <p className="text-gray-600 mb-4">{note.description}</p>
-                  
+
                   <div className="flex justify-between items-center">
                     <div className="flex flex-wrap gap-1">
                       {note.tags.slice(0, 3).map((tag, index) => (
-                        <Badge key={index} variant="outline" className="text-xs">
+                        <Badge
+                          key={index}
+                          variant="outline"
+                          className="text-xs"
+                        >
                           {tag}
                         </Badge>
                       ))}
@@ -1367,7 +1493,7 @@ export default function SubjectNotes() {
                         </Badge>
                       )}
                     </div>
-                    
+
                     <div className="flex items-center text-sky-blue-600">
                       <span className="text-sm mr-2">Read Note</span>
                       <ChevronRight className="w-4 h-4" />
@@ -1419,7 +1545,6 @@ export default function SubjectNotes() {
             </CardContent>
           </Card>
         </div>
-
       </div>
     </div>
   );

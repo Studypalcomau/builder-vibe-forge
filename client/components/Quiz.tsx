@@ -14,7 +14,7 @@ import {
   RotateCcw,
   BookOpen,
   Eye,
-  ArrowLeft
+  ArrowLeft,
 } from "lucide-react";
 
 export interface QuizQuestion {
@@ -85,7 +85,12 @@ interface CurriculumInfo {
 
 interface QuizComponentProps {
   quiz: QuizData;
-  onComplete: (score: number, answers: Record<string, any>, detailedResults?: DetailedQuizResult, attempt?: QuizAttempt) => void;
+  onComplete: (
+    score: number,
+    answers: Record<string, any>,
+    detailedResults?: DetailedQuizResult,
+    attempt?: QuizAttempt,
+  ) => void;
   className?: string;
   returnPath?: string;
   previousAttempts?: QuizAttempt[];
@@ -97,7 +102,10 @@ interface QuizComponentProps {
 }
 
 // Function to randomize and select questions from a larger pool
-const selectRandomQuestions = (questionPool: QuizQuestion[], count: number): QuizQuestion[] => {
+const selectRandomQuestions = (
+  questionPool: QuizQuestion[],
+  count: number,
+): QuizQuestion[] => {
   if (questionPool.length <= count) {
     return [...questionPool]; // Return all questions if pool is smaller than requested count
   }
@@ -116,23 +124,30 @@ export function Quiz({
   requirePassingGrade = false,
   questionPool,
   questionsPerAttempt = 5,
-  curriculumInfo
+  curriculumInfo,
 }: QuizComponentProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, any>>({});
   const [showResult, setShowResult] = useState(false);
   const [quizStarted, setQuizStarted] = useState(false);
   const [showDetailedReview, setShowDetailedReview] = useState(false);
-  const [detailedResults, setDetailedResults] = useState<DetailedQuizResult | null>(null);
+  const [detailedResults, setDetailedResults] =
+    useState<DetailedQuizResult | null>(null);
   const [showAttemptHistory, setShowAttemptHistory] = useState(false);
   const [showTestHistory, setShowTestHistory] = useState(false);
-  const [selectedHistoryAttempt, setSelectedHistoryAttempt] = useState<QuizAttempt | null>(null);
+  const [selectedHistoryAttempt, setSelectedHistoryAttempt] =
+    useState<QuizAttempt | null>(null);
   const [quizStartTime, setQuizStartTime] = useState<Date | null>(null);
-  const [currentQuizQuestions, setCurrentQuizQuestions] = useState<QuizQuestion[]>([]);
+  const [currentQuizQuestions, setCurrentQuizQuestions] = useState<
+    QuizQuestion[]
+  >([]);
   const [selectedQuestionCount, setSelectedQuestionCount] = useState(25);
 
   // Calculate dynamic time limit based on question count (2 minutes per question, minimum 20 minutes)
-  const dynamicTimeLimit = useMemo(() => Math.max(20, selectedQuestionCount * 2), [selectedQuestionCount]);
+  const dynamicTimeLimit = useMemo(
+    () => Math.max(20, selectedQuestionCount * 2),
+    [selectedQuestionCount],
+  );
 
   const [timeLeft, setTimeLeft] = useState(quiz.totalTime * 60);
 
@@ -146,32 +161,51 @@ export function Quiz({
   // Initialize quiz questions (randomized if question pool provided)
   useEffect(() => {
     if (questionPool && questionPool.length > 0) {
-      const questionCount = questionPool.length >= selectedQuestionCount ? selectedQuestionCount : questionsPerAttempt;
-      const selectedQuestions = selectRandomQuestions(questionPool, questionCount);
+      const questionCount =
+        questionPool.length >= selectedQuestionCount
+          ? selectedQuestionCount
+          : questionsPerAttempt;
+      const selectedQuestions = selectRandomQuestions(
+        questionPool,
+        questionCount,
+      );
       setCurrentQuizQuestions(selectedQuestions);
     } else {
       setCurrentQuizQuestions(quiz.questions);
     }
-  }, [questionPool, questionsPerAttempt, quiz.questions, selectedQuestionCount]);
+  }, [
+    questionPool,
+    questionsPerAttempt,
+    quiz.questions,
+    selectedQuestionCount,
+  ]);
 
   const currentQuestion = currentQuizQuestions[currentQuestionIndex];
-  const progress = ((currentQuestionIndex + 1) / currentQuizQuestions.length) * 100;
-  const isLastQuestion = currentQuestionIndex === currentQuizQuestions.length - 1;
-  const hasAnsweredCurrent = currentQuestion && answers[currentQuestion?.id] !== undefined;
+  const progress =
+    ((currentQuestionIndex + 1) / currentQuizQuestions.length) * 100;
+  const isLastQuestion =
+    currentQuestionIndex === currentQuizQuestions.length - 1;
+  const hasAnsweredCurrent =
+    currentQuestion && answers[currentQuestion?.id] !== undefined;
 
   const calculateScore = () => {
     let correct = 0;
     let totalPoints = 0;
 
-    currentQuizQuestions.forEach(question => {
+    currentQuizQuestions.forEach((question) => {
       totalPoints += question.points;
       const userAnswer = answers[question.id];
 
       if (question.type === "numerical") {
-        if (Math.abs(Number(userAnswer) - Number(question.correctAnswer)) < 0.001) {
+        if (
+          Math.abs(Number(userAnswer) - Number(question.correctAnswer)) < 0.001
+        ) {
           correct += question.points;
         }
-      } else if (String(userAnswer).toLowerCase() === String(question.correctAnswer).toLowerCase()) {
+      } else if (
+        String(userAnswer).toLowerCase() ===
+        String(question.correctAnswer).toLowerCase()
+      ) {
         correct += question.points;
       }
     });
@@ -185,14 +219,17 @@ export function Quiz({
     let totalPointsEarned = 0;
     let totalPointsPossible = 0;
 
-    currentQuizQuestions.forEach(question => {
+    currentQuizQuestions.forEach((question) => {
       const userAnswer = answers[question.id];
       let isCorrect = false;
 
       if (question.type === "numerical") {
-        isCorrect = Math.abs(Number(userAnswer) - Number(question.correctAnswer)) < 0.001;
+        isCorrect =
+          Math.abs(Number(userAnswer) - Number(question.correctAnswer)) < 0.001;
       } else {
-        isCorrect = String(userAnswer).toLowerCase() === String(question.correctAnswer).toLowerCase();
+        isCorrect =
+          String(userAnswer).toLowerCase() ===
+          String(question.correctAnswer).toLowerCase();
       }
 
       if (isCorrect) {
@@ -207,7 +244,7 @@ export function Quiz({
         correctAnswer: question.correctAnswer,
         isCorrect,
         points: isCorrect ? question.points : 0,
-        maxPoints: question.points
+        maxPoints: question.points,
       });
     });
 
@@ -217,14 +254,14 @@ export function Quiz({
       score,
       totalQuestions: currentQuizQuestions.length,
       correctAnswers: correctCount,
-      results
+      results,
     };
   };
 
   const handleAnswer = (answer: any) => {
-    setAnswers(prev => ({
+    setAnswers((prev) => ({
       ...prev,
-      [currentQuestion.id]: answer
+      [currentQuestion.id]: answer,
     }));
   };
 
@@ -232,7 +269,9 @@ export function Quiz({
     if (isLastQuestion) {
       const finalScore = calculateScore();
       const detailed = calculateDetailedResults();
-      const timeTaken = quizStartTime ? (Date.now() - quizStartTime.getTime()) / 1000 : undefined;
+      const timeTaken = quizStartTime
+        ? (Date.now() - quizStartTime.getTime()) / 1000
+        : undefined;
 
       const attempt: QuizAttempt = {
         attemptNumber: previousAttempts.length + 1,
@@ -242,7 +281,7 @@ export function Quiz({
         timeTaken,
         detailedResults: detailed,
         questionsAsked: currentQuizQuestions,
-        userAnswers: answers
+        userAnswers: answers,
       };
 
       setDetailedResults(detailed);
@@ -274,7 +313,10 @@ export function Quiz({
 
     // Generate new randomized questions for the next attempt
     if (questionPool && questionPool.length > 0) {
-      const questionCount = questionPool.length >= selectedQuestionCount ? selectedQuestionCount : questionsPerAttempt;
+      const questionCount =
+        questionPool.length >= selectedQuestionCount
+          ? selectedQuestionCount
+          : questionsPerAttempt;
       const newQuestions = selectRandomQuestions(questionPool, questionCount);
       setCurrentQuizQuestions(newQuestions);
     }
@@ -283,15 +325,19 @@ export function Quiz({
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
   };
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
-      case "Easy": return "bg-green-100 text-green-700";
-      case "Medium": return "bg-yellow-100 text-yellow-700";
-      case "Hard": return "bg-red-100 text-red-700";
-      default: return "bg-gray-100 text-gray-700";
+      case "Easy":
+        return "bg-green-100 text-green-700";
+      case "Medium":
+        return "bg-yellow-100 text-yellow-700";
+      case "Hard":
+        return "bg-red-100 text-red-700";
+      default:
+        return "bg-gray-100 text-gray-700";
     }
   };
 
@@ -316,11 +362,15 @@ export function Quiz({
                 </label>
                 <select
                   value={selectedQuestionCount}
-                  onChange={(e) => setSelectedQuestionCount(Number(e.target.value))}
+                  onChange={(e) =>
+                    setSelectedQuestionCount(Number(e.target.value))
+                  }
                   className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 >
-                  {[10, 15, 20, 25, 30, 35, 40, 45, 50].map(count => (
-                    <option key={count} value={count}>{count} questions</option>
+                  {[10, 15, 20, 25, 30, 35, 40, 45, 50].map((count) => (
+                    <option key={count} value={count}>
+                      {count} questions
+                    </option>
                   ))}
                 </select>
                 <p className="text-xs text-gray-600 mt-1">
@@ -332,54 +382,71 @@ export function Quiz({
             <div className="grid grid-cols-2 gap-4">
               <div className="text-center p-4 bg-sky-blue-50 rounded-lg">
                 <div className="font-bold text-2xl text-gray-900">
-                  {questionPool && questionPool.length > 0 ? selectedQuestionCount : currentQuizQuestions.length}
+                  {questionPool && questionPool.length > 0
+                    ? selectedQuestionCount
+                    : currentQuizQuestions.length}
                 </div>
                 <div className="text-sm text-gray-600">Questions</div>
               </div>
               <div className="text-center p-4 bg-sky-blue-50 rounded-lg">
                 <div className="font-bold text-2xl text-gray-900">
-                  {questionPool && questionPool.length > 0 ? dynamicTimeLimit : quiz.totalTime} min
+                  {questionPool && questionPool.length > 0
+                    ? dynamicTimeLimit
+                    : quiz.totalTime}{" "}
+                  min
                 </div>
                 <div className="text-sm text-gray-600">Time Limit</div>
               </div>
             </div>
-            
+
             <div className="text-center p-4 bg-sky-blue-50 rounded-lg">
               <div className="text-sm text-gray-600 mb-1">Passing Score</div>
-              <div className="text-2xl font-bold text-gray-900">{quiz.passingScore}%</div>
+              <div className="text-2xl font-bold text-gray-900">
+                {quiz.passingScore}%
+              </div>
             </div>
 
             {/* Previous Attempts Summary */}
             {previousAttempts.length > 0 && (
               <div className="bg-gray-50 rounded-lg p-4">
                 <div className="flex items-center justify-between mb-3">
-                  <h4 className="font-semibold text-gray-900">Previous Attempts</h4>
+                  <h4 className="font-semibold text-gray-900">
+                    Previous Attempts
+                  </h4>
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => setShowAttemptHistory(!showAttemptHistory)}
                     className="text-sky-blue-600 hover:text-sky-blue-700"
                   >
-                    {showAttemptHistory ? 'Hide' : 'Show'} History
+                    {showAttemptHistory ? "Hide" : "Show"} History
                   </Button>
                 </div>
 
                 <div className="grid grid-cols-3 gap-4 text-sm">
                   <div className="text-center">
-                    <div className="font-bold text-lg text-gray-900">{previousAttempts.length}</div>
+                    <div className="font-bold text-lg text-gray-900">
+                      {previousAttempts.length}
+                    </div>
                     <div className="text-gray-600">Attempts</div>
                   </div>
                   <div className="text-center">
                     <div className="font-bold text-lg text-gray-900">
-                      {Math.max(...previousAttempts.map(a => a.score))}%
+                      {Math.max(...previousAttempts.map((a) => a.score))}%
                     </div>
                     <div className="text-gray-600">Best Score</div>
                   </div>
                   <div className="text-center">
-                    <div className={`font-bold text-lg ${
-                      previousAttempts.some(a => a.passed) ? 'text-green-600' : 'text-red-600'
-                    }`}>
-                      {previousAttempts.some(a => a.passed) ? 'PASSED' : 'NOT PASSED'}
+                    <div
+                      className={`font-bold text-lg ${
+                        previousAttempts.some((a) => a.passed)
+                          ? "text-green-600"
+                          : "text-red-600"
+                      }`}
+                    >
+                      {previousAttempts.some((a) => a.passed)
+                        ? "PASSED"
+                        : "NOT PASSED"}
                     </div>
                     <div className="text-gray-600">Status</div>
                   </div>
@@ -387,19 +454,33 @@ export function Quiz({
 
                 {showAttemptHistory && (
                   <div className="mt-4 space-y-2">
-                    {previousAttempts.slice(-3).reverse().map((attempt, index) => (
-                      <div key={index} className="flex items-center justify-between py-2 px-3 bg-white rounded border">
-                        <div className="flex items-center gap-3">
-                          <span className="text-sm font-medium">Attempt {attempt.attemptNumber}</span>
-                          <Badge className={attempt.passed ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}>
-                            {attempt.score}%
-                          </Badge>
+                    {previousAttempts
+                      .slice(-3)
+                      .reverse()
+                      .map((attempt, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center justify-between py-2 px-3 bg-white rounded border"
+                        >
+                          <div className="flex items-center gap-3">
+                            <span className="text-sm font-medium">
+                              Attempt {attempt.attemptNumber}
+                            </span>
+                            <Badge
+                              className={
+                                attempt.passed
+                                  ? "bg-green-100 text-green-700"
+                                  : "bg-red-100 text-red-700"
+                              }
+                            >
+                              {attempt.score}%
+                            </Badge>
+                          </div>
+                          <span className="text-xs text-gray-500">
+                            {attempt.completedAt.toLocaleDateString()}
+                          </span>
                         </div>
-                        <span className="text-xs text-gray-500">
-                          {attempt.completedAt.toLocaleDateString()}
-                        </span>
-                      </div>
-                    ))}
+                      ))}
                   </div>
                 )}
               </div>
@@ -419,25 +500,22 @@ export function Quiz({
                 className="w-full bg-sky-blue-500 hover:bg-sky-blue-600 text-white"
                 size="lg"
               >
-                {previousAttempts.length > 0 ?
-                  `Start Attempt ${previousAttempts.length + 1}` :
-                  'Start Quiz'
-                }
+                {previousAttempts.length > 0
+                  ? `Start Attempt ${previousAttempts.length + 1}`
+                  : "Start Quiz"}
               </Button>
 
               {/* Retake Instructions */}
               {previousAttempts.length > 0 && (
                 <div className="text-center">
                   <p className="text-sm text-gray-600">
-                    {previousAttempts.some(a => a.passed) ? (
-                      requirePassingGrade ?
-                        "You've already passed this quiz. Retaking is optional for practice." :
-                        "Retake to improve your score or for additional practice."
-                    ) : (
-                      requirePassingGrade ?
-                        `You need ${quiz.passingScore}% to pass. Keep trying!` :
-                        "Retake to improve your understanding and score."
-                    )}
+                    {previousAttempts.some((a) => a.passed)
+                      ? requirePassingGrade
+                        ? "You've already passed this quiz. Retaking is optional for practice."
+                        : "Retake to improve your score or for additional practice."
+                      : requirePassingGrade
+                        ? `You need ${quiz.passingScore}% to pass. Keep trying!`
+                        : "Retake to improve your understanding and score."}
                   </p>
                 </div>
               )}
@@ -464,8 +542,12 @@ export function Quiz({
             Back to Results
           </Button>
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Detailed Answer Review</h2>
-            <p className="text-gray-600">Complete solutions with step-by-step workings for each question</p>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+              Detailed Answer Review
+            </h2>
+            <p className="text-gray-600">
+              Complete solutions with step-by-step workings for each question
+            </p>
           </div>
         </div>
 
@@ -474,7 +556,9 @@ export function Quiz({
           <CardContent className="p-4">
             <div className="grid grid-cols-3 gap-4 text-center">
               <div>
-                <div className="text-2xl font-bold text-green-600">{reviewResults.correctAnswers}</div>
+                <div className="text-2xl font-bold text-green-600">
+                  {reviewResults.correctAnswers}
+                </div>
                 <div className="text-sm text-gray-600">Correct</div>
               </div>
               <div>
@@ -484,7 +568,9 @@ export function Quiz({
                 <div className="text-sm text-gray-600">Incorrect</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-blue-600">{reviewResults.score}%</div>
+                <div className="text-2xl font-bold text-blue-600">
+                  {reviewResults.score}%
+                </div>
                 <div className="text-sm text-gray-600">Final Score</div>
               </div>
             </div>
@@ -494,17 +580,24 @@ export function Quiz({
         {/* Question by Question Review */}
         <div className="space-y-6">
           {currentQuizQuestions.map((question, index) => {
-            const result = reviewResults.results.find(r => r.questionId === question.id);
+            const result = reviewResults.results.find(
+              (r) => r.questionId === question.id,
+            );
             if (!result) return null;
 
             return (
-              <Card key={question.id} className={`border-2 ${result.isCorrect ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50'}`}>
+              <Card
+                key={question.id}
+                className={`border-2 ${result.isCorrect ? "border-green-200 bg-green-50" : "border-red-200 bg-red-50"}`}
+              >
                 <CardHeader>
                   <div className="flex justify-between items-start">
                     <div className="flex items-center gap-3">
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                        result.isCorrect ? 'bg-green-100' : 'bg-red-100'
-                      }`}>
+                      <div
+                        className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                          result.isCorrect ? "bg-green-100" : "bg-red-100"
+                        }`}
+                      >
                         {result.isCorrect ? (
                           <CheckCircle className="w-5 h-5 text-green-600" />
                         ) : (
@@ -512,8 +605,12 @@ export function Quiz({
                         )}
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold">Question {index + 1}</h3>
-                        <Badge className={getDifficultyColor(question.difficulty)}>
+                        <h3 className="text-lg font-semibold">
+                          Question {index + 1}
+                        </h3>
+                        <Badge
+                          className={getDifficultyColor(question.difficulty)}
+                        >
                           {question.difficulty}
                         </Badge>
                       </div>
@@ -529,52 +626,64 @@ export function Quiz({
                   </div>
 
                   {/* Multiple Choice / True-False Options */}
-                  {(question.type === "multiple-choice" || question.type === "true-false") && question.options && (
-                    <div className="space-y-2">
-                      {question.options.map((option, optionIndex) => {
-                        const isUserAnswer = result.userAnswer === option;
-                        const isCorrectAnswer = question.correctAnswer === option;
+                  {(question.type === "multiple-choice" ||
+                    question.type === "true-false") &&
+                    question.options && (
+                      <div className="space-y-2">
+                        {question.options.map((option, optionIndex) => {
+                          const isUserAnswer = result.userAnswer === option;
+                          const isCorrectAnswer =
+                            question.correctAnswer === option;
 
-                        return (
-                          <div
-                            key={optionIndex}
-                            className={`p-3 border rounded-lg ${
-                              isCorrectAnswer
-                                ? 'border-green-500 bg-green-100'
-                                : isUserAnswer && !isCorrectAnswer
-                                ? 'border-red-500 bg-red-100'
-                                : 'border-gray-200'
-                            }`}
-                          >
-                            <div className="flex items-center justify-between">
-                              <span>{option}</span>
-                              <div className="flex items-center gap-2">
-                                {isCorrectAnswer && (
-                                  <Badge className="bg-green-100 text-green-700">Correct Answer</Badge>
-                                )}
-                                {isUserAnswer && (
-                                  <Badge variant="outline">Your Answer</Badge>
-                                )}
+                          return (
+                            <div
+                              key={optionIndex}
+                              className={`p-3 border rounded-lg ${
+                                isCorrectAnswer
+                                  ? "border-green-500 bg-green-100"
+                                  : isUserAnswer && !isCorrectAnswer
+                                    ? "border-red-500 bg-red-100"
+                                    : "border-gray-200"
+                              }`}
+                            >
+                              <div className="flex items-center justify-between">
+                                <span>{option}</span>
+                                <div className="flex items-center gap-2">
+                                  {isCorrectAnswer && (
+                                    <Badge className="bg-green-100 text-green-700">
+                                      Correct Answer
+                                    </Badge>
+                                  )}
+                                  {isUserAnswer && (
+                                    <Badge variant="outline">Your Answer</Badge>
+                                  )}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
+                          );
+                        })}
+                      </div>
+                    )}
 
                   {/* Numerical / Text Answer */}
-                  {(question.type === "numerical" || question.type === "text") && (
+                  {(question.type === "numerical" ||
+                    question.type === "text") && (
                     <div className="space-y-2">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="p-3 border border-gray-200 rounded-lg">
-                          <div className="text-sm text-gray-600 mb-1">Your Answer:</div>
-                          <div className={`font-medium ${result.isCorrect ? 'text-green-600' : 'text-red-600'}`}>
-                            {result.userAnswer || 'No answer provided'}
+                          <div className="text-sm text-gray-600 mb-1">
+                            Your Answer:
+                          </div>
+                          <div
+                            className={`font-medium ${result.isCorrect ? "text-green-600" : "text-red-600"}`}
+                          >
+                            {result.userAnswer || "No answer provided"}
                           </div>
                         </div>
                         <div className="p-3 border border-green-200 bg-green-50 rounded-lg">
-                          <div className="text-sm text-gray-600 mb-1">Correct Answer:</div>
+                          <div className="text-sm text-gray-600 mb-1">
+                            Correct Answer:
+                          </div>
                           <div className="font-medium text-green-600">
                             {question.correctAnswer}
                           </div>
@@ -586,39 +695,61 @@ export function Quiz({
                   {/* Detailed Solution */}
                   <div className="space-y-4">
                     {/* Working Steps */}
-                    {question.workingSteps && question.workingSteps.length > 0 && (
-                      <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-                        <div className="flex items-start gap-2">
-                          <Target className="w-4 h-4 text-yellow-600 mt-0.5 flex-shrink-0" />
-                          <div className="flex-1">
-                            <h5 className="font-medium text-yellow-900 mb-3">Step-by-Step Solution</h5>
-                            <div className="space-y-2">
-                              {question.workingSteps.map((step, stepIndex) => (
-                                <div key={stepIndex} className="flex items-start gap-3">
-                                  <div className="w-6 h-6 bg-yellow-200 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <span className="text-xs font-bold text-yellow-800">{stepIndex + 1}</span>
-                                  </div>
-                                  <div className="text-yellow-800 leading-relaxed">{step}</div>
-                                </div>
-                              ))}
+                    {question.workingSteps &&
+                      question.workingSteps.length > 0 && (
+                        <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                          <div className="flex items-start gap-2">
+                            <Target className="w-4 h-4 text-yellow-600 mt-0.5 flex-shrink-0" />
+                            <div className="flex-1">
+                              <h5 className="font-medium text-yellow-900 mb-3">
+                                Step-by-Step Solution
+                              </h5>
+                              <div className="space-y-2">
+                                {question.workingSteps.map(
+                                  (step, stepIndex) => (
+                                    <div
+                                      key={stepIndex}
+                                      className="flex items-start gap-3"
+                                    >
+                                      <div className="w-6 h-6 bg-yellow-200 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <span className="text-xs font-bold text-yellow-800">
+                                          {stepIndex + 1}
+                                        </span>
+                                      </div>
+                                      <div className="text-yellow-800 leading-relaxed">
+                                        {step}
+                                      </div>
+                                    </div>
+                                  ),
+                                )}
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    )}
+                      )}
 
                     {/* Final Explanation */}
                     <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
                       <div className="flex items-start gap-2">
                         <BookOpen className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
                         <div className="flex-1">
-                          <h5 className="font-medium text-blue-900 mb-2">Explanation</h5>
+                          <h5 className="font-medium text-blue-900 mb-2">
+                            Explanation
+                          </h5>
                           <div className="text-blue-800 leading-relaxed">
-                            {question.explanation.split('. ').map((sentence, index, array) => (
-                              <div key={index} className={index < array.length - 1 ? 'mb-2' : ''}>
-                                {sentence}{index < array.length - 1 ? '.' : ''}
-                              </div>
-                            ))}
+                            {question.explanation
+                              .split(". ")
+                              .map((sentence, index, array) => (
+                                <div
+                                  key={index}
+                                  className={
+                                    index < array.length - 1 ? "mb-2" : ""
+                                  }
+                                >
+                                  {sentence}
+                                  {index < array.length - 1 ? "." : ""}
+                                </div>
+                              ))}
                           </div>
                         </div>
                       </div>
@@ -629,11 +760,19 @@ export function Quiz({
                       <div className="flex items-start gap-2">
                         <Brain className="w-4 h-4 text-purple-600 mt-0.5 flex-shrink-0" />
                         <div className="flex-1">
-                          <h5 className="font-medium text-purple-900 mb-2">Key Concepts</h5>
+                          <h5 className="font-medium text-purple-900 mb-2">
+                            Key Concepts
+                          </h5>
                           <div className="flex flex-wrap gap-2">
-                            <Badge className="bg-purple-100 text-purple-700">{question.category}</Badge>
-                            <Badge className="bg-purple-100 text-purple-700">{question.difficulty} Level</Badge>
-                            <Badge className="bg-purple-100 text-purple-700">{question.points} Points</Badge>
+                            <Badge className="bg-purple-100 text-purple-700">
+                              {question.category}
+                            </Badge>
+                            <Badge className="bg-purple-100 text-purple-700">
+                              {question.difficulty} Level
+                            </Badge>
+                            <Badge className="bg-purple-100 text-purple-700">
+                              {question.points} Points
+                            </Badge>
                           </div>
                         </div>
                       </div>
@@ -648,17 +787,13 @@ export function Quiz({
         {/* Bottom Actions */}
         <div className="mt-8 flex flex-col sm:flex-row gap-4">
           {allowRetakes && (
-            <Button
-              onClick={resetQuiz}
-              variant="outline"
-              className="flex-1"
-            >
+            <Button onClick={resetQuiz} variant="outline" className="flex-1">
               <RotateCcw className="w-4 h-4 mr-2" />
               Retake Quiz
             </Button>
           )}
           <Button
-            className={`${allowRetakes ? 'flex-1' : 'w-full'} bg-sky-blue-500 hover:bg-sky-blue-600 text-white`}
+            className={`${allowRetakes ? "flex-1" : "w-full"} bg-sky-blue-500 hover:bg-sky-blue-600 text-white`}
             onClick={() => {
               if (returnPath) {
                 window.location.href = returnPath;
@@ -689,8 +824,12 @@ export function Quiz({
             Back to Results
           </Button>
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Test History</h2>
-            <p className="text-gray-600">Review all your past attempts and progress over time</p>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+              Test History
+            </h2>
+            <p className="text-gray-600">
+              Review all your past attempts and progress over time
+            </p>
           </div>
         </div>
 
@@ -698,14 +837,16 @@ export function Quiz({
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
           <Card className="border-sky-blue-200">
             <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-gray-900">{previousAttempts.length}</div>
+              <div className="text-2xl font-bold text-gray-900">
+                {previousAttempts.length}
+              </div>
               <div className="text-sm text-gray-600">Total Attempts</div>
             </CardContent>
           </Card>
           <Card className="border-sky-blue-200">
             <CardContent className="p-4 text-center">
               <div className="text-2xl font-bold text-green-600">
-                {Math.max(...previousAttempts.map(a => a.score))}%
+                {Math.max(...previousAttempts.map((a) => a.score))}%
               </div>
               <div className="text-sm text-gray-600">Best Score</div>
             </CardContent>
@@ -713,7 +854,11 @@ export function Quiz({
           <Card className="border-sky-blue-200">
             <CardContent className="p-4 text-center">
               <div className="text-2xl font-bold text-blue-600">
-                {Math.round(previousAttempts.reduce((sum, a) => sum + a.score, 0) / previousAttempts.length)}%
+                {Math.round(
+                  previousAttempts.reduce((sum, a) => sum + a.score, 0) /
+                    previousAttempts.length,
+                )}
+                %
               </div>
               <div className="text-sm text-gray-600">Average Score</div>
             </CardContent>
@@ -721,7 +866,7 @@ export function Quiz({
           <Card className="border-sky-blue-200">
             <CardContent className="p-4 text-center">
               <div className="text-2xl font-bold text-purple-600">
-                {previousAttempts.filter(a => a.passed).length}
+                {previousAttempts.filter((a) => a.passed).length}
               </div>
               <div className="text-sm text-gray-600">Passed Attempts</div>
             </CardContent>
@@ -747,50 +892,69 @@ export function Quiz({
                   </tr>
                 </thead>
                 <tbody>
-                  {previousAttempts.slice().reverse().map((attempt, index) => (
-                    <tr key={index} className="border-b hover:bg-gray-50">
-                      <td className="py-3 px-4 font-medium">#{attempt.attemptNumber}</td>
-                      <td className="py-3 px-4 text-gray-600">
-                        {attempt.completedAt.toLocaleDateString()} {attempt.completedAt.toLocaleTimeString()}
-                      </td>
-                      <td className="py-3 px-4">
-                        <span className={`font-bold ${
-                          attempt.score >= 90 ? 'text-green-600' :
-                          attempt.score >= 70 ? 'text-blue-600' : 'text-red-600'
-                        }`}>
-                          {attempt.score}%
-                        </span>
-                      </td>
-                      <td className="py-3 px-4">
-                        <Badge className={attempt.passed ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}>
-                          {attempt.passed ? 'PASSED' : 'FAILED'}
-                        </Badge>
-                      </td>
-                      <td className="py-3 px-4 text-gray-600">
-                        {attempt.timeTaken ? `${Math.round(attempt.timeTaken / 60)} min` : 'N/A'}
-                      </td>
-                      <td className="py-3 px-4">
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() => {
-                            // Set the historical attempt data and show detailed review
-                            if (attempt.detailedResults) {
-                              setDetailedResults(attempt.detailedResults);
+                  {previousAttempts
+                    .slice()
+                    .reverse()
+                    .map((attempt, index) => (
+                      <tr key={index} className="border-b hover:bg-gray-50">
+                        <td className="py-3 px-4 font-medium">
+                          #{attempt.attemptNumber}
+                        </td>
+                        <td className="py-3 px-4 text-gray-600">
+                          {attempt.completedAt.toLocaleDateString()}{" "}
+                          {attempt.completedAt.toLocaleTimeString()}
+                        </td>
+                        <td className="py-3 px-4">
+                          <span
+                            className={`font-bold ${
+                              attempt.score >= 90
+                                ? "text-green-600"
+                                : attempt.score >= 70
+                                  ? "text-blue-600"
+                                  : "text-red-600"
+                            }`}
+                          >
+                            {attempt.score}%
+                          </span>
+                        </td>
+                        <td className="py-3 px-4">
+                          <Badge
+                            className={
+                              attempt.passed
+                                ? "bg-green-100 text-green-700"
+                                : "bg-red-100 text-red-700"
                             }
-                            if (attempt.userAnswers) {
-                              setAnswers(attempt.userAnswers);
-                            }
-                            setShowTestHistory(false);
-                            setShowDetailedReview(true);
-                          }}
-                        >
-                          <Eye className="w-3 h-3 mr-1" />
-                          Review
-                        </Button>
-                      </td>
-                    </tr>
-                  ))}
+                          >
+                            {attempt.passed ? "PASSED" : "FAILED"}
+                          </Badge>
+                        </td>
+                        <td className="py-3 px-4 text-gray-600">
+                          {attempt.timeTaken
+                            ? `${Math.round(attempt.timeTaken / 60)} min`
+                            : "N/A"}
+                        </td>
+                        <td className="py-3 px-4">
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => {
+                              // Set the historical attempt data and show detailed review
+                              if (attempt.detailedResults) {
+                                setDetailedResults(attempt.detailedResults);
+                              }
+                              if (attempt.userAnswers) {
+                                setAnswers(attempt.userAnswers);
+                              }
+                              setShowTestHistory(false);
+                              setShowDetailedReview(true);
+                            }}
+                          >
+                            <Eye className="w-3 h-3 mr-1" />
+                            Review
+                          </Button>
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
             </div>
@@ -802,8 +966,10 @@ export function Quiz({
 
   // Historical Attempt Review screen
   if (selectedHistoryAttempt) {
-    const historyResults = selectedHistoryAttempt.detailedResults || calculateDetailedResults();
-    const historyQuestions = selectedHistoryAttempt.questionsAsked || currentQuizQuestions;
+    const historyResults =
+      selectedHistoryAttempt.detailedResults || calculateDetailedResults();
+    const historyQuestions =
+      selectedHistoryAttempt.questionsAsked || currentQuizQuestions;
 
     return (
       <div className={`max-w-4xl mx-auto ${className}`}>
@@ -822,7 +988,9 @@ export function Quiz({
               Attempt #{selectedHistoryAttempt.attemptNumber} Review
             </h2>
             <p className="text-gray-600">
-              Completed on {selectedHistoryAttempt.completedAt.toLocaleDateString()} at {selectedHistoryAttempt.completedAt.toLocaleTimeString()}
+              Completed on{" "}
+              {selectedHistoryAttempt.completedAt.toLocaleDateString()} at{" "}
+              {selectedHistoryAttempt.completedAt.toLocaleTimeString()}
             </p>
           </div>
         </div>
@@ -832,22 +1000,29 @@ export function Quiz({
           <CardContent className="p-4">
             <div className="grid grid-cols-4 gap-4 text-center">
               <div>
-                <div className="text-2xl font-bold text-green-600">{historyResults.correctAnswers}</div>
+                <div className="text-2xl font-bold text-green-600">
+                  {historyResults.correctAnswers}
+                </div>
                 <div className="text-sm text-gray-600">Correct</div>
               </div>
               <div>
                 <div className="text-2xl font-bold text-red-600">
-                  {historyResults.totalQuestions - historyResults.correctAnswers}
+                  {historyResults.totalQuestions -
+                    historyResults.correctAnswers}
                 </div>
                 <div className="text-sm text-gray-600">Incorrect</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-blue-600">{historyResults.score}%</div>
+                <div className="text-2xl font-bold text-blue-600">
+                  {historyResults.score}%
+                </div>
                 <div className="text-sm text-gray-600">Score</div>
               </div>
               <div>
                 <div className="text-2xl font-bold text-purple-600">
-                  {selectedHistoryAttempt.timeTaken ? `${Math.round(selectedHistoryAttempt.timeTaken / 60)}m` : 'N/A'}
+                  {selectedHistoryAttempt.timeTaken
+                    ? `${Math.round(selectedHistoryAttempt.timeTaken / 60)}m`
+                    : "N/A"}
                 </div>
                 <div className="text-sm text-gray-600">Time Taken</div>
               </div>
@@ -858,17 +1033,24 @@ export function Quiz({
         {/* Question by Question Review */}
         <div className="space-y-6">
           {historyQuestions.map((question, index) => {
-            const result = historyResults.results.find(r => r.questionId === question.id);
+            const result = historyResults.results.find(
+              (r) => r.questionId === question.id,
+            );
             if (!result) return null;
 
             return (
-              <Card key={question.id} className={`border-2 ${result.isCorrect ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50'}`}>
+              <Card
+                key={question.id}
+                className={`border-2 ${result.isCorrect ? "border-green-200 bg-green-50" : "border-red-200 bg-red-50"}`}
+              >
                 <CardHeader>
                   <div className="flex justify-between items-start">
                     <div className="flex items-center gap-3">
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                        result.isCorrect ? 'bg-green-100' : 'bg-red-100'
-                      }`}>
+                      <div
+                        className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                          result.isCorrect ? "bg-green-100" : "bg-red-100"
+                        }`}
+                      >
                         {result.isCorrect ? (
                           <CheckCircle className="w-5 h-5 text-green-600" />
                         ) : (
@@ -876,8 +1058,12 @@ export function Quiz({
                         )}
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold">Question {index + 1}</h3>
-                        <Badge className={getDifficultyColor(question.difficulty)}>
+                        <h3 className="text-lg font-semibold">
+                          Question {index + 1}
+                        </h3>
+                        <Badge
+                          className={getDifficultyColor(question.difficulty)}
+                        >
                           {question.difficulty}
                         </Badge>
                       </div>
@@ -893,52 +1079,69 @@ export function Quiz({
                   </div>
 
                   {/* Multiple Choice / True-False Options */}
-                  {(question.type === "multiple-choice" || question.type === "true-false") && question.options && (
-                    <div className="space-y-2">
-                      {question.options.map((option, optionIndex) => {
-                        const isUserAnswer = selectedHistoryAttempt.userAnswers?.[question.id] === option;
-                        const isCorrectAnswer = question.correctAnswer === option;
+                  {(question.type === "multiple-choice" ||
+                    question.type === "true-false") &&
+                    question.options && (
+                      <div className="space-y-2">
+                        {question.options.map((option, optionIndex) => {
+                          const isUserAnswer =
+                            selectedHistoryAttempt.userAnswers?.[
+                              question.id
+                            ] === option;
+                          const isCorrectAnswer =
+                            question.correctAnswer === option;
 
-                        return (
-                          <div
-                            key={optionIndex}
-                            className={`p-3 border rounded-lg ${
-                              isCorrectAnswer
-                                ? 'border-green-500 bg-green-100'
-                                : isUserAnswer && !isCorrectAnswer
-                                ? 'border-red-500 bg-red-100'
-                                : 'border-gray-200'
-                            }`}
-                          >
-                            <div className="flex items-center justify-between">
-                              <span>{option}</span>
-                              <div className="flex items-center gap-2">
-                                {isCorrectAnswer && (
-                                  <Badge className="bg-green-100 text-green-700">Correct Answer</Badge>
-                                )}
-                                {isUserAnswer && (
-                                  <Badge variant="outline">Your Answer</Badge>
-                                )}
+                          return (
+                            <div
+                              key={optionIndex}
+                              className={`p-3 border rounded-lg ${
+                                isCorrectAnswer
+                                  ? "border-green-500 bg-green-100"
+                                  : isUserAnswer && !isCorrectAnswer
+                                    ? "border-red-500 bg-red-100"
+                                    : "border-gray-200"
+                              }`}
+                            >
+                              <div className="flex items-center justify-between">
+                                <span>{option}</span>
+                                <div className="flex items-center gap-2">
+                                  {isCorrectAnswer && (
+                                    <Badge className="bg-green-100 text-green-700">
+                                      Correct Answer
+                                    </Badge>
+                                  )}
+                                  {isUserAnswer && (
+                                    <Badge variant="outline">Your Answer</Badge>
+                                  )}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
+                          );
+                        })}
+                      </div>
+                    )}
 
                   {/* Numerical / Text Answer */}
-                  {(question.type === "numerical" || question.type === "text") && (
+                  {(question.type === "numerical" ||
+                    question.type === "text") && (
                     <div className="space-y-2">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="p-3 border border-gray-200 rounded-lg">
-                          <div className="text-sm text-gray-600 mb-1">Your Answer:</div>
-                          <div className={`font-medium ${result.isCorrect ? 'text-green-600' : 'text-red-600'}`}>
-                            {selectedHistoryAttempt.userAnswers?.[question.id] || 'No answer provided'}
+                          <div className="text-sm text-gray-600 mb-1">
+                            Your Answer:
+                          </div>
+                          <div
+                            className={`font-medium ${result.isCorrect ? "text-green-600" : "text-red-600"}`}
+                          >
+                            {selectedHistoryAttempt.userAnswers?.[
+                              question.id
+                            ] || "No answer provided"}
                           </div>
                         </div>
                         <div className="p-3 border border-green-200 bg-green-50 rounded-lg">
-                          <div className="text-sm text-gray-600 mb-1">Correct Answer:</div>
+                          <div className="text-sm text-gray-600 mb-1">
+                            Correct Answer:
+                          </div>
                           <div className="font-medium text-green-600">
                             {question.correctAnswer}
                           </div>
@@ -950,39 +1153,61 @@ export function Quiz({
                   {/* Detailed Solution */}
                   <div className="space-y-4">
                     {/* Working Steps */}
-                    {question.workingSteps && question.workingSteps.length > 0 && (
-                      <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-                        <div className="flex items-start gap-2">
-                          <Target className="w-4 h-4 text-yellow-600 mt-0.5 flex-shrink-0" />
-                          <div className="flex-1">
-                            <h5 className="font-medium text-yellow-900 mb-3">Step-by-Step Solution</h5>
-                            <div className="space-y-2">
-                              {question.workingSteps.map((step, stepIndex) => (
-                                <div key={stepIndex} className="flex items-start gap-3">
-                                  <div className="w-6 h-6 bg-yellow-200 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                    <span className="text-xs font-bold text-yellow-800">{stepIndex + 1}</span>
-                                  </div>
-                                  <div className="text-yellow-800 leading-relaxed">{step}</div>
-                                </div>
-                              ))}
+                    {question.workingSteps &&
+                      question.workingSteps.length > 0 && (
+                        <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                          <div className="flex items-start gap-2">
+                            <Target className="w-4 h-4 text-yellow-600 mt-0.5 flex-shrink-0" />
+                            <div className="flex-1">
+                              <h5 className="font-medium text-yellow-900 mb-3">
+                                Step-by-Step Solution
+                              </h5>
+                              <div className="space-y-2">
+                                {question.workingSteps.map(
+                                  (step, stepIndex) => (
+                                    <div
+                                      key={stepIndex}
+                                      className="flex items-start gap-3"
+                                    >
+                                      <div className="w-6 h-6 bg-yellow-200 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        <span className="text-xs font-bold text-yellow-800">
+                                          {stepIndex + 1}
+                                        </span>
+                                      </div>
+                                      <div className="text-yellow-800 leading-relaxed">
+                                        {step}
+                                      </div>
+                                    </div>
+                                  ),
+                                )}
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    )}
+                      )}
 
                     {/* Final Explanation */}
                     <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
                       <div className="flex items-start gap-2">
                         <BookOpen className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
                         <div className="flex-1">
-                          <h5 className="font-medium text-blue-900 mb-2">Explanation</h5>
+                          <h5 className="font-medium text-blue-900 mb-2">
+                            Explanation
+                          </h5>
                           <div className="text-blue-800 leading-relaxed">
-                            {question.explanation.split('. ').map((sentence, index, array) => (
-                              <div key={index} className={index < array.length - 1 ? 'mb-2' : ''}>
-                                {sentence}{index < array.length - 1 ? '.' : ''}
-                              </div>
-                            ))}
+                            {question.explanation
+                              .split(". ")
+                              .map((sentence, index, array) => (
+                                <div
+                                  key={index}
+                                  className={
+                                    index < array.length - 1 ? "mb-2" : ""
+                                  }
+                                >
+                                  {sentence}
+                                  {index < array.length - 1 ? "." : ""}
+                                </div>
+                              ))}
                           </div>
                         </div>
                       </div>
@@ -993,11 +1218,19 @@ export function Quiz({
                       <div className="flex items-start gap-2">
                         <Brain className="w-4 h-4 text-purple-600 mt-0.5 flex-shrink-0" />
                         <div className="flex-1">
-                          <h5 className="font-medium text-purple-900 mb-2">Key Concepts</h5>
+                          <h5 className="font-medium text-purple-900 mb-2">
+                            Key Concepts
+                          </h5>
                           <div className="flex flex-wrap gap-2">
-                            <Badge className="bg-purple-100 text-purple-700">{question.category}</Badge>
-                            <Badge className="bg-purple-100 text-purple-700">{question.difficulty} Level</Badge>
-                            <Badge className="bg-purple-100 text-purple-700">{question.points} Points</Badge>
+                            <Badge className="bg-purple-100 text-purple-700">
+                              {question.category}
+                            </Badge>
+                            <Badge className="bg-purple-100 text-purple-700">
+                              {question.difficulty} Level
+                            </Badge>
+                            <Badge className="bg-purple-100 text-purple-700">
+                              {question.points} Points
+                            </Badge>
                           </div>
                         </div>
                       </div>
@@ -1021,9 +1254,11 @@ export function Quiz({
       <div className={`max-w-2xl mx-auto ${className}`}>
         <Card className="border-sky-blue-200">
           <CardHeader className="text-center">
-            <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${
-              passed ? 'bg-green-100' : 'bg-red-100'
-            }`}>
+            <div
+              className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${
+                passed ? "bg-green-100" : "bg-red-100"
+              }`}
+            >
               {passed ? (
                 <CheckCircle className="w-8 h-8 text-green-600" />
               ) : (
@@ -1031,67 +1266,95 @@ export function Quiz({
               )}
             </div>
             <CardTitle className="text-2xl">
-              {passed ? 'Congratulations!' : 'Keep Studying!'}
+              {passed ? "Congratulations!" : "Keep Studying!"}
             </CardTitle>
             <p className="text-gray-600">
-              {passed ? (
-                requirePassingGrade ?
-                  'Congratulations! You\'ve met the passing requirement.' :
-                  'Great job! You passed the quiz.'
-              ) : (
-                requirePassingGrade ?
-                  `You need ${quiz.passingScore}% to pass. You can retake this quiz.` :
-                  'You can retake this quiz anytime to improve your score.'
-              )}
+              {passed
+                ? requirePassingGrade
+                  ? "Congratulations! You've met the passing requirement."
+                  : "Great job! You passed the quiz."
+                : requirePassingGrade
+                  ? `You need ${quiz.passingScore}% to pass. You can retake this quiz.`
+                  : "You can retake this quiz anytime to improve your score."}
             </p>
           </CardHeader>
           <CardContent className="space-y-6">
             {/* Curriculum Information */}
             <div className="bg-sky-blue-50 border border-sky-blue-200 rounded-lg p-4">
-              <h3 className="font-semibold text-gray-900 mb-3">Test Coverage</h3>
+              <h3 className="font-semibold text-gray-900 mb-3">
+                Test Coverage
+              </h3>
               {curriculumInfo ? (
                 <div className="flex flex-wrap items-center gap-2 text-sm">
-                  <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+                  <Badge
+                    variant="outline"
+                    className="bg-blue-50 text-blue-700 border-blue-200"
+                  >
                     {curriculumInfo.unitName}
                   </Badge>
                   <ChevronRight className="w-3 h-3 text-gray-400" />
-                  <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                  <Badge
+                    variant="outline"
+                    className="bg-green-50 text-green-700 border-green-200"
+                  >
                     {curriculumInfo.topicName}
                   </Badge>
                   <ChevronRight className="w-3 h-3 text-gray-400" />
-                  <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200">
+                  <Badge
+                    variant="outline"
+                    className="bg-purple-50 text-purple-700 border-purple-200"
+                  >
                     {curriculumInfo.subtopicName}
                   </Badge>
                 </div>
               ) : (
                 <div className="flex items-center gap-2">
-                  <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-200">
+                  <Badge
+                    variant="outline"
+                    className="bg-orange-50 text-orange-700 border-orange-200"
+                  >
                     <Star className="w-3 h-3 mr-1" />
                     Comprehensive Test
                   </Badge>
-                  <span className="text-sm text-gray-600">All topics and subtopics for this subject</span>
+                  <span className="text-sm text-gray-600">
+                    All topics and subtopics for this subject
+                  </span>
                 </div>
               )}
             </div>
 
             <div className="text-center">
-              <div className="text-4xl font-bold text-gray-900 mb-2">{score}%</div>
-              <Badge className={passed ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}>
-                {passed ? 'PASSED' : 'NEEDS IMPROVEMENT'}
+              <div className="text-4xl font-bold text-gray-900 mb-2">
+                {score}%
+              </div>
+              <Badge
+                className={
+                  passed
+                    ? "bg-green-100 text-green-700"
+                    : "bg-red-100 text-red-700"
+                }
+              >
+                {passed ? "PASSED" : "NEEDS IMPROVEMENT"}
               </Badge>
             </div>
 
             <div className="grid grid-cols-4 gap-3 text-center">
               <div className="p-3 bg-sky-blue-50 rounded-lg">
-                <div className="font-bold text-lg">{previousAttempts.length + 1}</div>
+                <div className="font-bold text-lg">
+                  {previousAttempts.length + 1}
+                </div>
                 <div className="text-sm text-gray-600">Attempt #</div>
               </div>
               <div className="p-3 bg-sky-blue-50 rounded-lg">
-                <div className="font-bold text-lg">{Object.keys(answers).length}</div>
+                <div className="font-bold text-lg">
+                  {Object.keys(answers).length}
+                </div>
                 <div className="text-sm text-gray-600">Answered</div>
               </div>
               <div className="p-3 bg-sky-blue-50 rounded-lg">
-                <div className="font-bold text-lg">{currentQuizQuestions.length}</div>
+                <div className="font-bold text-lg">
+                  {currentQuizQuestions.length}
+                </div>
                 <div className="text-sm text-gray-600">Total Questions</div>
               </div>
               <div className="p-3 bg-sky-blue-50 rounded-lg">
@@ -1122,7 +1385,7 @@ export function Quiz({
                 </Button>
               )}
               <div className="flex gap-3">
-                {(allowRetakes && (!requirePassingGrade || !passed)) && (
+                {allowRetakes && (!requirePassingGrade || !passed) && (
                   <Button
                     onClick={resetQuiz}
                     variant="outline"
@@ -1132,7 +1395,7 @@ export function Quiz({
                     Retake Quiz
                   </Button>
                 )}
-                {(allowRetakes && passed && !requirePassingGrade) && (
+                {allowRetakes && passed && !requirePassingGrade && (
                   <Button
                     onClick={resetQuiz}
                     variant="outline"
@@ -1143,7 +1406,7 @@ export function Quiz({
                   </Button>
                 )}
                 <Button
-                  className={`${allowRetakes && (!requirePassingGrade || !passed) ? 'flex-1' : 'w-full'} bg-sky-blue-500 hover:bg-sky-blue-600 text-white`}
+                  className={`${allowRetakes && (!requirePassingGrade || !passed) ? "flex-1" : "w-full"} bg-sky-blue-500 hover:bg-sky-blue-600 text-white`}
                   onClick={() => {
                     if (returnPath) {
                       window.location.href = returnPath;
@@ -1152,7 +1415,7 @@ export function Quiz({
                     }
                   }}
                 >
-                  {passed ? 'Continue Studying' : 'Back to Curriculum'}
+                  {passed ? "Continue Studying" : "Back to Curriculum"}
                 </Button>
               </div>
             </div>
@@ -1187,7 +1450,8 @@ export function Quiz({
               {currentQuestion.difficulty}
             </Badge>
             <Badge variant="outline">
-              {currentQuestion.points} {currentQuestion.points === 1 ? 'point' : 'points'}
+              {currentQuestion.points}{" "}
+              {currentQuestion.points === 1 ? "point" : "points"}
             </Badge>
           </div>
           <CardTitle className="text-lg leading-relaxed">
@@ -1196,30 +1460,31 @@ export function Quiz({
         </CardHeader>
         <CardContent>
           {/* Multiple Choice */}
-          {currentQuestion.type === "multiple-choice" && currentQuestion.options && (
-            <div className="space-y-3">
-              {currentQuestion.options.map((option, index) => (
-                <label
-                  key={index}
-                  className={`flex items-center p-3 border rounded-lg cursor-pointer transition-colors ${
-                    answers[currentQuestion.id] === option
-                      ? 'border-sky-blue-500 bg-sky-blue-50'
-                      : 'border-gray-200 hover:border-gray-300'
-                  }`}
-                >
-                  <input
-                    type="radio"
-                    name={currentQuestion.id}
-                    value={option}
-                    checked={answers[currentQuestion.id] === option}
-                    onChange={(e) => handleAnswer(e.target.value)}
-                    className="mr-3"
-                  />
-                  <span>{option}</span>
-                </label>
-              ))}
-            </div>
-          )}
+          {currentQuestion.type === "multiple-choice" &&
+            currentQuestion.options && (
+              <div className="space-y-3">
+                {currentQuestion.options.map((option, index) => (
+                  <label
+                    key={index}
+                    className={`flex items-center p-3 border rounded-lg cursor-pointer transition-colors ${
+                      answers[currentQuestion.id] === option
+                        ? "border-sky-blue-500 bg-sky-blue-50"
+                        : "border-gray-200 hover:border-gray-300"
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name={currentQuestion.id}
+                      value={option}
+                      checked={answers[currentQuestion.id] === option}
+                      onChange={(e) => handleAnswer(e.target.value)}
+                      className="mr-3"
+                    />
+                    <span>{option}</span>
+                  </label>
+                ))}
+              </div>
+            )}
 
           {/* True/False */}
           {currentQuestion.type === "true-false" && (
@@ -1229,8 +1494,8 @@ export function Quiz({
                   key={option}
                   className={`flex items-center p-3 border rounded-lg cursor-pointer transition-colors ${
                     answers[currentQuestion.id] === option
-                      ? 'border-sky-blue-500 bg-sky-blue-50'
-                      : 'border-gray-200 hover:border-gray-300'
+                      ? "border-sky-blue-500 bg-sky-blue-50"
+                      : "border-gray-200 hover:border-gray-300"
                   }`}
                 >
                   <input
@@ -1285,13 +1550,13 @@ export function Quiz({
         >
           Previous
         </Button>
-        
+
         <Button
           onClick={handleNext}
           disabled={!hasAnsweredCurrent}
           className="bg-sky-blue-500 hover:bg-sky-blue-600 text-white"
         >
-          {isLastQuestion ? 'Finish Quiz' : 'Next'}
+          {isLastQuestion ? "Finish Quiz" : "Next"}
           <ChevronRight className="w-4 h-4 ml-2" />
         </Button>
       </div>

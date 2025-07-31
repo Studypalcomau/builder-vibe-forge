@@ -1,9 +1,22 @@
 import { useParams, Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { Progress } from "../components/ui/progress";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "../components/ui/table";
 import {
   ArrowLeft,
   Trophy,
@@ -18,7 +31,7 @@ import {
   BarChart3,
   Calendar,
   Award,
-  Zap
+  Zap,
 } from "lucide-react";
 
 export default function TopicResults() {
@@ -32,7 +45,7 @@ export default function TopicResults() {
     chemistry: "Chemistry",
     english: "English",
     engineering: "Engineering",
-    economics: "Economics"
+    economics: "Economics",
   };
 
   const subjectName = subjectNames[slug as string] || "Subject";
@@ -57,10 +70,14 @@ export default function TopicResults() {
               timeSpent: 36, // total minutes across all attempts
               status: "mastered",
               weaknesses: [],
-              strengths: ["Function notation", "Interval notation", "Graphical analysis"],
+              strengths: [
+                "Function notation",
+                "Interval notation",
+                "Graphical analysis",
+              ],
               unitIndex: 0,
               topicIndex: 0,
-              subtopicIndex: 0
+              subtopicIndex: 0,
             },
             {
               subtopic: "Function Types",
@@ -75,7 +92,7 @@ export default function TopicResults() {
               strengths: ["Linear functions", "Basic graphing"],
               unitIndex: 0,
               topicIndex: 0,
-              subtopicIndex: 1
+              subtopicIndex: 1,
             },
             {
               subtopic: "Transformations",
@@ -86,13 +103,17 @@ export default function TopicResults() {
               lastAttempt: "2024-11-28",
               timeSpent: 32,
               status: "needs_work",
-              weaknesses: ["Horizontal shifts", "Vertical scaling", "Combined transformations"],
+              weaknesses: [
+                "Horizontal shifts",
+                "Vertical scaling",
+                "Combined transformations",
+              ],
               strengths: ["Basic vertical shifts"],
               unitIndex: 0,
               topicIndex: 0,
-              subtopicIndex: 2
-            }
-          ]
+              subtopicIndex: 2,
+            },
+          ],
         },
         {
           topic: "Polynomial Functions",
@@ -111,7 +132,7 @@ export default function TopicResults() {
               strengths: ["Slope-intercept form", "Graphing"],
               unitIndex: 0,
               topicIndex: 1,
-              subtopicIndex: 0
+              subtopicIndex: 0,
             },
             {
               subtopic: "Quadratic Functions",
@@ -122,11 +143,15 @@ export default function TopicResults() {
               lastAttempt: "2024-11-20",
               timeSpent: 18,
               status: "needs_work",
-              weaknesses: ["Vertex form", "Completing the square", "Discriminant"],
+              weaknesses: [
+                "Vertex form",
+                "Completing the square",
+                "Discriminant",
+              ],
               strengths: ["Basic factoring"],
               unitIndex: 0,
               topicIndex: 1,
-              subtopicIndex: 1
+              subtopicIndex: 1,
             },
             {
               subtopic: "Cubic Functions",
@@ -141,11 +166,11 @@ export default function TopicResults() {
               strengths: [],
               unitIndex: 0,
               topicIndex: 1,
-              subtopicIndex: 2
-            }
-          ]
-        }
-      ]
+              subtopicIndex: 2,
+            },
+          ],
+        },
+      ],
     },
     {
       unit: "Unit 2: Calculus",
@@ -168,7 +193,7 @@ export default function TopicResults() {
               strengths: ["Basic limit concept"],
               unitIndex: 1,
               topicIndex: 0,
-              subtopicIndex: 0
+              subtopicIndex: 0,
             },
             {
               subtopic: "Derivatives",
@@ -183,7 +208,7 @@ export default function TopicResults() {
               strengths: ["Power rule", "Product rule"],
               unitIndex: 1,
               topicIndex: 0,
-              subtopicIndex: 1
+              subtopicIndex: 1,
             },
             {
               subtopic: "Chain Rule",
@@ -198,9 +223,9 @@ export default function TopicResults() {
               strengths: ["Simple compositions"],
               unitIndex: 1,
               topicIndex: 0,
-              subtopicIndex: 2
-            }
-          ]
+              subtopicIndex: 2,
+            },
+          ],
         },
         {
           topic: "Integral Calculus",
@@ -219,7 +244,7 @@ export default function TopicResults() {
               strengths: [],
               unitIndex: 1,
               topicIndex: 1,
-              subtopicIndex: 0
+              subtopicIndex: 0,
             },
             {
               subtopic: "Definite Integrals",
@@ -234,7 +259,7 @@ export default function TopicResults() {
               strengths: [],
               unitIndex: 1,
               topicIndex: 1,
-              subtopicIndex: 1
+              subtopicIndex: 1,
             },
             {
               subtopic: "Applications",
@@ -249,58 +274,83 @@ export default function TopicResults() {
               strengths: [],
               unitIndex: 1,
               topicIndex: 1,
-              subtopicIndex: 2
-            }
-          ]
-        }
-      ]
-    }
+              subtopicIndex: 2,
+            },
+          ],
+        },
+      ],
+    },
   ];
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "mastered": return "bg-green-100 text-green-700 border-green-200";
-      case "good": return "bg-yellow-100 text-yellow-700 border-yellow-200";
-      case "needs_work": return "bg-red-100 text-red-700 border-red-200";
-      case "not_started": return "bg-gray-100 text-gray-700 border-gray-200";
-      default: return "bg-gray-100 text-gray-700 border-gray-200";
+      case "mastered":
+        return "bg-green-100 text-green-700 border-green-200";
+      case "good":
+        return "bg-yellow-100 text-yellow-700 border-yellow-200";
+      case "needs_work":
+        return "bg-red-100 text-red-700 border-red-200";
+      case "not_started":
+        return "bg-gray-100 text-gray-700 border-gray-200";
+      default:
+        return "bg-gray-100 text-gray-700 border-gray-200";
     }
   };
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case "mastered": return <CheckCircle className="w-4 h-4" />;
-      case "good": return <TrendingUp className="w-4 h-4" />;
-      case "needs_work": return <AlertCircle className="w-4 h-4" />;
-      case "not_started": return <Target className="w-4 h-4" />;
-      default: return <Target className="w-4 h-4" />;
+      case "mastered":
+        return <CheckCircle className="w-4 h-4" />;
+      case "good":
+        return <TrendingUp className="w-4 h-4" />;
+      case "needs_work":
+        return <AlertCircle className="w-4 h-4" />;
+      case "not_started":
+        return <Target className="w-4 h-4" />;
+      default:
+        return <Target className="w-4 h-4" />;
     }
   };
 
   const getStatusText = (status: string) => {
     switch (status) {
-      case "mastered": return "Mastered";
-      case "good": return "Good Progress";
-      case "needs_work": return "Needs Work";
-      case "not_started": return "Not Started";
-      default: return "Unknown";
+      case "mastered":
+        return "Mastered";
+      case "good":
+        return "Good Progress";
+      case "needs_work":
+        return "Needs Work";
+      case "not_started":
+        return "Not Started";
+      default:
+        return "Unknown";
     }
   };
 
   // Calculate overall statistics
-  const allSubtopics = topicResults.flatMap(unit => 
-    unit.topics.flatMap(topic => topic.subtopics)
+  const allSubtopics = topicResults.flatMap((unit) =>
+    unit.topics.flatMap((topic) => topic.subtopics),
   );
-  
-  const completedSubtopics = allSubtopics.filter(s => s.attempts > 0);
-  const masteredCount = allSubtopics.filter(s => s.status === "mastered").length;
-  const needsWorkCount = allSubtopics.filter(s => s.status === "needs_work").length;
-  const notStartedCount = allSubtopics.filter(s => s.status === "not_started").length;
+
+  const completedSubtopics = allSubtopics.filter((s) => s.attempts > 0);
+  const masteredCount = allSubtopics.filter(
+    (s) => s.status === "mastered",
+  ).length;
+  const needsWorkCount = allSubtopics.filter(
+    (s) => s.status === "needs_work",
+  ).length;
+  const notStartedCount = allSubtopics.filter(
+    (s) => s.status === "not_started",
+  ).length;
   const totalAttempts = allSubtopics.reduce((sum, s) => sum + s.attempts, 0);
   const totalTimeSpent = allSubtopics.reduce((sum, s) => sum + s.timeSpent, 0);
-  const overallAverage = completedSubtopics.length > 0 
-    ? Math.round(completedSubtopics.reduce((sum, s) => sum + s.bestScore, 0) / completedSubtopics.length)
-    : 0;
+  const overallAverage =
+    completedSubtopics.length > 0
+      ? Math.round(
+          completedSubtopics.reduce((sum, s) => sum + s.bestScore, 0) /
+            completedSubtopics.length,
+        )
+      : 0;
 
   return (
     <div className="min-h-screen bg-study-background">
@@ -314,8 +364,12 @@ export default function TopicResults() {
             </Button>
           </Link>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">All Topic Results</h1>
-            <p className="text-gray-600">Comprehensive performance overview across all topics and subtopics</p>
+            <h1 className="text-3xl font-bold text-gray-900">
+              All Topic Results
+            </h1>
+            <p className="text-gray-600">
+              Comprehensive performance overview across all topics and subtopics
+            </p>
           </div>
         </div>
 
@@ -323,37 +377,49 @@ export default function TopicResults() {
         <div className="grid grid-cols-2 md:grid-cols-6 gap-4 mb-8">
           <Card className="border-blue-200">
             <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-blue-600">{allSubtopics.length}</div>
+              <div className="text-2xl font-bold text-blue-600">
+                {allSubtopics.length}
+              </div>
               <div className="text-xs text-gray-600">Total Topics</div>
             </CardContent>
           </Card>
           <Card className="border-green-200">
             <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-green-600">{masteredCount}</div>
+              <div className="text-2xl font-bold text-green-600">
+                {masteredCount}
+              </div>
               <div className="text-xs text-gray-600">Mastered</div>
             </CardContent>
           </Card>
           <Card className="border-red-200">
             <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-red-600">{needsWorkCount}</div>
+              <div className="text-2xl font-bold text-red-600">
+                {needsWorkCount}
+              </div>
               <div className="text-xs text-gray-600">Needs Work</div>
             </CardContent>
           </Card>
           <Card className="border-gray-200">
             <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-gray-600">{notStartedCount}</div>
+              <div className="text-2xl font-bold text-gray-600">
+                {notStartedCount}
+              </div>
               <div className="text-xs text-gray-600">Not Started</div>
             </CardContent>
           </Card>
           <Card className="border-purple-200">
             <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-purple-600">{overallAverage}%</div>
+              <div className="text-2xl font-bold text-purple-600">
+                {overallAverage}%
+              </div>
               <div className="text-xs text-gray-600">Average Score</div>
             </CardContent>
           </Card>
           <Card className="border-orange-200">
             <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-orange-600">{Math.round(totalTimeSpent / 60)}h</div>
+              <div className="text-2xl font-bold text-orange-600">
+                {Math.round(totalTimeSpent / 60)}h
+              </div>
               <div className="text-xs text-gray-600">Study Time</div>
             </CardContent>
           </Card>
@@ -367,7 +433,9 @@ export default function TopicResults() {
                 <div className="flex justify-between items-center">
                   <div>
                     <CardTitle className="text-xl">{unit.unit}</CardTitle>
-                    <CardDescription>Unit progress: {unit.unitProgress}%</CardDescription>
+                    <CardDescription>
+                      Unit progress: {unit.unitProgress}%
+                    </CardDescription>
                   </div>
                   <div className="w-32">
                     <Progress value={unit.unitProgress} className="h-3" />
@@ -377,13 +445,23 @@ export default function TopicResults() {
               <CardContent>
                 <div className="space-y-6">
                   {unit.topics.map((topic, topicIndex) => (
-                    <div key={topicIndex} className="border border-gray-200 rounded-lg p-4">
+                    <div
+                      key={topicIndex}
+                      className="border border-gray-200 rounded-lg p-4"
+                    >
                       <div className="flex justify-between items-center mb-4">
-                        <h3 className="text-lg font-semibold text-gray-900">{topic.topic}</h3>
+                        <h3 className="text-lg font-semibold text-gray-900">
+                          {topic.topic}
+                        </h3>
                         <div className="flex items-center gap-2">
-                          <span className="text-sm text-gray-600">{topic.topicProgress}%</span>
+                          <span className="text-sm text-gray-600">
+                            {topic.topicProgress}%
+                          </span>
                           <div className="w-24">
-                            <Progress value={topic.topicProgress} className="h-2" />
+                            <Progress
+                              value={topic.topicProgress}
+                              className="h-2"
+                            />
                           </div>
                         </div>
                       </div>
@@ -393,24 +471,49 @@ export default function TopicResults() {
                         <Table>
                           <TableHeader>
                             <TableRow>
-                              <TableHead className="w-[200px]">Subtopic</TableHead>
-                              <TableHead className="w-[100px] text-center">Status</TableHead>
-                              <TableHead className="w-[80px] text-center">Attempts</TableHead>
-                              <TableHead className="w-[100px] text-center">Best Score</TableHead>
-                              <TableHead className="w-[100px] text-center">Latest Score</TableHead>
-                              <TableHead className="w-[120px] text-center">Last Attempt</TableHead>
-                              <TableHead className="w-[100px] text-center">Time Spent</TableHead>
-                              <TableHead className="w-[200px] text-center">Actions</TableHead>
+                              <TableHead className="w-[200px]">
+                                Subtopic
+                              </TableHead>
+                              <TableHead className="w-[100px] text-center">
+                                Status
+                              </TableHead>
+                              <TableHead className="w-[80px] text-center">
+                                Attempts
+                              </TableHead>
+                              <TableHead className="w-[100px] text-center">
+                                Best Score
+                              </TableHead>
+                              <TableHead className="w-[100px] text-center">
+                                Latest Score
+                              </TableHead>
+                              <TableHead className="w-[120px] text-center">
+                                Last Attempt
+                              </TableHead>
+                              <TableHead className="w-[100px] text-center">
+                                Time Spent
+                              </TableHead>
+                              <TableHead className="w-[200px] text-center">
+                                Actions
+                              </TableHead>
                             </TableRow>
                           </TableHeader>
                           <TableBody>
                             {topic.subtopics.map((subtopic, subtopicIndex) => (
-                              <TableRow key={subtopicIndex} className="hover:bg-gray-50">
-                                <TableCell className="font-medium">{subtopic.subtopic}</TableCell>
+                              <TableRow
+                                key={subtopicIndex}
+                                className="hover:bg-gray-50"
+                              >
+                                <TableCell className="font-medium">
+                                  {subtopic.subtopic}
+                                </TableCell>
                                 <TableCell className="text-center">
-                                  <Badge className={getStatusColor(subtopic.status)}>
+                                  <Badge
+                                    className={getStatusColor(subtopic.status)}
+                                  >
                                     {getStatusIcon(subtopic.status)}
-                                    <span className="ml-1 text-xs">{getStatusText(subtopic.status)}</span>
+                                    <span className="ml-1 text-xs">
+                                      {getStatusText(subtopic.status)}
+                                    </span>
                                   </Badge>
                                 </TableCell>
                                 <TableCell className="text-center">
@@ -420,53 +523,95 @@ export default function TopicResults() {
                                   </div>
                                 </TableCell>
                                 <TableCell className="text-center">
-                                  <span className={`font-semibold ${
-                                    subtopic.bestScore >= 85 ? 'text-green-600' :
-                                    subtopic.bestScore >= 70 ? 'text-yellow-600' :
-                                    subtopic.bestScore > 0 ? 'text-red-600' : 'text-gray-400'
-                                  }`}>
-                                    {subtopic.bestScore > 0 ? `${subtopic.bestScore}%` : '-'}
+                                  <span
+                                    className={`font-semibold ${
+                                      subtopic.bestScore >= 85
+                                        ? "text-green-600"
+                                        : subtopic.bestScore >= 70
+                                          ? "text-yellow-600"
+                                          : subtopic.bestScore > 0
+                                            ? "text-red-600"
+                                            : "text-gray-400"
+                                    }`}
+                                  >
+                                    {subtopic.bestScore > 0
+                                      ? `${subtopic.bestScore}%`
+                                      : "-"}
                                   </span>
                                 </TableCell>
                                 <TableCell className="text-center">
-                                  <span className={`font-medium ${
-                                    subtopic.latestScore >= 85 ? 'text-green-600' :
-                                    subtopic.latestScore >= 70 ? 'text-yellow-600' :
-                                    subtopic.latestScore > 0 ? 'text-red-600' : 'text-gray-400'
-                                  }`}>
-                                    {subtopic.latestScore > 0 ? `${subtopic.latestScore}%` : '-'}
+                                  <span
+                                    className={`font-medium ${
+                                      subtopic.latestScore >= 85
+                                        ? "text-green-600"
+                                        : subtopic.latestScore >= 70
+                                          ? "text-yellow-600"
+                                          : subtopic.latestScore > 0
+                                            ? "text-red-600"
+                                            : "text-gray-400"
+                                    }`}
+                                  >
+                                    {subtopic.latestScore > 0
+                                      ? `${subtopic.latestScore}%`
+                                      : "-"}
                                   </span>
                                 </TableCell>
                                 <TableCell className="text-center">
                                   <div className="flex items-center justify-center gap-1 text-sm text-gray-600">
                                     <Calendar className="w-3 h-3" />
-                                    {subtopic.lastAttempt ? new Date(subtopic.lastAttempt).toLocaleDateString() : '-'}
+                                    {subtopic.lastAttempt
+                                      ? new Date(
+                                          subtopic.lastAttempt,
+                                        ).toLocaleDateString()
+                                      : "-"}
                                   </div>
                                 </TableCell>
                                 <TableCell className="text-center">
                                   <div className="flex items-center justify-center gap-1 text-sm text-gray-600">
                                     <Clock className="w-3 h-3" />
-                                    {subtopic.timeSpent > 0 ? `${subtopic.timeSpent}m` : '-'}
+                                    {subtopic.timeSpent > 0
+                                      ? `${subtopic.timeSpent}m`
+                                      : "-"}
                                   </div>
                                 </TableCell>
 
                                 <TableCell>
                                   <div className="flex flex-wrap gap-1">
-                                    <Link to={`/subjects/${slug}/quiz/${subtopic.unitIndex}-${subtopic.topicIndex}-${subtopic.subtopicIndex}`}>
-                                      <Button size="sm" variant="outline" className="text-xs">
+                                    <Link
+                                      to={`/subjects/${slug}/quiz/${subtopic.unitIndex}-${subtopic.topicIndex}-${subtopic.subtopicIndex}`}
+                                    >
+                                      <Button
+                                        size="sm"
+                                        variant="outline"
+                                        className="text-xs"
+                                      >
                                         <Trophy className="w-3 h-3 mr-1" />
-                                        {subtopic.attempts > 0 ? 'Retake' : 'Start'}
+                                        {subtopic.attempts > 0
+                                          ? "Retake"
+                                          : "Start"}
                                       </Button>
                                     </Link>
-                                    <Link to={`/subjects/${slug}/notes/${subtopic.unitIndex}-${subtopic.topicIndex}-${subtopic.subtopicIndex}`}>
-                                      <Button size="sm" variant="outline" className="text-xs">
+                                    <Link
+                                      to={`/subjects/${slug}/notes/${subtopic.unitIndex}-${subtopic.topicIndex}-${subtopic.subtopicIndex}`}
+                                    >
+                                      <Button
+                                        size="sm"
+                                        variant="outline"
+                                        className="text-xs"
+                                      >
                                         <FileText className="w-3 h-3 mr-1" />
                                         Notes
                                       </Button>
                                     </Link>
                                     {subtopic.attempts > 0 && (
-                                      <Link to={`/subjects/${slug}/quiz/${subtopic.unitIndex}-${subtopic.topicIndex}-${subtopic.subtopicIndex}/history`}>
-                                        <Button size="sm" variant="outline" className="text-xs">
+                                      <Link
+                                        to={`/subjects/${slug}/quiz/${subtopic.unitIndex}-${subtopic.topicIndex}-${subtopic.subtopicIndex}/history`}
+                                      >
+                                        <Button
+                                          size="sm"
+                                          variant="outline"
+                                          className="text-xs"
+                                        >
                                           <BarChart3 className="w-3 h-3 mr-1" />
                                           History
                                         </Button>

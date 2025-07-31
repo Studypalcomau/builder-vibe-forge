@@ -55,29 +55,74 @@ const App = () => (
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/subjects" element={<Subjects />} />
             <Route path="/subjects/:slug" element={<Subject />} />
-            <Route path="/subjects/:slug/flashcards" element={<SubjectFlashcards />} />
-            <Route path="/subjects/:slug/quizzes" element={<SubjectQuizzes />} />
-            <Route path="/subjects/:slug/quiz/:subtopicId" element={<SubjectQuizzes />} />
-            <Route path="/subjects/:slug/quiz/:subtopicId/history" element={<SubjectQuizzes />} />
+            <Route
+              path="/subjects/:slug/flashcards"
+              element={<SubjectFlashcards />}
+            />
+            <Route
+              path="/subjects/:slug/quizzes"
+              element={<SubjectQuizzes />}
+            />
+            <Route
+              path="/subjects/:slug/quiz/:subtopicId"
+              element={<SubjectQuizzes />}
+            />
+            <Route
+              path="/subjects/:slug/quiz/:subtopicId/history"
+              element={<SubjectQuizzes />}
+            />
             <Route path="/subjects/:slug/test" element={<SubjectQuizzes />} />
-            <Route path="/subjects/:slug/test/history" element={<SubjectQuizzes />} />
-            <Route path="/subjects/:slug/test/history/:attemptId" element={<SubjectQuizzes />} />
-            <Route path="/subjects/:slug/test/:testType/results/:attemptId" element={<SubjectQuizzes />} />
-            <Route path="/subjects/:slug/quiz/:subtopicId/results/:attemptId" element={<SubjectQuizzes />} />
+            <Route
+              path="/subjects/:slug/test/history"
+              element={<SubjectQuizzes />}
+            />
+            <Route
+              path="/subjects/:slug/test/history/:attemptId"
+              element={<SubjectQuizzes />}
+            />
+            <Route
+              path="/subjects/:slug/test/:testType/results/:attemptId"
+              element={<SubjectQuizzes />}
+            />
+            <Route
+              path="/subjects/:slug/quiz/:subtopicId/results/:attemptId"
+              element={<SubjectQuizzes />}
+            />
             <Route path="/subjects/:slug/progress" element={<TopicResults />} />
-            <Route path="/subjects/:slug/analytics" element={
-              <PlaceholderPage
-                title="Performance Analytics"
-                description="Comprehensive analytics dashboard showing learning trends and performance insights."
-              />
-            } />
-            <Route path="/subjects/:slug/recommendations" element={<StudyRecommendations />} />
+            <Route
+              path="/subjects/:slug/analytics"
+              element={
+                <PlaceholderPage
+                  title="Performance Analytics"
+                  description="Comprehensive analytics dashboard showing learning trends and performance insights."
+                />
+              }
+            />
+            <Route
+              path="/subjects/:slug/recommendations"
+              element={<StudyRecommendations />}
+            />
             <Route path="/subjects/:slug/notes" element={<SubjectNotes />} />
-            <Route path="/subjects/:slug/notes/:subtopicId" element={<SubjectNotes />} />
-            <Route path="/subjects/:slug/topics/:topicId" element={<TopicContent />} />
-            <Route path="/subjects/:slug/subtopics/:subtopicId/flashcards" element={<SubjectFlashcards />} />
-            <Route path="/subjects/:slug/subtopics/:subtopicId/quiz" element={<SubjectQuizzes />} />
-            <Route path="/subjects/:slug/subtopics/:subtopicId/notes" element={<SubjectNotes />} />
+            <Route
+              path="/subjects/:slug/notes/:subtopicId"
+              element={<SubjectNotes />}
+            />
+            <Route
+              path="/subjects/:slug/topics/:topicId"
+              element={<TopicContent />}
+            />
+            <Route
+              path="/subjects/:slug/subtopics/:subtopicId/flashcards"
+              element={<SubjectFlashcards />}
+            />
+            <Route
+              path="/subjects/:slug/subtopics/:subtopicId/quiz"
+              element={<SubjectQuizzes />}
+            />
+            <Route
+              path="/subjects/:slug/subtopics/:subtopicId/notes"
+              element={<SubjectNotes />}
+            />
             <Route path="/flashcards" element={<Flashcards />} />
             <Route path="/quizzes" element={<Quizzes />} />
 
@@ -90,37 +135,61 @@ const App = () => (
             <Route path="/admin/subjects" element={<SubjectManagement />} />
             <Route path="/admin/subjects/new" element={<SubjectEditor />} />
             <Route path="/admin/subjects/:id" element={<SubjectEditor />} />
-            <Route path="/admin/subjects/:id/edit" element={<SubjectEditor />} />
+            <Route
+              path="/admin/subjects/:id/edit"
+              element={<SubjectEditor />}
+            />
             <Route path="/admin/curriculum" element={<CurriculumManager />} />
             <Route path="/admin/generate" element={<ContentGeneration />} />
             <Route path="/admin/questions" element={<QuestionsManagement />} />
-            <Route path="/admin/subjects/:subjectId/questions" element={<QuestionBank />} />
-            <Route path="/admin/subjects/:subjectId/notes" element={<StudyNotesManagement />} />
-            <Route path="/admin/subjects/:subjectId/complete-guide" element={<ComprehensiveStudyGuide />} />
-            <Route path="/admin/curriculum" element={
-              <PlaceholderPage
-                title="Curriculum Management"
-                description="Manage curriculum structure and learning objectives for all subjects."
-              />
-            } />
-            <Route path="/admin/analytics" element={
-              <PlaceholderPage
-                title="Admin Analytics"
-                description="View comprehensive analytics and reports for the platform."
-              />
-            } />
-            <Route path="/admin/settings" element={
-              <PlaceholderPage
-                title="System Settings"
-                description="Configure system-wide settings and preferences."
-              />
-            } />
-            <Route path="/progress" element={
-              <PlaceholderPage
-                title="Progress Tracking"
-                description="Monitor your learning progress with detailed analytics and insights."
-              />
-            } />
+            <Route
+              path="/admin/subjects/:subjectId/questions"
+              element={<QuestionBank />}
+            />
+            <Route
+              path="/admin/subjects/:subjectId/notes"
+              element={<StudyNotesManagement />}
+            />
+            <Route
+              path="/admin/subjects/:subjectId/complete-guide"
+              element={<ComprehensiveStudyGuide />}
+            />
+            <Route
+              path="/admin/curriculum"
+              element={
+                <PlaceholderPage
+                  title="Curriculum Management"
+                  description="Manage curriculum structure and learning objectives for all subjects."
+                />
+              }
+            />
+            <Route
+              path="/admin/analytics"
+              element={
+                <PlaceholderPage
+                  title="Admin Analytics"
+                  description="View comprehensive analytics and reports for the platform."
+                />
+              }
+            />
+            <Route
+              path="/admin/settings"
+              element={
+                <PlaceholderPage
+                  title="System Settings"
+                  description="Configure system-wide settings and preferences."
+                />
+              }
+            />
+            <Route
+              path="/progress"
+              element={
+                <PlaceholderPage
+                  title="Progress Tracking"
+                  description="Monitor your learning progress with detailed analytics and insights."
+                />
+              }
+            />
             <Route path="/help" element={<Help />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />

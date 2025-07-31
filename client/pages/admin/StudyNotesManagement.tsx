@@ -1,11 +1,17 @@
 import { useState, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "../../components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../../components/ui/card";
 import { Badge } from "../../components/ui/badge";
 import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
-import { 
+import {
   ArrowLeft,
   Search,
   Filter,
@@ -18,7 +24,7 @@ import {
   Grid3X3,
   Users,
   Target,
-  BarChart3
+  BarChart3,
 } from "lucide-react";
 
 interface GeneratedNote {
@@ -57,27 +63,31 @@ const generateMockNotes = (): GeneratedNote[] => {
       topics: [
         {
           name: "Functions and Relations",
-          subtopics: ["Domain and Range", "Function Types", "Transformations"]
+          subtopics: ["Domain and Range", "Function Types", "Transformations"],
         },
         {
-          name: "Polynomial Functions", 
-          subtopics: ["Linear Functions", "Quadratic Functions", "Cubic Functions"]
-        }
-      ]
+          name: "Polynomial Functions",
+          subtopics: [
+            "Linear Functions",
+            "Quadratic Functions",
+            "Cubic Functions",
+          ],
+        },
+      ],
     },
     {
       name: "Unit 2: Calculus",
       topics: [
         {
           name: "Differential Calculus",
-          subtopics: ["Limits", "Derivatives", "Chain Rule"]
+          subtopics: ["Limits", "Derivatives", "Chain Rule"],
         },
         {
           name: "Integral Calculus",
-          subtopics: ["Antiderivatives", "Definite Integrals", "Applications"]
-        }
-      ]
-    }
+          subtopics: ["Antiderivatives", "Definite Integrals", "Applications"],
+        },
+      ],
+    },
   ];
 
   units.forEach((unit, unitIndex) => {
@@ -98,13 +108,13 @@ const generateMockNotes = (): GeneratedNote[] => {
               `${subtopic}: Core mathematical concept relating to ${topic.name}`,
               `Definition 2: Extended principle connecting ${subtopic} to broader mathematical frameworks`,
               `Definition 3: Applied methodology for implementing ${subtopic} in problem-solving contexts`,
-              `Definition 4: Theoretical foundation underlying ${subtopic} applications`
+              `Definition 4: Theoretical foundation underlying ${subtopic} applications`,
             ],
             formulas: [
               `Formula 1: ${subtopic} = f(x) where x represents the input variable`,
               `Formula 2: d/dx[${subtopic}] = derivative expression for ${subtopic}`,
               `Formula 3: ∫${subtopic} dx = integral form of ${subtopic}`,
-              `Formula 4: ${subtopic}(a,b) = parametric form with variables a and b`
+              `Formula 4: ${subtopic}(a,b) = parametric form with variables a and b`,
             ],
             workedExamples: [
               {
@@ -115,8 +125,8 @@ const generateMockNotes = (): GeneratedNote[] => {
                   `Step 2: Apply the fundamental principles of ${subtopic}`,
                   `Step 3: Use appropriate formulas and techniques`,
                   `Step 4: Calculate the numerical result`,
-                  `Step 5: Verify the solution and interpret the result`
-                ]
+                  `Step 5: Verify the solution and interpret the result`,
+                ],
               },
               {
                 title: `Advanced ${subtopic} Application`,
@@ -126,32 +136,32 @@ const generateMockNotes = (): GeneratedNote[] => {
                   `Step 2: Break down into manageable components`,
                   `Step 3: Apply advanced ${subtopic} techniques`,
                   `Step 4: Integrate multiple solution approaches`,
-                  `Step 5: Synthesize final comprehensive solution`
-                ]
-              }
+                  `Step 5: Synthesize final comprehensive solution`,
+                ],
+              },
             ],
             practiceExercises: [
               {
                 question: `Practice Question 1: Calculate the ${subtopic} for the given scenario involving ${topic.name}.`,
-                answer: `Solution involves applying core ${subtopic} principles with systematic approach yielding the final result.`
+                answer: `Solution involves applying core ${subtopic} principles with systematic approach yielding the final result.`,
               },
               {
                 question: `Practice Question 2: Demonstrate how ${subtopic} connects to other concepts in ${unit.name}.`,
-                answer: `Analysis shows interconnections through mathematical relationships and theoretical frameworks.`
+                answer: `Analysis shows interconnections through mathematical relationships and theoretical frameworks.`,
               },
               {
                 question: `Practice Question 3: Solve the optimization problem using ${subtopic} methodology.`,
-                answer: `Optimization achieved through calculus-based approach with ${subtopic} as the primary tool.`
-              }
+                answer: `Optimization achieved through calculus-based approach with ${subtopic} as the primary tool.`,
+              },
             ],
             visualAids: [
               `Diagram 1: Conceptual representation of ${subtopic} relationships`,
               `Graph 1: Visual plot showing ${subtopic} behavior over different domains`,
               `Chart 1: Comparison table of ${subtopic} properties and characteristics`,
-              `Flowchart 1: Problem-solving process for ${subtopic} applications`
-            ]
+              `Flowchart 1: Problem-solving process for ${subtopic} applications`,
+            ],
           },
-          dateGenerated: new Date().toISOString().split('T')[0]
+          dateGenerated: new Date().toISOString().split("T")[0],
         };
         notes.push(note);
       });
@@ -172,47 +182,61 @@ export default function StudyNotesManagement() {
 
   // Get unique values for filters
   const units = useMemo(() => {
-    const uniqueUnits = Array.from(new Set(notes.map(n => n.unit)));
+    const uniqueUnits = Array.from(new Set(notes.map((n) => n.unit)));
     return uniqueUnits.map((unit, index) => ({ name: unit, index }));
   }, [notes]);
 
   const topics = useMemo(() => {
     if (selectedUnit === "all") return [];
-    const unitNotes = notes.filter(n => n.unit === selectedUnit);
-    return Array.from(new Set(unitNotes.map(n => n.topic)));
+    const unitNotes = notes.filter((n) => n.unit === selectedUnit);
+    return Array.from(new Set(unitNotes.map((n) => n.topic)));
   }, [notes, selectedUnit]);
 
   const subtopics = useMemo(() => {
     if (selectedUnit === "all" || selectedTopic === "all") return [];
-    const topicNotes = notes.filter(n => n.unit === selectedUnit && n.topic === selectedTopic);
-    return Array.from(new Set(topicNotes.map(n => n.subtopic)));
+    const topicNotes = notes.filter(
+      (n) => n.unit === selectedUnit && n.topic === selectedTopic,
+    );
+    return Array.from(new Set(topicNotes.map((n) => n.subtopic)));
   }, [notes, selectedUnit, selectedTopic]);
 
   const filteredNotes = useMemo(() => {
-    return notes.filter(note => {
-      const matchesSearch = searchTerm === "" || 
+    return notes.filter((note) => {
+      const matchesSearch =
+        searchTerm === "" ||
         note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         note.subtopic.toLowerCase().includes(searchTerm.toLowerCase()) ||
         note.content.overview.toLowerCase().includes(searchTerm.toLowerCase());
-      
+
       const matchesUnit = selectedUnit === "all" || note.unit === selectedUnit;
-      const matchesTopic = selectedTopic === "all" || note.topic === selectedTopic;
-      const matchesSubtopic = selectedSubtopic === "all" || note.subtopic === selectedSubtopic;
-      
+      const matchesTopic =
+        selectedTopic === "all" || note.topic === selectedTopic;
+      const matchesSubtopic =
+        selectedSubtopic === "all" || note.subtopic === selectedSubtopic;
+
       return matchesSearch && matchesUnit && matchesTopic && matchesSubtopic;
     });
   }, [notes, searchTerm, selectedUnit, selectedTopic, selectedSubtopic]);
 
   const stats = useMemo(() => {
-    const totalSubtopics = new Set(notes.map(n => `${n.unit}-${n.topic}-${n.subtopic}`)).size;
-    const avgContentItems = notes.reduce((acc, note) => 
-      acc + note.content.keyDefinitions.length + note.content.formulas.length + 
-      note.content.workedExamples.length + note.content.practiceExercises.length, 0) / notes.length;
-    
+    const totalSubtopics = new Set(
+      notes.map((n) => `${n.unit}-${n.topic}-${n.subtopic}`),
+    ).size;
+    const avgContentItems =
+      notes.reduce(
+        (acc, note) =>
+          acc +
+          note.content.keyDefinitions.length +
+          note.content.formulas.length +
+          note.content.workedExamples.length +
+          note.content.practiceExercises.length,
+        0,
+      ) / notes.length;
+
     return {
       totalNotes: notes.length,
       totalSubtopics,
-      avgContentItems: Math.round(avgContentItems)
+      avgContentItems: Math.round(avgContentItems),
     };
   }, [notes]);
 
@@ -241,16 +265,17 @@ export default function StudyNotesManagement() {
                 Study Notes Management - Mathematical Methods
               </h1>
               <p className="text-gray-600 mt-2">
-                Comprehensive collection of AI-generated study notes for all subtopics
+                Comprehensive collection of AI-generated study notes for all
+                subtopics
               </p>
             </div>
             <div className="flex space-x-3">
-              <Button 
+              <Button
                 onClick={() => {
                   const data = JSON.stringify(filteredNotes, null, 2);
-                  const blob = new Blob([data], { type: 'application/json' });
+                  const blob = new Blob([data], { type: "application/json" });
                   const url = URL.createObjectURL(blob);
-                  const a = document.createElement('a');
+                  const a = document.createElement("a");
                   a.href = url;
                   a.download = `study-notes-mathematical-methods.json`;
                   a.click();
@@ -271,7 +296,9 @@ export default function StudyNotesManagement() {
               <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
                 <FileText className="w-6 h-6 text-purple-600" />
               </div>
-              <div className="text-2xl font-bold text-purple-900">{stats.totalNotes}</div>
+              <div className="text-2xl font-bold text-purple-900">
+                {stats.totalNotes}
+              </div>
               <div className="text-sm text-purple-700">Total Study Notes</div>
             </CardContent>
           </Card>
@@ -281,7 +308,9 @@ export default function StudyNotesManagement() {
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
                 <Target className="w-6 h-6 text-blue-600" />
               </div>
-              <div className="text-2xl font-bold text-blue-900">{stats.totalSubtopics}</div>
+              <div className="text-2xl font-bold text-blue-900">
+                {stats.totalSubtopics}
+              </div>
               <div className="text-sm text-blue-700">Subtopics Covered</div>
             </CardContent>
           </Card>
@@ -291,7 +320,9 @@ export default function StudyNotesManagement() {
               <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
                 <BarChart3 className="w-6 h-6 text-green-600" />
               </div>
-              <div className="text-2xl font-bold text-green-900">{stats.avgContentItems}</div>
+              <div className="text-2xl font-bold text-green-900">
+                {stats.avgContentItems}
+              </div>
               <div className="text-sm text-green-700">Avg Content Items</div>
             </CardContent>
           </Card>
@@ -314,7 +345,9 @@ export default function StudyNotesManagement() {
               <Filter className="w-5 h-5 mr-2" />
               Filters & Search
             </CardTitle>
-            <CardDescription>Filter study notes by criteria to find what you need</CardDescription>
+            <CardDescription>
+              Filter study notes by criteria to find what you need
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4">
@@ -327,7 +360,7 @@ export default function StudyNotesManagement() {
                   className="pl-10"
                 />
               </div>
-              
+
               <select
                 value={selectedUnit}
                 onChange={(e) => {
@@ -344,7 +377,7 @@ export default function StudyNotesManagement() {
                   </option>
                 ))}
               </select>
-              
+
               <select
                 value={selectedTopic}
                 onChange={(e) => {
@@ -361,7 +394,7 @@ export default function StudyNotesManagement() {
                   </option>
                 ))}
               </select>
-              
+
               <select
                 value={selectedSubtopic}
                 onChange={(e) => setSelectedSubtopic(e.target.value)}
@@ -375,14 +408,16 @@ export default function StudyNotesManagement() {
                   </option>
                 ))}
               </select>
-              
+
               <Button onClick={resetFilters} variant="outline" className="h-10">
                 Reset Filters
               </Button>
             </div>
-            
+
             <div className="flex items-center justify-between text-sm text-gray-600 pt-4 border-t">
-              <span>Showing {filteredNotes.length} of {notes.length} study notes</span>
+              <span>
+                Showing {filteredNotes.length} of {notes.length} study notes
+              </span>
             </div>
           </CardContent>
         </Card>
@@ -394,19 +429,27 @@ export default function StudyNotesManagement() {
               <span className="font-medium text-gray-700">Content Legend:</span>
               <div className="flex space-x-4">
                 <span className="flex items-center">
-                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs mr-2">D</span>
+                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs mr-2">
+                    D
+                  </span>
                   Definitions
                 </span>
                 <span className="flex items-center">
-                  <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-xs mr-2">F</span>
+                  <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-xs mr-2">
+                    F
+                  </span>
                   Formulas
                 </span>
                 <span className="flex items-center">
-                  <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs mr-2">E</span>
+                  <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs mr-2">
+                    E
+                  </span>
                   Examples
                 </span>
                 <span className="flex items-center">
-                  <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs mr-2">P</span>
+                  <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs mr-2">
+                    P
+                  </span>
                   Practice
                 </span>
               </div>
@@ -422,19 +465,38 @@ export default function StudyNotesManagement() {
                 <table className="w-full">
                   <thead className="bg-purple-50 border-b border-purple-200">
                     <tr>
-                      <th className="text-left py-4 px-6 font-medium text-purple-900 w-8">#</th>
-                      <th className="text-left py-4 px-6 font-medium text-purple-900">Study Note</th>
-                      <th className="text-left py-4 px-6 font-medium text-purple-900">Unit</th>
-                      <th className="text-left py-4 px-6 font-medium text-purple-900">Topic</th>
-                      <th className="text-left py-4 px-6 font-medium text-purple-900">Subtopic</th>
-                      <th className="text-left py-4 px-6 font-medium text-purple-900">Content</th>
-                      <th className="text-left py-4 px-6 font-medium text-purple-900">Generated</th>
-                      <th className="text-left py-4 px-6 font-medium text-purple-900 w-32">Actions</th>
+                      <th className="text-left py-4 px-6 font-medium text-purple-900 w-8">
+                        #
+                      </th>
+                      <th className="text-left py-4 px-6 font-medium text-purple-900">
+                        Study Note
+                      </th>
+                      <th className="text-left py-4 px-6 font-medium text-purple-900">
+                        Unit
+                      </th>
+                      <th className="text-left py-4 px-6 font-medium text-purple-900">
+                        Topic
+                      </th>
+                      <th className="text-left py-4 px-6 font-medium text-purple-900">
+                        Subtopic
+                      </th>
+                      <th className="text-left py-4 px-6 font-medium text-purple-900">
+                        Content
+                      </th>
+                      <th className="text-left py-4 px-6 font-medium text-purple-900">
+                        Generated
+                      </th>
+                      <th className="text-left py-4 px-6 font-medium text-purple-900 w-32">
+                        Actions
+                      </th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
                     {filteredNotes.map((note, index) => (
-                      <tr key={note.id} className="hover:bg-gray-50 transition-colors">
+                      <tr
+                        key={note.id}
+                        className="hover:bg-gray-50 transition-colors"
+                      >
                         <td className="py-4 px-6 text-sm text-gray-500">
                           {index + 1}
                         </td>
@@ -449,17 +511,28 @@ export default function StudyNotesManagement() {
                           </div>
                         </td>
                         <td className="py-4 px-6">
-                          <Badge variant="outline" className="text-xs bg-purple-50 text-purple-700 border-purple-200">
-                            {note.unit.replace("Unit 1: ", "").replace("Unit 2: ", "")}
+                          <Badge
+                            variant="outline"
+                            className="text-xs bg-purple-50 text-purple-700 border-purple-200"
+                          >
+                            {note.unit
+                              .replace("Unit 1: ", "")
+                              .replace("Unit 2: ", "")}
                           </Badge>
                         </td>
                         <td className="py-4 px-6">
-                          <Badge variant="outline" className="text-xs bg-blue-50 text-blue-700 border-blue-200">
+                          <Badge
+                            variant="outline"
+                            className="text-xs bg-blue-50 text-blue-700 border-blue-200"
+                          >
                             {note.topic}
                           </Badge>
                         </td>
                         <td className="py-4 px-6">
-                          <Badge variant="outline" className="text-xs bg-green-50 text-green-700 border-green-200">
+                          <Badge
+                            variant="outline"
+                            className="text-xs bg-green-50 text-green-700 border-green-200"
+                          >
                             {note.subtopic}
                           </Badge>
                         </td>
@@ -509,12 +582,13 @@ export default function StudyNotesManagement() {
             ) : (
               <div className="text-center py-12">
                 <BookOpen className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-xl font-medium text-gray-900 mb-2">No study notes found</h3>
+                <h3 className="text-xl font-medium text-gray-900 mb-2">
+                  No study notes found
+                </h3>
                 <p className="text-gray-600 mb-4">
                   {notes.length === 0
                     ? "No study notes have been generated yet."
-                    : "Try adjusting your search filters to find notes."
-                  }
+                    : "Try adjusting your search filters to find notes."}
                 </p>
                 {notes.length > 0 && (
                   <Button onClick={resetFilters} variant="outline">
@@ -529,8 +603,11 @@ export default function StudyNotesManagement() {
               <div className="bg-gray-50 px-6 py-3 border-t border-gray-200">
                 <div className="flex items-center justify-between">
                   <div className="text-sm text-gray-700">
-                    Showing <span className="font-medium">1</span> to <span className="font-medium">{filteredNotes.length}</span> of{' '}
-                    <span className="font-medium">{filteredNotes.length}</span> results
+                    Showing <span className="font-medium">1</span> to{" "}
+                    <span className="font-medium">{filteredNotes.length}</span>{" "}
+                    of{" "}
+                    <span className="font-medium">{filteredNotes.length}</span>{" "}
+                    results
                   </div>
                   <div className="text-sm text-gray-500">
                     Total: {notes.length} study notes
@@ -548,16 +625,21 @@ export default function StudyNotesManagement() {
           <div className="bg-white rounded-lg w-full max-w-6xl max-h-[90vh] overflow-auto">
             <div className="p-6 border-b border-gray-200 sticky top-0 bg-white">
               <div className="flex items-center justify-between">
-                <h2 className="text-xl font-bold text-gray-900">{selectedNote.title}</h2>
+                <h2 className="text-xl font-bold text-gray-900">
+                  {selectedNote.title}
+                </h2>
                 <Button onClick={() => setSelectedNote(null)} variant="outline">
                   Close
                 </Button>
               </div>
             </div>
-            
+
             <div className="p-6 space-y-6">
               <div className="flex items-center space-x-2">
-                <Badge variant="outline" className="bg-purple-50 text-purple-700">
+                <Badge
+                  variant="outline"
+                  className="bg-purple-50 text-purple-700"
+                >
                   {selectedNote.unit}
                 </Badge>
                 <Badge variant="outline" className="bg-blue-50 text-blue-700">
@@ -567,68 +649,114 @@ export default function StudyNotesManagement() {
                   {selectedNote.subtopic}
                 </Badge>
               </div>
-              
+
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-3">Overview</h3>
-                <p className="text-gray-700 bg-gray-50 p-4 rounded border">{selectedNote.content.overview}</p>
+                <h3 className="text-lg font-medium text-gray-900 mb-3">
+                  Overview
+                </h3>
+                <p className="text-gray-700 bg-gray-50 p-4 rounded border">
+                  {selectedNote.content.overview}
+                </p>
               </div>
-              
+
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-3">Key Definitions</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-3">
+                  Key Definitions
+                </h3>
                 <div className="space-y-2">
                   {selectedNote.content.keyDefinitions.map((def, index) => (
-                    <div key={index} className="bg-blue-50 p-3 rounded border border-blue-200">
+                    <div
+                      key={index}
+                      className="bg-blue-50 p-3 rounded border border-blue-200"
+                    >
                       <p className="text-blue-900 text-sm">{def}</p>
                     </div>
                   ))}
                 </div>
               </div>
-              
+
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-3">Formulas</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-3">
+                  Formulas
+                </h3>
                 <div className="space-y-2">
                   {selectedNote.content.formulas.map((formula, index) => (
-                    <div key={index} className="bg-green-50 p-3 rounded border border-green-200">
-                      <p className="text-green-900 text-sm font-mono">{formula}</p>
+                    <div
+                      key={index}
+                      className="bg-green-50 p-3 rounded border border-green-200"
+                    >
+                      <p className="text-green-900 text-sm font-mono">
+                        {formula}
+                      </p>
                     </div>
                   ))}
                 </div>
               </div>
-              
+
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-3">Worked Examples</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-3">
+                  Worked Examples
+                </h3>
                 <div className="space-y-4">
                   {selectedNote.content.workedExamples.map((example, index) => (
-                    <div key={index} className="bg-yellow-50 p-4 rounded border border-yellow-200">
-                      <h4 className="font-medium text-yellow-900 mb-2">{example.title}</h4>
-                      <p className="text-yellow-800 mb-3 text-sm">{example.problem}</p>
+                    <div
+                      key={index}
+                      className="bg-yellow-50 p-4 rounded border border-yellow-200"
+                    >
+                      <h4 className="font-medium text-yellow-900 mb-2">
+                        {example.title}
+                      </h4>
+                      <p className="text-yellow-800 mb-3 text-sm">
+                        {example.problem}
+                      </p>
                       <div className="space-y-1">
                         {example.solution.map((step, stepIndex) => (
-                          <p key={stepIndex} className="text-yellow-700 text-sm">{step}</p>
+                          <p
+                            key={stepIndex}
+                            className="text-yellow-700 text-sm"
+                          >
+                            {step}
+                          </p>
                         ))}
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
-              
+
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-3">Practice Exercises</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-3">
+                  Practice Exercises
+                </h3>
                 <div className="space-y-3">
-                  {selectedNote.content.practiceExercises.map((exercise, index) => (
-                    <div key={index} className="bg-purple-50 p-4 rounded border border-purple-200">
-                      <p className="text-purple-900 font-medium mb-2 text-sm">{exercise.question}</p>
-                      <p className="text-purple-700 text-sm">{exercise.answer}</p>
-                    </div>
-                  ))}
+                  {selectedNote.content.practiceExercises.map(
+                    (exercise, index) => (
+                      <div
+                        key={index}
+                        className="bg-purple-50 p-4 rounded border border-purple-200"
+                      >
+                        <p className="text-purple-900 font-medium mb-2 text-sm">
+                          {exercise.question}
+                        </p>
+                        <p className="text-purple-700 text-sm">
+                          {exercise.answer}
+                        </p>
+                      </div>
+                    ),
+                  )}
                 </div>
               </div>
-              
+
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-3">Visual Aids</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-3">
+                  Visual Aids
+                </h3>
                 <div className="space-y-2">
                   {selectedNote.content.visualAids.map((aid, index) => (
-                    <div key={index} className="bg-indigo-50 p-3 rounded border border-indigo-200">
+                    <div
+                      key={index}
+                      className="bg-indigo-50 p-3 rounded border border-indigo-200"
+                    >
                       <p className="text-indigo-900 text-sm">{aid}</p>
                     </div>
                   ))}

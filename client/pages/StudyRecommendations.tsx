@@ -1,6 +1,12 @@
 import { useParams, Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { Progress } from "../components/ui/progress";
 import {
@@ -14,7 +20,7 @@ import {
   AlertCircle,
   Target,
   BookOpen,
-  Star
+  Star,
 } from "lucide-react";
 
 export default function StudyRecommendations() {
@@ -28,7 +34,7 @@ export default function StudyRecommendations() {
     chemistry: "Chemistry",
     english: "English",
     engineering: "Engineering",
-    economics: "Economics"
+    economics: "Economics",
   };
 
   const subjectName = subjectNames[slug as string] || "Subject";
@@ -46,10 +52,10 @@ export default function StudyRecommendations() {
       weakness: null,
       unitIndex: 0,
       topicIndex: 0,
-      subtopicIndex: 0
+      subtopicIndex: 0,
     },
     {
-      unit: "Unit 1: Algebra and Functions", 
+      unit: "Unit 1: Algebra and Functions",
       topic: "Functions and Relations",
       subtopic: "Function Types",
       score: 78,
@@ -59,11 +65,11 @@ export default function StudyRecommendations() {
       weakness: "Quadratic function vertex form",
       unitIndex: 0,
       topicIndex: 0,
-      subtopicIndex: 1
+      subtopicIndex: 1,
     },
     {
       unit: "Unit 1: Algebra and Functions",
-      topic: "Functions and Relations", 
+      topic: "Functions and Relations",
       subtopic: "Transformations",
       score: 65,
       attempts: 2,
@@ -72,7 +78,7 @@ export default function StudyRecommendations() {
       weakness: "Horizontal and vertical shifts",
       unitIndex: 0,
       topicIndex: 0,
-      subtopicIndex: 2
+      subtopicIndex: 2,
     },
     {
       unit: "Unit 2: Calculus",
@@ -85,7 +91,7 @@ export default function StudyRecommendations() {
       weakness: "One-sided limits and continuity",
       unitIndex: 1,
       topicIndex: 0,
-      subtopicIndex: 0
+      subtopicIndex: 0,
     },
     {
       unit: "Unit 2: Calculus",
@@ -98,7 +104,7 @@ export default function StudyRecommendations() {
       weakness: "Chain rule applications",
       unitIndex: 1,
       topicIndex: 0,
-      subtopicIndex: 1
+      subtopicIndex: 1,
     },
     {
       unit: "Unit 2: Calculus",
@@ -111,37 +117,52 @@ export default function StudyRecommendations() {
       weakness: "No attempts yet",
       unitIndex: 1,
       topicIndex: 1,
-      subtopicIndex: 0
-    }
+      subtopicIndex: 0,
+    },
   ];
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "mastered": return "bg-green-100 text-green-700 border-green-200";
-      case "good": return "bg-yellow-100 text-yellow-700 border-yellow-200";
-      case "needs_work": return "bg-red-100 text-red-700 border-red-200";
-      case "not_started": return "bg-gray-100 text-gray-700 border-gray-200";
-      default: return "bg-gray-100 text-gray-700 border-gray-200";
+      case "mastered":
+        return "bg-green-100 text-green-700 border-green-200";
+      case "good":
+        return "bg-yellow-100 text-yellow-700 border-yellow-200";
+      case "needs_work":
+        return "bg-red-100 text-red-700 border-red-200";
+      case "not_started":
+        return "bg-gray-100 text-gray-700 border-gray-200";
+      default:
+        return "bg-gray-100 text-gray-700 border-gray-200";
     }
   };
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case "mastered": return <CheckCircle className="w-4 h-4" />;
-      case "good": return <TrendingUp className="w-4 h-4" />;
-      case "needs_work": return <AlertCircle className="w-4 h-4" />;
-      case "not_started": return <Target className="w-4 h-4" />;
-      default: return <Target className="w-4 h-4" />;
+      case "mastered":
+        return <CheckCircle className="w-4 h-4" />;
+      case "good":
+        return <TrendingUp className="w-4 h-4" />;
+      case "needs_work":
+        return <AlertCircle className="w-4 h-4" />;
+      case "not_started":
+        return <Target className="w-4 h-4" />;
+      default:
+        return <Target className="w-4 h-4" />;
     }
   };
 
   const getStatusText = (status: string) => {
     switch (status) {
-      case "mastered": return "Mastered";
-      case "good": return "Good Progress";
-      case "needs_work": return "Needs Improvement";
-      case "not_started": return "Not Started";
-      default: return "Unknown";
+      case "mastered":
+        return "Mastered";
+      case "good":
+        return "Good Progress";
+      case "needs_work":
+        return "Needs Improvement";
+      case "not_started":
+        return "Not Started";
+      default:
+        return "Unknown";
     }
   };
 
@@ -153,9 +174,11 @@ export default function StudyRecommendations() {
   };
 
   // Group performance by priority
-  const needsWork = subtopicPerformance.filter(p => p.status === "needs_work" || p.status === "not_started");
-  const good = subtopicPerformance.filter(p => p.status === "good");
-  const mastered = subtopicPerformance.filter(p => p.status === "mastered");
+  const needsWork = subtopicPerformance.filter(
+    (p) => p.status === "needs_work" || p.status === "not_started",
+  );
+  const good = subtopicPerformance.filter((p) => p.status === "good");
+  const mastered = subtopicPerformance.filter((p) => p.status === "mastered");
 
   return (
     <div className="min-h-screen bg-study-background">
@@ -169,8 +192,13 @@ export default function StudyRecommendations() {
             </Button>
           </Link>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Study Recommendations</h1>
-            <p className="text-gray-600">Personalized study plan based on your performance across all topics</p>
+            <h1 className="text-3xl font-bold text-gray-900">
+              Study Recommendations
+            </h1>
+            <p className="text-gray-600">
+              Personalized study plan based on your performance across all
+              topics
+            </p>
           </div>
         </div>
 
@@ -185,20 +213,32 @@ export default function StudyRecommendations() {
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="text-center p-4 bg-green-50 rounded-lg">
-                <div className="text-2xl font-bold text-green-600">{mastered.length}</div>
+                <div className="text-2xl font-bold text-green-600">
+                  {mastered.length}
+                </div>
                 <div className="text-sm text-gray-600">Mastered Topics</div>
               </div>
               <div className="text-center p-4 bg-yellow-50 rounded-lg">
-                <div className="text-2xl font-bold text-yellow-600">{good.length}</div>
+                <div className="text-2xl font-bold text-yellow-600">
+                  {good.length}
+                </div>
                 <div className="text-sm text-gray-600">Improving Topics</div>
               </div>
               <div className="text-center p-4 bg-red-50 rounded-lg">
-                <div className="text-2xl font-bold text-red-600">{needsWork.length}</div>
+                <div className="text-2xl font-bold text-red-600">
+                  {needsWork.length}
+                </div>
                 <div className="text-sm text-gray-600">Needs Focus</div>
               </div>
               <div className="text-center p-4 bg-blue-50 rounded-lg">
                 <div className="text-2xl font-bold text-blue-600">
-                  {Math.round(subtopicPerformance.filter(p => p.score > 0).reduce((acc, p) => acc + p.score, 0) / subtopicPerformance.filter(p => p.score > 0).length) || 0}%
+                  {Math.round(
+                    subtopicPerformance
+                      .filter((p) => p.score > 0)
+                      .reduce((acc, p) => acc + p.score, 0) /
+                      subtopicPerformance.filter((p) => p.score > 0).length,
+                  ) || 0}
+                  %
                 </div>
                 <div className="text-sm text-gray-600">Average Score</div>
               </div>
@@ -215,43 +255,62 @@ export default function StudyRecommendations() {
                 Priority Focus Areas ({needsWork.length} topics)
               </CardTitle>
               <CardDescription>
-                These topics need immediate attention to strengthen your foundation
+                These topics need immediate attention to strengthen your
+                foundation
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 {needsWork.map((item, index) => (
-                  <div key={index} className="border border-red-200 rounded-lg p-4 bg-red-50">
+                  <div
+                    key={index}
+                    className="border border-red-200 rounded-lg p-4 bg-red-50"
+                  >
                     <div className="flex justify-between items-start mb-3">
                       <div className="flex-1">
-                        <div className="font-semibold text-gray-900">{item.subtopic}</div>
-                        <div className="text-sm text-gray-600">{item.unit} → {item.topic}</div>
-                        <div className="text-sm text-red-600 mt-1">Weakness: {item.weakness}</div>
+                        <div className="font-semibold text-gray-900">
+                          {item.subtopic}
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          {item.unit} → {item.topic}
+                        </div>
+                        <div className="text-sm text-red-600 mt-1">
+                          Weakness: {item.weakness}
+                        </div>
                       </div>
                       <div className="text-right">
                         <Badge className={getStatusColor(item.status)}>
                           {getStatusIcon(item.status)}
-                          <span className="ml-1">{getStatusText(item.status)}</span>
+                          <span className="ml-1">
+                            {getStatusText(item.status)}
+                          </span>
                         </Badge>
                         {item.score > 0 && (
-                          <div className="text-sm text-gray-600 mt-1">{item.score}% • {item.attempts} attempts</div>
+                          <div className="text-sm text-gray-600 mt-1">
+                            {item.score}% • {item.attempts} attempts
+                          </div>
                         )}
                       </div>
                     </div>
                     <div className="mb-3">
                       <div className="text-sm font-medium text-gray-700 mb-1">
-                        Recommendation: {getPriorityRecommendation(item.status, item.score)}
+                        Recommendation:{" "}
+                        {getPriorityRecommendation(item.status, item.score)}
                       </div>
                       <Progress value={item.score} className="h-2" />
                     </div>
                     <div className="flex gap-2">
-                      <Link to={`/subjects/${slug}/notes/${item.unitIndex}-${item.topicIndex}-${item.subtopicIndex}`}>
+                      <Link
+                        to={`/subjects/${slug}/notes/${item.unitIndex}-${item.topicIndex}-${item.subtopicIndex}`}
+                      >
                         <Button size="sm" variant="outline" className="text-xs">
                           <FileText className="w-3 h-3 mr-1" />
                           Study Notes
                         </Button>
                       </Link>
-                      <Link to={`/subjects/${slug}/quiz/${item.unitIndex}-${item.topicIndex}-${item.subtopicIndex}`}>
+                      <Link
+                        to={`/subjects/${slug}/quiz/${item.unitIndex}-${item.topicIndex}-${item.subtopicIndex}`}
+                      >
                         <Button size="sm" variant="outline" className="text-xs">
                           <Trophy className="w-3 h-3 mr-1" />
                           Practice Quiz
@@ -286,35 +345,53 @@ export default function StudyRecommendations() {
             <CardContent>
               <div className="space-y-4">
                 {good.map((item, index) => (
-                  <div key={index} className="border border-yellow-200 rounded-lg p-4 bg-yellow-50">
+                  <div
+                    key={index}
+                    className="border border-yellow-200 rounded-lg p-4 bg-yellow-50"
+                  >
                     <div className="flex justify-between items-start mb-3">
                       <div className="flex-1">
-                        <div className="font-semibold text-gray-900">{item.subtopic}</div>
-                        <div className="text-sm text-gray-600">{item.unit} → {item.topic}</div>
-                        <div className="text-sm text-yellow-600 mt-1">Focus on: {item.weakness}</div>
+                        <div className="font-semibold text-gray-900">
+                          {item.subtopic}
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          {item.unit} → {item.topic}
+                        </div>
+                        <div className="text-sm text-yellow-600 mt-1">
+                          Focus on: {item.weakness}
+                        </div>
                       </div>
                       <div className="text-right">
                         <Badge className={getStatusColor(item.status)}>
                           {getStatusIcon(item.status)}
-                          <span className="ml-1">{getStatusText(item.status)}</span>
+                          <span className="ml-1">
+                            {getStatusText(item.status)}
+                          </span>
                         </Badge>
-                        <div className="text-sm text-gray-600 mt-1">{item.score}% • {item.attempts} attempts</div>
+                        <div className="text-sm text-gray-600 mt-1">
+                          {item.score}% • {item.attempts} attempts
+                        </div>
                       </div>
                     </div>
                     <div className="mb-3">
                       <div className="text-sm font-medium text-gray-700 mb-1">
-                        Recommendation: {getPriorityRecommendation(item.status, item.score)}
+                        Recommendation:{" "}
+                        {getPriorityRecommendation(item.status, item.score)}
                       </div>
                       <Progress value={item.score} className="h-2" />
                     </div>
                     <div className="flex gap-2">
-                      <Link to={`/subjects/${slug}/notes/${item.unitIndex}-${item.topicIndex}-${item.subtopicIndex}`}>
+                      <Link
+                        to={`/subjects/${slug}/notes/${item.unitIndex}-${item.topicIndex}-${item.subtopicIndex}`}
+                      >
                         <Button size="sm" variant="outline" className="text-xs">
                           <FileText className="w-3 h-3 mr-1" />
                           Review Notes
                         </Button>
                       </Link>
-                      <Link to={`/subjects/${slug}/quiz/${item.unitIndex}-${item.topicIndex}-${item.subtopicIndex}`}>
+                      <Link
+                        to={`/subjects/${slug}/quiz/${item.unitIndex}-${item.topicIndex}-${item.subtopicIndex}`}
+                      >
                         <Button size="sm" variant="outline" className="text-xs">
                           <Trophy className="w-3 h-3 mr-1" />
                           Challenge Quiz
@@ -349,25 +426,38 @@ export default function StudyRecommendations() {
             <CardContent>
               <div className="space-y-4">
                 {mastered.map((item, index) => (
-                  <div key={index} className="border border-green-200 rounded-lg p-4 bg-green-50">
+                  <div
+                    key={index}
+                    className="border border-green-200 rounded-lg p-4 bg-green-50"
+                  >
                     <div className="flex justify-between items-start mb-3">
                       <div className="flex-1">
-                        <div className="font-semibold text-gray-900">{item.subtopic}</div>
-                        <div className="text-sm text-gray-600">{item.unit} → {item.topic}</div>
+                        <div className="font-semibold text-gray-900">
+                          {item.subtopic}
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          {item.unit} → {item.topic}
+                        </div>
                       </div>
                       <div className="text-right">
                         <Badge className={getStatusColor(item.status)}>
                           {getStatusIcon(item.status)}
-                          <span className="ml-1">{getStatusText(item.status)}</span>
+                          <span className="ml-1">
+                            {getStatusText(item.status)}
+                          </span>
                         </Badge>
-                        <div className="text-sm text-gray-600 mt-1">{item.score}% • {item.attempts} attempts</div>
+                        <div className="text-sm text-gray-600 mt-1">
+                          {item.score}% • {item.attempts} attempts
+                        </div>
                       </div>
                     </div>
                     <div className="mb-3">
                       <Progress value={item.score} className="h-2" />
                     </div>
                     <div className="flex gap-2">
-                      <Link to={`/subjects/${slug}/quiz/${item.unitIndex}-${item.topicIndex}-${item.subtopicIndex}`}>
+                      <Link
+                        to={`/subjects/${slug}/quiz/${item.unitIndex}-${item.topicIndex}-${item.subtopicIndex}`}
+                      >
                         <Button size="sm" variant="outline" className="text-xs">
                           <Trophy className="w-3 h-3 mr-1" />
                           Maintain Skills
@@ -392,16 +482,29 @@ export default function StudyRecommendations() {
           <CardContent>
             <div className="space-y-4">
               <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                <div className="font-semibold text-blue-900 mb-2">This Week's Focus</div>
+                <div className="font-semibold text-blue-900 mb-2">
+                  This Week's Focus
+                </div>
                 <ol className="list-decimal list-inside space-y-2 text-sm">
-                  <li>Spend 60% of study time on Priority Focus Areas (red sections above)</li>
-                  <li>Allocate 30% to advancing Good Progress areas (yellow sections)</li>
-                  <li>Reserve 10% for quick reviews of Mastered topics (green sections)</li>
+                  <li>
+                    Spend 60% of study time on Priority Focus Areas (red
+                    sections above)
+                  </li>
+                  <li>
+                    Allocate 30% to advancing Good Progress areas (yellow
+                    sections)
+                  </li>
+                  <li>
+                    Reserve 10% for quick reviews of Mastered topics (green
+                    sections)
+                  </li>
                 </ol>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="p-4 bg-gray-50 rounded-lg">
-                  <div className="font-semibold text-gray-900 mb-2">Daily Study Routine</div>
+                  <div className="font-semibold text-gray-900 mb-2">
+                    Daily Study Routine
+                  </div>
                   <ul className="text-sm space-y-1 text-gray-600">
                     <li>• Start with 10 min flashcard review</li>
                     <li>• Focus 20-30 min on one priority topic</li>
@@ -410,7 +513,9 @@ export default function StudyRecommendations() {
                   </ul>
                 </div>
                 <div className="p-4 bg-gray-50 rounded-lg">
-                  <div className="font-semibold text-gray-900 mb-2">Weekly Goals</div>
+                  <div className="font-semibold text-gray-900 mb-2">
+                    Weekly Goals
+                  </div>
                   <ul className="text-sm space-y-1 text-gray-600">
                     <li>• Improve lowest scoring topic by 15%</li>
                     <li>• Complete study notes for 2 topics</li>

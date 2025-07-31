@@ -1,11 +1,13 @@
 # StudyPal - Queensland Study Platform Requirements Document
 
 ## Executive Summary
+
 StudyPal is a comprehensive online learning platform designed specifically for Queensland students preparing for Mathematical Methods and other subjects. The platform combines AI-powered content generation, interactive learning tools, and comprehensive exam preparation resources.
 
 ## Platform Overview
 
 ### Core Functionality
+
 - **Student Learning Interface**: Interactive study materials, quizzes, flashcards, and progress tracking
 - **AI Content Generation**: Automated creation of study notes, questions, and comprehensive guides
 - **Admin Management**: Complete control over subjects, curriculum, and content
@@ -14,45 +16,56 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
 ## Page Structure & Functionality
 
 ### 1. Public Pages
+
 #### Homepage (`/`)
+
 - **Purpose**: Landing page introducing StudyPal platform
 - **Features**: Platform overview, key benefits, call-to-action buttons
 - **Target Users**: Prospective students and educators
 
 #### About Page (`/about`)
+
 - **Purpose**: Company information and mission
 - **Features**: Team information, platform story, educational philosophy
 
 #### Pricing (`/pricing`)
+
 - **Purpose**: Subscription plans and pricing information
 - **Features**: Tiered pricing, feature comparison, payment integration
 
 #### Contact (`/contact`)
+
 - **Purpose**: Customer support and inquiries
 - **Features**: Contact form, support information, FAQ
 
 #### Help (`/help`)
+
 - **Purpose**: User documentation and support
 - **Features**: User guides, troubleshooting, platform tutorials
 
 ### 2. Authentication System
+
 #### Login (`/login`)
+
 - **Purpose**: User authentication
 - **Features**: Email/password login, password reset, remember me option
 
 #### Signup (`/signup`)
+
 - **Purpose**: New user registration
 - **Features**: Account creation form, email verification, terms acceptance
 
 #### Forgot Password (`/forgot-password`)
+
 - **Purpose**: Password recovery
 - **Features**: Email-based password reset flow
 
 ### 3. Student Learning Interface
 
 #### Student Dashboard (`/dashboard`)
+
 - **Purpose**: Main student landing page after login
-- **Features**: 
+- **Features**:
   - Recent activity overview
   - Subject progress cards
   - Quick access to study materials
@@ -60,6 +73,7 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
   - Recommended next actions
 
 #### Subjects Listing (`/subjects`)
+
 - **Purpose**: Browse all available subjects
 - **Features**:
   - Subject cards with descriptions
@@ -68,6 +82,7 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
   - Estimated completion times
 
 #### Subject Detail Page (`/subjects/:slug`)
+
 - **Purpose**: Overview of specific subject content
 - **Features**:
   - Curriculum structure display
@@ -77,6 +92,7 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
   - Performance analytics
 
 #### Study Notes (`/subjects/:slug/notes`)
+
 - **Purpose**: Access to comprehensive study materials
 - **Features**:
   - Organized by units, topics, and subtopics
@@ -85,6 +101,7 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
   - Progress tracking
 
 #### Quiz Interface (`/subjects/:slug/quizzes`)
+
 - **Purpose**: Interactive testing and practice
 - **Features**:
   - Multiple quiz types (subtopic, comprehensive)
@@ -94,6 +111,7 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
   - Progress tracking and history
 
 #### Comprehensive Testing (`/subjects/:slug/test`)
+
 - **Purpose**: Full subject examination practice
 - **Features**:
   - Questions from all subtopics
@@ -102,6 +120,7 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
   - Performance comparison
 
 #### Progress Tracking (`/subjects/:slug/progress`)
+
 - **Purpose**: Detailed performance analytics
 - **Features**:
   - Topic-by-topic progress breakdown
@@ -110,6 +129,7 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
   - Action recommendations
 
 #### Study Recommendations (`/subjects/:slug/recommendations`)
+
 - **Purpose**: AI-powered personalized study guidance
 - **Features**:
   - Performance-based recommendations
@@ -120,6 +140,7 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
 ### 4. Admin Management Interface
 
 #### Admin Dashboard (`/admin`)
+
 - **Purpose**: Central admin control panel
 - **Features**:
   - Platform overview statistics
@@ -128,6 +149,7 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
   - System health indicators
 
 #### Subject Management (`/admin/subjects`)
+
 - **Purpose**: Manage all subjects on the platform
 - **Features**:
   - Subject listing with status indicators
@@ -136,6 +158,7 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
   - Publishing controls
 
 #### Subject Editor (`/admin/subjects/:id/edit`)
+
 - **Purpose**: Comprehensive subject configuration
 - **Features**:
   - Basic subject information editing
@@ -146,6 +169,7 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
   - Study notes generation (subtopic and comprehensive)
 
 #### Question Bank Management (`/admin/subjects/:subjectId/questions`)
+
 - **Purpose**: Manage AI-generated questions
 - **Features**:
   - Tabular question display with filtering
@@ -155,6 +179,7 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
   - Delete and export functionality
 
 #### Study Notes Management (`/admin/subjects/:subjectId/notes`)
+
 - **Purpose**: Manage generated study notes
 - **Features**:
   - Clean tabular layout of all notes
@@ -164,6 +189,7 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
   - Edit and delete capabilities
 
 #### Comprehensive Study Guide (`/admin/subjects/:subjectId/complete-guide`)
+
 - **Purpose**: Complete exam preparation resource
 - **Features**:
   - Detailed exam format information
@@ -174,6 +200,7 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
   - PDF export capability
 
 #### Content Generation (`/admin/generate`)
+
 - **Purpose**: AI-powered content creation
 - **Features**:
   - Bulk content generation
@@ -182,6 +209,7 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
   - Quality control and review
 
 #### Questions Management (`/admin/questions`)
+
 - **Purpose**: Global question database management
 - **Features**:
   - Cross-subject question overview
@@ -192,6 +220,7 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
 ## Technical Architecture
 
 ### Frontend Framework
+
 - **React 18** with TypeScript
 - **Vite** for build tooling
 - **React Router 6** for navigation
@@ -199,6 +228,7 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
 - **Shadcn/ui** component library
 
 ### Key Components
+
 - Responsive design for desktop and mobile
 - Real-time progress tracking
 - Interactive quiz engine
@@ -206,6 +236,7 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
 - Search and filtering systems
 
 ### Data Management
+
 - Local state management with React hooks
 - Mock data for demonstration
 - Structured interfaces for all data types
@@ -214,18 +245,21 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
 ## Content Generation Features
 
 ### AI Question Generation
+
 - **Volume**: 250 questions per subtopic
 - **Format**: Multiple choice with 5 options
 - **Content**: Question, correct answer, explanation, step-by-step solutions
 - **Coverage**: All curriculum topics and subtopics
 
 ### Study Notes Generation
+
 - **Subtopic Notes**: Detailed notes for each subtopic
 - **Comprehensive Guides**: Unified subject-wide study materials
 - **Content Structure**: Overview, definitions, formulas, examples, exercises
 - **Visual Elements**: Diagrams, charts, and worked examples
 
 ### Curriculum Processing
+
 - **PDF Upload**: Automatic curriculum document processing
 - **AI Analysis**: Extraction of units, topics, and subtopics
 - **Structure Generation**: Hierarchical curriculum organization
@@ -234,18 +268,21 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
 ## User Experience Features
 
 ### Navigation
+
 - Intuitive menu structure
 - Breadcrumb navigation
 - Quick access buttons
 - Search functionality
 
 ### Progress Tracking
+
 - Visual progress indicators
 - Performance analytics
 - Achievement badges
 - Completion tracking
 
 ### Responsive Design
+
 - Mobile-optimized interface
 - Touch-friendly interactions
 - Adaptive layouts
@@ -254,18 +291,21 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
 ## Administrative Features
 
 ### Content Management
+
 - Subject creation and editing
 - Curriculum upload and processing
 - Material organization
 - Publishing controls
 
 ### Analytics and Reporting
+
 - Student performance tracking
 - Content usage statistics
 - System performance monitoring
 - Export capabilities
 
 ### Quality Control
+
 - Content review workflows
 - Error reporting
 - Version control
@@ -274,12 +314,14 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
 ## Integration Capabilities
 
 ### External Systems
+
 - Email notifications
 - Calendar integration
 - LMS compatibility
 - Grade book export
 
 ### API Structure
+
 - RESTful API design
 - Authentication and authorization
 - Rate limiting
@@ -288,12 +330,14 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
 ## Security and Privacy
 
 ### Data Protection
+
 - User data encryption
 - Secure authentication
 - Privacy compliance
 - Data backup procedures
 
 ### Access Control
+
 - Role-based permissions
 - Admin access controls
 - Student data isolation
@@ -302,12 +346,14 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
 ## Future Enhancements
 
 ### Planned Features
+
 - Multi-subject support expansion
 - Advanced AI recommendations
 - Collaborative study features
 - Parent/teacher dashboards
 
 ### Scalability Considerations
+
 - Database optimization
 - Content delivery networks
 - Load balancing
@@ -316,6 +362,7 @@ StudyPal is a comprehensive online learning platform designed specifically for Q
 ---
 
 ## Screenshots Index
+
 (Reference the generated screenshots for visual documentation)
 
 1. **01-homepage** - Platform landing page

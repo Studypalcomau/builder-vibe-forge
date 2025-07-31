@@ -1,11 +1,17 @@
 import { useState, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "../../components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../../components/ui/card";
 import { Badge } from "../../components/ui/badge";
 import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
-import { 
+import {
   ArrowLeft,
   Search,
   Filter,
@@ -19,7 +25,7 @@ import {
   Users,
   Calendar,
   BarChart3,
-  Grid3X3
+  Grid3X3,
 } from "lucide-react";
 
 interface GeneratedQuestion {
@@ -49,27 +55,31 @@ const generateMockQuestions = (): GeneratedQuestion[] => {
       topics: [
         {
           name: "Functions and Relations",
-          subtopics: ["Domain and Range", "Function Types", "Transformations"]
+          subtopics: ["Domain and Range", "Function Types", "Transformations"],
         },
         {
-          name: "Polynomial Functions", 
-          subtopics: ["Linear Functions", "Quadratic Functions", "Cubic Functions"]
-        }
-      ]
+          name: "Polynomial Functions",
+          subtopics: [
+            "Linear Functions",
+            "Quadratic Functions",
+            "Cubic Functions",
+          ],
+        },
+      ],
     },
     {
       name: "Unit 2: Calculus",
       topics: [
         {
           name: "Differential Calculus",
-          subtopics: ["Limits", "Derivatives", "Chain Rule"]
+          subtopics: ["Limits", "Derivatives", "Chain Rule"],
         },
         {
           name: "Integral Calculus",
-          subtopics: ["Antiderivatives", "Definite Integrals", "Applications"]
-        }
-      ]
-    }
+          subtopics: ["Antiderivatives", "Definite Integrals", "Applications"],
+        },
+      ],
+    },
   ];
 
   units.forEach((unit, unitIndex) => {
@@ -85,7 +95,7 @@ const generateMockQuestions = (): GeneratedQuestion[] => {
               `${subtopic} focuses on computational techniques and algorithms`,
               `${subtopic} emphasizes theoretical foundations and proofs`,
               `${subtopic} deals with practical applications in real-world scenarios`,
-              `${subtopic} combines multiple mathematical concepts for problem-solving`
+              `${subtopic} combines multiple mathematical concepts for problem-solving`,
             ],
             correctAnswer: `${subtopic} involves the systematic analysis of mathematical relationships`,
             explanation: `This question tests understanding of ${subtopic} within the context of ${topic.name}. The correct answer demonstrates comprehension of fundamental principles and their mathematical significance in the broader curriculum framework.`,
@@ -94,7 +104,7 @@ const generateMockQuestions = (): GeneratedQuestion[] => {
               `Step 2: Analyze the relationship to ${topic.name}`,
               `Step 3: Apply relevant mathematical principles and formulas`,
               `Step 4: Validate the solution using established methods`,
-              `Step 5: Confirm alignment with curriculum learning objectives`
+              `Step 5: Confirm alignment with curriculum learning objectives`,
             ],
             unit: unit.name,
             topic: topic.name,
@@ -102,9 +112,12 @@ const generateMockQuestions = (): GeneratedQuestion[] => {
             unitIndex,
             topicIndex,
             subtopicIndex,
-            difficulty: ['Easy', 'Medium', 'Hard'][i % 3] as 'Easy' | 'Medium' | 'Hard',
+            difficulty: ["Easy", "Medium", "Hard"][i % 3] as
+              | "Easy"
+              | "Medium"
+              | "Hard",
             category: `${unit.name} - ${topic.name}`,
-            dateGenerated: new Date().toISOString().split('T')[0]
+            dateGenerated: new Date().toISOString().split("T")[0],
           };
           questions.push(question);
         }
@@ -123,55 +136,81 @@ export default function QuestionBank() {
   const [selectedTopic, setSelectedTopic] = useState<string>("all");
   const [selectedSubtopic, setSelectedSubtopic] = useState<string>("all");
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>("all");
-  const [selectedQuestion, setSelectedQuestion] = useState<GeneratedQuestion | null>(null);
+  const [selectedQuestion, setSelectedQuestion] =
+    useState<GeneratedQuestion | null>(null);
 
   // Get unique values for filters
   const units = useMemo(() => {
-    const uniqueUnits = Array.from(new Set(questions.map(q => q.unit)));
+    const uniqueUnits = Array.from(new Set(questions.map((q) => q.unit)));
     return uniqueUnits.map((unit, index) => ({ name: unit, index }));
   }, [questions]);
 
   const topics = useMemo(() => {
     if (selectedUnit === "all") return [];
-    const unitQuestions = questions.filter(q => q.unit === selectedUnit);
-    return Array.from(new Set(unitQuestions.map(q => q.topic)));
+    const unitQuestions = questions.filter((q) => q.unit === selectedUnit);
+    return Array.from(new Set(unitQuestions.map((q) => q.topic)));
   }, [questions, selectedUnit]);
 
   const subtopics = useMemo(() => {
     if (selectedUnit === "all" || selectedTopic === "all") return [];
-    const topicQuestions = questions.filter(q => q.unit === selectedUnit && q.topic === selectedTopic);
-    return Array.from(new Set(topicQuestions.map(q => q.subtopic)));
+    const topicQuestions = questions.filter(
+      (q) => q.unit === selectedUnit && q.topic === selectedTopic,
+    );
+    return Array.from(new Set(topicQuestions.map((q) => q.subtopic)));
   }, [questions, selectedUnit, selectedTopic]);
 
   const filteredQuestions = useMemo(() => {
-    return questions.filter(question => {
-      const matchesSearch = searchTerm === "" || 
+    return questions.filter((question) => {
+      const matchesSearch =
+        searchTerm === "" ||
         question.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
         question.subtopic.toLowerCase().includes(searchTerm.toLowerCase());
-      
-      const matchesUnit = selectedUnit === "all" || question.unit === selectedUnit;
-      const matchesTopic = selectedTopic === "all" || question.topic === selectedTopic;
-      const matchesSubtopic = selectedSubtopic === "all" || question.subtopic === selectedSubtopic;
-      const matchesDifficulty = selectedDifficulty === "all" || question.difficulty === selectedDifficulty;
-      
-      return matchesSearch && matchesUnit && matchesTopic && matchesSubtopic && matchesDifficulty;
+
+      const matchesUnit =
+        selectedUnit === "all" || question.unit === selectedUnit;
+      const matchesTopic =
+        selectedTopic === "all" || question.topic === selectedTopic;
+      const matchesSubtopic =
+        selectedSubtopic === "all" || question.subtopic === selectedSubtopic;
+      const matchesDifficulty =
+        selectedDifficulty === "all" ||
+        question.difficulty === selectedDifficulty;
+
+      return (
+        matchesSearch &&
+        matchesUnit &&
+        matchesTopic &&
+        matchesSubtopic &&
+        matchesDifficulty
+      );
     });
-  }, [questions, searchTerm, selectedUnit, selectedTopic, selectedSubtopic, selectedDifficulty]);
+  }, [
+    questions,
+    searchTerm,
+    selectedUnit,
+    selectedTopic,
+    selectedSubtopic,
+    selectedDifficulty,
+  ]);
 
   const stats = useMemo(() => {
-    const totalSubtopics = new Set(questions.map(q => `${q.unit}-${q.topic}-${q.subtopic}`)).size;
-    const avgQuestionsPerSubtopic = Math.round(questions.length / totalSubtopics);
+    const totalSubtopics = new Set(
+      questions.map((q) => `${q.unit}-${q.topic}-${q.subtopic}`),
+    ).size;
+    const avgQuestionsPerSubtopic = Math.round(
+      questions.length / totalSubtopics,
+    );
     const difficultyDistribution = {
-      Easy: questions.filter(q => q.difficulty === 'Easy').length,
-      Medium: questions.filter(q => q.difficulty === 'Medium').length,
-      Hard: questions.filter(q => q.difficulty === 'Hard').length
+      Easy: questions.filter((q) => q.difficulty === "Easy").length,
+      Medium: questions.filter((q) => q.difficulty === "Medium").length,
+      Hard: questions.filter((q) => q.difficulty === "Hard").length,
     };
-    
+
     return {
       totalQuestions: questions.length,
       totalSubtopics,
       avgQuestionsPerSubtopic,
-      difficultyDistribution
+      difficultyDistribution,
     };
   }, [questions]);
 
@@ -201,16 +240,17 @@ export default function QuestionBank() {
                 Question Bank - Mathematical Methods
               </h1>
               <p className="text-gray-600 mt-2">
-                Comprehensive collection of AI-generated questions with detailed solutions
+                Comprehensive collection of AI-generated questions with detailed
+                solutions
               </p>
             </div>
             <div className="flex space-x-3">
-              <Button 
+              <Button
                 onClick={() => {
                   const data = JSON.stringify(filteredQuestions, null, 2);
-                  const blob = new Blob([data], { type: 'application/json' });
+                  const blob = new Blob([data], { type: "application/json" });
                   const url = URL.createObjectURL(blob);
-                  const a = document.createElement('a');
+                  const a = document.createElement("a");
                   a.href = url;
                   a.download = `question-bank-mathematical-methods.json`;
                   a.click();
@@ -231,7 +271,9 @@ export default function QuestionBank() {
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
                 <BookOpen className="w-6 h-6 text-blue-600" />
               </div>
-              <div className="text-2xl font-bold text-blue-900">{stats.totalQuestions}</div>
+              <div className="text-2xl font-bold text-blue-900">
+                {stats.totalQuestions}
+              </div>
               <div className="text-sm text-blue-700">Total Questions</div>
             </CardContent>
           </Card>
@@ -241,7 +283,9 @@ export default function QuestionBank() {
               <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
                 <Target className="w-6 h-6 text-green-600" />
               </div>
-              <div className="text-2xl font-bold text-green-900">{stats.totalSubtopics}</div>
+              <div className="text-2xl font-bold text-green-900">
+                {stats.totalSubtopics}
+              </div>
               <div className="text-sm text-green-700">Subtopics Covered</div>
             </CardContent>
           </Card>
@@ -251,7 +295,9 @@ export default function QuestionBank() {
               <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
                 <BarChart3 className="w-6 h-6 text-purple-600" />
               </div>
-              <div className="text-2xl font-bold text-purple-900">{stats.avgQuestionsPerSubtopic}</div>
+              <div className="text-2xl font-bold text-purple-900">
+                {stats.avgQuestionsPerSubtopic}
+              </div>
               <div className="text-sm text-purple-700">Avg per Subtopic</div>
             </CardContent>
           </Card>
@@ -262,7 +308,9 @@ export default function QuestionBank() {
                 <Calendar className="w-6 h-6 text-orange-600" />
               </div>
               <div className="text-2xl font-bold text-orange-900">5</div>
-              <div className="text-sm text-orange-700">Options per Question</div>
+              <div className="text-sm text-orange-700">
+                Options per Question
+              </div>
             </CardContent>
           </Card>
         </div>
@@ -274,7 +322,9 @@ export default function QuestionBank() {
               <Filter className="w-5 h-5 mr-2" />
               Filters & Search
             </CardTitle>
-            <CardDescription>Filter questions by criteria to find what you need</CardDescription>
+            <CardDescription>
+              Filter questions by criteria to find what you need
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-4">
@@ -287,7 +337,7 @@ export default function QuestionBank() {
                   className="pl-10"
                 />
               </div>
-              
+
               <select
                 value={selectedUnit}
                 onChange={(e) => {
@@ -304,7 +354,7 @@ export default function QuestionBank() {
                   </option>
                 ))}
               </select>
-              
+
               <select
                 value={selectedTopic}
                 onChange={(e) => {
@@ -321,7 +371,7 @@ export default function QuestionBank() {
                   </option>
                 ))}
               </select>
-              
+
               <select
                 value={selectedSubtopic}
                 onChange={(e) => setSelectedSubtopic(e.target.value)}
@@ -335,7 +385,7 @@ export default function QuestionBank() {
                   </option>
                 ))}
               </select>
-              
+
               <select
                 value={selectedDifficulty}
                 onChange={(e) => setSelectedDifficulty(e.target.value)}
@@ -346,19 +396,28 @@ export default function QuestionBank() {
                 <option value="Medium">Medium</option>
                 <option value="Hard">Hard</option>
               </select>
-              
+
               <Button onClick={resetFilters} variant="outline" className="h-10">
                 Reset Filters
               </Button>
             </div>
-            
+
             <div className="flex items-center justify-between text-sm text-gray-600 pt-4 border-t">
-              <span>Showing {filteredQuestions.length} of {questions.length} questions</span>
+              <span>
+                Showing {filteredQuestions.length} of {questions.length}{" "}
+                questions
+              </span>
               <div className="flex items-center space-x-4">
                 <span>Difficulty Distribution:</span>
-                <Badge className="bg-green-100 text-green-800">Easy: {stats.difficultyDistribution.Easy}</Badge>
-                <Badge className="bg-yellow-100 text-yellow-800">Medium: {stats.difficultyDistribution.Medium}</Badge>
-                <Badge className="bg-red-100 text-red-800">Hard: {stats.difficultyDistribution.Hard}</Badge>
+                <Badge className="bg-green-100 text-green-800">
+                  Easy: {stats.difficultyDistribution.Easy}
+                </Badge>
+                <Badge className="bg-yellow-100 text-yellow-800">
+                  Medium: {stats.difficultyDistribution.Medium}
+                </Badge>
+                <Badge className="bg-red-100 text-red-800">
+                  Hard: {stats.difficultyDistribution.Hard}
+                </Badge>
               </div>
             </div>
           </CardContent>
@@ -367,30 +426,46 @@ export default function QuestionBank() {
         {/* Questions Grid */}
         <div className="space-y-6">
           {filteredQuestions.map((question, index) => (
-            <Card key={question.id} className="border border-gray-200 hover:shadow-lg transition-shadow duration-200">
+            <Card
+              key={question.id}
+              className="border border-gray-200 hover:shadow-lg transition-shadow duration-200"
+            >
               <CardContent className="p-6">
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
                     <div className="flex items-center space-x-2 mb-3">
-                      <Badge variant="outline" className="text-xs bg-blue-50 text-blue-700 border-blue-200">
+                      <Badge
+                        variant="outline"
+                        className="text-xs bg-blue-50 text-blue-700 border-blue-200"
+                      >
                         {question.unit}
                       </Badge>
-                      <Badge variant="outline" className="text-xs bg-green-50 text-green-700 border-green-200">
+                      <Badge
+                        variant="outline"
+                        className="text-xs bg-green-50 text-green-700 border-green-200"
+                      >
                         {question.topic}
                       </Badge>
-                      <Badge variant="outline" className="text-xs bg-purple-50 text-purple-700 border-purple-200">
+                      <Badge
+                        variant="outline"
+                        className="text-xs bg-purple-50 text-purple-700 border-purple-200"
+                      >
                         {question.subtopic}
                       </Badge>
-                      <Badge 
+                      <Badge
                         className={`text-xs ${
-                          question.difficulty === 'Easy' ? 'bg-green-100 text-green-800 border-green-200' :
-                          question.difficulty === 'Medium' ? 'bg-yellow-100 text-yellow-800 border-yellow-200' :
-                          'bg-red-100 text-red-800 border-red-200'
+                          question.difficulty === "Easy"
+                            ? "bg-green-100 text-green-800 border-green-200"
+                            : question.difficulty === "Medium"
+                              ? "bg-yellow-100 text-yellow-800 border-yellow-200"
+                              : "bg-red-100 text-red-800 border-red-200"
                         }`}
                       >
                         {question.difficulty}
                       </Badge>
-                      <span className="text-xs text-gray-500">#{index + 1}</span>
+                      <span className="text-xs text-gray-500">
+                        #{index + 1}
+                      </span>
                     </div>
                     <h3 className="text-lg font-medium text-gray-900 mb-4 leading-relaxed">
                       {question.question}
@@ -415,21 +490,22 @@ export default function QuestionBank() {
                     </Button>
                   </div>
                 </div>
-                
+
                 {/* Options Preview */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
                   {question.options.slice(0, 4).map((option, optionIndex) => (
-                    <div 
-                      key={optionIndex} 
+                    <div
+                      key={optionIndex}
                       className={`p-3 rounded-lg border text-sm transition-colors ${
-                        option === question.correctAnswer 
-                          ? 'bg-green-50 border-green-200 text-green-800' 
-                          : 'bg-gray-50 border-gray-200 hover:bg-gray-100'
+                        option === question.correctAnswer
+                          ? "bg-green-50 border-green-200 text-green-800"
+                          : "bg-gray-50 border-gray-200 hover:bg-gray-100"
                       }`}
                     >
                       <span className="font-medium text-gray-700">
                         {String.fromCharCode(65 + optionIndex)}.
-                      </span> {option}
+                      </span>{" "}
+                      {option}
                       {option === question.correctAnswer && (
                         <CheckCircle className="w-4 h-4 text-green-600 inline ml-2" />
                       )}
@@ -437,11 +513,14 @@ export default function QuestionBank() {
                   ))}
                   {question.options.length > 4 && (
                     <div className="p-3 rounded-lg border bg-gray-50 border-gray-200 text-sm text-gray-600 flex items-center">
-                      <span>+ {question.options.length - 4} more option{question.options.length - 4 > 1 ? 's' : ''}</span>
+                      <span>
+                        + {question.options.length - 4} more option
+                        {question.options.length - 4 > 1 ? "s" : ""}
+                      </span>
                     </div>
                   )}
                 </div>
-                
+
                 <div className="pt-4 border-t border-gray-200 flex items-center justify-between text-sm text-gray-500">
                   <span>ID: {question.id}</span>
                   <span>Generated: {question.dateGenerated}</span>
@@ -449,17 +528,18 @@ export default function QuestionBank() {
               </CardContent>
             </Card>
           ))}
-          
+
           {filteredQuestions.length === 0 && (
             <Card className="border-2 border-dashed border-gray-300">
               <CardContent className="text-center py-12">
                 <BookOpen className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-xl font-medium text-gray-900 mb-2">No questions found</h3>
+                <h3 className="text-xl font-medium text-gray-900 mb-2">
+                  No questions found
+                </h3>
                 <p className="text-gray-600 mb-4">
-                  {questions.length === 0 
+                  {questions.length === 0
                     ? "No questions have been generated yet."
-                    : "Try adjusting your search filters to find questions."
-                  }
+                    : "Try adjusting your search filters to find questions."}
                 </p>
                 {questions.length > 0 && (
                   <Button onClick={resetFilters} variant="outline">
@@ -478,30 +558,46 @@ export default function QuestionBank() {
           <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-auto">
             <div className="p-6 border-b border-gray-200 sticky top-0 bg-white">
               <div className="flex items-center justify-between">
-                <h2 className="text-xl font-bold text-gray-900">Question Details</h2>
-                <Button onClick={() => setSelectedQuestion(null)} variant="outline">
+                <h2 className="text-xl font-bold text-gray-900">
+                  Question Details
+                </h2>
+                <Button
+                  onClick={() => setSelectedQuestion(null)}
+                  variant="outline"
+                >
                   Close
                 </Button>
               </div>
             </div>
-            
+
             <div className="p-6">
               <div className="mb-4">
                 <div className="flex items-center space-x-2 mb-3">
-                  <Badge variant="outline" className="text-xs bg-blue-50 text-blue-700">
+                  <Badge
+                    variant="outline"
+                    className="text-xs bg-blue-50 text-blue-700"
+                  >
                     {selectedQuestion.unit}
                   </Badge>
-                  <Badge variant="outline" className="text-xs bg-green-50 text-green-700">
+                  <Badge
+                    variant="outline"
+                    className="text-xs bg-green-50 text-green-700"
+                  >
                     {selectedQuestion.topic}
                   </Badge>
-                  <Badge variant="outline" className="text-xs bg-purple-50 text-purple-700">
+                  <Badge
+                    variant="outline"
+                    className="text-xs bg-purple-50 text-purple-700"
+                  >
                     {selectedQuestion.subtopic}
                   </Badge>
-                  <Badge 
+                  <Badge
                     className={`text-xs ${
-                      selectedQuestion.difficulty === 'Easy' ? 'bg-green-100 text-green-800' :
-                      selectedQuestion.difficulty === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
-                      'bg-red-100 text-red-800'
+                      selectedQuestion.difficulty === "Easy"
+                        ? "bg-green-100 text-green-800"
+                        : selectedQuestion.difficulty === "Medium"
+                          ? "bg-yellow-100 text-yellow-800"
+                          : "bg-red-100 text-red-800"
                     }`}
                   >
                     {selectedQuestion.difficulty}
@@ -511,22 +607,25 @@ export default function QuestionBank() {
                   {selectedQuestion.question}
                 </h3>
               </div>
-              
+
               <div className="mb-6">
-                <Label className="text-sm font-medium text-gray-700 mb-3 block">Answer Options:</Label>
+                <Label className="text-sm font-medium text-gray-700 mb-3 block">
+                  Answer Options:
+                </Label>
                 <div className="space-y-2">
                   {selectedQuestion.options.map((option, index) => (
-                    <div 
-                      key={index} 
+                    <div
+                      key={index}
                       className={`p-3 rounded-lg border text-sm ${
-                        option === selectedQuestion.correctAnswer 
-                          ? 'bg-green-50 border-green-200 text-green-800' 
-                          : 'bg-gray-50 border-gray-200'
+                        option === selectedQuestion.correctAnswer
+                          ? "bg-green-50 border-green-200 text-green-800"
+                          : "bg-gray-50 border-gray-200"
                       }`}
                     >
                       <span className="font-medium">
                         {String.fromCharCode(65 + index)}.
-                      </span> {option}
+                      </span>{" "}
+                      {option}
                       {option === selectedQuestion.correctAnswer && (
                         <CheckCircle className="w-4 h-4 text-green-600 inline ml-2" />
                       )}
@@ -534,21 +633,29 @@ export default function QuestionBank() {
                   ))}
                 </div>
               </div>
-              
+
               <div className="mb-6">
-                <Label className="text-sm font-medium text-gray-700 mb-2 block">Explanation:</Label>
+                <Label className="text-sm font-medium text-gray-700 mb-2 block">
+                  Explanation:
+                </Label>
                 <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                  <p className="text-sm text-blue-900">{selectedQuestion.explanation}</p>
+                  <p className="text-sm text-blue-900">
+                    {selectedQuestion.explanation}
+                  </p>
                 </div>
               </div>
-              
+
               <div>
-                <Label className="text-sm font-medium text-gray-700 mb-2 block">Step-by-Step Solution:</Label>
+                <Label className="text-sm font-medium text-gray-700 mb-2 block">
+                  Step-by-Step Solution:
+                </Label>
                 <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
                   <ol className="text-sm text-yellow-900 space-y-2">
                     {selectedQuestion.workingSteps.map((step, index) => (
                       <li key={index} className="flex">
-                        <span className="font-medium text-yellow-800 mr-3 flex-shrink-0">{index + 1}.</span>
+                        <span className="font-medium text-yellow-800 mr-3 flex-shrink-0">
+                          {index + 1}.
+                        </span>
                         <span>{step}</span>
                       </li>
                     ))}

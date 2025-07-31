@@ -1,7 +1,20 @@
 import { useParams, Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "../components/ui/table";
 import { Badge } from "../components/ui/badge";
 import { Progress } from "../components/ui/progress";
 import {
@@ -10,13 +23,12 @@ import {
   FileText,
   Download,
   TrendingUp,
-  Users
+  Users,
 } from "lucide-react";
 import { useState } from "react";
 
 export default function Subject() {
   const { slug } = useParams();
-
 
   // Generate comprehensive study guide
   const generateStudyGuide = () => {
@@ -24,12 +36,12 @@ export default function Subject() {
     const subject = subjectData[slug as string];
 
     if (!curriculum || !subject) {
-      alert('Study guide not available for this subject');
+      alert("Study guide not available for this subject");
       return;
     }
 
     let studyGuideContent = `${subject.name} - Complete Study Guide\n`;
-    studyGuideContent += `${'='.repeat(50)}\n\n`;
+    studyGuideContent += `${"=".repeat(50)}\n\n`;
     studyGuideContent += `Description: ${subject.description}\n`;
     studyGuideContent += `Total Topics: ${subject.totalTopics}\n`;
     studyGuideContent += `Completed: ${subject.completedTopics}\n`;
@@ -37,19 +49,19 @@ export default function Subject() {
 
     curriculum.forEach((unit: any) => {
       studyGuideContent += `UNIT ${unit.unitId}: ${unit.unitName.toUpperCase()}\n`;
-      studyGuideContent += `${'-'.repeat(40)}\n`;
-      studyGuideContent += `Status: ${unit.completed ? '✅ Completed' : '⏳ In Progress'}\n\n`;
+      studyGuideContent += `${"-".repeat(40)}\n`;
+      studyGuideContent += `Status: ${unit.completed ? "✅ Completed" : "⏳ In Progress"}\n\n`;
 
       unit.topics.forEach((topic: any, topicIndex: number) => {
         studyGuideContent += `  ${topicIndex + 1}. ${topic.topicName}\n`;
         studyGuideContent += `     Difficulty: ${topic.difficulty}\n`;
-        studyGuideContent += `     Status: ${topic.completed ? '✅ Completed' : '⏳ In Progress'}\n`;
+        studyGuideContent += `     Status: ${topic.completed ? "✅ Completed" : "⏳ In Progress"}\n`;
         studyGuideContent += `     Resources: ${topic.flashcards} flashcards, ${topic.quizzes} quizzes, ${topic.studyNotes} study notes\n\n`;
 
         if (topic.subtopics && topic.subtopics.length > 0) {
           studyGuideContent += `     Subtopics:\n`;
           topic.subtopics.forEach((subtopic: any) => {
-            studyGuideContent += `       • ${subtopic.name} ${subtopic.completed ? '��' : '���'}\n`;
+            studyGuideContent += `       • ${subtopic.name} ${subtopic.completed ? "��" : "���"}\n`;
             studyGuideContent += `         Resources: ${subtopic.flashcards} flashcards, ${subtopic.quizzes} quizzes\n`;
           });
           studyGuideContent += `\n`;
@@ -60,7 +72,7 @@ export default function Subject() {
 
     // Add summary section
     studyGuideContent += `SUMMARY\n`;
-    studyGuideContent += `${'='.repeat(50)}\n`;
+    studyGuideContent += `${"=".repeat(50)}\n`;
 
     let totalFlashcards = 0;
     let totalQuizzes = 0;
@@ -86,48 +98,51 @@ export default function Subject() {
     studyGuideContent += `This study guide provides a comprehensive overview of all units, topics, and subtopics in ${subject.name}. Use it to track your progress and plan your study sessions effectively.\n`;
 
     // Create and download the file
-    const blob = new Blob([studyGuideContent], { type: 'text/plain' });
+    const blob = new Blob([studyGuideContent], { type: "text/plain" });
     const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = url;
-    link.download = `${subject.name.replace(/\s+/g, '_')}_Study_Guide.txt`;
+    link.download = `${subject.name.replace(/\s+/g, "_")}_Study_Guide.txt`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     window.URL.revokeObjectURL(url);
   };
-  
+
   // Mock data - in a real app this would come from an API
   const subjectData = {
     "mathematical-methods": {
       name: "Mathematical Methods",
-      description: "Master calculus, functions, and statistical analysis for Year 11-12",
+      description:
+        "Master calculus, functions, and statistical analysis for Year 11-12",
       icon: "���",
       color: "bg-blue-500",
       totalTopics: 45,
       completedTopics: 12,
       studyTime: "24 hours",
-      nextExam: "November 15, 2024"
+      nextExam: "November 15, 2024",
     },
     "specialist-mathematics": {
       name: "Specialist Mathematics",
-      description: "Advanced mathematics including complex numbers, vectors, and further calculus",
+      description:
+        "Advanced mathematics including complex numbers, vectors, and further calculus",
       icon: "����",
       color: "bg-indigo-500",
       totalTopics: 42,
       completedTopics: 8,
       studyTime: "18 hours",
-      nextExam: "November 20, 2024"
+      nextExam: "November 20, 2024",
     },
     physics: {
       name: "Physics",
-      description: "Understanding mechanics, waves, electricity, and modern physics",
+      description:
+        "Understanding mechanics, waves, electricity, and modern physics",
       icon: "⚡",
       color: "bg-red-500",
       totalTopics: 39,
       completedTopics: 10,
       studyTime: "22 hours",
-      nextExam: "December 2, 2024"
+      nextExam: "December 2, 2024",
     },
     engineering: {
       name: "Engineering",
@@ -137,7 +152,7 @@ export default function Subject() {
       totalTopics: 38,
       completedTopics: 15,
       studyTime: "30 hours",
-      nextExam: "November 25, 2024"
+      nextExam: "November 25, 2024",
     },
     economics: {
       name: "Economics",
@@ -147,27 +162,30 @@ export default function Subject() {
       totalTopics: 35,
       completedTopics: 6,
       studyTime: "16 hours",
-      nextExam: "December 5, 2024"
+      nextExam: "December 5, 2024",
     },
     english: {
       name: "English",
-      description: "Literature analysis, language skills, and written communication",
+      description:
+        "Literature analysis, language skills, and written communication",
       icon: "📚",
       color: "bg-purple-500",
       totalTopics: 40,
       completedTopics: 9,
       studyTime: "20 hours",
-      nextExam: "December 8, 2024"
-    }
+      nextExam: "December 8, 2024",
+    },
   };
 
   const subject = subjectData[slug as keyof typeof subjectData];
-  
+
   if (!subject) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Subject Not Found</h1>
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">
+            Subject Not Found
+          </h1>
           <Link to="/subjects">
             <Button>Browse All Subjects</Button>
           </Link>
@@ -193,10 +211,25 @@ export default function Subject() {
             quizzes: 2,
             studyNotes: 1,
             subtopics: [
-              { name: "Domain and Range", completed: true, flashcards: 5, quizzes: 3 },
-              { name: "Function Types", completed: true, flashcards: 5, quizzes: 3 },
-              { name: "Transformations", completed: true, flashcards: 5, quizzes: 2 }
-            ]
+              {
+                name: "Domain and Range",
+                completed: true,
+                flashcards: 5,
+                quizzes: 3,
+              },
+              {
+                name: "Function Types",
+                completed: true,
+                flashcards: 5,
+                quizzes: 3,
+              },
+              {
+                name: "Transformations",
+                completed: true,
+                flashcards: 5,
+                quizzes: 2,
+              },
+            ],
           },
           {
             topicId: 2,
@@ -207,12 +240,27 @@ export default function Subject() {
             quizzes: 1,
             studyNotes: 1,
             subtopics: [
-              { name: "Linear Functions", completed: false, flashcards: 4, quizzes: 2 },
-              { name: "Quadratic Functions", completed: false, flashcards: 4, quizzes: 3 },
-              { name: "Cubic Functions", completed: false, flashcards: 4, quizzes: 2 }
-            ]
-          }
-        ]
+              {
+                name: "Linear Functions",
+                completed: false,
+                flashcards: 4,
+                quizzes: 2,
+              },
+              {
+                name: "Quadratic Functions",
+                completed: false,
+                flashcards: 4,
+                quizzes: 3,
+              },
+              {
+                name: "Cubic Functions",
+                completed: false,
+                flashcards: 4,
+                quizzes: 2,
+              },
+            ],
+          },
+        ],
       },
       {
         unitId: 2,
@@ -229,9 +277,19 @@ export default function Subject() {
             studyNotes: 1,
             subtopics: [
               { name: "Limits", completed: false, flashcards: 6, quizzes: 3 },
-              { name: "Derivatives", completed: false, flashcards: 6, quizzes: 4 },
-              { name: "Chain Rule", completed: false, flashcards: 6, quizzes: 2 }
-            ]
+              {
+                name: "Derivatives",
+                completed: false,
+                flashcards: 6,
+                quizzes: 4,
+              },
+              {
+                name: "Chain Rule",
+                completed: false,
+                flashcards: 6,
+                quizzes: 2,
+              },
+            ],
           },
           {
             topicId: 4,
@@ -242,12 +300,27 @@ export default function Subject() {
             quizzes: 2,
             studyNotes: 1,
             subtopics: [
-              { name: "Antiderivatives", completed: false, flashcards: 5, quizzes: 3 },
-              { name: "Definite Integrals", completed: false, flashcards: 5, quizzes: 4 },
-              { name: "Applications", completed: false, flashcards: 5, quizzes: 3 }
-            ]
-          }
-        ]
+              {
+                name: "Antiderivatives",
+                completed: false,
+                flashcards: 5,
+                quizzes: 3,
+              },
+              {
+                name: "Definite Integrals",
+                completed: false,
+                flashcards: 5,
+                quizzes: 4,
+              },
+              {
+                name: "Applications",
+                completed: false,
+                flashcards: 5,
+                quizzes: 3,
+              },
+            ],
+          },
+        ],
       },
       {
         unitId: 3,
@@ -263,38 +336,66 @@ export default function Subject() {
             quizzes: 1,
             studyNotes: 1,
             subtopics: [
-              { name: "Normal Distribution", completed: false, flashcards: 4, quizzes: 3 },
-              { name: "Binomial Distribution", completed: false, flashcards: 4, quizzes: 4 },
-              { name: "Continuous Distributions", completed: false, flashcards: 4, quizzes: 2 }
-            ]
-          }
-        ]
-      }
-    ]
+              {
+                name: "Normal Distribution",
+                completed: false,
+                flashcards: 4,
+                quizzes: 3,
+              },
+              {
+                name: "Binomial Distribution",
+                completed: false,
+                flashcards: 4,
+                quizzes: 4,
+              },
+              {
+                name: "Continuous Distributions",
+                completed: false,
+                flashcards: 4,
+                quizzes: 2,
+              },
+            ],
+          },
+        ],
+      },
+    ],
   };
 
   const curriculum = subjectCurriculum[slug as string] || [];
 
   // Calculate totals from curriculum structure
-  const totalTopics = curriculum.reduce((acc, unit) => acc + unit.topics.length, 0);
-  const completedTopics = curriculum.reduce((acc, unit) =>
-    acc + unit.topics.filter(topic => topic.completed).length, 0
+  const totalTopics = curriculum.reduce(
+    (acc, unit) => acc + unit.topics.length,
+    0,
   );
-  const totalFlashcards = curriculum.reduce((acc, unit) =>
-    acc + unit.topics.reduce((topicAcc, topic) => topicAcc + topic.flashcards, 0), 0
+  const completedTopics = curriculum.reduce(
+    (acc, unit) => acc + unit.topics.filter((topic) => topic.completed).length,
+    0,
   );
-  const totalQuizzes = curriculum.reduce((acc, unit) =>
-    acc + unit.topics.reduce((topicAcc, topic) => topicAcc + topic.quizzes, 0), 0
+  const totalFlashcards = curriculum.reduce(
+    (acc, unit) =>
+      acc +
+      unit.topics.reduce((topicAcc, topic) => topicAcc + topic.flashcards, 0),
+    0,
   );
-  const totalStudyNotes = curriculum.reduce((acc, unit) =>
-    acc + unit.topics.reduce((topicAcc, topic) => topicAcc + (topic.studyNotes || 0), 0), 0
+  const totalQuizzes = curriculum.reduce(
+    (acc, unit) =>
+      acc +
+      unit.topics.reduce((topicAcc, topic) => topicAcc + topic.quizzes, 0),
+    0,
+  );
+  const totalStudyNotes = curriculum.reduce(
+    (acc, unit) =>
+      acc +
+      unit.topics.reduce(
+        (topicAcc, topic) => topicAcc + (topic.studyNotes || 0),
+        0,
+      ),
+    0,
   );
 
-  const progressPercentage = totalTopics > 0 ? Math.round((completedTopics / totalTopics) * 100) : 0;
-
-
-
-
+  const progressPercentage =
+    totalTopics > 0 ? Math.round((completedTopics / totalTopics) * 100) : 0;
 
   return (
     <div className="min-h-screen bg-study-background">
@@ -311,13 +412,22 @@ export default function Subject() {
                   {subject.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary" className="bg-sky-blue-100 text-sky-blue-700">
+                  <Badge
+                    variant="secondary"
+                    className="bg-sky-blue-100 text-sky-blue-700"
+                  >
                     Year 11-12
                   </Badge>
-                  <Badge variant="secondary" className="bg-green-100 text-green-700">
+                  <Badge
+                    variant="secondary"
+                    className="bg-green-100 text-green-700"
+                  >
                     {totalTopics} Topics
                   </Badge>
-                  <Badge variant="secondary" className="bg-purple-100 text-purple-700">
+                  <Badge
+                    variant="secondary"
+                    className="bg-purple-100 text-purple-700"
+                  >
                     Queensland Curriculum
                   </Badge>
                 </div>
@@ -349,10 +459,14 @@ export default function Subject() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
           <Card className="border-sky-blue-200">
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-gray-600">Progress</CardTitle>
+              <CardTitle className="text-sm font-medium text-gray-600">
+                Progress
+              </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-gray-900 mb-2">{progressPercentage}%</div>
+              <div className="text-2xl font-bold text-gray-900 mb-2">
+                {progressPercentage}%
+              </div>
               <Progress value={progressPercentage} className="h-2" />
               <p className="text-sm text-gray-600 mt-2">
                 {completedTopics} of {totalTopics} topics
@@ -362,10 +476,14 @@ export default function Subject() {
 
           <Card className="border-sky-blue-200">
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-gray-600">Study Time</CardTitle>
+              <CardTitle className="text-sm font-medium text-gray-600">
+                Study Time
+              </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-gray-900 mb-1">{subject.studyTime}</div>
+              <div className="text-2xl font-bold text-gray-900 mb-1">
+                {subject.studyTime}
+              </div>
               <p className="text-sm text-gray-600">Total time invested</p>
             </CardContent>
           </Card>
@@ -395,10 +513,15 @@ export default function Subject() {
               <div className="flex items-center justify-center mb-2">
                 <Trophy className="w-5 h-5 text-orange-500" />
               </div>
-              <div className="text-lg font-bold text-gray-900 mb-1">Full Test</div>
+              <div className="text-lg font-bold text-gray-900 mb-1">
+                Full Test
+              </div>
               <div className="text-xs text-gray-600 mb-3">All Topics</div>
               <Link to={`/subjects/${slug}/test`}>
-                <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white text-xs px-2 py-1">
+                <Button
+                  size="sm"
+                  className="bg-orange-500 hover:bg-orange-600 text-white text-xs px-2 py-1"
+                >
                   Start Test
                 </Button>
               </Link>
@@ -409,126 +532,184 @@ export default function Subject() {
 
       {/* Curriculum Structure */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Curriculum Structure</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">
+          Curriculum Structure
+        </h2>
 
         <div className="bg-white rounded-lg border border-sky-blue-200 overflow-hidden shadow-sm">
           <Table>
             <TableHeader>
               <TableRow className="bg-sky-blue-50 hover:bg-sky-blue-50">
-                <TableHead className="w-[200px] font-semibold text-gray-900">Unit</TableHead>
-                <TableHead className="w-[200px] font-semibold text-gray-900">Topic</TableHead>
-                <TableHead className="w-[200px] font-semibold text-gray-900">Subtopic</TableHead>
-                <TableHead className="w-[120px] font-semibold text-gray-900 text-center">Progress</TableHead>
-                <TableHead className="w-[200px] font-semibold text-gray-900 text-center">Study Materials</TableHead>
-                <TableHead className="w-[80px] font-semibold text-gray-900 text-center">Status</TableHead>
+                <TableHead className="w-[200px] font-semibold text-gray-900">
+                  Unit
+                </TableHead>
+                <TableHead className="w-[200px] font-semibold text-gray-900">
+                  Topic
+                </TableHead>
+                <TableHead className="w-[200px] font-semibold text-gray-900">
+                  Subtopic
+                </TableHead>
+                <TableHead className="w-[120px] font-semibold text-gray-900 text-center">
+                  Progress
+                </TableHead>
+                <TableHead className="w-[200px] font-semibold text-gray-900 text-center">
+                  Study Materials
+                </TableHead>
+                <TableHead className="w-[80px] font-semibold text-gray-900 text-center">
+                  Status
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {curriculum.map((unit, unitIndex) => {
-                const unitRowSpan = unit.topics.reduce((acc, topic) => acc + topic.subtopics.length, 0);
-                let firstUnit = true;
+              {curriculum
+                .map((unit, unitIndex) => {
+                  const unitRowSpan = unit.topics.reduce(
+                    (acc, topic) => acc + topic.subtopics.length,
+                    0,
+                  );
+                  let firstUnit = true;
 
-                return unit.topics.map((topic, topicIndex) => {
-                  const topicRowSpan = topic.subtopics.length;
-                  let firstTopic = true;
+                  return unit.topics.map((topic, topicIndex) => {
+                    const topicRowSpan = topic.subtopics.length;
+                    let firstTopic = true;
 
-                  return topic.subtopics.map((subtopic, subtopicIndex) => {
-                    const isFirstSubtopic = firstUnit && firstTopic && subtopicIndex === 0;
-                    const isFirstTopicSubtopic = firstTopic && subtopicIndex === 0;
+                    return topic.subtopics.map((subtopic, subtopicIndex) => {
+                      const isFirstSubtopic =
+                        firstUnit && firstTopic && subtopicIndex === 0;
+                      const isFirstTopicSubtopic =
+                        firstTopic && subtopicIndex === 0;
 
-                    const subtopicProgress = subtopic.completed ? 100 : Math.floor(Math.random() * 60) + 20;
+                      const subtopicProgress = subtopic.completed
+                        ? 100
+                        : Math.floor(Math.random() * 60) + 20;
 
-                    const row = (
-                      <TableRow key={`${unit.unitId}-${topic.topicId}-${subtopicIndex}`} className="hover:bg-gray-50/50">
-                        {isFirstSubtopic && (
-                          <TableCell rowSpan={unitRowSpan} className="border-r border-gray-200 bg-blue-50/30 align-top">
+                      const row = (
+                        <TableRow
+                          key={`${unit.unitId}-${topic.topicId}-${subtopicIndex}`}
+                          className="hover:bg-gray-50/50"
+                        >
+                          {isFirstSubtopic && (
+                            <TableCell
+                              rowSpan={unitRowSpan}
+                              className="border-r border-gray-200 bg-blue-50/30 align-top"
+                            >
+                              <div className="space-y-2 p-2">
+                                <div className="font-semibold text-gray-900 text-sm">
+                                  {unit.unitName}
+                                </div>
+                                <Progress
+                                  value={
+                                    unit.topics.length > 0
+                                      ? (unit.topics.filter((t) => t.completed)
+                                          .length /
+                                          unit.topics.length) *
+                                        100
+                                      : 0
+                                  }
+                                  className="h-2"
+                                />
+                              </div>
+                            </TableCell>
+                          )}
+
+                          {isFirstTopicSubtopic && (
+                            <TableCell
+                              rowSpan={topicRowSpan}
+                              className="border-r border-gray-200 bg-green-50/30 align-top"
+                            >
+                              <div className="space-y-2 p-2">
+                                <div className="font-medium text-gray-900 text-sm">
+                                  {topic.topicName}
+                                </div>
+                                <Badge
+                                  className={`text-xs ${
+                                    topic.difficulty === "Easy"
+                                      ? "bg-green-100 text-green-700"
+                                      : topic.difficulty === "Intermediate"
+                                        ? "bg-yellow-100 text-yellow-700"
+                                        : "bg-red-100 text-red-700"
+                                  }`}
+                                >
+                                  {topic.difficulty}
+                                </Badge>
+                              </div>
+                            </TableCell>
+                          )}
+
+                          <TableCell className="border-r border-gray-200 align-top">
+                            <div className="p-2">
+                              <div className="font-medium text-gray-900 text-sm">
+                                {subtopic.name}
+                              </div>
+                            </div>
+                          </TableCell>
+
+                          <TableCell className="border-r border-gray-200 text-center align-top">
                             <div className="space-y-2 p-2">
-                              <div className="font-semibold text-gray-900 text-sm">{unit.unitName}</div>
+                              <div className="text-sm font-medium text-gray-900">
+                                {subtopicProgress}%
+                              </div>
                               <Progress
-                                value={unit.topics.length > 0 ? (unit.topics.filter(t => t.completed).length / unit.topics.length) * 100 : 0}
+                                value={subtopicProgress}
                                 className="h-2"
                               />
                             </div>
                           </TableCell>
-                        )}
 
-                        {isFirstTopicSubtopic && (
-                          <TableCell rowSpan={topicRowSpan} className="border-r border-gray-200 bg-green-50/30 align-top">
-                            <div className="space-y-2 p-2">
-                              <div className="font-medium text-gray-900 text-sm">{topic.topicName}</div>
-                              <Badge className={`text-xs ${
-                                topic.difficulty === 'Easy' ? 'bg-green-100 text-green-700' :
-                                topic.difficulty === 'Intermediate' ? 'bg-yellow-100 text-yellow-700' :
-                                'bg-red-100 text-red-700'
-                              }`}>
-                                {topic.difficulty}
-                              </Badge>
+                          <TableCell className="border-r border-gray-200 align-top">
+                            <div className="flex space-x-1 p-2">
+                              <Link
+                                to={`/subjects/${slug}/flashcards`}
+                                className="inline-flex items-center px-1.5 py-1 text-xs font-medium rounded text-blue-700 bg-blue-100 hover:bg-blue-200 transition-colors"
+                              >
+                                <Brain className="w-3 h-3 mr-1" />
+                                <span>Cards</span>
+                              </Link>
+                              <Link
+                                to={`/subjects/${slug}/quiz/${unitIndex}-${topicIndex}-${subtopicIndex}`}
+                                className="inline-flex items-center px-1.5 py-1 text-xs font-medium rounded text-green-700 bg-green-100 hover:bg-green-200 transition-colors"
+                              >
+                                <Trophy className="w-3 h-3 mr-1" />
+                                <span>Start Quiz</span>
+                              </Link>
+                              <Link
+                                to={`/subjects/${slug}/notes/${unitIndex}-${topicIndex}-${subtopicIndex}`}
+                                className="inline-flex items-center px-1.5 py-1 text-xs font-medium rounded text-purple-700 bg-purple-100 hover:bg-purple-200 transition-colors"
+                              >
+                                <FileText className="w-3 h-3 mr-1" />
+                                <span>Notes</span>
+                              </Link>
                             </div>
                           </TableCell>
-                        )}
 
-                        <TableCell className="border-r border-gray-200 align-top">
-                          <div className="p-2">
-                            <div className="font-medium text-gray-900 text-sm">{subtopic.name}</div>
-                          </div>
-                        </TableCell>
-
-                        <TableCell className="border-r border-gray-200 text-center align-top">
-                          <div className="space-y-2 p-2">
-                            <div className="text-sm font-medium text-gray-900">{subtopicProgress}%</div>
-                            <Progress value={subtopicProgress} className="h-2" />
-                          </div>
-                        </TableCell>
-
-                        <TableCell className="border-r border-gray-200 align-top">
-                          <div className="flex space-x-1 p-2">
-                            <Link
-                              to={`/subjects/${slug}/flashcards`}
-                              className="inline-flex items-center px-1.5 py-1 text-xs font-medium rounded text-blue-700 bg-blue-100 hover:bg-blue-200 transition-colors"
-                            >
-                              <Brain className="w-3 h-3 mr-1" />
-                              <span>Cards</span>
-                            </Link>
-                            <Link
-                              to={`/subjects/${slug}/quiz/${unitIndex}-${topicIndex}-${subtopicIndex}`}
-                              className="inline-flex items-center px-1.5 py-1 text-xs font-medium rounded text-green-700 bg-green-100 hover:bg-green-200 transition-colors"
-                            >
-                              <Trophy className="w-3 h-3 mr-1" />
-                              <span>Start Quiz</span>
-                            </Link>
-                            <Link
-                              to={`/subjects/${slug}/notes/${unitIndex}-${topicIndex}-${subtopicIndex}`}
-                              className="inline-flex items-center px-1.5 py-1 text-xs font-medium rounded text-purple-700 bg-purple-100 hover:bg-purple-200 transition-colors"
-                            >
-                              <FileText className="w-3 h-3 mr-1" />
-                              <span>Notes</span>
-                            </Link>
-                          </div>
-                        </TableCell>
-
-                        <TableCell className="text-center align-top">
-                          <div className="p-2">
-                            <div className={`w-6 h-6 rounded-full mx-auto flex items-center justify-center ${
-                              subtopic.completed ? 'bg-green-100' : 'bg-gray-100'
-                            }`}>
-                              {subtopic.completed ? (
-                                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                              ) : (
-                                <div className="w-3 h-3 border border-gray-300 rounded-full"></div>
-                              )}
+                          <TableCell className="text-center align-top">
+                            <div className="p-2">
+                              <div
+                                className={`w-6 h-6 rounded-full mx-auto flex items-center justify-center ${
+                                  subtopic.completed
+                                    ? "bg-green-100"
+                                    : "bg-gray-100"
+                                }`}
+                              >
+                                {subtopic.completed ? (
+                                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                                ) : (
+                                  <div className="w-3 h-3 border border-gray-300 rounded-full"></div>
+                                )}
+                              </div>
                             </div>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    );
+                          </TableCell>
+                        </TableRow>
+                      );
 
-                    if (firstTopic) firstTopic = false;
-                    if (firstUnit) firstUnit = false;
+                      if (firstTopic) firstTopic = false;
+                      if (firstUnit) firstUnit = false;
 
-                    return row;
+                      return row;
+                    });
                   });
-                });
-              }).flat(2)}
+                })
+                .flat(2)}
             </TableBody>
           </Table>
         </div>
@@ -536,7 +717,9 @@ export default function Subject() {
 
       {/* Test History & Progress Review */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Test History & Progress Review</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">
+          Test History & Progress Review
+        </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {/* Comprehensive Test History */}
@@ -555,10 +738,14 @@ export default function Subject() {
                 <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                   <div>
                     <div className="font-medium text-sm">December 15, 2024</div>
-                    <div className="text-xs text-gray-600">45 questions • 85% score</div>
+                    <div className="text-xs text-gray-600">
+                      45 questions • 85% score
+                    </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Badge className="bg-green-100 text-green-700">Passed</Badge>
+                    <Badge className="bg-green-100 text-green-700">
+                      Passed
+                    </Badge>
                     <Link to={`/subjects/${slug}/test/history/latest`}>
                       <Button size="sm" variant="outline" className="text-xs">
                         Review
@@ -569,10 +756,14 @@ export default function Subject() {
                 <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                   <div>
                     <div className="font-medium text-sm">November 28, 2024</div>
-                    <div className="text-xs text-gray-600">42 questions • 67% score</div>
+                    <div className="text-xs text-gray-600">
+                      42 questions • 67% score
+                    </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Badge className="bg-red-100 text-red-700">Needs Work</Badge>
+                    <Badge className="bg-red-100 text-red-700">
+                      Needs Work
+                    </Badge>
                     <Link to={`/subjects/${slug}/test/history/attempt-2`}>
                       <Button size="sm" variant="outline" className="text-xs">
                         Review
@@ -606,10 +797,14 @@ export default function Subject() {
                 <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                   <div>
                     <div className="font-medium text-sm">Domain and Range</div>
-                    <div className="text-xs text-gray-600">Latest: 95% • 3 attempts</div>
+                    <div className="text-xs text-gray-600">
+                      Latest: 95% • 3 attempts
+                    </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Badge className="bg-green-100 text-green-700">Mastered</Badge>
+                    <Badge className="bg-green-100 text-green-700">
+                      Mastered
+                    </Badge>
                     <Link to={`/subjects/${slug}/quiz/0-0-0/history`}>
                       <Button size="sm" variant="outline" className="text-xs">
                         History
@@ -620,10 +815,14 @@ export default function Subject() {
                 <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                   <div>
                     <div className="font-medium text-sm">Function Types</div>
-                    <div className="text-xs text-gray-600">Latest: 78% • 2 attempts</div>
+                    <div className="text-xs text-gray-600">
+                      Latest: 78% • 2 attempts
+                    </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Badge className="bg-yellow-100 text-yellow-700">Good</Badge>
+                    <Badge className="bg-yellow-100 text-yellow-700">
+                      Good
+                    </Badge>
                     <Link to={`/subjects/${slug}/quiz/0-0-1/history`}>
                       <Button size="sm" variant="outline" className="text-xs">
                         History
@@ -663,7 +862,9 @@ export default function Subject() {
               <div className="text-center p-4 bg-green-50 rounded-lg">
                 <div className="text-2xl font-bold text-green-600">82%</div>
                 <div className="text-sm text-gray-600">Average Score</div>
-                <div className="text-xs text-green-600">↑ 12% from last month</div>
+                <div className="text-xs text-green-600">
+                  ↑ 12% from last month
+                </div>
               </div>
               <div className="text-center p-4 bg-orange-50 rounded-lg">
                 <div className="text-2xl font-bold text-orange-600">6</div>
@@ -687,7 +888,6 @@ export default function Subject() {
           </CardContent>
         </Card>
       </section>
-
     </div>
   );
 }
