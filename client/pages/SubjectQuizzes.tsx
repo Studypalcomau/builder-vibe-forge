@@ -1136,6 +1136,206 @@ export default function SubjectQuizzes() {
     );
   }
 
+  // Show test results view
+  if (isResultsView && attemptId) {
+    const attempt = mockTestHistory.find(a => a.id === attemptId) || mockTopicHistory.find(a => a.id === attemptId);
+
+    if (!attempt) {
+      return (
+        <div className="min-h-screen bg-study-background flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">Test Attempt Not Found</h1>
+            <Link to={`/subjects/${slug}`}>
+              <Button variant="outline">Back to Subject</Button>
+            </Link>
+          </div>
+        </div>
+      );
+    }
+
+    // Mock detailed results for the specific attempt
+    const mockDetailedResults = {
+      questions: [
+        {
+          id: "q1",
+          question: "What is the domain of f(x) = 1/(x-2)?",
+          correctAnswer: "All real numbers except 2",
+          userAnswer: "All real numbers except 2",
+          isCorrect: true,
+          explanation: "The function is undefined when x-2=0, so x cannot equal 2.",
+          workingSteps: [
+            "Identify restrictions on the function f(x) = 1/(x-2)",
+            "The function is undefined when the denominator equals zero",
+            "Set the denominator equal to zero: x - 2 = 0",
+            "Solve for x: x = 2",
+            "Therefore, x cannot equal 2",
+            "Domain: All real numbers except x = 2"
+          ]
+        },
+        {
+          id: "q2",
+          question: "What is the range of f(x) = x²?",
+          correctAnswer: "All non-negative numbers",
+          userAnswer: "All real numbers",
+          isCorrect: false,
+          explanation: "Since x² is always non-negative, the range is [0, ∞).",
+          workingSteps: [
+            "Consider the function f(x) = x²",
+            "For any real number x, x² ≥ 0",
+            "The minimum value occurs when x = 0, giving f(0) = 0",
+            "As |x| increases, x² increases without bound",
+            "Therefore, f(x) can take any value ≥ 0",
+            "Range: [0, ∞) or all non-negative numbers"
+          ]
+        },
+        {
+          id: "q3",
+          question: "What is the domain of f(x) = √(x-3)?",
+          correctAnswer: "x ≥ 3",
+          userAnswer: "x ≥ 3",
+          isCorrect: true,
+          explanation: "For square root to be defined, x-3 ≥ 0, so x ≥ 3.",
+          workingSteps: [
+            "For √(x-3) to be defined, the expression under the square root must be non-negative",
+            "Set up the inequality: x - 3 ≥ 0",
+            "Solve for x: x ≥ 3",
+            "Domain: x ≥ 3 or [3, ∞)"
+          ]
+        }
+      ]
+    };
+
+    return (
+      <div className="min-h-screen bg-study-background">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Header */}
+          <div className="flex items-center space-x-4 mb-8">
+            <Link to={`/subjects/${slug}/${isTestHistory ? 'test/history' : `quiz/${subtopicId}/history`}`}>
+              <Button variant="outline" size="sm">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to History
+              </Button>
+            </Link>
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">Test Results Review</h1>
+              <p className="text-gray-600">Attempt #{attempt.id} • {attempt.score}% • {new Date(attempt.date).toLocaleDateString()}</p>
+            </div>
+          </div>
+
+          {/* Results Summary */}
+          <Card className="border-sky-blue-200 mb-8">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Trophy className={`w-5 h-5 ${attempt.passed ? 'text-green-500' : 'text-red-500'}`} />
+                Test Performance
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="text-center p-3 bg-blue-50 rounded-lg">
+                  <div className="text-2xl font-bold text-blue-600">{attempt.score}%</div>
+                  <div className="text-sm text-gray-600">Final Score</div>
+                </div>
+                <div className="text-center p-3 bg-green-50 rounded-lg">
+                  <div className="text-2xl font-bold text-green-600">
+                    {mockDetailedResults.questions.filter(q => q.isCorrect).length}
+                  </div>
+                  <div className="text-sm text-gray-600">Correct</div>
+                </div>
+                <div className="text-center p-3 bg-red-50 rounded-lg">
+                  <div className="text-2xl font-bold text-red-600">
+                    {mockDetailedResults.questions.filter(q => !q.isCorrect).length}
+                  </div>
+                  <div className="text-sm text-gray-600">Incorrect</div>
+                </div>
+                <div className="text-center p-3 bg-orange-50 rounded-lg">
+                  <div className="text-2xl font-bold text-orange-600">{attempt.timeSpent}</div>
+                  <div className="text-sm text-gray-600">Minutes</div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Question by Question Review */}
+          <div className="space-y-6">
+            <h2 className="text-xl font-semibold text-gray-900">Question by Question Review</h2>
+
+            {mockDetailedResults.questions.map((question, index) => (
+              <Card key={question.id} className={`border-2 ${question.isCorrect ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50'}`}>
+                <CardHeader>
+                  <div className="flex items-start justify-between">
+                    <CardTitle className="text-lg">Question {index + 1}</CardTitle>
+                    <Badge className={question.isCorrect ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}>
+                      {question.isCorrect ? (
+                        <>
+                          <CheckCircle className="w-3 h-3 mr-1" />
+                          Correct
+                        </>
+                      ) : (
+                        <>
+                          <AlertCircle className="w-3 h-3 mr-1" />
+                          Incorrect
+                        </>
+                      )}
+                    </Badge>
+                  </div>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="font-medium text-gray-900">{question.question}</div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="p-3 bg-white rounded-lg border">
+                      <div className="text-sm font-medium text-gray-600 mb-1">Your Answer</div>
+                      <div className={`font-medium ${question.isCorrect ? 'text-green-700' : 'text-red-700'}`}>
+                        {question.userAnswer}
+                      </div>
+                    </div>
+                    <div className="p-3 bg-white rounded-lg border">
+                      <div className="text-sm font-medium text-gray-600 mb-1">Correct Answer</div>
+                      <div className="font-medium text-green-700">{question.correctAnswer}</div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white rounded-lg border p-4">
+                    <div className="text-sm font-medium text-gray-700 mb-2">Explanation</div>
+                    <div className="text-gray-600 mb-3">{question.explanation}</div>
+
+                    <div className="text-sm font-medium text-gray-700 mb-2">Step-by-Step Solution</div>
+                    <ol className="list-decimal list-inside space-y-1 text-sm text-gray-600">
+                      {question.workingSteps.map((step, stepIndex) => (
+                        <li key={stepIndex}>{step}</li>
+                      ))}
+                    </ol>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Action Buttons */}
+          <Card className="border-sky-blue-200 mt-8">
+            <CardContent className="p-6">
+              <div className="flex gap-4 justify-center">
+                <Link to={`/subjects/${slug}/${isTestHistory ? 'test' : `quiz/${subtopicId}`}`}>
+                  <Button>
+                    <Trophy className="w-4 h-4 mr-2" />
+                    Retake Test
+                  </Button>
+                </Link>
+                <Link to={`/subjects/${slug}/recommendations`}>
+                  <Button variant="outline">
+                    <Brain className="w-4 h-4 mr-2" />
+                    Get Study Recommendations
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    );
+  }
+
   // Show test history view
   if (isTestHistory || isTopicHistory) {
     const historyData = isTestHistory ? mockTestHistory : mockTopicHistory;
