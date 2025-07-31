@@ -1215,10 +1215,12 @@ export default function SubjectQuizzes() {
                       </div>
                     </div>
                     <div className="flex gap-2">
-                      <Button variant="outline" size="sm">
-                        <Eye className="w-4 h-4 mr-2" />
-                        Review Answers
-                      </Button>
+                      <Link to={`/subjects/${slug}/${isTestHistory ? 'test' : 'quiz'}/${subtopicId || 'comprehensive'}/results/${attempt.id}`}>
+                        <Button variant="outline" size="sm">
+                          <Eye className="w-4 h-4 mr-2" />
+                          Review Answers
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 </CardContent>
