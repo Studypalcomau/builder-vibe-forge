@@ -3,7 +3,10 @@ import { useParams, Link } from "react-router-dom";
 import { Button } from "../../components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../components/ui/card";
 import { Badge } from "../../components/ui/badge";
-import { 
+import { Input } from "../../components/ui/input";
+import { Textarea } from "../../components/ui/textarea";
+import { Label } from "../../components/ui/label";
+import {
   ArrowLeft,
   GraduationCap,
   BookOpen,
@@ -15,7 +18,11 @@ import {
   BarChart3,
   MapPin,
   Lightbulb,
-  Award
+  Award,
+  Edit,
+  Save,
+  Plus,
+  Trash2
 } from "lucide-react";
 
 export default function ComprehensiveStudyGuide() {
