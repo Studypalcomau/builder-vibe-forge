@@ -309,7 +309,7 @@ export default function ComprehensiveStudyGuide() {
 
   return (
     <div className="min-h-screen bg-study-background">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
           <Link to={`/admin/subjects/${subjectId}/edit`}>
@@ -322,214 +322,254 @@ export default function ComprehensiveStudyGuide() {
             <div>
               <h1 className="text-3xl font-bold text-gray-900 flex items-center">
                 <GraduationCap className="w-8 h-8 mr-3 text-indigo-600" />
-                Comprehensive Study Guide - {studyGuide.subject}
+                Complete Exam Study Guide - {studyGuide.subject}
               </h1>
               <p className="text-gray-600 mt-2">
-                Complete learning companion with interconnected concepts and strategic guidance
+                Detailed exam preparation content with worked examples, formulas, and practice questions
               </p>
             </div>
             <div className="flex space-x-3">
+              <Button
+                onClick={() => setIsEditing(!isEditing)}
+                variant={isEditing ? "default" : "outline"}
+              >
+                {isEditing ? <Save className="w-4 h-4 mr-2" /> : <Edit className="w-4 h-4 mr-2" />}
+                {isEditing ? "Save Changes" : "Edit Content"}
+              </Button>
               <Button variant="outline">
                 <Download className="w-4 h-4 mr-2" />
-                Export as PDF
+                Export PDF
               </Button>
             </div>
           </div>
         </div>
 
-        {/* Overview */}
+        {/* Exam Format Information */}
         <Card className="mb-8 border-indigo-200">
           <CardHeader>
             <CardTitle className="flex items-center">
-              <BookOpen className="w-5 h-5 mr-2 text-indigo-600" />
-              Subject Overview
+              <Clock className="w-5 h-5 mr-2 text-indigo-600" />
+              Exam Format & Structure
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-700 leading-relaxed">{studyGuide.overview}</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="bg-indigo-50 p-4 rounded border">
+                <div className="font-medium text-indigo-900">Duration</div>
+                <div className="text-indigo-700">{studyGuide.examFormat.duration}</div>
+              </div>
+              <div className="bg-indigo-50 p-4 rounded border">
+                <div className="font-medium text-indigo-900">Total Marks</div>
+                <div className="text-indigo-700">{studyGuide.examFormat.totalMarks}</div>
+              </div>
+              <div className="bg-indigo-50 p-4 rounded border">
+                <div className="font-medium text-indigo-900">Calculator</div>
+                <div className="text-indigo-700">{studyGuide.examFormat.calculatorAllowed}</div>
+              </div>
+            </div>
+            <div className="mt-4 p-4 bg-gray-50 rounded border">
+              <div className="font-medium text-gray-900 mb-2">Exam Structure:</div>
+              <div className="text-gray-700">{studyGuide.examFormat.structure}</div>
+            </div>
           </CardContent>
         </Card>
 
-        {/* Learning Pathway */}
-        <Card className="mb-8 border-blue-200">
-          <CardHeader>
-            <CardTitle className="flex items-center">
-              <MapPin className="w-5 h-5 mr-2 text-blue-600" />
-              Progressive Learning Pathway
-            </CardTitle>
-            <CardDescription>Structured approach to mastering the subject</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-6">
-              {studyGuide.learningPathway.map((phase, index) => (
-                <div key={index} className="border-l-4 border-blue-400 pl-6 relative">
-                  <div className="absolute -left-2 top-0 w-4 h-4 bg-blue-400 rounded-full"></div>
-                  <div className="bg-blue-50 p-4 rounded-lg">
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className="font-medium text-blue-900">{phase.phase}</h3>
-                      <Badge className="bg-blue-100 text-blue-800">{phase.duration}</Badge>
+        {/* Unit Content */}
+        {studyGuide.units.map((unit) => (
+          <Card key={unit.id} className="mb-8 border-blue-200">
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <CardTitle className="flex items-center">
+                  <BookOpen className="w-5 h-5 mr-2 text-blue-600" />
+                  {unit.title}
+                </CardTitle>
+                <Badge className="bg-blue-100 text-blue-800">Exam Weight: {unit.examWeight}</Badge>
+              </div>
+            </CardHeader>
+            <CardContent>
+              {unit.topics.map((topic) => (
+                <div key={topic.id} className="mb-8 last:mb-0">
+                  <h3 className="text-xl font-medium text-gray-900 mb-4 flex items-center">
+                    <Target className="w-4 h-4 mr-2 text-green-600" />
+                    {topic.title}
+                  </h3>
+
+                  {/* Key Formulas */}
+                  <div className="mb-6">
+                    <div className="flex items-center justify-between mb-3">
+                      <h4 className="font-medium text-gray-800">Key Formulas & Concepts</h4>
+                      {isEditing && (
+                        <Button
+                          onClick={() => addFormula(unit.id, topic.id)}
+                          size="sm"
+                          variant="outline"
+                        >
+                          <Plus className="w-3 h-3 mr-1" />
+                          Add Formula
+                        </Button>
+                      )}
                     </div>
-                    <p className="text-blue-700 mb-3">{phase.description}</p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <h4 className="font-medium text-blue-800 mb-2">Focus Units:</h4>
-                        <ul className="text-blue-700 text-sm space-y-1">
-                          {phase.units.map((unit, unitIndex) => (
-                            <li key={unitIndex}>• {unit}</li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div>
-                        <h4 className="font-medium text-blue-800 mb-2">Key Milestones:</h4>
-                        <ul className="text-blue-700 text-sm space-y-1">
-                          {phase.keyMilestones.map((milestone, milestoneIndex) => (
-                            <li key={milestoneIndex} className="flex items-center">
-                              <CheckCircle className="w-3 h-3 mr-2 text-green-600" />
-                              {milestone}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {topic.content.keyFormulas.map((formula, index) => (
+                        <div key={index} className="bg-blue-50 p-3 rounded border border-blue-200">
+                          {isEditing ? (
+                            <div className="flex items-center space-x-2">
+                              <Input
+                                value={formula}
+                                onChange={(e) => {
+                                  const updatedFormulas = [...topic.content.keyFormulas];
+                                  updatedFormulas[index] = e.target.value;
+                                  updateSection(unit.id, topic.id, 'keyFormulas', updatedFormulas);
+                                }}
+                                className="font-mono text-sm"
+                              />
+                              <Button
+                                onClick={() => removeFormula(unit.id, topic.id, index)}
+                                size="sm"
+                                variant="ghost"
+                                className="text-red-600"
+                              >
+                                <Trash2 className="w-3 h-3" />
+                              </Button>
+                            </div>
+                          ) : (
+                            <div className="font-mono text-blue-900 text-sm">{formula}</div>
+                          )}
+                        </div>
+                      ))}
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
 
-        {/* Concept Connections */}
-        <Card className="mb-8 border-green-200">
-          <CardHeader>
-            <CardTitle className="flex items-center">
-              <Lightbulb className="w-5 h-5 mr-2 text-green-600" />
-              Cross-Topic Concept Connections
-            </CardTitle>
-            <CardDescription>How mathematical concepts build upon each other</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {studyGuide.conceptConnections.map((connection, index) => (
-                <div key={index} className="bg-green-50 p-4 rounded-lg border border-green-200">
-                  <h3 className="font-medium text-green-900 mb-2">{connection.concept}</h3>
-                  <p className="text-green-700 text-sm">{connection.description}</p>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+                  {/* Worked Examples */}
+                  <div className="mb-6">
+                    <h4 className="font-medium text-gray-800 mb-3">Worked Examples</h4>
+                    {topic.content.workedExamples.map((example, index) => (
+                      <div key={index} className="bg-green-50 p-4 rounded border border-green-200 mb-4">
+                        <div className="font-medium text-green-900 mb-2">Example {index + 1}:</div>
+                        <div className="text-green-800 mb-3">{example.question}</div>
+                        <div className="text-green-700 text-sm mb-3">
+                          <div className="font-medium mb-1">Solution:</div>
+                          <ol className="list-decimal list-inside space-y-1">
+                            {example.solution.map((step, stepIndex) => (
+                              <li key={stepIndex}>{step}</li>
+                            ))}
+                          </ol>
+                        </div>
+                        <div className="bg-green-100 p-2 rounded text-green-800 text-sm">
+                          <strong>Exam Tip:</strong> {example.examTips}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
 
-        {/* Exam Preparation Strategies */}
-        <Card className="mb-8 border-orange-200">
-          <CardHeader>
-            <CardTitle className="flex items-center">
-              <Target className="w-5 h-5 mr-2 text-orange-600" />
-              Exam Preparation Strategies
-            </CardTitle>
-            <CardDescription>Proven methods for exam success</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {studyGuide.examStrategies.map((strategy, index) => (
-                <div key={index} className="bg-orange-50 p-4 rounded-lg border border-orange-200">
-                  <h3 className="font-medium text-orange-900 mb-2">{strategy.strategy}</h3>
-                  <p className="text-orange-700 mb-3 text-sm">{strategy.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {strategy.tips.map((tip, tipIndex) => (
-                      <Badge key={tipIndex} variant="outline" className="text-xs bg-orange-100 text-orange-800 border-orange-300">
-                        {tip}
-                      </Badge>
+                  {/* Exam Questions */}
+                  <div className="mb-6">
+                    <h4 className="font-medium text-gray-800 mb-3">Practice Exam Questions</h4>
+                    {topic.content.examQuestions.map((question, index) => (
+                      <div key={index} className="bg-yellow-50 p-4 rounded border border-yellow-200 mb-4">
+                        <div className="flex items-center justify-between mb-2">
+                          <Badge className="bg-yellow-100 text-yellow-800">{question.type}</Badge>
+                          <Badge variant="outline">{question.marks} marks</Badge>
+                        </div>
+                        <div className="text-yellow-900 mb-3 font-medium">{question.question}</div>
+
+                        {question.options && (
+                          <div className="mb-3">
+                            <div className="grid grid-cols-2 gap-2 text-sm">
+                              {question.options.map((option, optionIndex) => (
+                                <div
+                                  key={optionIndex}
+                                  className={`p-2 rounded border ${
+                                    option === question.answer
+                                      ? 'bg-green-100 border-green-300 text-green-800'
+                                      : 'bg-white border-gray-200'
+                                  }`}
+                                >
+                                  {String.fromCharCode(65 + optionIndex)}. {option}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {question.solutionSteps && (
+                          <div className="bg-yellow-100 p-3 rounded">
+                            <div className="font-medium text-yellow-900 mb-2">Solution Steps:</div>
+                            <ol className="list-decimal list-inside space-y-1 text-yellow-800 text-sm">
+                              {question.solutionSteps.map((step, stepIndex) => (
+                                <li key={stepIndex}>{step}</li>
+                              ))}
+                            </ol>
+                          </div>
+                        )}
+                      </div>
                     ))}
                   </div>
                 </div>
               ))}
+            </CardContent>
+          </Card>
+        ))}
+
+        {/* Exam Techniques */}
+        <Card className="mb-8 border-orange-200">
+          <CardHeader>
+            <CardTitle className="flex items-center">
+              <Target className="w-5 h-5 mr-2 text-orange-600" />
+              Essential Exam Techniques
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {studyGuide.examTechniques.map((technique) => (
+                <div key={technique.id} className="bg-orange-50 p-4 rounded border border-orange-200">
+                  <h4 className="font-medium text-orange-900 mb-2">{technique.title}</h4>
+                  {isEditing ? (
+                    <Textarea
+                      value={technique.content}
+                      onChange={(e) => {
+                        setStudyGuide(prev => ({
+                          ...prev,
+                          examTechniques: prev.examTechniques.map(t =>
+                            t.id === technique.id ? { ...t, content: e.target.value } : t
+                          )
+                        }));
+                      }}
+                      className="text-orange-800"
+                    />
+                  ) : (
+                    <p className="text-orange-800">{technique.content}</p>
+                  )}
+                </div>
+              ))}
             </div>
           </CardContent>
         </Card>
 
-        {/* Quick Reference */}
+        {/* Past Exam Questions */}
         <Card className="mb-8 border-purple-200">
           <CardHeader>
             <CardTitle className="flex items-center">
-              <BarChart3 className="w-5 h-5 mr-2 text-purple-600" />
-              Quick Reference Guide
+              <Award className="w-5 h-5 mr-2 text-purple-600" />
+              Past Exam Questions
             </CardTitle>
-            <CardDescription>Essential formulas, common mistakes, and study tips</CardDescription>
+            <CardDescription>Recent exam questions with worked solutions</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {/* Key Formulas */}
-              <div>
-                <h3 className="font-medium text-purple-900 mb-3">Key Formulas</h3>
-                <div className="space-y-3">
-                  {studyGuide.quickReference.keyFormulas.map((formula, index) => (
-                    <div key={index} className="bg-purple-50 p-3 rounded border border-purple-200">
-                      <div className="font-medium text-purple-800 text-sm">{formula.category}</div>
-                      <div className="font-mono text-purple-900 text-sm my-1">{formula.formula}</div>
-                      <div className="text-purple-700 text-xs">{formula.application}</div>
-                    </div>
-                  ))}
+            <div className="space-y-4">
+              {studyGuide.pastExamQuestions.map((pastQ, index) => (
+                <div key={index} className="bg-purple-50 p-4 rounded border border-purple-200">
+                  <div className="flex items-center justify-between mb-3">
+                    <Badge className="bg-purple-100 text-purple-800">{pastQ.year} Exam</Badge>
+                    <Badge variant="outline">{pastQ.marks} marks</Badge>
+                  </div>
+                  <div className="text-purple-900 font-medium mb-3">{pastQ.question}</div>
+                  <div className="bg-purple-100 p-3 rounded">
+                    <div className="font-medium text-purple-900 mb-1">Solution:</div>
+                    <div className="text-purple-800 text-sm">{pastQ.solution}</div>
+                  </div>
                 </div>
-              </div>
-
-              {/* Common Mistakes */}
-              <div>
-                <h3 className="font-medium text-red-900 mb-3">Common Mistakes</h3>
-                <div className="space-y-2">
-                  {studyGuide.quickReference.commonMistakes.map((mistake, index) => (
-                    <div key={index} className="bg-red-50 p-3 rounded border border-red-200">
-                      <div className="text-red-800 text-sm">{mistake}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Study Tips */}
-              <div>
-                <h3 className="font-medium text-green-900 mb-3">Study Tips</h3>
-                <div className="space-y-2">
-                  {studyGuide.quickReference.studyTips.map((tip, index) => (
-                    <div key={index} className="bg-green-50 p-3 rounded border border-green-200">
-                      <div className="text-green-800 text-sm">{tip}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Assessment Criteria */}
-        <Card className="mb-8 border-yellow-200">
-          <CardHeader>
-            <CardTitle className="flex items-center">
-              <Award className="w-5 h-5 mr-2 text-yellow-600" />
-              Assessment Criteria & Rubrics
-            </CardTitle>
-            <CardDescription>Understanding how your work will be evaluated</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-yellow-50 border-b border-yellow-200">
-                  <tr>
-                    <th className="text-left py-3 px-4 font-medium text-yellow-900">Criterion</th>
-                    <th className="text-left py-3 px-4 font-medium text-yellow-900">Weight</th>
-                    <th className="text-left py-3 px-4 font-medium text-yellow-900">Description</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200">
-                  {studyGuide.assessmentCriteria.map((criterion, index) => (
-                    <tr key={index} className="hover:bg-gray-50">
-                      <td className="py-3 px-4 font-medium text-gray-900">{criterion.criterion}</td>
-                      <td className="py-3 px-4">
-                        <Badge className="bg-yellow-100 text-yellow-800">{criterion.weight}</Badge>
-                      </td>
-                      <td className="py-3 px-4 text-gray-700 text-sm">{criterion.description}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              ))}
             </div>
           </CardContent>
         </Card>
