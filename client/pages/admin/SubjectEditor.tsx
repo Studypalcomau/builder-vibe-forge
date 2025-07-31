@@ -1360,16 +1360,15 @@ export default function SubjectEditor() {
                       <Bot className="w-4 h-4 mr-2" />
                       Generate Question Bank
                     </Button>
-                    <Button
-                      onClick={() => {
-                        setShowQuestionBank(true);
-                      }}
-                      variant="outline"
-                      disabled={generatedQuestions.length === 0}
-                    >
-                      <Eye className="w-4 h-4 mr-2" />
-                      View Generated Questions ({generatedQuestions.length})
-                    </Button>
+                    <Link to={`/admin/subjects/${subject.slug}/questions`}>
+                      <Button
+                        variant="outline"
+                        disabled={generatedQuestions.length === 0}
+                      >
+                        <Eye className="w-4 h-4 mr-2" />
+                        View Generated Questions ({generatedQuestions.length})
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </CardContent>
