@@ -35,6 +35,7 @@ import ContentGeneration from "./pages/admin/ContentGeneration";
 import QuestionsManagement from "./pages/admin/QuestionsManagement";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import StudyRecommendations from "./pages/StudyRecommendations";
+import TopicResults from "./pages/TopicResults";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
