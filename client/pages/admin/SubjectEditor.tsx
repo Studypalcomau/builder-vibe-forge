@@ -215,6 +215,7 @@ const mockSubject: Subject = {
     flashcardsGenerated: 35,
     quizzesGenerated: 15,
     notesGenerated: 8,
+    questionsGenerated: 0,
     lastGenerated: "2024-01-15"
   }
 };
