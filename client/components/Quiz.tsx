@@ -120,7 +120,6 @@ export function Quiz({
 }: QuizComponentProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, any>>({});
-  const [timeLeft, setTimeLeft] = useState(dynamicTimeLimit * 60);
   const [showResult, setShowResult] = useState(false);
   const [quizStarted, setQuizStarted] = useState(false);
   const [showDetailedReview, setShowDetailedReview] = useState(false);
@@ -133,7 +132,16 @@ export function Quiz({
   const [selectedQuestionCount, setSelectedQuestionCount] = useState(25);
 
   // Calculate dynamic time limit based on question count (2 minutes per question, minimum 20 minutes)
-  const dynamicTimeLimit = Math.max(20, selectedQuestionCount * 2);
+  const dynamicTimeLimit = useMemo(() => Math.max(20, selectedQuestionCount * 2), [selectedQuestionCount]);
+
+  const [timeLeft, setTimeLeft] = useState(quiz.totalTime * 60);
+
+  // Update time limit when question count changes (before quiz starts)
+  useEffect(() => {
+    if (!quizStarted && questionPool && questionPool.length > 0) {
+      setTimeLeft(dynamicTimeLimit * 60);
+    }
+  }, [dynamicTimeLimit, quizStarted, questionPool]);
 
   // Initialize quiz questions (randomized if question pool provided)
   useEffect(() => {
