@@ -1079,8 +1079,11 @@ export default function SubjectQuizzes() {
             previousAttempts={quizProgress[selectedQuiz.id]?.attempts || []}
             allowRetakes={true}
             requirePassingGrade={false}
-            questionPool={subtopicId ? questionPools[subtopicId] : undefined}
-            questionsPerAttempt={5}
+            questionPool={isFullTest ?
+              Object.values(questionPools).flat() :
+              (subtopicId ? questionPools[subtopicId] : undefined)
+            }
+            questionsPerAttempt={isFullTest ? 25 : 5}
             curriculumInfo={subtopicId ? decodeCurriculumInfo(subtopicId) || undefined : undefined}
           />
         </div>
