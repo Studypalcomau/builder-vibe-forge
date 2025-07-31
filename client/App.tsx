@@ -70,12 +70,7 @@ const App = () => (
                 description="Comprehensive analytics dashboard showing learning trends and performance insights."
               />
             } />
-            <Route path="/subjects/:slug/recommendations" element={
-              <PlaceholderPage
-                title="Study Recommendations"
-                description="Personalized study recommendations based on your performance data and learning patterns."
-              />
-            } />
+            <Route path="/subjects/:slug/recommendations" element={<StudyRecommendations />} />
             <Route path="/subjects/:slug/notes" element={<SubjectNotes />} />
             <Route path="/subjects/:slug/notes/:subtopicId" element={<SubjectNotes />} />
             <Route path="/subjects/:slug/topics/:topicId" element={<TopicContent />} />
