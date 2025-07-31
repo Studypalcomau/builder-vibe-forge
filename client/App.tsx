@@ -34,6 +34,7 @@ import CurriculumManager from "./pages/admin/CurriculumManager";
 import ContentGeneration from "./pages/admin/ContentGeneration";
 import QuestionsManagement from "./pages/admin/QuestionsManagement";
 import QuestionBank from "./pages/admin/QuestionBank";
+import StudyNotesManagement from "./pages/admin/StudyNotesManagement";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import StudyRecommendations from "./pages/StudyRecommendations";
 import TopicResults from "./pages/TopicResults";
@@ -93,6 +94,7 @@ const App = () => (
             <Route path="/admin/generate" element={<ContentGeneration />} />
             <Route path="/admin/questions" element={<QuestionsManagement />} />
             <Route path="/admin/subjects/:subjectId/questions" element={<QuestionBank />} />
+            <Route path="/admin/subjects/:subjectId/notes" element={<StudyNotesManagement />} />
             <Route path="/admin/curriculum" element={
               <PlaceholderPage
                 title="Curriculum Management"
