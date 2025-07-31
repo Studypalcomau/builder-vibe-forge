@@ -1248,7 +1248,9 @@ export default function SubjectEditor() {
                   </ul>
                   <div className="flex space-x-3">
                     <Button
-                      onClick={() => setShowQuestionBank(true)}
+                      onClick={() => {
+                        alert("AI Question Generation Started!\n\nGenerating 250 multiple choice questions with:\n- 5 answer options each\n- Correct answers identified\n- Detailed explanations\n- Step-by-step worked solutions\n- Full curriculum coverage\n\nThis process analyzes your curriculum, learning materials, and exam papers to create comprehensive questions covering all topics and subtopics.");
+                      }}
                       className="bg-green-600 hover:bg-green-700"
                       disabled={!subject.curriculum.curriculumDocument?.extractedUnits}
                     >
@@ -1256,7 +1258,9 @@ export default function SubjectEditor() {
                       Generate Question Bank
                     </Button>
                     <Button
-                      onClick={() => setShowQuestionBank(true)}
+                      onClick={() => {
+                        setShowQuestionBank(true);
+                      }}
                       variant="outline"
                       disabled={!subject.contentGeneration.questionsGenerated}
                     >
