@@ -1186,12 +1186,6 @@ export default function SubjectQuizzes() {
                         <Eye className="w-4 h-4 mr-2" />
                         Review Answers
                       </Button>
-                      {isTestHistory && (
-                        <Button variant="outline" size="sm">
-                          <FileText className="w-4 h-4 mr-2" />
-                          Performance Report
-                        </Button>
-                      )}
                     </div>
                   </div>
                 </CardContent>
