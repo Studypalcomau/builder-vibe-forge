@@ -859,26 +859,14 @@ export default function SubjectQuizzes() {
 
   // Create comprehensive test that includes questions from all subtopics
   const createFullTest = (): QuizData => {
-    const allQuestions: QuizQuestion[] = [];
-
-    // Collect questions from all subtopic question pools
-    Object.values(questionPools).forEach(pool => {
-      // Take 2-3 questions from each subtopic pool
-      const selectedQuestions = pool.slice(0, 3);
-      allQuestions.push(...selectedQuestions);
-    });
-
-    // Shuffle questions for randomization
-    const shuffledQuestions = allQuestions.sort(() => Math.random() - 0.5);
-
     return {
       id: `${slug}-full-test`,
       title: `${subjectNames[slug as string]} Comprehensive Test`,
       description: `Complete assessment covering all topics in ${subjectNames[slug as string]}`,
       subject: subjectNames[slug as string] || "Subject",
-      totalTime: Math.max(45, shuffledQuestions.length * 2), // Minimum 45 minutes or 2 minutes per question
+      totalTime: 50, // Default time, will be overridden by dynamic calculation
       passingScore: 70,
-      questions: shuffledQuestions
+      questions: [] // Empty array, questions will be selected dynamically from questionPool
     };
   };
 
