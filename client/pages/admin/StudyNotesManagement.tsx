@@ -499,6 +499,21 @@ export default function StudyNotesManagement() {
                 )}
               </div>
             )}
+
+            {/* Table Footer with Pagination Info */}
+            {filteredNotes.length > 0 && (
+              <div className="bg-gray-50 px-6 py-3 border-t border-gray-200">
+                <div className="flex items-center justify-between">
+                  <div className="text-sm text-gray-700">
+                    Showing <span className="font-medium">1</span> to <span className="font-medium">{filteredNotes.length}</span> of{' '}
+                    <span className="font-medium">{filteredNotes.length}</span> results
+                  </div>
+                  <div className="text-sm text-gray-500">
+                    Total: {notes.length} study notes
+                  </div>
+                </div>
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>
