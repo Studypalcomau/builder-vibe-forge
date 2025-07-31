@@ -7,7 +7,7 @@ import { Input } from "../../components/ui/input";
 import { Textarea } from "../../components/ui/textarea";
 import { Label } from "../../components/ui/label";
 import { Progress } from "../../components/ui/progress";
-import { 
+import {
   ArrowLeft,
   Save,
   Upload,
@@ -26,7 +26,8 @@ import {
   Paperclip,
   X,
   Edit,
-
+  Search,
+  Filter
 } from "lucide-react";
 
 interface Topic {
@@ -95,9 +96,12 @@ interface GeneratedQuestion {
   workingSteps: string[];
   unit: string;
   topic: string;
-  subtopic?: string;
+  subtopic: string;
   difficulty: "Easy" | "Medium" | "Hard";
   category: string;
+  unitIndex: number;
+  topicIndex: number;
+  subtopicIndex: number;
   dateGenerated: string;
 }
 
@@ -252,6 +256,10 @@ export default function SubjectEditor() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [showQuestionBank, setShowQuestionBank] = useState(false);
   const [generatedQuestions, setGeneratedQuestions] = useState<GeneratedQuestion[]>([]);
+  const [questionSearchTerm, setQuestionSearchTerm] = useState("");
+  const [selectedQuestionUnit, setSelectedQuestionUnit] = useState<string>("all");
+  const [selectedQuestionTopic, setSelectedQuestionTopic] = useState<string>("all");
+  const [selectedQuestionSubtopic, setSelectedQuestionSubtopic] = useState<string>("all");
   const [generationProgress, setGenerationProgress] = useState<{
     currentUnit: string;
     currentTopic: string;
@@ -1237,19 +1245,20 @@ export default function SubjectEditor() {
                 <div className="mt-6 bg-green-50 border border-green-200 rounded-lg p-6">
                   <h4 className="font-medium text-green-900 mb-3">AI Question Generation</h4>
                   <p className="text-green-700 mb-4">
-                    AI will analyze your curriculum, learning materials, and exam papers to generate 250 comprehensive multiple choice questions with:
+                    AI will analyze your curriculum, learning materials, and exam papers to generate 250 comprehensive multiple choice questions per subtopic with:
                   </p>
                   <ul className="text-green-700 mb-4 space-y-1 list-disc list-inside">
+                    <li>250 questions per subtopic</li>
                     <li>5 multiple choice options per question</li>
                     <li>Correct answer identification</li>
                     <li>Detailed answer explanations</li>
                     <li>Step-by-step worked solutions</li>
-                    <li>Coverage across all curriculum topics</li>
+                    <li>Coverage across all curriculum subtopics</li>
                   </ul>
                   <div className="flex space-x-3">
                     <Button
                       onClick={() => {
-                        alert("AI Question Generation Started!\n\nGenerating 250 multiple choice questions with:\n- 5 answer options each\n- Correct answers identified\n- Detailed explanations\n- Step-by-step worked solutions\n- Full curriculum coverage\n\nThis process analyzes your curriculum, learning materials, and exam papers to create comprehensive questions covering all topics and subtopics.");
+                        handleGenerateQuestionBank();
                       }}
                       className="bg-green-600 hover:bg-green-700"
                       disabled={!subject.curriculum.curriculumDocument?.extractedUnits}
@@ -1262,10 +1271,10 @@ export default function SubjectEditor() {
                         setShowQuestionBank(true);
                       }}
                       variant="outline"
-                      disabled={!subject.contentGeneration.questionsGenerated}
+                      disabled={generatedQuestions.length === 0}
                     >
                       <Eye className="w-4 h-4 mr-2" />
-                      View Generated Questions
+                      View Generated Questions ({generatedQuestions.length})
                     </Button>
                   </div>
                 </div>
