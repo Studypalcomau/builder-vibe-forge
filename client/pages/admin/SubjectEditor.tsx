@@ -703,19 +703,7 @@ export default function SubjectEditor() {
                       className="mt-1"
                     />
                   </div>
-                  <div>
-                    <Label htmlFor="difficulty">Difficulty Level</Label>
-                    <select
-                      id="difficulty"
-                      value={subject.difficulty}
-                      onChange={(e) => setSubject(prev => ({ ...prev, difficulty: e.target.value as any }))}
-                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-sky-blue-500 focus:border-sky-blue-500"
-                    >
-                      <option value="Beginner">Beginner</option>
-                      <option value="Intermediate">Intermediate</option>
-                      <option value="Advanced">Advanced</option>
-                    </select>
-                  </div>
+
                   <div>
                     <Label htmlFor="hours">Estimated Hours</Label>
                     <Input
