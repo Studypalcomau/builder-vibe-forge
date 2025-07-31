@@ -449,44 +449,7 @@ export default function TopicResults() {
                                     {subtopic.timeSpent > 0 ? `${subtopic.timeSpent}m` : '-'}
                                   </div>
                                 </TableCell>
-                                <TableCell>
-                                  <div className="space-y-2">
-                                    {subtopic.strengths.length > 0 && (
-                                      <div>
-                                        <div className="text-xs font-medium text-green-700 mb-1">Strengths:</div>
-                                        <div className="flex flex-wrap gap-1">
-                                          {subtopic.strengths.slice(0, 2).map((strength, i) => (
-                                            <Badge key={i} variant="outline" className="text-xs bg-green-50 text-green-700 border-green-200">
-                                              {strength}
-                                            </Badge>
-                                          ))}
-                                          {subtopic.strengths.length > 2 && (
-                                            <Badge variant="outline" className="text-xs">
-                                              +{subtopic.strengths.length - 2}
-                                            </Badge>
-                                          )}
-                                        </div>
-                                      </div>
-                                    )}
-                                    {subtopic.weaknesses.length > 0 && subtopic.weaknesses[0] !== "Not attempted" && (
-                                      <div>
-                                        <div className="text-xs font-medium text-red-700 mb-1">Needs Work:</div>
-                                        <div className="flex flex-wrap gap-1">
-                                          {subtopic.weaknesses.slice(0, 2).map((weakness, i) => (
-                                            <Badge key={i} variant="outline" className="text-xs bg-red-50 text-red-700 border-red-200">
-                                              {weakness}
-                                            </Badge>
-                                          ))}
-                                          {subtopic.weaknesses.length > 2 && (
-                                            <Badge variant="outline" className="text-xs">
-                                              +{subtopic.weaknesses.length - 2}
-                                            </Badge>
-                                          )}
-                                        </div>
-                                      </div>
-                                    )}
-                                  </div>
-                                </TableCell>
+
                                 <TableCell>
                                   <div className="flex flex-wrap gap-1">
                                     <Link to={`/subjects/${slug}/quiz/${subtopic.unitIndex}-${subtopic.topicIndex}-${subtopic.subtopicIndex}`}>
