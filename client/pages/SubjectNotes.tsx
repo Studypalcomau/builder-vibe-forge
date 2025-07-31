@@ -351,7 +351,7 @@ $$6CO_2 + 6H_2O + \\text{light energy} → C_6H_{12}O_6 + 6O_2$$
 
 ### Photosystem II (PSII)
 1. **Light absorption** by chlorophyll excites electrons
-2. **Water splitting**: 2H₂O → 4H⁺ + 4e⁻ + O��
+2. **Water splitting**: 2H₂O → 4H⁺ + 4e⁻ + O₂
 3. **Electron transport** through cytochrome complex
 4. **ATP synthesis** via chemiosmosis
 
@@ -1089,7 +1089,10 @@ export default function SubjectNotes() {
   const subtopicNames: Record<string, string> = {
     "0-0-0": "Domain and Range",
     "0-0-1": "Function Types",
-    "0-0-2": "Transformations"
+    "0-0-2": "Transformations",
+    "1-0-0": "Limits",
+    "1-0-1": "Derivatives",
+    "1-1-0": "Antiderivatives"
   };
 
   const subtopicName = subtopicId ? subtopicNames[subtopicId] : null;
