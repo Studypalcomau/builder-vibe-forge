@@ -120,7 +120,7 @@ export function Quiz({
 }: QuizComponentProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, any>>({});
-  const [timeLeft, setTimeLeft] = useState(quiz.totalTime * 60);
+  const [timeLeft, setTimeLeft] = useState(dynamicTimeLimit * 60);
   const [showResult, setShowResult] = useState(false);
   const [quizStarted, setQuizStarted] = useState(false);
   const [showDetailedReview, setShowDetailedReview] = useState(false);
