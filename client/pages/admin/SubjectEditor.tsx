@@ -1611,13 +1611,15 @@ export default function SubjectEditor() {
                       <GraduationCap className="w-4 h-4 mr-2" />
                       Generate Complete Guide
                     </Button>
-                    <Button
-                      variant="outline"
-                      className="border-indigo-300 text-indigo-700 hover:bg-indigo-50"
-                    >
-                      <Download className="w-4 h-4 mr-2" />
-                      Export Guide Template
-                    </Button>
+                    <Link to={`/admin/subjects/${subject.slug}/complete-guide`}>
+                      <Button
+                        variant="outline"
+                        className="border-indigo-300 text-indigo-700 hover:bg-indigo-50"
+                      >
+                        <Eye className="w-4 h-4 mr-2" />
+                        View Complete Guide
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </CardContent>
