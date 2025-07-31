@@ -236,37 +236,6 @@ export default function ComprehensiveStudyGuide() {
           }
         ]
       }
-    ],
-    examTechniques: [
-      {
-        id: "time-management",
-        title: "Time Management Strategies",
-        content: "Allocate 1.8 minutes per mark. Read all questions first, attempt easier questions to build confidence, leave difficult questions for last review."
-      },
-      {
-        id: "working-out",
-        title: "Showing Working",
-        content: "Always show clear working steps. Even if final answer is wrong, partial marks awarded for correct method. Use proper mathematical notation."
-      },
-      {
-        id: "checking",
-        title: "Answer Checking",
-        content: "Substitute answers back into original equations where possible. Check units and reasonableness of answers. Use estimation to verify calculations."
-      }
-    ],
-    pastExamQuestions: [
-      {
-        year: "2023",
-        question: "A ball is thrown vertically upward from ground level with initial velocity 20 m/s. Its height h(t) = -5t² + 20t. When does it return to ground level?",
-        solution: "Set h(t) = 0: -5t² + 20t = 0, t(-5t + 20) = 0, so t = 0 or t = 4. Returns to ground at t = 4 seconds.",
-        marks: 3
-      },
-      {
-        year: "2022",
-        question: "Find the equation of the tangent to y = x³ - 3x² + 2x at the point where x = 1.",
-        solution: "y'(x) = 3x² - 6x + 2. At x = 1: y'(1) = 3 - 6 + 2 = -1. Point: (1, 1 - 3 + 2) = (1, 0). Tangent: y - 0 = -1(x - 1), so y = -x + 1.",
-        marks: 4
-      }
     ]
   });
 
