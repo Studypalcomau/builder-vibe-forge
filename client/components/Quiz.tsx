@@ -254,7 +254,7 @@ export function Quiz({
   const resetQuiz = () => {
     setCurrentQuestionIndex(0);
     setAnswers({});
-    setTimeLeft(quiz.totalTime * 60);
+    setTimeLeft(dynamicTimeLimit * 60);
     setShowResult(false);
     setQuizStarted(false);
     setShowDetailedReview(false);
@@ -266,7 +266,8 @@ export function Quiz({
 
     // Generate new randomized questions for the next attempt
     if (questionPool && questionPool.length > 0) {
-      const newQuestions = selectRandomQuestions(questionPool, questionsPerAttempt);
+      const questionCount = questionPool.length >= selectedQuestionCount ? selectedQuestionCount : questionsPerAttempt;
+      const newQuestions = selectRandomQuestions(questionPool, questionCount);
       setCurrentQuizQuestions(newQuestions);
     }
   };
