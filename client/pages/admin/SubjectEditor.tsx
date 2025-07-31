@@ -246,6 +246,7 @@ export default function SubjectEditor() {
       flashcardsGenerated: 0,
       quizzesGenerated: 0,
       notesGenerated: 0,
+      questionsGenerated: 0,
       lastGenerated: ""
     }
   });
