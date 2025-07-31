@@ -1546,14 +1546,12 @@ export default function SubjectEditor() {
                   </ul>
                   <div className="flex space-x-3">
                     <Button
-                      onClick={() => {
-                        alert("Subtopic Study Notes Generation Started!\n\nGenerating detailed study notes for each subtopic including:\n- Comprehensive concept explanations\n- Key formulas and definitions\n- Worked examples with solutions\n- Practice exercises\n- Visual aids and diagrams\n\nEach subtopic will have its own dedicated study guide.");
-                      }}
+                      onClick={handleGenerateSubtopicNotes}
                       className="bg-purple-600 hover:bg-purple-700"
-                      disabled={!subject.curriculum.curriculumDocument?.extractedUnits}
+                      disabled={!subject.curriculum.curriculumDocument?.extractedUnits || isGenerating}
                     >
                       <BookOpen className="w-4 h-4 mr-2" />
-                      Generate Subtopic Notes
+                      {isGenerating ? "Generating..." : "Generate Subtopic Notes"}
                     </Button>
                     <Button
                       variant="outline"
