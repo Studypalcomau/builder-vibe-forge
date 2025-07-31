@@ -13,7 +13,9 @@ import {
   Play,
   CheckCircle,
   Star,
-  ChevronRight
+  ChevronRight,
+  Eye,
+  FileText
 } from "lucide-react";
 
 // Quiz curriculum mapping
