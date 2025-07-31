@@ -478,9 +478,6 @@ export default function StudyNotesManagement() {
                               {note.content.practiceExercises.length}P
                             </span>
                           </div>
-                          <div className="text-xs text-gray-500 mt-1">
-                            D=Definitions, F=Formulas, E=Examples, P=Practice
-                          </div>
                         </td>
                         <td className="py-4 px-6 text-sm text-gray-500">
                           {note.dateGenerated}
