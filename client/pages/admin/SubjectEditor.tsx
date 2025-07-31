@@ -25,9 +25,7 @@ import {
   Bot,
   Paperclip,
   X,
-  Edit,
-  Search,
-  Filter
+  Edit
 } from "lucide-react";
 
 interface Topic {
