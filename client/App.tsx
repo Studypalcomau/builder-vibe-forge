@@ -58,6 +58,8 @@ const App = () => (
             <Route path="/subjects/:slug/test" element={<SubjectQuizzes />} />
             <Route path="/subjects/:slug/test/history" element={<SubjectQuizzes />} />
             <Route path="/subjects/:slug/test/history/:attemptId" element={<SubjectQuizzes />} />
+            <Route path="/subjects/:slug/test/:testType/results/:attemptId" element={<SubjectQuizzes />} />
+            <Route path="/subjects/:slug/quiz/:subtopicId/results/:attemptId" element={<SubjectQuizzes />} />
             <Route path="/subjects/:slug/progress" element={
               <PlaceholderPage
                 title="Topic Progress Analytics"
