@@ -128,6 +128,7 @@ interface Subject {
     flashcardsGenerated: number;
     quizzesGenerated: number;
     notesGenerated: number;
+    questionsGenerated: number;
     lastGenerated: string;
   };
 }
