@@ -61,12 +61,7 @@ const App = () => (
             <Route path="/subjects/:slug/test/history/:attemptId" element={<SubjectQuizzes />} />
             <Route path="/subjects/:slug/test/:testType/results/:attemptId" element={<SubjectQuizzes />} />
             <Route path="/subjects/:slug/quiz/:subtopicId/results/:attemptId" element={<SubjectQuizzes />} />
-            <Route path="/subjects/:slug/progress" element={
-              <PlaceholderPage
-                title="Topic Progress Analytics"
-                description="Detailed analytics for individual topic and subtopic performance over time."
-              />
-            } />
+            <Route path="/subjects/:slug/progress" element={<TopicResults />} />
             <Route path="/subjects/:slug/analytics" element={
               <PlaceholderPage
                 title="Performance Analytics"
