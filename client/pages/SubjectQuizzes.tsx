@@ -695,7 +695,7 @@ export default function SubjectQuizzes() {
             id: "q2",
             question: "What is the range of f(x) = -2x² + 8?",
             type: "multiple-choice",
-            options: ["All real numbers", "y ≤ 8", "y ≥ 8", "y > 0"],
+            options: ["All real numbers", "y ≤ 8", "y ��� 8", "y > 0"],
             correctAnswer: "y ≤ 8",
             explanation: "This is a downward parabola with vertex at (0,8), so y ≤ 8.",
             difficulty: "Medium",
@@ -1158,7 +1158,40 @@ export default function SubjectQuizzes() {
             </div>
           </div>
 
-          {/* History List */}
+          {/* Performance Summary */}
+          <Card className="border-sky-blue-200 mb-8">
+            <CardHeader>
+              <CardTitle>Performance Summary</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="text-center p-3 bg-blue-50 rounded-lg">
+                  <div className="text-2xl font-bold text-blue-600">{historyData.length}</div>
+                  <div className="text-sm text-gray-600">Total Attempts</div>
+                </div>
+                <div className="text-center p-3 bg-green-50 rounded-lg">
+                  <div className="text-2xl font-bold text-green-600">
+                    {Math.round(historyData.reduce((acc, attempt) => acc + attempt.score, 0) / historyData.length)}%
+                  </div>
+                  <div className="text-sm text-gray-600">Average Score</div>
+                </div>
+                <div className="text-center p-3 bg-orange-50 rounded-lg">
+                  <div className="text-2xl font-bold text-orange-600">
+                    {Math.max(...historyData.map(attempt => attempt.score))}%
+                  </div>
+                  <div className="text-sm text-gray-600">Best Score</div>
+                </div>
+                <div className="text-center p-3 bg-purple-50 rounded-lg">
+                  <div className="text-2xl font-bold text-purple-600">
+                    {historyData.filter(attempt => attempt.passed).length}
+                  </div>
+                  <div className="text-sm text-gray-600">Tests Passed</div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Test History List */}
           <div className="space-y-4">
             {historyData.map((attempt, index) => (
               <Card key={attempt.id} className="border-sky-blue-200">
@@ -1192,39 +1225,6 @@ export default function SubjectQuizzes() {
               </Card>
             ))}
           </div>
-
-          {/* Summary Stats */}
-          <Card className="border-sky-blue-200 mt-8">
-            <CardHeader>
-              <CardTitle>Performance Summary</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="text-center p-3 bg-blue-50 rounded-lg">
-                  <div className="text-2xl font-bold text-blue-600">{historyData.length}</div>
-                  <div className="text-sm text-gray-600">Total Attempts</div>
-                </div>
-                <div className="text-center p-3 bg-green-50 rounded-lg">
-                  <div className="text-2xl font-bold text-green-600">
-                    {Math.round(historyData.reduce((acc, attempt) => acc + attempt.score, 0) / historyData.length)}%
-                  </div>
-                  <div className="text-sm text-gray-600">Average Score</div>
-                </div>
-                <div className="text-center p-3 bg-orange-50 rounded-lg">
-                  <div className="text-2xl font-bold text-orange-600">
-                    {Math.max(...historyData.map(attempt => attempt.score))}%
-                  </div>
-                  <div className="text-sm text-gray-600">Best Score</div>
-                </div>
-                <div className="text-center p-3 bg-purple-50 rounded-lg">
-                  <div className="text-2xl font-bold text-purple-600">
-                    {historyData.filter(attempt => attempt.passed).length}
-                  </div>
-                  <div className="text-sm text-gray-600">Tests Passed</div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </div>
     );
