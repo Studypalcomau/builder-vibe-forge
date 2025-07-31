@@ -86,6 +86,21 @@ interface SubjectMaterial {
   relevantTopics?: string[];
 }
 
+interface GeneratedQuestion {
+  id: string;
+  question: string;
+  options: string[];
+  correctAnswer: string;
+  explanation: string;
+  workingSteps: string[];
+  unit: string;
+  topic: string;
+  subtopic?: string;
+  difficulty: "Easy" | "Medium" | "Hard";
+  category: string;
+  dateGenerated: string;
+}
+
 interface Subject {
   id: string;
   name: string;
