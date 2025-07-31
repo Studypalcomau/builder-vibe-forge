@@ -511,68 +511,7 @@ export default function ComprehensiveStudyGuide() {
           </Card>
         ))}
 
-        {/* Exam Techniques */}
-        <Card className="mb-8 border-orange-200">
-          <CardHeader>
-            <CardTitle className="flex items-center">
-              <Target className="w-5 h-5 mr-2 text-orange-600" />
-              Essential Exam Techniques
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {studyGuide.examTechniques.map((technique) => (
-                <div key={technique.id} className="bg-orange-50 p-4 rounded border border-orange-200">
-                  <h4 className="font-medium text-orange-900 mb-2">{technique.title}</h4>
-                  {isEditing ? (
-                    <Textarea
-                      value={technique.content}
-                      onChange={(e) => {
-                        setStudyGuide(prev => ({
-                          ...prev,
-                          examTechniques: prev.examTechniques.map(t =>
-                            t.id === technique.id ? { ...t, content: e.target.value } : t
-                          )
-                        }));
-                      }}
-                      className="text-orange-800"
-                    />
-                  ) : (
-                    <p className="text-orange-800">{technique.content}</p>
-                  )}
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
 
-        {/* Past Exam Questions */}
-        <Card className="mb-8 border-purple-200">
-          <CardHeader>
-            <CardTitle className="flex items-center">
-              <Award className="w-5 h-5 mr-2 text-purple-600" />
-              Past Exam Questions
-            </CardTitle>
-            <CardDescription>Recent exam questions with worked solutions</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {studyGuide.pastExamQuestions.map((pastQ, index) => (
-                <div key={index} className="bg-purple-50 p-4 rounded border border-purple-200">
-                  <div className="flex items-center justify-between mb-3">
-                    <Badge className="bg-purple-100 text-purple-800">{pastQ.year} Exam</Badge>
-                    <Badge variant="outline">{pastQ.marks} marks</Badge>
-                  </div>
-                  <div className="text-purple-900 font-medium mb-3">{pastQ.question}</div>
-                  <div className="bg-purple-100 p-3 rounded">
-                    <div className="font-medium text-purple-900 mb-1">Solution:</div>
-                    <div className="text-purple-800 text-sm">{pastQ.solution}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </div>
   );
