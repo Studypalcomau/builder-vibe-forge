@@ -351,7 +351,7 @@ $$6CO_2 + 6H_2O + \\text{light energy} → C_6H_{12}O_6 + 6O_2$$
 
 ### Photosystem II (PSII)
 1. **Light absorption** by chlorophyll excites electrons
-2. **Water splitting**: 2H₂O → 4H⁺ + 4e⁻ + O₂
+2. **Water splitting**: 2H₂O → 4H⁺ + 4e⁻ + O��
 3. **Electron transport** through cytochrome complex
 4. **ATP synthesis** via chemiosmosis
 
@@ -1000,6 +1000,62 @@ export default function SubjectNotes() {
         readTime: 7,
         lastUpdated: "2024-01-15",
         tags: ["linear", "quadratic", "functions"],
+        type: "concept"
+      }
+    ],
+    "0-0-2": [ // Transformations
+      {
+        id: "trans-note-1",
+        title: "Function Transformations",
+        description: "Understanding horizontal and vertical shifts, reflections, and scaling",
+        content: "## Function Transformations\n\n### Vertical Transformations\n- **f(x) + k**: Shifts graph up k units\n- **f(x) - k**: Shifts graph down k units\n\n### Horizontal Transformations\n- **f(x - h)**: Shifts graph right h units\n- **f(x + h)**: Shifts graph left h units\n\n### Reflections\n- **-f(x)**: Reflects across x-axis\n- **f(-x)**: Reflects across y-axis\n\n### Scaling\n- **a·f(x)**: Vertical stretch/compression by factor a\n- **f(b·x)**: Horizontal compression/stretch by factor 1/b",
+        category: "Functions",
+        difficulty: "Medium",
+        readTime: 8,
+        lastUpdated: "2024-01-15",
+        tags: ["transformations", "shifts", "reflections", "scaling"],
+        type: "concept"
+      }
+    ],
+    "1-0-0": [ // Limits
+      {
+        id: "limits-note-1",
+        title: "Introduction to Limits",
+        description: "Understanding limits, one-sided limits, and continuity",
+        content: "## Introduction to Limits\n\n### What is a Limit?\nA limit describes the behavior of a function as the input approaches a particular value.\n\n### Notation\n$$\\lim_{x \\to a} f(x) = L$$\n\n### One-Sided Limits\n- **Left-hand limit**: $\\lim_{x \\to a^-} f(x)$\n- **Right-hand limit**: $\\lim_{x \\to a^+} f(x)$\n\n### Continuity\nA function is continuous at x = a if:\n1. f(a) exists\n2. $\\lim_{x \\to a} f(x)$ exists\n3. $\\lim_{x \\to a} f(x) = f(a)$\n\n### Common Limit Rules\n- $\\lim_{x \\to a} c = c$ (constant)\n- $\\lim_{x \\to a} x = a$\n- $\\lim_{x \\to a} [f(x) ± g(x)] = \\lim_{x \\to a} f(x) ± \\lim_{x \\to a} g(x)$",
+        category: "Calculus",
+        difficulty: "Hard",
+        readTime: 12,
+        lastUpdated: "2024-01-15",
+        tags: ["limits", "continuity", "one-sided limits", "calculus"],
+        type: "concept"
+      }
+    ],
+    "1-0-1": [ // Derivatives
+      {
+        id: "deriv-note-1",
+        title: "Derivatives and the Chain Rule",
+        description: "Understanding derivatives and mastering chain rule applications",
+        content: "## Derivatives and the Chain Rule\n\n### Definition of a Derivative\n$$f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}$$\n\n### Basic Derivative Rules\n- **Power Rule**: $\\frac{d}{dx}(x^n) = nx^{n-1}$\n- **Product Rule**: $\\frac{d}{dx}[f(x)g(x)] = f'(x)g(x) + f(x)g'(x)$\n- **Quotient Rule**: $\\frac{d}{dx}[\\frac{f(x)}{g(x)}] = \\frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2}$\n\n### Chain Rule\nFor composite functions: $\\frac{d}{dx}[f(g(x))] = f'(g(x)) \\cdot g'(x)$\n\n### Chain Rule Examples\n1. $\\frac{d}{dx}[(2x+1)^3] = 3(2x+1)^2 \\cdot 2 = 6(2x+1)^2$\n2. $\\frac{d}{dx}[\\sin(x^2)] = \\cos(x^2) \\cdot 2x$\n3. $\\frac{d}{dx}[e^{3x}] = e^{3x} \\cdot 3$",
+        category: "Calculus",
+        difficulty: "Medium",
+        readTime: 10,
+        lastUpdated: "2024-01-15",
+        tags: ["derivatives", "chain rule", "calculus", "differentiation"],
+        type: "concept"
+      }
+    ],
+    "1-1-0": [ // Antiderivatives
+      {
+        id: "antider-note-1",
+        title: "Antiderivatives and Integration",
+        description: "Understanding antiderivatives and basic integration techniques",
+        content: "## Antiderivatives and Integration\n\n### What is an Antiderivative?\nAn antiderivative of f(x) is a function F(x) such that F'(x) = f(x).\n\n### Indefinite Integral Notation\n$$\\int f(x) \\, dx = F(x) + C$$\n\nWhere C is the constant of integration.\n\n### Basic Integration Rules\n- **Power Rule**: $\\int x^n \\, dx = \\frac{x^{n+1}}{n+1} + C$ (n ≠ -1)\n- **Constant Rule**: $\\int k \\, dx = kx + C$\n- **Sum Rule**: $\\int [f(x) + g(x)] \\, dx = \\int f(x) \\, dx + \\int g(x) \\, dx$\n\n### Common Antiderivatives\n- $\\int \\frac{1}{x} \\, dx = \\ln|x| + C$\n- $\\int e^x \\, dx = e^x + C$\n- $\\int \\sin x \\, dx = -\\cos x + C$\n- $\\int \\cos x \\, dx = \\sin x + C$\n\n### Integration by Substitution\nWhen integrand contains a function and its derivative:\n1. Let u = g(x)\n2. Find du = g'(x)dx\n3. Substitute and integrate\n4. Replace u with original expression",
+        category: "Calculus",
+        difficulty: "Medium",
+        readTime: 10,
+        lastUpdated: "2024-01-15",
+        tags: ["antiderivatives", "integration", "calculus", "indefinite integrals"],
         type: "concept"
       }
     ]
