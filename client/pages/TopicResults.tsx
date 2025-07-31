@@ -400,7 +400,6 @@ export default function TopicResults() {
                               <TableHead className="w-[100px] text-center">Latest Score</TableHead>
                               <TableHead className="w-[120px] text-center">Last Attempt</TableHead>
                               <TableHead className="w-[100px] text-center">Time Spent</TableHead>
-                              <TableHead className="w-[300px]">Key Areas</TableHead>
                               <TableHead className="w-[200px] text-center">Actions</TableHead>
                             </TableRow>
                           </TableHeader>
