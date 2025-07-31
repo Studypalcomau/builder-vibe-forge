@@ -1553,13 +1553,16 @@ export default function SubjectEditor() {
                       <BookOpen className="w-4 h-4 mr-2" />
                       {isGenerating ? "Generating..." : "Generate Subtopic Notes"}
                     </Button>
-                    <Button
-                      variant="outline"
-                      className="border-purple-300 text-purple-700 hover:bg-purple-50"
-                    >
-                      <Eye className="w-4 h-4 mr-2" />
-                      View Existing Notes
-                    </Button>
+                    <Link to={`/admin/subjects/${subject.slug}/notes`}>
+                      <Button
+                        variant="outline"
+                        className="border-purple-300 text-purple-700 hover:bg-purple-50"
+                        disabled={generatedNotes.length === 0}
+                      >
+                        <Eye className="w-4 h-4 mr-2" />
+                        View Existing Notes ({generatedNotes.length})
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </CardContent>
