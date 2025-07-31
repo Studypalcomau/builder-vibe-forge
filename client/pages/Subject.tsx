@@ -676,17 +676,11 @@ export default function Subject() {
                 <div className="text-xs text-gray-500">Score &lt; 70%</div>
               </div>
             </div>
-            <div className="mt-4 flex gap-3">
-              <Link to={`/subjects/${slug}/analytics`}>
-                <Button variant="outline" className="flex-1">
-                  <TrendingUp className="w-4 h-4 mr-2" />
-                  Detailed Analytics
-                </Button>
-              </Link>
+            <div className="mt-4">
               <Link to={`/subjects/${slug}/recommendations`}>
-                <Button variant="outline" className="flex-1">
+                <Button variant="outline" className="w-full">
                   <Brain className="w-4 h-4 mr-2" />
-                  Study Recommendations
+                  Get Personalized Study Recommendations
                 </Button>
               </Link>
             </div>
