@@ -388,86 +388,106 @@ export default function StudyNotesManagement() {
         </Card>
 
         {/* Notes Table */}
-        <div className="space-y-4">
-          {filteredNotes.map((note, index) => (
-            <Card key={note.id} className="border border-gray-200 hover:shadow-lg transition-shadow duration-200">
-              <CardContent className="p-6">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex-1">
-                    <div className="flex items-center space-x-2 mb-3">
-                      <Badge variant="outline" className="text-xs bg-purple-50 text-purple-700 border-purple-200">
-                        {note.unit}
-                      </Badge>
-                      <Badge variant="outline" className="text-xs bg-blue-50 text-blue-700 border-blue-200">
-                        {note.topic}
-                      </Badge>
-                      <Badge variant="outline" className="text-xs bg-green-50 text-green-700 border-green-200">
-                        {note.subtopic}
-                      </Badge>
-                      <span className="text-xs text-gray-500">#{index + 1}</span>
-                    </div>
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">
-                      {note.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 mb-3 line-clamp-2">
-                      {note.content.overview}
-                    </p>
-                  </div>
-                  <div className="flex space-x-2 ml-4">
-                    <Button
-                      onClick={() => setSelectedNote(note)}
-                      variant="outline"
-                      size="sm"
-                      className="text-purple-600 hover:text-purple-800 hover:bg-purple-50"
-                    >
-                      <Eye className="w-4 h-4 mr-1" />
-                      View Details
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="text-red-600 hover:text-red-800 hover:bg-red-50"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </div>
-                
-                {/* Content Preview */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4 text-xs">
-                  <div className="bg-blue-50 p-3 rounded border">
-                    <div className="font-medium text-blue-800 mb-1">Definitions</div>
-                    <div className="text-blue-600">{note.content.keyDefinitions.length} items</div>
-                  </div>
-                  <div className="bg-green-50 p-3 rounded border">
-                    <div className="font-medium text-green-800 mb-1">Formulas</div>
-                    <div className="text-green-600">{note.content.formulas.length} items</div>
-                  </div>
-                  <div className="bg-yellow-50 p-3 rounded border">
-                    <div className="font-medium text-yellow-800 mb-1">Examples</div>
-                    <div className="text-yellow-600">{note.content.workedExamples.length} items</div>
-                  </div>
-                  <div className="bg-purple-50 p-3 rounded border">
-                    <div className="font-medium text-purple-800 mb-1">Exercises</div>
-                    <div className="text-purple-600">{note.content.practiceExercises.length} items</div>
-                  </div>
-                </div>
-                
-                <div className="pt-3 border-t border-gray-200 flex items-center justify-between text-sm text-gray-500">
-                  <span>ID: {note.id}</span>
-                  <span>Generated: {note.dateGenerated}</span>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-          
-          {filteredNotes.length === 0 && (
-            <Card className="border-2 border-dashed border-gray-300">
-              <CardContent className="text-center py-12">
+        <Card className="border-purple-200">
+          <CardContent className="p-0">
+            {filteredNotes.length > 0 ? (
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-purple-50 border-b border-purple-200">
+                    <tr>
+                      <th className="text-left py-4 px-6 font-medium text-purple-900 w-8">#</th>
+                      <th className="text-left py-4 px-6 font-medium text-purple-900">Study Note</th>
+                      <th className="text-left py-4 px-6 font-medium text-purple-900">Unit</th>
+                      <th className="text-left py-4 px-6 font-medium text-purple-900">Topic</th>
+                      <th className="text-left py-4 px-6 font-medium text-purple-900">Subtopic</th>
+                      <th className="text-left py-4 px-6 font-medium text-purple-900">Content</th>
+                      <th className="text-left py-4 px-6 font-medium text-purple-900">Generated</th>
+                      <th className="text-left py-4 px-6 font-medium text-purple-900 w-32">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200">
+                    {filteredNotes.map((note, index) => (
+                      <tr key={note.id} className="hover:bg-gray-50 transition-colors">
+                        <td className="py-4 px-6 text-sm text-gray-500">
+                          {index + 1}
+                        </td>
+                        <td className="py-4 px-6">
+                          <div>
+                            <div className="font-medium text-gray-900 text-sm">
+                              {note.title}
+                            </div>
+                            <div className="text-xs text-gray-500 mt-1 line-clamp-1">
+                              {note.content.overview.substring(0, 80)}...
+                            </div>
+                          </div>
+                        </td>
+                        <td className="py-4 px-6">
+                          <Badge variant="outline" className="text-xs bg-purple-50 text-purple-700 border-purple-200">
+                            {note.unit.replace("Unit 1: ", "").replace("Unit 2: ", "")}
+                          </Badge>
+                        </td>
+                        <td className="py-4 px-6">
+                          <Badge variant="outline" className="text-xs bg-blue-50 text-blue-700 border-blue-200">
+                            {note.topic}
+                          </Badge>
+                        </td>
+                        <td className="py-4 px-6">
+                          <Badge variant="outline" className="text-xs bg-green-50 text-green-700 border-green-200">
+                            {note.subtopic}
+                          </Badge>
+                        </td>
+                        <td className="py-4 px-6">
+                          <div className="flex space-x-2 text-xs">
+                            <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                              {note.content.keyDefinitions.length}D
+                            </span>
+                            <span className="bg-green-100 text-green-800 px-2 py-1 rounded">
+                              {note.content.formulas.length}F
+                            </span>
+                            <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded">
+                              {note.content.workedExamples.length}E
+                            </span>
+                            <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded">
+                              {note.content.practiceExercises.length}P
+                            </span>
+                          </div>
+                          <div className="text-xs text-gray-500 mt-1">
+                            D=Definitions, F=Formulas, E=Examples, P=Practice
+                          </div>
+                        </td>
+                        <td className="py-4 px-6 text-sm text-gray-500">
+                          {note.dateGenerated}
+                        </td>
+                        <td className="py-4 px-6">
+                          <div className="flex space-x-2">
+                            <Button
+                              onClick={() => setSelectedNote(note)}
+                              variant="outline"
+                              size="sm"
+                              className="text-purple-600 hover:text-purple-800 hover:bg-purple-50 h-8 px-2"
+                            >
+                              <Eye className="w-3 h-3" />
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="text-red-600 hover:text-red-800 hover:bg-red-50 h-8 px-2"
+                            >
+                              <Trash2 className="w-3 h-3" />
+                            </Button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <div className="text-center py-12">
                 <BookOpen className="w-16 h-16 text-gray-400 mx-auto mb-4" />
                 <h3 className="text-xl font-medium text-gray-900 mb-2">No study notes found</h3>
                 <p className="text-gray-600 mb-4">
-                  {notes.length === 0 
+                  {notes.length === 0
                     ? "No study notes have been generated yet."
                     : "Try adjusting your search filters to find notes."
                   }
@@ -477,10 +497,10 @@ export default function StudyNotesManagement() {
                     Reset All Filters
                   </Button>
                 )}
-              </CardContent>
-            </Card>
-          )}
-        </div>
+              </div>
+            )}
+          </CardContent>
+        </Card>
       </div>
 
       {/* Note Detail Modal */}
