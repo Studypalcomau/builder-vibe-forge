@@ -27,110 +27,284 @@ import {
 
 export default function ComprehensiveStudyGuide() {
   const { subjectId } = useParams();
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingSectionId, setEditingSectionId] = useState<string | null>(null);
 
-  const studyGuide = {
+  const [studyGuide, setStudyGuide] = useState({
     subject: "Mathematical Methods",
-    overview: "This comprehensive study guide provides a complete learning pathway for Mathematical Methods, integrating all units and topics to show how concepts connect across the subject. It's designed to support progressive learning from foundational concepts to advanced applications.",
-    learningPathway: [
-      {
-        phase: "Foundation Phase",
-        description: "Build core mathematical foundations",
-        units: ["Algebra and Functions"],
-        duration: "4-6 weeks",
-        keyMilestones: ["Master function types", "Understand transformations", "Apply basic calculus"]
-      },
-      {
-        phase: "Development Phase", 
-        description: "Develop analytical and problem-solving skills",
-        units: ["Differential Calculus", "Integral Calculus"],
-        duration: "8-10 weeks",
-        keyMilestones: ["Apply differentiation rules", "Solve optimization problems", "Master integration techniques"]
-      },
-      {
-        phase: "Mastery Phase",
-        description: "Integrate concepts and apply to complex problems",
-        units: ["Statistics and Probability", "Applications"],
-        duration: "6-8 weeks",
-        keyMilestones: ["Analyze statistical data", "Apply calculus to real-world problems", "Synthesize all concepts"]
-      }
-    ],
-    conceptConnections: [
-      {
-        concept: "Functions → Derivatives",
-        description: "Understanding function behavior leads naturally to rate of change analysis through derivatives"
-      },
-      {
-        concept: "Derivatives → Optimization",
-        description: "Derivative concepts enable finding maximum and minimum values in practical applications"
-      },
-      {
-        concept: "Integration → Area/Volume",
-        description: "Integral calculus provides tools for calculating areas, volumes, and accumulated quantities"
-      },
-      {
-        concept: "Statistics → Decision Making",
-        description: "Statistical analysis supports evidence-based decision making in various contexts"
-      }
-    ],
-    examStrategies: [
-      {
-        strategy: "Progressive Practice",
-        description: "Start with basic problems and gradually increase complexity",
-        tips: ["Master fundamentals first", "Build problem-solving confidence", "Practice time management"]
-      },
-      {
-        strategy: "Concept Mapping",
-        description: "Create visual connections between mathematical concepts",
-        tips: ["Draw relationship diagrams", "Identify formula families", "Connect theory to applications"]
-      },
-      {
-        strategy: "Error Analysis",
-        description: "Learn from mistakes to strengthen understanding",
-        tips: ["Keep error logs", "Identify common mistake patterns", "Practice problem-prone areas"]
-      }
-    ],
-    quickReference: {
-      keyFormulas: [
-        { category: "Derivatives", formula: "d/dx[x^n] = nx^(n-1)", application: "Power rule for differentiation" },
-        { category: "Integration", formula: "∫x^n dx = x^(n+1)/(n+1) + C", application: "Power rule for integration" },
-        { category: "Chain Rule", formula: "d/dx[f(g(x))] = f'(g(x)) × g'(x)", application: "Composite function differentiation" },
-        { category: "Statistics", formula: "μ = Σx/n", application: "Population mean calculation" }
-      ],
-      commonMistakes: [
-        "Forgetting the constant of integration",
-        "Misapplying the chain rule",
-        "Confusing correlation with causation",
-        "Not checking domain restrictions"
-      ],
-      studyTips: [
-        "Practice consistently rather than cramming",
-        "Understand concepts before memorizing formulas",
-        "Work through problems step-by-step",
-        "Seek help when concepts are unclear"
-      ]
+    examFormat: {
+      duration: "3 hours",
+      sections: 2,
+      totalMarks: 100,
+      calculatorAllowed: "CAS calculator permitted",
+      structure: "Section A: Multiple choice (20 marks), Section B: Extended response (80 marks)"
     },
-    assessmentCriteria: [
+    units: [
       {
-        criterion: "Mathematical Knowledge",
-        weight: "30%",
-        description: "Demonstrate understanding of mathematical concepts, formulas, and principles"
+        id: "unit1",
+        title: "Unit 1: Algebra and Functions",
+        examWeight: "25%",
+        topics: [
+          {
+            id: "functions",
+            title: "Functions and Relations",
+            content: {
+              keyFormulas: [
+                "f(x) = mx + b (Linear function)",
+                "f(x) = ax² + bx + c (Quadratic function)",
+                "f(x) = a(x - h)² + k (Vertex form)",
+                "Domain: {x ∈ R : conditions}",
+                "Range: {y ∈ R : conditions}"
+              ],
+              workedExamples: [
+                {
+                  question: "Find the domain and range of f(x) = √(x - 3) + 2",
+                  solution: [
+                    "For √(x - 3) to be real: x - 3 ≥ 0",
+                    "Therefore: x ≥ 3",
+                    "Domain: [3, ∞)",
+                    "Since √(x - 3) ≥ 0, then √(x - 3) + 2 ≥ 2",
+                    "Range: [2, ∞)"
+                  ],
+                  examTips: "Always check for square roots, fractions, and logarithms when finding domain"
+                }
+              ],
+              examQuestions: [
+                {
+                  type: "Multiple Choice",
+                  question: "The domain of f(x) = 1/(x² - 4) is:",
+                  options: ["R \\ {±2}", "R \\ {2}", "R \\ {-2}", "R"],
+                  answer: "R \\ {±2}",
+                  marks: 2
+                },
+                {
+                  type: "Extended Response",
+                  question: "A parabola has vertex at (-2, 5) and passes through (0, 1). Find the equation in the form f(x) = ax² + bx + c",
+                  solutionSteps: [
+                    "Use vertex form: f(x) = a(x + 2)² + 5",
+                    "Substitute point (0, 1): 1 = a(0 + 2)² + 5",
+                    "1 = 4a + 5, so 4a = -4, therefore a = -1",
+                    "f(x) = -(x + 2)² + 5",
+                    "Expand: f(x) = -(x² + 4x + 4) + 5",
+                    "f(x) = -x² - 4x - 4 + 5",
+                    "f(x) = -x² - 4x + 1"
+                  ],
+                  marks: 6
+                }
+              ]
+            }
+          },
+          {
+            id: "transformations",
+            title: "Function Transformations",
+            content: {
+              keyFormulas: [
+                "f(x) + k: vertical translation by k units",
+                "f(x + h): horizontal translation by -h units",
+                "af(x): vertical scaling by factor a",
+                "f(bx): horizontal scaling by factor 1/b",
+                "-f(x): reflection in x-axis",
+                "f(-x): reflection in y-axis"
+              ],
+              workedExamples: [
+                {
+                  question: "Describe the transformations that map f(x) = x² to g(x) = -2(x - 3)² + 1",
+                  solution: [
+                    "Compare g(x) = -2(x - 3)² + 1 with f(x) = x²",
+                    "Horizontal translation: 3 units right (x → x - 3)",
+                    "Vertical scaling: factor of 2 (coefficient 2)",
+                    "Reflection in x-axis (negative sign)",
+                    "Vertical translation: 1 unit up (+ 1)",
+                    "Order: translate right 3, scale by 2, reflect in x-axis, translate up 1"
+                  ],
+                  examTips: "Always state transformations in the correct order of operations"
+                }
+              ],
+              examQuestions: [
+                {
+                  type: "Extended Response",
+                  question: "The graph of y = f(x) is transformed to y = 3f(2x - 4) + 1. Describe the sequence of transformations.",
+                  solutionSteps: [
+                    "Rewrite as y = 3f(2(x - 2)) + 1",
+                    "1. Horizontal translation 2 units right: f(x) → f(x - 2)",
+                    "2. Horizontal scaling by factor 1/2: f(x - 2) → f(2(x - 2))",
+                    "3. Vertical scaling by factor 3: f(2(x - 2)) → 3f(2(x - 2))",
+                    "4. Vertical translation 1 unit up: 3f(2(x - 2)) → 3f(2(x - 2)) + 1"
+                  ],
+                  marks: 5
+                }
+              ]
+            }
+          }
+        ]
       },
       {
-        criterion: "Problem Solving",
-        weight: "40%",
-        description: "Apply mathematical methods to solve problems and analyze situations"
+        id: "unit2",
+        title: "Unit 2: Calculus",
+        examWeight: "35%",
+        topics: [
+          {
+            id: "derivatives",
+            title: "Differentiation",
+            content: {
+              keyFormulas: [
+                "d/dx[x^n] = nx^(n-1) (Power rule)",
+                "d/dx[sin x] = cos x",
+                "d/dx[cos x] = -sin x",
+                "d/dx[e^x] = e^x",
+                "d/dx[ln x] = 1/x",
+                "d/dx[f(g(x))] = f'(g(x)) × g'(x) (Chain rule)",
+                "d/dx[f(x)g(x)] = f'(x)g(x) + f(x)g'(x) (Product rule)"
+              ],
+              workedExamples: [
+                {
+                  question: "Find dy/dx for y = (3x² - 1)⁵",
+                  solution: [
+                    "Use chain rule: dy/dx = dy/du × du/dx",
+                    "Let u = 3x² - 1, then y = u⁵",
+                    "dy/du = 5u⁴ = 5(3x² - 1)⁴",
+                    "du/dx = 6x",
+                    "dy/dx = 5(3x² - 1)⁴ × 6x",
+                    "dy/dx = 30x(3x² - 1)⁴"
+                  ],
+                  examTips: "Always identify the inner and outer functions clearly when using chain rule"
+                }
+              ],
+              examQuestions: [
+                {
+                  type: "Extended Response",
+                  question: "A particle moves along a straight line. Its displacement from the origin at time t seconds is given by s(t) = 2t³ - 9t² + 12t + 1. Find when the particle is momentarily at rest.",
+                  solutionSteps: [
+                    "Velocity v(t) = ds/dt = d/dt[2t³ - 9t² + 12t + 1]",
+                    "v(t) = 6t² - 18t + 12",
+                    "For particle at rest: v(t) = 0",
+                    "6t² - 18t + 12 = 0",
+                    "Divide by 6: t² - 3t + 2 = 0",
+                    "Factor: (t - 1)(t - 2) = 0",
+                    "Therefore t = 1 or t = 2",
+                    "The particle is at rest at t = 1s and t = 2s"
+                  ],
+                  marks: 7
+                }
+              ]
+            }
+          },
+          {
+            id: "integration",
+            title: "Integration",
+            content: {
+              keyFormulas: [
+                "∫x^n dx = x^(n+1)/(n+1) + C, n ≠ -1",
+                "∫1/x dx = ln|x| + C",
+                "∫e^x dx = e^x + C",
+                "∫sin x dx = -cos x + C",
+                "∫cos x dx = sin x + C",
+                "∫f'(x)/f(x) dx = ln|f(x)| + C",
+                "∫[a to b] f(x) dx = F(b) - F(a) where F'(x) = f(x)"
+              ],
+              workedExamples: [
+                {
+                  question: "Evaluate ∫[1 to 2] (3x² - 2x + 1) dx",
+                  solution: [
+                    "Find antiderivative: ∫(3x² - 2x + 1) dx = x³ - x² + x + C",
+                    "Apply fundamental theorem: [x³ - x² + x]₁²",
+                    "Substitute upper limit: (2)³ - (2)² + (2) = 8 - 4 + 2 = 6",
+                    "Substitute lower limit: (1)³ - (1)² + (1) = 1 - 1 + 1 = 1",
+                    "Result: 6 - 1 = 5",
+                    "∫[1 to 2] (3x² - 2x + 1) dx = 5"
+                  ],
+                  examTips: "Always show the antiderivative before substituting limits"
+                }
+              ],
+              examQuestions: [
+                {
+                  type: "Extended Response",
+                  question: "The region bounded by y = x², y = 0, x = 1, and x = 3 is rotated about the x-axis. Find the volume of the solid formed.",
+                  solutionSteps: [
+                    "Volume of revolution: V = π∫[a to b] [f(x)]² dx",
+                    "Here f(x) = x², a = 1, b = 3",
+                    "V = π∫[1 to 3] (x²)² dx = π∫[1 to 3] x⁴ dx",
+                    "Antiderivative: ∫x⁴ dx = x⁵/5",
+                    "V = π[x⁵/5]₁³ = π[(3⁵/5) - (1⁵/5)]",
+                    "V = π[(243/5) - (1/5)] = π(242/5)",
+                    "V = 242π/5 cubic units"
+                  ],
+                  marks: 6
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    examTechniques: [
+      {
+        id: "time-management",
+        title: "Time Management Strategies",
+        content: "Allocate 1.8 minutes per mark. Read all questions first, attempt easier questions to build confidence, leave difficult questions for last review."
       },
       {
-        criterion: "Communication",
-        weight: "20%",
-        description: "Clearly explain mathematical reasoning and present solutions coherently"
+        id: "working-out",
+        title: "Showing Working",
+        content: "Always show clear working steps. Even if final answer is wrong, partial marks awarded for correct method. Use proper mathematical notation."
       },
       {
-        criterion: "Mathematical Reasoning",
-        weight: "10%",
-        description: "Make connections between concepts and justify mathematical decisions"
+        id: "checking",
+        title: "Answer Checking",
+        content: "Substitute answers back into original equations where possible. Check units and reasonableness of answers. Use estimation to verify calculations."
+      }
+    ],
+    pastExamQuestions: [
+      {
+        year: "2023",
+        question: "A ball is thrown vertically upward from ground level with initial velocity 20 m/s. Its height h(t) = -5t² + 20t. When does it return to ground level?",
+        solution: "Set h(t) = 0: -5t² + 20t = 0, t(-5t + 20) = 0, so t = 0 or t = 4. Returns to ground at t = 4 seconds.",
+        marks: 3
+      },
+      {
+        year: "2022",
+        question: "Find the equation of the tangent to y = x³ - 3x² + 2x at the point where x = 1.",
+        solution: "y'(x) = 3x² - 6x + 2. At x = 1: y'(1) = 3 - 6 + 2 = -1. Point: (1, 1 - 3 + 2) = (1, 0). Tangent: y - 0 = -1(x - 1), so y = -x + 1.",
+        marks: 4
       }
     ]
+  });
+
+  const updateSection = (unitId: string, topicId: string, field: string, value: any) => {
+    setStudyGuide(prev => ({
+      ...prev,
+      units: prev.units.map(unit =>
+        unit.id === unitId
+          ? {
+              ...unit,
+              topics: unit.topics.map(topic =>
+                topic.id === topicId
+                  ? { ...topic, content: { ...topic.content, [field]: value } }
+                  : topic
+              )
+            }
+          : unit
+      )
+    }));
+  };
+
+  const addFormula = (unitId: string, topicId: string) => {
+    const newFormula = "New formula";
+    const unit = studyGuide.units.find(u => u.id === unitId);
+    const topic = unit?.topics.find(t => t.id === topicId);
+    if (topic) {
+      const updatedFormulas = [...topic.content.keyFormulas, newFormula];
+      updateSection(unitId, topicId, 'keyFormulas', updatedFormulas);
+    }
+  };
+
+  const removeFormula = (unitId: string, topicId: string, index: number) => {
+    const unit = studyGuide.units.find(u => u.id === unitId);
+    const topic = unit?.topics.find(t => t.id === topicId);
+    if (topic) {
+      const updatedFormulas = topic.content.keyFormulas.filter((_, i) => i !== index);
+      updateSection(unitId, topicId, 'keyFormulas', updatedFormulas);
+    }
   };
 
   return (
