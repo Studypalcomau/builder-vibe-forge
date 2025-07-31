@@ -1192,6 +1192,67 @@ export default function SubjectEditor() {
 
             <Card className="border-sky-blue-200">
               <CardHeader>
+                <CardTitle>Question Bank Generation</CardTitle>
+                <CardDescription>Generate comprehensive question bank with 250 multiple choice questions covering all curriculum topics</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <Card className="border-green-200">
+                    <CardContent className="p-6 text-center">
+                      <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                        <BookOpen className="w-6 h-6 text-green-600" />
+                      </div>
+                      <div className="text-2xl font-bold text-gray-900">{subject.contentGeneration.questionsGenerated || 0}</div>
+                      <div className="text-sm text-gray-600">Questions Generated</div>
+                    </CardContent>
+                  </Card>
+                  <Card className="border-orange-200">
+                    <CardContent className="p-6 text-center">
+                      <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                        <Target className="w-6 h-6 text-orange-600" />
+                      </div>
+                      <div className="text-2xl font-bold text-gray-900">250</div>
+                      <div className="text-sm text-gray-600">Target Questions</div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                <div className="mt-6 bg-green-50 border border-green-200 rounded-lg p-6">
+                  <h4 className="font-medium text-green-900 mb-3">AI Question Generation</h4>
+                  <p className="text-green-700 mb-4">
+                    AI will analyze your curriculum, learning materials, and exam papers to generate 250 comprehensive multiple choice questions with:
+                  </p>
+                  <ul className="text-green-700 mb-4 space-y-1 list-disc list-inside">
+                    <li>5 multiple choice options per question</li>
+                    <li>Correct answer identification</li>
+                    <li>Detailed answer explanations</li>
+                    <li>Step-by-step worked solutions</li>
+                    <li>Coverage across all curriculum topics</li>
+                  </ul>
+                  <div className="flex space-x-3">
+                    <Button
+                      onClick={() => setShowQuestionBank(true)}
+                      className="bg-green-600 hover:bg-green-700"
+                      disabled={!subject.curriculum.curriculumDocument?.extractedUnits}
+                    >
+                      <Bot className="w-4 h-4 mr-2" />
+                      Generate Question Bank
+                    </Button>
+                    <Button
+                      onClick={() => setShowQuestionBank(true)}
+                      variant="outline"
+                      disabled={!subject.contentGeneration.questionsGenerated}
+                    >
+                      <Eye className="w-4 h-4 mr-2" />
+                      View Generated Questions
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-sky-blue-200">
+              <CardHeader>
                 <CardTitle>AI Content Generation</CardTitle>
                 <CardDescription>Generate learning materials for all curriculum units, topics, and subtopics</CardDescription>
               </CardHeader>
