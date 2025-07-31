@@ -255,7 +255,42 @@ export default function SubjectEditor() {
   const [isUploadingCurriculum, setIsUploadingCurriculum] = useState(false);
   const [isUploadingMaterial, setIsUploadingMaterial] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
-  const [generatedQuestions, setGeneratedQuestions] = useState<GeneratedQuestion[]>([]);
+  const [generatedQuestions, setGeneratedQuestions] = useState<GeneratedQuestion[]>(() => {
+    // Initialize with some sample questions for demonstration
+    const sampleQuestions: GeneratedQuestion[] = [];
+    for (let i = 0; i < 15; i++) {
+      sampleQuestions.push({
+        id: `sample-q-${i}`,
+        question: `Sample Question ${i + 1}: What is the fundamental concept of mathematical relationships in advanced calculus applications?`,
+        options: [
+          "The systematic analysis of limit behavior and continuity properties",
+          "The computational application of derivative and integral formulas",
+          "The theoretical foundation of mathematical proofs and reasoning",
+          "The practical implementation in real-world problem scenarios",
+          "The integration of multiple mathematical domains and concepts"
+        ],
+        correctAnswer: "The systematic analysis of limit behavior and continuity properties",
+        explanation: "This question demonstrates understanding of fundamental calculus concepts and their application in mathematical analysis.",
+        workingSteps: [
+          "Step 1: Identify the core mathematical principle",
+          "Step 2: Analyze the relationship to calculus concepts",
+          "Step 3: Apply theoretical framework to practical scenarios",
+          "Step 4: Validate using established mathematical methods",
+          "Step 5: Confirm alignment with curriculum objectives"
+        ],
+        unit: "Unit 1: Algebra and Functions",
+        topic: "Functions and Relations",
+        subtopic: "Domain and Range",
+        unitIndex: 0,
+        topicIndex: 0,
+        subtopicIndex: 0,
+        difficulty: ['Easy', 'Medium', 'Hard'][i % 3] as 'Easy' | 'Medium' | 'Hard',
+        category: "Functions and Relations",
+        dateGenerated: new Date().toISOString().split('T')[0]
+      });
+    }
+    return sampleQuestions;
+  });
   const [generationProgress, setGenerationProgress] = useState<{
     currentUnit: string;
     currentTopic: string;
