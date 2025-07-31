@@ -403,6 +403,10 @@ export function Quiz({
                 onClick={() => {
                   setQuizStarted(true);
                   setQuizStartTime(new Date());
+                  // Set time limit based on question count for comprehensive tests
+                  if (questionPool && questionPool.length > 0) {
+                    setTimeLeft(dynamicTimeLimit * 60);
+                  }
                 }}
                 className="w-full bg-sky-blue-500 hover:bg-sky-blue-600 text-white"
                 size="lg"
