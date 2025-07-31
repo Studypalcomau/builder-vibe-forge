@@ -15,7 +15,8 @@ import {
   Star,
   ChevronRight,
   Eye,
-  FileText
+  FileText,
+  AlertCircle
 } from "lucide-react";
 
 // Quiz curriculum mapping
