@@ -299,13 +299,38 @@ export function Quiz({
             <p className="text-gray-600">{quiz.description}</p>
           </CardHeader>
           <CardContent className="space-y-6">
+            {/* Question Count Selection - Only show for comprehensive tests with question pools */}
+            {questionPool && questionPool.length > 0 && (
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Number of Questions
+                </label>
+                <select
+                  value={selectedQuestionCount}
+                  onChange={(e) => setSelectedQuestionCount(Number(e.target.value))}
+                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                >
+                  {[10, 15, 20, 25, 30, 35, 40, 45, 50].map(count => (
+                    <option key={count} value={count}>{count} questions</option>
+                  ))}
+                </select>
+                <p className="text-xs text-gray-600 mt-1">
+                  Time limit will adjust automatically (2 minutes per question)
+                </p>
+              </div>
+            )}
+
             <div className="grid grid-cols-2 gap-4">
               <div className="text-center p-4 bg-sky-blue-50 rounded-lg">
-                <div className="font-bold text-2xl text-gray-900">{currentQuizQuestions.length}</div>
+                <div className="font-bold text-2xl text-gray-900">
+                  {questionPool && questionPool.length > 0 ? selectedQuestionCount : currentQuizQuestions.length}
+                </div>
                 <div className="text-sm text-gray-600">Questions</div>
               </div>
               <div className="text-center p-4 bg-sky-blue-50 rounded-lg">
-                <div className="font-bold text-2xl text-gray-900">{quiz.totalTime} min</div>
+                <div className="font-bold text-2xl text-gray-900">
+                  {questionPool && questionPool.length > 0 ? dynamicTimeLimit : quiz.totalTime} min
+                </div>
                 <div className="text-sm text-gray-600">Time Limit</div>
               </div>
             </div>
