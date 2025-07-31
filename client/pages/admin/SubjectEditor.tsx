@@ -103,6 +103,33 @@ interface GeneratedQuestion {
   dateGenerated: string;
 }
 
+interface GeneratedNote {
+  id: string;
+  title: string;
+  unit: string;
+  topic: string;
+  subtopic: string;
+  unitIndex: number;
+  topicIndex: number;
+  subtopicIndex: number;
+  content: {
+    overview: string;
+    keyDefinitions: string[];
+    formulas: string[];
+    workedExamples: {
+      title: string;
+      problem: string;
+      solution: string[];
+    }[];
+    practiceExercises: {
+      question: string;
+      answer: string;
+    }[];
+    visualAids: string[];
+  };
+  dateGenerated: string;
+}
+
 interface Subject {
   id: string;
   name: string;
