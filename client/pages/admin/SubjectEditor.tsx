@@ -250,6 +250,8 @@ export default function SubjectEditor() {
   const [isUploadingCurriculum, setIsUploadingCurriculum] = useState(false);
   const [isUploadingMaterial, setIsUploadingMaterial] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [showQuestionBank, setShowQuestionBank] = useState(false);
+  const [generatedQuestions, setGeneratedQuestions] = useState<GeneratedQuestion[]>([]);
   const [generationProgress, setGenerationProgress] = useState<{
     currentUnit: string;
     currentTopic: string;
