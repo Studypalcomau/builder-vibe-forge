@@ -387,6 +387,33 @@ export default function StudyNotesManagement() {
           </CardContent>
         </Card>
 
+        {/* Content Legend */}
+        {filteredNotes.length > 0 && (
+          <div className="mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+            <div className="flex items-center space-x-6 text-sm">
+              <span className="font-medium text-gray-700">Content Legend:</span>
+              <div className="flex space-x-4">
+                <span className="flex items-center">
+                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs mr-2">D</span>
+                  Definitions
+                </span>
+                <span className="flex items-center">
+                  <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-xs mr-2">F</span>
+                  Formulas
+                </span>
+                <span className="flex items-center">
+                  <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs mr-2">E</span>
+                  Examples
+                </span>
+                <span className="flex items-center">
+                  <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs mr-2">P</span>
+                  Practice
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Notes Table */}
         <Card className="border-purple-200">
           <CardContent className="p-0">
