@@ -466,9 +466,10 @@ export default function SubjectQuizzes() {
   const [selectedQuiz, setSelectedQuiz] = useState<QuizData | null>(null);
 
   // Detect different modes based on URL
-  const isFullTest = window.location.pathname.includes('/test') && !window.location.pathname.includes('/history');
+  const isFullTest = window.location.pathname.includes('/test') && !window.location.pathname.includes('/history') && !window.location.pathname.includes('/results');
   const isTestHistory = window.location.pathname.includes('/test/history');
   const isTopicHistory = window.location.pathname.includes('/quiz/') && window.location.pathname.includes('/history');
+  const isResultsView = window.location.pathname.includes('/results');
 
   const subjectNames: Record<string, string> = {
     biology: "Biology",
