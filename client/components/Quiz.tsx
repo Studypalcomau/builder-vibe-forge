@@ -130,16 +130,21 @@ export function Quiz({
   const [selectedHistoryAttempt, setSelectedHistoryAttempt] = useState<QuizAttempt | null>(null);
   const [quizStartTime, setQuizStartTime] = useState<Date | null>(null);
   const [currentQuizQuestions, setCurrentQuizQuestions] = useState<QuizQuestion[]>([]);
+  const [selectedQuestionCount, setSelectedQuestionCount] = useState(25);
+
+  // Calculate dynamic time limit based on question count (2 minutes per question, minimum 20 minutes)
+  const dynamicTimeLimit = Math.max(20, selectedQuestionCount * 2);
 
   // Initialize quiz questions (randomized if question pool provided)
   useEffect(() => {
     if (questionPool && questionPool.length > 0) {
-      const selectedQuestions = selectRandomQuestions(questionPool, questionsPerAttempt);
+      const questionCount = questionPool.length >= selectedQuestionCount ? selectedQuestionCount : questionsPerAttempt;
+      const selectedQuestions = selectRandomQuestions(questionPool, questionCount);
       setCurrentQuizQuestions(selectedQuestions);
     } else {
       setCurrentQuizQuestions(quiz.questions);
     }
-  }, [questionPool, questionsPerAttempt, quiz.questions]);
+  }, [questionPool, questionsPerAttempt, quiz.questions, selectedQuestionCount]);
 
   const currentQuestion = currentQuizQuestions[currentQuestionIndex];
   const progress = ((currentQuestionIndex + 1) / currentQuizQuestions.length) * 100;
