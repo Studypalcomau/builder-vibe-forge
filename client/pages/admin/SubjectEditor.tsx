@@ -755,6 +755,112 @@ export default function SubjectEditor() {
     }));
   };
 
+  const handleGenerateSubtopicNotes = async () => {
+    if (!subject.curriculum.curriculumDocument?.extractedUnits) {
+      alert("Please upload and process a curriculum document first.");
+      return;
+    }
+
+    setIsGenerating(true);
+    const units = subject.curriculum.curriculumDocument.extractedUnits;
+    const newNotes: GeneratedNote[] = [];
+
+    // Generate notes for each subtopic
+    units.forEach((unit, unitIndex) => {
+      unit.topics.forEach((topic, topicIndex) => {
+        topic.subtopics.forEach((subtopic, subtopicIndex) => {
+          const note: GeneratedNote = {
+            id: `note-${unitIndex}-${topicIndex}-${subtopicIndex}`,
+            title: `${subtopic} - Study Notes`,
+            unit: unit.unitName,
+            topic: topic.topicName,
+            subtopic: subtopic,
+            unitIndex,
+            topicIndex,
+            subtopicIndex,
+            content: {
+              overview: `Comprehensive overview of ${subtopic} within the context of ${topic.topicName}. This section covers fundamental concepts, applications, and theoretical foundations essential for understanding ${subtopic} in mathematical contexts.`,
+              keyDefinitions: [
+                `${subtopic}: Core mathematical concept relating to ${topic.topicName}`,
+                `Definition 2: Extended principle connecting ${subtopic} to broader mathematical frameworks`,
+                `Definition 3: Applied methodology for implementing ${subtopic} in problem-solving contexts`,
+                `Definition 4: Theoretical foundation underlying ${subtopic} applications`
+              ],
+              formulas: [
+                `Formula 1: ${subtopic} = f(x) where x represents the input variable`,
+                `Formula 2: d/dx[${subtopic}] = derivative expression for ${subtopic}`,
+                `Formula 3: ∫${subtopic} dx = integral form of ${subtopic}`,
+                `Formula 4: ${subtopic}(a,b) = parametric form with variables a and b`
+              ],
+              workedExamples: [
+                {
+                  title: `Basic ${subtopic} Example`,
+                  problem: `Solve the following problem involving ${subtopic}: Given the conditions related to ${topic.topicName}, find the solution.`,
+                  solution: [
+                    `Step 1: Identify the key elements of ${subtopic} in the problem`,
+                    `Step 2: Apply the fundamental principles of ${subtopic}`,
+                    `Step 3: Use appropriate formulas and techniques`,
+                    `Step 4: Calculate the numerical result`,
+                    `Step 5: Verify the solution and interpret the result`
+                  ]
+                },
+                {
+                  title: `Advanced ${subtopic} Application`,
+                  problem: `Complex scenario requiring deep understanding of ${subtopic} principles in real-world applications.`,
+                  solution: [
+                    `Step 1: Analyze the complex problem structure`,
+                    `Step 2: Break down into manageable components`,
+                    `Step 3: Apply advanced ${subtopic} techniques`,
+                    `Step 4: Integrate multiple solution approaches`,
+                    `Step 5: Synthesize final comprehensive solution`
+                  ]
+                }
+              ],
+              practiceExercises: [
+                {
+                  question: `Practice Question 1: Calculate the ${subtopic} for the given scenario involving ${topic.topicName}.`,
+                  answer: `Solution involves applying core ${subtopic} principles with systematic approach yielding the final result.`
+                },
+                {
+                  question: `Practice Question 2: Demonstrate how ${subtopic} connects to other concepts in ${unit.unitName}.`,
+                  answer: `Analysis shows interconnections through mathematical relationships and theoretical frameworks.`
+                },
+                {
+                  question: `Practice Question 3: Solve the optimization problem using ${subtopic} methodology.`,
+                  answer: `Optimization achieved through calculus-based approach with ${subtopic} as the primary tool.`
+                }
+              ],
+              visualAids: [
+                `Diagram 1: Conceptual representation of ${subtopic} relationships`,
+                `Graph 1: Visual plot showing ${subtopic} behavior over different domains`,
+                `Chart 1: Comparison table of ${subtopic} properties and characteristics`,
+                `Flowchart 1: Problem-solving process for ${subtopic} applications`
+              ]
+            },
+            dateGenerated: new Date().toISOString().split('T')[0]
+          };
+          newNotes.push(note);
+        });
+      });
+    });
+
+    // Simulate generation time
+    await new Promise(resolve => setTimeout(resolve, 3000));
+
+    setGeneratedNotes(prev => [...prev, ...newNotes]);
+    setSubject(prev => ({
+      ...prev,
+      contentGeneration: {
+        ...prev.contentGeneration,
+        notesGenerated: prev.contentGeneration.notesGenerated + newNotes.length,
+        lastGenerated: new Date().toISOString().split('T')[0]
+      }
+    }));
+
+    setIsGenerating(false);
+    alert(`Subtopic notes generation completed!\n\nGenerated ${newNotes.length} detailed study notes covering all subtopics.\n\nEach note includes:\n- Comprehensive overview\n- Key definitions and formulas\n- Worked examples with solutions\n- Practice exercises\n- Visual aids and diagrams`);
+  };
+
 
 
   return (
